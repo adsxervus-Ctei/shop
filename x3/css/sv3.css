@@ -1,0 +1,204 @@
+/* Mi Tienda · Servus 3.0 · diagramación tipo marketplace (encabezado blanco, franja de pautas a todo el ancho con la
+   foto difuminada, caja de atajos, Súper ofertas en franja roja, categorías con descuento, bloques por departamento,
+   vistos recientemente, cupones y pie de página claro). Va de último: manda sobre servus.css y sv02.css. */
+:root{--sv3-rojo:#C8102E;--sv3-rojo-2:#B20E27;--sv3-rojo-3:#8F0B1F;--sv3-borde:#DADDE1;--sv3-gris:#F1F3F2;--sv3-texto2:#4A525C}
+
+/* ---------- encabezado ---------- */
+.sv3-promo{display:block;width:100%;border:0;background:#E9ECEF;color:var(--sv-tinta);cursor:pointer;font:inherit;padding:0;text-align:left}
+.sv3-promo .wrap{display:flex;align-items:center;gap:6px 18px;min-height:46px;flex-wrap:wrap;padding-block:6px}
+.sv3-promo b{font-family:Figtree,Inter,sans-serif;font-size:24px;font-weight:800;color:var(--sv-teal);line-height:1}
+.sv3-promo-t{font-size:16px;font-weight:600}
+.sv3-promo small{color:var(--sv3-texto2);font-size:13px}
+.sv3-promo em{margin-left:auto;font-style:normal;background:var(--sv-teal);color:#fff;font-weight:700;font-size:13px;border-radius:6px;padding:8px 14px}
+.sv3-promo:hover em{background:var(--sv-teal-2)}
+.sv3-util{background:#fff;border-bottom:1px solid var(--sv-linea);font-size:12.5px;color:var(--sv3-texto2)}
+.sv3-util .wrap{display:flex;justify-content:space-between;align-items:center;gap:4px 18px;min-height:34px;flex-wrap:wrap}
+.sv3-util nav{display:flex;gap:2px 18px;flex-wrap:wrap}
+.sv3-util button{border:0;background:none;font:inherit;color:inherit;cursor:pointer;padding:7px 0}
+.sv3-util button:hover{color:var(--sv-teal);text-decoration:underline}
+/* al bajar, la franja y la barra se esconden para que el encabezado pegado no ocupe tanto */
+header.top.ml.sc .sv3-promo,header.top.ml.sc .sv3-util{display:none}
+header.top.ml .hr1{padding-block:16px 12px}
+header.top.ml .search{border:2px solid var(--sv-teal);border-radius:6px;background:#fff}
+header.top.ml .search select{display:block;border:0;border-right:1px solid var(--sv-linea);background:#F7F8F9;color:var(--sv-tinta);font-weight:600;font-size:13px;padding:0 10px;max-width:170px;border-radius:4px 0 0 4px;cursor:pointer}
+header.top.ml .search button[type=submit]{border-radius:0 3px 3px 0}
+header.top.ml .hr2{border-top:1px solid var(--sv-linea);padding-block:6px}
+header.top.ml .hnav .sv3-dep-btn{background:var(--sv-lima);color:var(--sv-tinta);font-weight:700;border-radius:6px;padding:9px 14px;gap:8px;margin-right:10px}
+header.top.ml .hnav .sv3-dep-btn:hover{background:#B5E22A;color:var(--sv-tinta)}
+header.top.ml .hnav .sv3-dep-btn .ic{width:16px;height:16px}
+/* "Registra tu negocio / Hazte domiciliario" del encabezado ya están en la franja y la barra de arriba */
+@media(min-width:901px){#svReg{display:none}}
+
+/* ---------- franja de pautas a todo el ancho ---------- */
+.sv3-home{background:#fff;padding-top:0}
+.sv3-banda{overflow:hidden;padding:24px 0;isolation:isolate}
+.sv3-banda::after{display:none}
+.sv3-difu{position:absolute;inset:-70px;pointer-events:none;z-index:0}
+.sv3-difu img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(36px) saturate(1.15);opacity:0;transition:opacity .9s ease}
+.sv3-difu img.on{opacity:.5}
+.sv3-banda .sv2-banda-in{z-index:1;gap:20px}
+.sv3-banda .sv2-sl{border-radius:6px;min-height:380px;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.sv3-banda .sv2-fl{border-radius:0;width:40px;height:48px;background:rgba(255,255,255,.88);box-shadow:none}
+.sv3-banda .sv2-fl.l{left:0}.sv3-banda .sv2-fl.r{right:0}
+.sv3-banda .sv2-s-tx{padding:30px 34px 50px 62px}
+.sv3-banda .sv2-s .sv2-pat{left:62px}
+.sv3-banda .sv2-s-tx h2{text-transform:uppercase;font-size:clamp(24px,2.7vw,36px)}
+.sv3-banda .sv2-s-tx .sv-btn{background:var(--sv-lima);color:var(--sv-tinta);border-radius:6px}
+.sv3-banda .sv2-s.on .sv2-s-tx>*{animation:sv3-entra .65s cubic-bezier(.2,.7,.2,1) both}
+.sv3-banda .sv2-s.on .sv2-s-tx>:nth-child(2){animation-delay:.12s}.sv3-banda .sv2-s.on .sv2-s-tx>:nth-child(3){animation-delay:.24s}
+.sv3-banda .sv2-s.on .sv2-s-tx>:nth-child(4){animation-delay:.38s}.sv3-banda .sv2-s.on .sv2-s-tx>:nth-child(5){animation-delay:.5s}
+@keyframes sv3-entra{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+.sv3-banda .sv-hero-m,.sv3-banda .sv-hero-n{border-radius:6px;box-shadow:0 12px 30px rgba(0,0,0,.22)}
+.sv3-banda .sv-hero-m{flex-direction:column;justify-content:flex-start;gap:4px}
+.sv3-banda .sv-hero-m small{font-size:13px;opacity:.9}
+
+/* ---------- caja de atajos (beneficios) ---------- */
+.sv3-benef{margin-top:22px}
+.sv3-benef .sv2-atajos{padding:0;gap:0;border:1px solid var(--sv3-borde);border-radius:6px;background:#fff;grid-template-columns:repeat(6,minmax(0,1fr));overflow:hidden}
+.sv3-benef .sv2-at{box-shadow:none;border-radius:0;flex-direction:row;text-align:left;align-items:center;gap:12px;padding:16px 14px;border:0;border-right:1px solid var(--sv-linea);background:#fff;cursor:pointer;font:inherit;color:inherit}
+.sv3-benef .sv2-at:last-child{border-right:0}
+.sv3-benef .sv2-at:hover{background:#F7F8F9}
+.sv3-benef .sv2-at-i{flex:none;width:40px;height:40px}
+.sv3-at-tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sv3-at-tx b{font-size:13.5px}
+.sv3-at-tx small{font-size:12px;color:var(--sv-gris);line-height:1.3}
+.sv3-at-tx em{font-style:normal;font-size:12px;font-weight:700;color:var(--sv-teal)}
+
+/* ---------- estados y categorías ---------- */
+.sv3-est-band{background:#F7F8F9;border-block:1px solid #EEF0F2;margin-top:22px;padding:4px 0}
+.sv3-est-band .sv2-estados-s{margin:0}
+.sv3-home .sv-circ{margin-top:18px}
+
+/* ---------- tres vitrinas de negocios ---------- */
+.sv3-vit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:26px}
+.sv3-vit-i{position:relative;height:180px;border:1px solid #ECE8E1;background:#F4F1EC;border-radius:6px;overflow:hidden;padding:0;cursor:pointer;font:inherit;color:var(--sv-tinta);text-align:left;transition:transform .25s}
+.sv3-vit-i:hover{transform:translateY(-3px)}
+.sv3-vit-i>img{position:absolute;right:0;top:0;width:50%;height:100%;object-fit:cover}
+.sv3-vit-i>span{position:absolute;left:18px;top:18px;bottom:16px;width:44%;display:flex;flex-direction:column;gap:5px}
+.sv3-vit-lg{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.sv3-vit-i b{font-family:Figtree,Inter,sans-serif;font-size:18px;font-weight:800;line-height:1.15}
+.sv3-vit-i small{font-size:12.5px;color:var(--sv3-texto2);line-height:1.3}
+.sv3-vit-i em{margin-top:auto;font-style:normal;font-size:12px;font-weight:700;color:var(--sv-teal)}
+
+/* ---------- Súper ofertas en franja roja ---------- */
+.sv3-ofertas{margin-top:30px}
+.sv3-of-h{background:var(--sv3-rojo);color:#fff}
+.sv3-of-h .wrap{display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap;padding-block:14px}
+.sv3-of-h h2{margin:0;font-size:25px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.sv3-vermas{background:#15191E;color:#fff;border:0;border-radius:6px;padding:10px 20px;font:inherit;font-weight:700;cursor:pointer}
+.sv3-vermas:hover{background:#000}
+.sv3-of-t{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:13px}
+.sv3-cd{display:flex;gap:6px}
+.sv3-cd>span{background:#fff;color:#15191E;border-radius:5px;width:58px;padding:5px 0;display:flex;flex-direction:column;align-items:center;line-height:1.1}
+.sv3-cd b{font-size:20px;font-weight:800}
+.sv3-cd small{font-size:10px;color:var(--sv3-texto2)}
+.sv3-of-r{background:#F7F8F9;padding:14px 0;border-bottom:1px solid #EEF0F2}
+
+/* ---------- 4 categorías con su mayor descuento ---------- */
+.sv3-catof{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:26px}
+.sv3-catof-i{height:150px;border:0;border-radius:6px;overflow:hidden;background:var(--sv3-rojo-2);color:#fff;display:grid;grid-template-columns:30% 36% minmax(0,1fr);align-items:center;padding:0;cursor:pointer;font:inherit;text-align:center;transition:transform .25s}
+.sv3-catof-i:hover{transform:translateY(-3px)}
+.sv3-catof-n{height:100%;display:grid;place-items:center;background:var(--sv3-rojo-3);font-family:Figtree,Inter,sans-serif;font-size:21px;font-weight:800;text-transform:uppercase;padding:0 8px;line-height:1.1}
+.sv3-catof-i img{width:100%;height:100%;object-fit:cover}
+.sv3-catof-d{display:flex;flex-direction:column;align-items:center;line-height:1}
+.sv3-catof-d b{font-family:Figtree,Inter,sans-serif;font-size:50px;font-weight:800}
+.sv3-catof-d small{font-size:12px;font-weight:600;letter-spacing:.06em}
+
+/* ---------- zona gris: rieles y departamentos ---------- */
+.sv3-zona{background:var(--sv3-gris);padding:6px 0 34px;margin-top:30px}
+.sv3-zona .sv-sec{margin-top:26px}
+
+/* ---------- bloque por departamento ---------- */
+.sv3-dep{margin-top:26px}
+.sv3-dep-in{background:#fff;display:grid;grid-template-columns:210px 270px minmax(0,1fr);min-height:440px}
+.sv3-dep-izq{padding:22px 20px;display:flex;flex-direction:column;min-width:0}
+.sv3-dep-izq h2{margin:0 0 14px;font-size:18px;font-weight:600;line-height:1.2}
+.sv3-dep-izq ul{list-style:none;margin:0;padding:0;display:grid;gap:1px}
+.sv3-dep-izq li button{border:0;background:none;font:inherit;font-size:13px;padding:5px 0;cursor:pointer;color:var(--sv-tinta);text-align:left;display:flex;gap:8px;align-items:center;min-height:30px}
+.sv3-dep-izq li button:hover{color:var(--sv-teal);text-decoration:underline}
+.sv3-dep-neg{color:var(--sv3-texto2)!important}
+.sv3-dep-neg img{width:22px;height:22px;border-radius:50%;object-fit:cover;flex:none}
+.sv3-dep-todo{margin-top:auto;border:0;background:none;font:inherit;font-style:italic;font-size:12.5px;color:var(--sv3-texto2);text-align:left;padding:18px 0 0;cursor:pointer;text-decoration:underline}
+.sv3-vp{position:relative;overflow:hidden;background:#15191E;min-height:300px}
+.sv3-vp-s{position:absolute;inset:0;border:0;padding:0;cursor:pointer;opacity:0;visibility:hidden;transition:opacity .7s,visibility .7s;color:#fff;font:inherit;text-align:center;background:none}
+.sv3-vp-s.on{opacity:1;visibility:visible}
+.sv3-vp-s img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 6s ease}
+.sv3-vp-s.on img{transform:scale(1)}
+.sv3-vp-tx{position:absolute;left:14px;right:14px;top:26px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.sv3-vp-tx small{background:rgba(21,25,30,.78);padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.sv3-vp-tx b{background:rgba(21,25,30,.78);padding:4px 10px;font-family:Figtree,Inter,sans-serif;font-size:22px;font-weight:800;line-height:1.15}
+.sv3-vp-d{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;background:var(--sv3-rojo);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.sv3-vp-d b{font-family:Figtree,Inter,sans-serif;font-size:24px;font-weight:800}.sv3-vp-d small{font-size:10.5px;font-weight:700}
+.sv3-vp-b{position:absolute;left:0;right:0;bottom:46px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.sv3-vp-b b{background:rgba(21,25,30,.78);padding:3px 10px;font-size:18px}
+.sv3-vp-b em{font-style:normal;background:var(--sv-lima);color:var(--sv-tinta);font-weight:700;font-size:13px;padding:10px 18px;border-radius:5px}
+.sv3-vp-dots{position:absolute;left:0;right:0;bottom:6px;display:flex;justify-content:center;z-index:2}
+.sv3-vp-dots button{border:0;background:none;padding:12px 6px;cursor:pointer}
+.sv3-vp-dots i{display:block;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55)}
+.sv3-vp-dots .on i{background:#fff}
+.sv3-dep-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-left:1px solid #EEF0F2;align-content:start}
+.sv3-dep-g .sv-card{border-radius:0;box-shadow:none;border-right:1px solid #EEF0F2;border-bottom:1px solid #EEF0F2}
+.sv3-dep-g .sv-card:hover{box-shadow:0 10px 26px rgba(21,25,30,.14);z-index:1}
+
+/* ---------- vistos recientemente ---------- */
+.sv3-vistos-l{display:flex;gap:14px;overflow-x:auto;background:#fff;padding:14px;border-radius:6px;scrollbar-width:thin}
+.sv3-vistos-l button{flex:0 0 128px;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:var(--sv-tinta);text-align:left;display:flex;flex-direction:column;gap:4px}
+.sv3-vistos-l img{width:128px;height:128px;object-fit:cover;border-radius:6px}
+.sv3-vistos-ic{width:128px;height:128px;border-radius:6px;background:#F1F3F2;display:grid;place-items:center;color:var(--sv-gris)}.sv3-vistos-ic .ic{width:40px;height:40px}
+.sv3-vistos-l span{font-size:12.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sv3-vistos-l b{font-size:14px}
+
+/* ---------- cupones ---------- */
+.sv3-cup{border-top:1px solid var(--sv-linea);background:#fff}
+.sv3-cup .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px 32px;flex-wrap:wrap;padding-block:32px}
+.sv3-cup h2{margin:0;font-size:22px;font-weight:700}
+.sv3-cup p{margin:4px 0 0;color:var(--sv3-texto2);font-size:14px}
+
+/* ---------- pie de página claro ---------- */
+footer.ft{background:#fff!important;color:var(--sv3-texto2);border-top:1px solid var(--sv-linea)}
+footer.ft h4,footer.ft .logo,footer.ft .logo .lg-t b,footer.ft .kw b,footer.ft p b{color:var(--sv-tinta)!important}
+footer.ft .logo .lg-t b i{color:var(--sv-teal)!important}
+footer.ft li button,footer.ft li a{color:var(--sv3-texto2)}
+footer.ft li button:hover,footer.ft li a:hover{color:var(--sv-teal);text-decoration:underline}
+footer.ft .kw{border-top:1px solid #EEF0F2;padding-block:16px;font-size:12.5px;display:grid;gap:5px}
+footer.ft .legal{border-top:1px solid #EEF0F2}
+footer.ft .paychips span{border:1px solid #CBD1D8;background:#fff;color:var(--sv-tinta)}
+.sv3-linea b{display:block;font-family:Figtree,Inter,sans-serif;font-size:24px;color:var(--sv-teal);margin-top:2px}
+
+/* ---------- tableta ---------- */
+@media(max-width:1100px){
+  .sv3-benef .sv2-atajos{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sv3-benef .sv2-at:nth-child(3n){border-right:0}.sv3-benef .sv2-at:nth-child(-n+3){border-bottom:1px solid var(--sv-linea)}
+  .sv3-dep-in{grid-template-columns:200px minmax(0,1fr)}.sv3-vp{display:none}
+}
+@media(max-width:900px){
+  .sv3-util,.sv3-promo small{display:none}
+  .sv3-banda .sv-hero-b{display:none}.sv3-banda .sv2-banda-in{grid-template-columns:1fr}
+  .sv3-vit{grid-template-columns:1fr;gap:10px}.sv3-vit-i{height:130px}
+  .sv3-catof{grid-template-columns:1fr 1fr;gap:10px}
+}
+/* ---------- celular ---------- */
+@media(max-width:700px){
+  .sv3-promo .wrap{min-height:40px;gap:4px 10px}.sv3-promo b{font-size:17px}.sv3-promo-t{font-size:13px}.sv3-promo em{padding:6px 10px;font-size:12px}
+  header.top.ml .search select{display:none}
+  .sv3-banda{padding:14px 0}
+  .sv3-banda .sv2-sl{min-height:270px}
+  .sv3-banda .sv2-s-tx{padding:44px 18px 40px 20px;max-width:100%}.sv3-banda .sv2-s .sv2-pat{left:20px;top:12px}
+  .sv3-banda .sv2-s-tx h2{font-size:22px}
+  .sv3-benef .sv2-atajos{display:flex;overflow-x:auto;scroll-snap-type:x proximity;border-radius:6px}
+  .sv3-benef .sv2-at{flex:0 0 230px;scroll-snap-align:start;border-bottom:0!important;border-right:1px solid var(--sv-linea)!important}
+  .sv3-of-h h2{font-size:20px}.sv3-of-t{margin-left:0;width:100%;justify-content:space-between}
+  .sv3-cd>span{width:50px}.sv3-cd b{font-size:17px}
+  .sv3-catof-i{height:120px;display:block;position:relative;text-align:left}
+  .sv3-catof-n{position:absolute;left:0;top:0;height:auto;background:none;font-size:14px;padding:10px;z-index:1;place-items:start}
+  .sv3-catof-i img{position:absolute;right:0;top:0;width:52%}
+  .sv3-catof-d{position:absolute;left:10px;bottom:10px;align-items:flex-start}.sv3-catof-d b{font-size:32px}
+  .sv3-dep-in{grid-template-columns:1fr;min-height:0}
+  .sv3-dep-izq{padding:14px 14px 4px}.sv3-dep-izq h2{margin-bottom:8px}
+  .sv3-dep-izq ul{display:flex;overflow-x:auto;gap:6px;padding-bottom:6px}
+  .sv3-dep-izq li button{white-space:nowrap;background:#F1F3F2;border-radius:6px;padding:6px 10px;min-height:36px}
+  .sv3-dep-todo{display:none}
+  .sv3-dep-g{grid-template-columns:repeat(2,minmax(0,1fr));border-left:0}
+  .sv3-cup .wrap{padding-block:22px}
+}
+@media(prefers-reduced-motion:reduce){.sv3-difu img,.sv3-vp-s,.sv3-vp-s img{transition:none}.sv3-banda .sv2-s.on .sv2-s-tx>*{animation:none}}
