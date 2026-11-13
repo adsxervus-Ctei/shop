@@ -1,0 +1,26 @@
+Mi Tienda v9 · Reporte de pruebas de navegador
+Fecha: 12/11/2026, 7:52:48 p. m.
+Resultado: 22 de 22 pruebas pasaron
+
+01. PASÓ   El nombre visible es Mi Tienda y no queda "Lainec" en pantalla, en el manifiesto ni en el título  (1.0 s)
+02. PASÓ   La tienda abre de una: sin ventana de ingreso, sin municipio obligatorio y con aviso discreto para instalar  (1.6 s)
+03. PASÓ   Al pedir sin cuenta sale el ingreso; con WhatsApp (modo de prueba) se crea la cuenta y sigue el pedido  (1.5 s)
+04. PASÓ   Registro con datos básicos crea la cuenta en el servidor  (0.9 s)
+05. PASÓ   rancho-cajero entra directo a panel-turno y no ve el balance  (1.1 s)
+06. PASÓ   rancho-mesera entra directo a panel-atencion y no ve el balance  (1.0 s)
+07. PASÓ   rancho-cocina entra directo a panel-cocina y no ve el balance  (1.1 s)
+08. PASÓ   rancho-domi entra directo a panel-domicilios y no ve el balance  (1.0 s)
+09. PASÓ   El dueño elige una sola vez a dónde entra; luego abre directo y puede comprar y volver  (2.3 s)
+10. PASÓ   El servidor no deja que la mesera vea la caja ni que la cocina cambie pagos  (0.1 s)
+11. PASÓ   Pantalla de cocina: el pedido aceptado aparece, se toca para prepararlo y LISTO lo quita  (1.2 s)
+12. PASÓ   Asistencia: el dueño ve el QR; la mesera lo escanea y queda la entrada (también en el servidor)  (2.6 s)
+13. PASÓ   Balance por día, semana, quincena y mes  (1.5 s)
+14. PASÓ   PQR: el cliente la envía y el dueño la ve y la responde (por el servidor)  (4.2 s)
+15. PASÓ   Empleados: el dueño invita a un cocinero con su celular; sale la clave temporal y el enlace de WhatsApp; el invitado entra a la cocina  (3.7 s)
+16. PASÓ   Punto de venta: la gaseosa pregunta sabor y si va fría; el acetaminofén cobra según la presentación  (1.5 s)
+17. PASÓ   Granero por mayor: vende un bulto a precio de tendero y descuenta 50 kg; despacha el pedido de la tienda a crédito  (1.3 s)
+18. PASÓ   Ferretería: vende 15 metros de cable y convierte una cotización en venta  (1.3 s)
+19. PASÓ   Pescadores: recibe 10 libras, suben a la nevera, y la liquidación queda como gasto al pagar  (1.5 s)
+20. PASÓ   Quesera, granja y distribuidora: producción al inventario, encargo semanal que se repite y pedido de preventa  (2.6 s)
+21. PASÓ   Droguería: un pedido con amoxicilina pide revisar la fórmula; barbería: el de la fila pasa a la silla  (1.8 s)
+22. PASÓ   Las pantallas de los 6 negocios nuevos abren sin errores en el celular  (1.3 s)

@@ -1,0 +1,13 @@
+Mi Tienda v8 · Reporte de pruebas de identidad y experiencia
+Fecha: 12/11/2026, 7:52:09 p. m.
+Resultado: 9 de 9 pruebas pasaron
+
+01. PASÓ   El nombre visible es Mi Tienda y no queda "LobaMall" ni "HatilloMall" en pantalla  (0.7 s)
+02. PASÓ   El manifiesto, el color del tema y el ícono son de Mi Tienda  (0.0 s)
+03. PASÓ   Servus 0.1: el encabezado es blanco (como en "7 propuestas de interfaz") y el botón de buscar es verde petróleo  (0.7 s)
+04. PASÓ   Inicio: los círculos de categorías llevan a la categoría  (1.2 s)
+05. PASÓ   Servus 0.1: el sello Confianza sale en los productos y en Los mejor calificados  (0.7 s)
+06. PASÓ   Inicio: "Pedir de nuevo" aparece para la cliente con pedidos entregados y agrega al carrito  (2.5 s)
+07. PASÓ   Buscador: "Lo más buscado en el pueblo" busca con un toque (Amazon, Mercado Libre)  (1.2 s)
+08. PASÓ   Ficha en el celular: barra fija con precio, Agregar y Comprar (Shein, Temu); en computador no aparece  (2.7 s)
+09. PASÓ   El selector de municipio (se abre desde "Enviar a") usa el verde petróleo, no amarillo  (0.7 s)
