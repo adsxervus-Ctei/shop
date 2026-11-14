@@ -1,0 +1,99 @@
+/* Mi Tienda v9 · estilos de lo nuevo (ingreso, roles, cocina, asistencia, balance, PQR y atención por tipo de negocio) */
+.logo .lg-t b{letter-spacing:-.03em;white-space:nowrap}
+@media (max-width:640px){.hd .logo .lg-t b,header .logo .lg-t b{font-size:22px}}
+.lg-ic .ic{stroke-width:2.4}
+
+/* aviso para instalar (no tapa la tienda) */
+.mt-inst{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--linea);border-radius:18px;padding:10px 12px;box-shadow:0 12px 30px rgba(0,0,0,.16);max-width:560px;margin:0 auto}
+.mt-inst img{border-radius:12px}
+.mt-inst div{flex:1;line-height:1.25}.mt-inst small{display:block;color:var(--tinta-2);font-size:12.5px}
+.mt-inst-x{background:none;border:0;padding:6px;cursor:pointer;color:var(--tinta-2)}
+.mt-volver{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:61;display:flex;align-items:center;gap:8px;background:var(--cienaga);color:#fff;border:0;border-radius:99px;padding:12px 18px;font-weight:800;box-shadow:0 10px 24px rgba(11,93,99,.35);cursor:pointer}
+
+/* hoja de ingreso */
+.mt-login{gap:12px}
+.mt-provs{display:flex;flex-direction:column;gap:10px}
+.mt-prov{justify-content:flex-start;gap:12px;background:#fff;border:1px solid var(--linea);padding:12px 14px;font-size:15.5px}
+.mt-prov span{flex:1;text-align:center;margin-right:32px}
+.mt-gwrap{min-height:44px;display:flex;justify-content:center}
+.mt-o{display:flex;align-items:center;gap:10px;color:var(--tinta-2);font-size:13px}
+.mt-o::before,.mt-o::after{content:"";flex:1;height:1px;background:var(--linea)}
+.mt-demo summary{cursor:pointer;font-weight:700;color:var(--tinta-2);font-size:14px}
+.mt-demo .demo-l{margin-top:8px}
+.mt-legal{font-size:12px;text-align:center;margin:0}
+.mt-57{border:1px solid var(--linea);border-radius:10px;padding:10px 12px;font-weight:700;background:#fff}
+.mt-codigo{font-size:26px;letter-spacing:.4em;text-align:center;font-weight:800}
+.mt-ck{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.4}
+.mt-ck input{margin-top:3px}
+.mt-cargando{font-size:13px;margin:0}
+.mt-elige{display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:#fff;border:1px solid var(--linea);border-radius:18px;padding:14px;cursor:pointer;font:inherit}
+.mt-elige.on{border:2px solid var(--cienaga);background:var(--azul-sua)}
+.mt-elige .av{width:52px;height:52px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:var(--cal);flex:none}
+.mt-elige .av .lgw{width:52px;height:52px}
+.mt-elige b{display:block;font-size:17px}.mt-elige small{color:var(--tinta-2)}
+
+/* roles y opciones */
+.mt-roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.mt-rol{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--linea);border-radius:14px;padding:10px 12px;cursor:pointer;background:#fff}
+.mt-rol:has(input:checked){border:2px solid var(--cienaga);background:var(--azul-sua)}
+.mt-rol b{display:block}.mt-rol small{color:var(--tinta-2);font-size:12.5px;line-height:1.35}
+.mt-ops{display:flex;flex-wrap:wrap;gap:8px}
+.mt-op{position:relative}
+.mt-op input{position:absolute;opacity:0}
+.mt-op span{display:flex;gap:8px;align-items:center;border:1px solid var(--linea);border-radius:12px;padding:10px 14px;cursor:pointer;background:#fff;font-weight:600}
+.mt-op input:checked+span{border:2px solid var(--cienaga);background:var(--azul-sua)}
+.mt-op input:focus-visible+span{outline:3px solid var(--luciernaga)}
+.mt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 14px}
+.mt-tabs button{border:1px solid var(--linea);background:#fff;border-radius:99px;padding:8px 16px;font-weight:700;cursor:pointer;font:inherit;font-weight:700}
+.mt-tabs button[aria-selected="true"]{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+.mt-bars .col small{font-size:11px}
+
+/* pantalla de cocina */
+.mt-kds-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.mt-cmd{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--linea);cursor:pointer;display:flex;flex-direction:column}
+.mt-cmd header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;color:#fff;background:var(--cienaga);font-weight:800}
+.mt-cmd header span{display:flex;align-items:center;gap:4px;font-size:13px}
+.mt-cmd.prep header{background:#B7791F}.mt-cmd.atrasado header{background:var(--corozo)}
+.mt-cmd ul{list-style:none;margin:0;padding:10px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mt-cmd li{font-size:16px}.mt-cmd li small{display:block;background:#FFF6D6;border-radius:6px;padding:1px 6px;font-size:12.5px;width:max-content;max-width:100%;margin-top:2px}
+.mt-cmd footer{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-top:1px solid var(--linea-2)}
+.mt-cmd footer small{color:var(--tinta-2)}
+.mt-kds-ley{display:flex;gap:14px;flex-wrap:wrap;color:var(--tinta-2);font-size:13px;align-items:center}
+.mt-kds-ley i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;background:var(--cienaga);vertical-align:-1px}
+.mt-kds-ley i.prep{background:#B7791F}.mt-kds-ley i.atrasado{background:var(--corozo)}
+body.mt-kds-on .pn-side,body.mt-rol-cocina .pn-side{display:none}
+body.mt-kds-on .pn-main{background:#1A2026}
+body.mt-kds-on .panel-h h1,body.mt-kds-on .panel-h p,body.mt-kds-on .mt-kds-ley{color:#fff}
+
+/* asistencia */
+.mt-asis-qr{display:flex;flex-direction:column;align-items:center;gap:8px}
+.mt-asis-qr svg{width:220px;height:220px}
+.mt-asis-yo{display:flex;gap:14px;align-items:flex-start}.mt-asis-yo .ic{width:40px;height:40px;color:var(--cienaga);flex:none}
+.mt-asis-ok .ic{width:64px;height:64px;color:var(--monte)}
+
+/* PQR */
+.mt-pqr-h{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mt-pqr p{margin:8px 0}
+.mt-pqr.respondida{opacity:.85}
+
+/* atención por tipo de negocio */
+.mt-my-fila{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--linea-2);flex-wrap:wrap}
+.mt-my-fila small{display:block}
+.mt-my-us{display:flex;gap:6px;flex-wrap:wrap}
+.mt-my-u{display:flex;flex-direction:column;align-items:flex-start;border:1px solid var(--linea);border-radius:12px;background:#fff;padding:6px 10px;cursor:pointer;font:inherit;font-size:12.5px}
+.mt-my-u b{font-size:15px}
+.mt-my-u:hover{border-color:var(--cienaga)}
+.mt-ped{border-bottom:1px dashed var(--linea);padding:10px 0}
+.mt-ped-h{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.mt-ped-h .lgw{width:32px;height:32px}
+.mt-parada{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--linea);flex-wrap:wrap}
+.mt-parada .av{width:38px;height:38px;flex:none}.mt-parada .av .lgw{width:38px;height:38px}
+.mt-parada>div{flex:1;min-width:150px}.mt-parada small{display:block}
+.mt-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.mt-dot.r{background:var(--corozo)}.mt-dot.a{background:#B7791F}.mt-dot.v{background:var(--monte)}
+.lgw img{display:block}
+@media (max-width:640px){.mt-prov span{margin-right:0}.mt-kds-grid{grid-template-columns:1fr}}
+.pn-body .g2>.box{align-self:start}
+.mt-login,.mt-login>*{min-width:0;max-width:100%}
+.mt-login .btn{white-space:normal;text-align:center;height:auto;line-height:1.25}
+.mt-login .demo-l button{white-space:normal}
