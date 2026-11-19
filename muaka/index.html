@@ -791,6 +791,21 @@ a.kpi.hot .v{color:var(--sale)}
 /* la barra superior de la tienda se mantiene completa al bajar */
 body.scrolled .hd{box-shadow:0 1px 0 var(--line),0 10px 28px rgba(20,24,27,.10)}
 @media (max-width:860px){ body.scrolled.shop .top-in{padding-top:6px;padding-bottom:6px} body.scrolled.shop .search{height:40px} body.scrolled.shop .hnav-in{min-height:42px} }
+
+/* ---------- v1.2 · portada de tienda y fondo difuminado ---------- */
+.store-band{--edge:calc(50vw - 50% - var(--sbw,0px) / 2);position:relative;isolation:isolate;overflow:hidden;margin:-20px calc(var(--edge) * -1) 0;padding:20px var(--edge) 26px}
+.store-band.has::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--cov) center/cover no-repeat;filter:blur(36px) saturate(1.25);transform:scale(1.15);opacity:var(--band-op,.3)}
+.store-band.has::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 55%,var(--bg))}
+.store-hero{position:relative;box-shadow:0 14px 40px rgba(14,30,32,.12)}
+.store-hero .cover{height:auto;aspect-ratio:4/1;max-height:400px}
+@media (max-width:860px){ .store-band{margin-top:-14px;padding-top:14px;padding-bottom:18px} .store-hero .cover{aspect-ratio:12/5} }
+/* ---------- botón volver arriba ---------- */
+.totop{position:fixed;right:22px;bottom:22px;z-index:var(--z-bnav);width:48px;height:48px;border-radius:50%;border:0;background:var(--acc);color:var(--osc);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.22);opacity:0;transform:translateY(16px) scale(.8);pointer-events:none;transition:opacity .25s,transform .25s cubic-bezier(.2,1.3,.4,1),filter .15s}
+.totop .ic{width:24px;height:24px;stroke-width:2.8}
+body.far .totop{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{filter:brightness(.95);transform:translateY(-2px)}
+@media (max-width:860px){ .totop{right:14px;bottom:calc(var(--bnav-h) + 14px + var(--safe-b));width:44px;height:44px} }
+body.tracking .totop{bottom:calc(var(--bnav-h) + 64px + var(--safe-b))}
 @media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto!important;animation:none!important;transition:none!important} }
 </style>
 </head>
@@ -847,6 +862,11 @@ body.scrolled .hd{box-shadow:0 1px 0 var(--line),0 10px 28px rgba(20,24,27,.10)}
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="i-moto" viewBox="0 0 24 24"><circle cx="5" cy="16.5" r="3"/><circle cx="19" cy="16.5" r="3"/><path d="M5 16.5L7.6 11H13l2.6-3.5"/><path d="M8 16.5h4.6L16 11"/><path d="M14.2 7.5h2.4l2.4 9"/><path d="M6.5 8.5h3.5"/></symbol>
+  <symbol id="i-carro" viewBox="0 0 24 24"><path d="M5 17H3.5a1 1 0 0 1-1-1v-3.2a1 1 0 0 1 .3-.7L5 10l1.8-3.4A1.5 1.5 0 0 1 8.1 6h6.6a1.5 1.5 0 0 1 1.2.6L18.5 10l2.3.9a1 1 0 0 1 .7.9V16a1 1 0 0 1-1 1H19"/><path d="M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 10h13.5"/><path d="M11.5 6v4"/></symbol>
+  <symbol id="i-camion" viewBox="0 0 24 24"><path d="M14 17V5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h1"/><path d="M14 8h4l3.5 4.5V16a1 1 0 0 1-1 1H20"/><path d="M14 17h-4"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/></symbol>
+  <symbol id="i-lancha" viewBox="0 0 24 24"><path d="M2.5 14.5h17.5l-2.4 3.5H5.2z"/><path d="M6 14.5V11h6.5l3 3.5"/><path d="M20 14.5l1.5-3"/><path d="M2 21c1.4 0 1.4-.9 2.8-.9s1.4.9 2.8.9 1.4-.9 2.8-.9 1.4.9 2.8.9 1.4-.9 2.8-.9 1.4.9 2.8.9 1.4-.9 2.8-.9"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><polyline points="6 15 12 9 18 15"/></symbol>
   <symbol id="i-inbox" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
 </svg>
@@ -881,6 +901,7 @@ body.scrolled .hd{box-shadow:0 1px 0 var(--line),0 10px 28px rgba(20,24,27,.10)}
 <nav class="bnav" id="bnav" aria-label="Navegación"></nav>
 <div class="scrim hide" id="scrim"></div>
 <div id="toasts" role="status" aria-live="polite"></div>
+<button type="button" class="totop" id="toTop" aria-label="Volver arriba" title="Volver arriba"><svg class="ic" aria-hidden="true"><use href="#i-up"/></svg></button>
 <div class="netbar hide" id="netbar">Sin conexión con el servidor · reintentando…</div>
 
 <script>
@@ -1070,6 +1091,10 @@ function openDrawer(html) {
 }
 function closeDrawer() { if (DRAWER) { DRAWER.remove(); DRAWER = null; } $('#side').classList.remove('open'); $('#scrim').classList.add('hide'); $('#scrim').classList.remove('clear'); }
 $('#scrim').addEventListener('click', closeDrawer);
+/** Ancho de la barra de desplazamiento (Windows): evita que las franjas de ancho completo causen desplazamiento lateral. */
+const setSbw = () => document.documentElement.style.setProperty('--sbw', Math.max(0, innerWidth - document.documentElement.clientWidth) + 'px');
+setSbw(); window.addEventListener('resize', debounce(setSbw, 150));
+$('#toTop').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }); const m = $('#main'); if (m) m.focus({ preventScroll: true }); });
 document.addEventListener('error', e => { if (e.target && e.target.tagName === 'IMG') e.target.remove(); }, true);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (MODAL) closeModal(); else closeDrawer(); } });
 const mHead = (title, icon) => `<div class="mh">${icon ? ic(icon) : ''}<h3>${esc(title)}</h3><button class="icon-btn" data-close aria-label="Cerrar">${ic('x')}</button></div>`;
@@ -1251,7 +1276,7 @@ function navItems() {
   if (r === 'anon') return base.concat([['cuenta', 'login', 'Ingresar']]);
   if (r === 'cliente') return base.concat([['pedidos', 'package', 'Mis pedidos'], ['cuenta', 'user', 'Mi cuenta']]);
   if (r === 'vendedor') return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['g/Productos', 'bag', 'Productos'], ['mi-tienda', 'store', 'Mi tienda'], ['g/Cupones', 'percent', 'Cupones'], ['g/Cuotas', 'card', 'Mensualidades'], ['-'], ['', 'home', 'Marketplace'], ['compras', 'cart', 'Mis compras'], ['cuenta', 'user', 'Mi cuenta']];
-  if (r === 'repartidor') return [['entregas', 'truck', 'Entregas'], ['panel', 'chart', 'Panel'], ['-'], ['', 'home', 'Marketplace'], ['compras', 'cart', 'Mis compras'], ['cuenta', 'user', 'Mi cuenta']];
+  if (r === 'repartidor') return [['entregas', 'moto', 'Entregas'], ['panel', 'chart', 'Panel'], ['-'], ['', 'home', 'Marketplace'], ['compras', 'cart', 'Mis compras'], ['cuenta', 'user', 'Mi cuenta']];
   return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['solicitudes', 'inbox', 'Solicitudes'], ['g/Tiendas', 'store', 'Tiendas'], ['g/Productos', 'bag', 'Productos'], ['g/Usuarios', 'users', 'Usuarios'], ['g/Categorias', 'layers', 'Categorías'], ['g/Zonas', 'map', 'Zonas'], ['g/Cupones', 'percent', 'Cupones'], ['g/Cuotas', 'card', 'Mensualidades'], ['g/Auditoria', 'file', 'Auditoría'], ['config', 'sliders', 'Configuración'], ['-'], ['', 'home', 'Marketplace'], ['cuenta', 'user', 'Mi cuenta']];
 }
 const cfgList = k => String(S.cfg[k] || '').split(',').map(s => s.trim()).filter(Boolean);
@@ -1331,7 +1356,7 @@ function closePops() {
 document.addEventListener('click', e => { if (!e.target.closest('.acct-w') && !e.target.closest('.dep-w')) closePops(); });
 window.addEventListener('resize', debounce(closePops, 150));
 let scrollRaf = 0;
-window.addEventListener('scroll', () => { if (scrollRaf) return; scrollRaf = requestAnimationFrame(() => { scrollRaf = 0; document.body.classList.toggle('scrolled', window.scrollY > 240); if (!$('#depMenu').classList.contains('hide')) closePops(); }); }, { passive: true });
+window.addEventListener('scroll', () => { if (scrollRaf) return; scrollRaf = requestAnimationFrame(() => { scrollRaf = 0; document.body.classList.toggle('scrolled', window.scrollY > 240); document.body.classList.toggle('far', window.scrollY > 600); if (!$('#depMenu').classList.contains('hide')) closePops(); }); }, { passive: true });
 
 /* ---------- zona de entrega ---------- */
 function zonaSel() { const id = S.zona || (S.user && S.user.zona_id) || ''; return S.zonas.find(z => z.id === id) || null; }
@@ -1380,7 +1405,7 @@ function route() {
   $('#topSearch').classList.toggle('hide', !shop);
   $('#q').placeholder = h === 'tiendas' ? 'Buscar tiendas…' : h.startsWith('t/') ? 'Buscar en esta tienda…' : 'Buscar productos…';
   if (h !== '') $('#q').value = '';
-  markNav(h);
+  markNav(h); setTimeout(setSbw, 400);
   const main = $('#main');
   for (const [re, fn] of ROUTES) { const m = re.exec(h); if (m) { main.scrollTop = 0; window.scrollTo(0, 0); fn(main, ...m.slice(1)); return; } }
   location.hash = '#/';
@@ -1486,7 +1511,7 @@ function promos() {
 function slideHtml(b, i, n) {
   const col = b.color || SLIDE_COLORS[i % SLIDE_COLORS.length];
   return `<div class="slide ${b.img ? 'has-img' : ''} ${i ? '' : 'on'}" data-color="${esc(col)}" style="--sc:${esc(col)}" role="group" aria-roledescription="diapositiva" aria-label="${i + 1} de ${n}" ${i ? 'aria-hidden="true"' : ''}>
-    ${b.img ? `<img class="sl-bg" src="${esc(b.img)}" alt="" ${i ? 'loading="lazy"' : ''} referrerpolicy="no-referrer">` : `<span class="sl-deco" aria-hidden="true">${ic(['bag', 'tag', 'truck', 'store', 'heart'][i % 5])}</span>`}
+    ${b.img ? `<img class="sl-bg" src="${esc(b.img)}" alt="" ${i ? 'loading="lazy"' : ''} referrerpolicy="no-referrer">` : `<span class="sl-deco" aria-hidden="true">${ic(['bag', 'tag', 'moto', 'store', 'heart'][i % 5])}</span>`}
     <div class="sl-tx"><span class="sl-k">${esc(S.cfg.APP_NOMBRE || 'Mi Tienda')}</span><h2>${esc(b.t)}</h2>${b.s ? `<p>${esc(b.s)}</p>` : ''}${b.cta && b.href ? `<button class="btn lime" data-act="cta" data-href="${esc(b.href)}">${esc(b.cta)} ${ic('chevr', 'sm')}</button>` : ''}</div></div>`;
 }
 function promoHtml(p) {
@@ -1688,8 +1713,8 @@ function vHistorial(main) {
 function vVender(main) {
   const name = S.cfg.APP_NOMBRE || 'Mi Tienda'; const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, quiero registrar mi negocio en ' + name);
   const abierta = String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
-  const steps = [['file', 'Envía tu solicitud', 'Llena los datos de tu negocio en 2 minutos.'], ['check', 'Te activamos', 'Revisamos y activamos tu vitrina.'], ['bag', 'Sube tus productos', 'Fotos, precios, inventario y ofertas desde tu celular.'], ['truck', 'Recibe pedidos', 'Te avisamos al instante; tú o un domiciliario entregan.']];
-  const perks = [['chart', 'Panel de venta y posventa', 'Ventas del día, pedidos por estado, clientes y lo más vendido.'], ['layers', 'Inventario organizado', 'Productos, existencias y alertas de inventario bajo según tu negocio.'], ['percent', 'Cupones y ofertas', 'Emite cupones y aparece en Súper ofertas; avisamos a todo el pueblo.'], ['truck', 'Domicilios con mapa', 'Tu domiciliario o los de la plataforma, con seguimiento en vivo.'], ['bell', 'Avisos al instante', 'Cada pedido suena con el tono de Muaka, aunque la app esté cerrada.'], ['star', 'Reseñas de los vecinos', 'Las mejores tiendas salen primero.']];
+  const steps = [['file', 'Envía tu solicitud', 'Llena los datos de tu negocio en 2 minutos.'], ['check', 'Te activamos', 'Revisamos y activamos tu vitrina.'], ['bag', 'Sube tus productos', 'Fotos, precios, inventario y ofertas desde tu celular.'], ['moto', 'Recibe pedidos', 'Te avisamos al instante; tú o un domiciliario entregan.']];
+  const perks = [['chart', 'Panel de venta y posventa', 'Ventas del día, pedidos por estado, clientes y lo más vendido.'], ['layers', 'Inventario organizado', 'Productos, existencias y alertas de inventario bajo según tu negocio.'], ['percent', 'Cupones y ofertas', 'Emite cupones y aparece en Súper ofertas; avisamos a todo el pueblo.'], ['moto', 'Domicilios con mapa', 'Tu domiciliario o los de la plataforma, con seguimiento en vivo.'], ['bell', 'Avisos al instante', 'Cada pedido suena con el tono de Muaka, aunque la app esté cerrada.'], ['star', 'Reseñas de los vecinos', 'Las mejores tiendas salen primero.']];
   const servs = [['headset', 'Soporte técnico', 'Te acompañamos para montar y mantener tu tienda.'], ['file', 'Gestión de base de datos', 'Tus productos, clientes y ventas ordenados y respaldados.'], ['trend', 'Marketing digital', 'Campañas, contenidos y presencia en redes sociales.'], ['store', 'Vitrina 24/7', 'Tus clientes te encuentran y piden a cualquier hora.']];
   main.innerHTML = `<section class="vend-hero"><div class="vh-t"><span class="sl-k">Para negocios</span><h1>Vende en ${esc(name)}</h1><p>Tu vitrina en el celular de todo el pueblo. Recibe pedidos, controla tu inventario y llega a más clientes del territorio.</p>
       <div class="row wrap"><button class="btn lime" data-act="vender-go">Registrar mi negocio ${ic('chevr', 'sm')}</button>${sup ? `<a class="btn white" href="${esc(sup)}" target="_blank" rel="noopener">Hablar con un asesor</a>` : ''}</div></div>
@@ -1725,7 +1750,7 @@ async function vTienda(main, id) {
   if (location.hash !== '#/t/' + id) return;
   const cover = safeUrl(t.portada);
   const w = wa(t.whatsapp, 'Hola, te escribo desde ' + (S.cfg.APP_NOMBRE || 'Mi Tienda'));
-  main.innerHTML = `<section class="store-hero"><div class="cover" ${cover ? `style="background-image:url('${esc(cover)}')"` : ''}></div>
+  main.innerHTML = `<div class="store-band ${cover ? 'has' : ''}" ${cover ? `style="--cov:url('${esc(cover)}')"` : ''}><section class="store-hero"><div class="cover" ${cover ? `style="background-image:url('${esc(cover)}')"` : ''}></div>
     <div class="info"><div class="slogo">${safeUrl(t.logo) ? imgTag(t.logo, t.nombre) : esc(initials(t.nombre))}</div>
       <div class="grow" style="padding-top:10px"><h1 style="font-size:22px">${esc(t.nombre)}</h1>
         <div class="row wrap mut" style="font-size:13px;gap:6px 14px;margin-top:4px">
@@ -1737,7 +1762,7 @@ async function vTienda(main, id) {
         </div></div>
       ${w ? `<a class="btn" href="${esc(w)}" target="_blank" rel="noopener">${ic('chat')} WhatsApp</a>` : ''}
     </div>
-    ${t.descripcion ? `<p style="padding:0 16px 16px;margin:0" class="mut">${esc(t.descripcion)}</p>` : ''}</section>
+    ${t.descripcion ? `<p style="padding:0 16px 16px;margin:0" class="mut">${esc(t.descripcion)}</p>` : ''}</section></div>
     <div class="sec-h"><h2>Productos</h2></div><div class="grid" id="tProds"></div>`;
   S.tiendaList = new List($('#tProds'), { e: 'Productos', f: { tienda_id: id }, s: '', render: prodCard, empty: 'Esta tienda aún no tiene productos publicados.' });
   S.tiendaList.load();
@@ -1854,7 +1879,7 @@ function vCheckout(main) {
   <div class="cols" style="margin-top:0">
     <form class="card pad stack" id="coForm" novalidate>
       <div><label class="mut" style="font-weight:650;font-size:13px">¿Cómo lo recibes?</label>
-      <div class="radio-cards" style="margin-top:6px"><label><input type="radio" name="tipo" value="domicilio" checked> ${ic('truck')} Domicilio</label><label><input type="radio" name="tipo" value="recoger"> ${ic('store')} Recoger en tienda</label></div></div>
+      <div class="radio-cards" style="margin-top:6px"><label><input type="radio" name="tipo" value="domicilio" checked> ${ic('moto')} Domicilio</label><label><input type="radio" name="tipo" value="recoger"> ${ic('store')} Recoger en tienda</label></div></div>
       <div class="frm">
         <div class="fld" id="fZona"><label for="coZona">Zona de entrega <span class="req">*</span></label><select id="coZona" name="zona_id"><option value="">Selecciona…</option>${S.zonas.map(z => `<option value="${esc(z.id)}" ${(S.zona || u.zona_id) === z.id ? 'selected' : ''}>${esc(z.nombre)}${z.municipio ? ' · ' + esc(z.municipio) : ''} (${money(z.tarifa)})</option>`).join('')}</select><small class="ferr"></small></div>
         <div class="fld"><label for="coTel">Teléfono de contacto <span class="req">*</span></label><input id="coTel" name="telefono" type="tel" inputmode="tel" value="${esc(u.telefono || '')}" maxlength="20"><small class="ferr"></small></div>
@@ -1956,10 +1981,10 @@ function pedActions(o) {
     if (est === 'preparando') { add('listo', 'Marcar listo', 'pri'); add('cancelado', 'Cancelar', 'danger', 1); }
     if (est === 'listo') { if (!dom) add('entregado', 'Entregado', 'pri'); else if (a === 'admin' || dp || o.repartidor_id) add('en_camino', 'En camino', 'pri'); if (a === 'admin') add('cancelado', 'Cancelar', 'danger', 1); }
     if (est === 'en_camino' && (a === 'admin' || dp || !o.repartidor_id)) add('entregado', 'Entregado', 'pri');
-    if (dom && (est === 'pendiente' || activo) && !(a === 'vendedor' && dp)) A.push({ act: 'ped-assign', label: o.repartidor_id ? 'Cambiar domiciliario' : 'Asignar domiciliario', icon: 'truck' });
+    if (dom && (est === 'pendiente' || activo) && !(a === 'vendedor' && dp)) A.push({ act: 'ped-assign', label: o.repartidor_id ? 'Cambiar domiciliario' : 'Asignar domiciliario', icon: 'moto' });
   }
   if (a === 'repartidor') { if (est === 'listo') add('en_camino', 'Salir a entregar', 'pri'); if (est === 'en_camino') add('entregado', 'Confirmar entrega', 'pri'); if (activo) A.push({ act: 'ped-drop', label: 'Liberar' }); }
-  if (role() === 'repartidor' && !o.repartidor_id && dom && activo) A.push({ act: 'ped-take', label: 'Tomar pedido', cls: 'pri', icon: 'truck' });
+  if (role() === 'repartidor' && !o.repartidor_id && dom && activo) A.push({ act: 'ped-take', label: 'Tomar pedido', cls: 'pri', icon: 'moto' });
   if (S.user && o.cliente_id === S.user.id) { if (est === 'pendiente' && a === 'cliente') add('cancelado', 'Cancelar pedido', 'danger', 1); if (est === 'entregado' && !o.calificacion) A.push({ act: 'ped-rate', label: 'Calificar', cls: 'pri', icon: 'star' }); }
   return A;
 }
@@ -1980,7 +2005,7 @@ function pedCard(o) {
   const canContact = a === 'vendedor' || a === 'admin' || a === 'repartidor';
   return `<article class="card ped st-${esc(o.estado)}">
     <div class="ped-h"><div><b>${esc(o.codigo)}</b><small>${esc(ago(o.creado))} · ${esc(o.metodo_pago || '')}</small></div>${badge(o.estado)}</div>
-    <div class="ped-meta"><span>${ic('store', 'sm')} ${esc(o.tienda_nombre)}</span>${showCli ? `<span>${ic('user', 'sm')} ${esc(o.cliente_nombre)}</span>` : ''}${o.repartidor_nombre ? `<span>${ic('truck', 'sm')} ${esc(o.repartidor_nombre)}</span>` : ''}</div>
+    <div class="ped-meta"><span>${ic('store', 'sm')} ${esc(o.tienda_nombre)}</span>${showCli ? `<span>${ic('user', 'sm')} ${esc(o.cliente_nombre)}</span>` : ''}${o.repartidor_nombre ? `<span>${ic(vehIc(o.vehiculo), 'sm')} ${esc(o.repartidor_nombre)}</span>` : ''}</div>
     ${progress(o)}
     <ul class="items">${items.slice(0, 4).map(itemLi).join('')}${items.length > 4 ? `<li class="mut">+ ${items.length - 4} producto(s) más</li>` : ''}</ul>
     ${o.nota ? `<div class="mut" style="font-size:13px">${ic('file', 'sm')} ${esc(o.nota)}</div>` : ''}
@@ -2024,7 +2049,7 @@ function vCompras(main, own) {
 }
 function vEntregas(main) {
   if (!guard(['repartidor'])) return;
-  main.innerHTML = `<div class="page-h"><h1>${ic('truck')} Entregas</h1></div>
+  main.innerHTML = `<div class="page-h"><h1>${ic('moto')} Entregas</h1></div>
     <div class="chips" style="margin-bottom:14px"><button class="chip on" data-act="etab" data-v="disp">Disponibles</button><button class="chip" data-act="etab" data-v="mias">Mis entregas</button><button class="chip" data-act="etab" data-v="hist">Historial</button></div>
     <div class="plist" id="pList"></div>`;
   S.pedList = new List($('#pList'), entregasCfg('disp'));
@@ -2067,8 +2092,8 @@ function renderPedido(box, o) {
     </div>
     <ul class="items">${items.map(itemLi).join('')}</ul>
     ${dom && (geoP(o.ubicacion) || geoP(o.ubic_tienda)) ? `<div><div class="row between" style="margin-bottom:6px"><h4>${ic('map', 'sm')} ${o.estado === 'en_camino' ? 'Seguimiento en vivo' : 'Recorrido'}</h4>${o.estado === 'en_camino' && o.ubic_rep ? `<small class="mut"><span class="live" style="display:inline-block"></span> Domiciliario · ${esc(agoMs(o.ubic_rep))}</small>` : ''}</div><div class="pmap"></div>
-      <div class="row wrap" style="gap:6px;margin-top:8px;font-size:12.5px;color:var(--mut)"><span>${ic('store', 'sm')} Tienda</span><span>${ic('pin', 'sm')} Entrega</span>${o.estado === 'en_camino' ? `<span>${ic('truck', 'sm')} Domiciliario</span>` : ''}</div>
-      ${staff && geoP(o.ubicacion) ? `<a class="btn sm pri" style="margin-top:8px" href="${esc(rutaUrl(geoP(o.ubicacion)))}" target="_blank" rel="noopener">${ic('nav', 'sm')} Cómo llegar a la entrega</a>` : ''}
+      <div class="row wrap" style="gap:6px;margin-top:8px;font-size:12.5px;color:var(--mut)"><span>${ic('store', 'sm')} Tienda</span><span>${ic('pin', 'sm')} Entrega</span>${o.estado === 'en_camino' ? `<span>${ic(vehIc(o.vehiculo), 'sm')} ${esc(VEH_L[o.vehiculo] || 'Domiciliario')}</span>` : ''}</div>
+      ${staff && geoP(o.ubicacion) ? `<a class="btn sm pri" style="margin-top:8px" href="${esc(rutaUrl(geoP(o.ubicacion), o.vehiculo))}" target="_blank" rel="noopener">${ic('nav', 'sm')} ${o.vehiculo === 'lancha' ? 'Ver punto de entrega' : 'Cómo llegar a la entrega'}</a>` : ''}
       ${a === 'repartidor' && geoP(o.ubic_tienda) && ['aceptado', 'preparando', 'listo'].includes(o.estado) ? `<a class="btn sm" style="margin-top:8px" href="${esc(rutaUrl(geoP(o.ubic_tienda)))}" target="_blank" rel="noopener">${ic('store', 'sm')} Cómo llegar a la tienda</a>` : ''}</div>` : ''}
     <div><div class="sum"><span>Subtotal</span><span>${money(o.subtotal)}</span></div>
       ${Number(o.descuento) ? `<div class="sum" style="color:var(--ok)"><span>Descuento ${esc(o.cupon || '')}</span><span>-${money(o.descuento)}</span></div>` : ''}
@@ -2076,7 +2101,7 @@ function renderPedido(box, o) {
       <div class="sum tot"><span>Total · ${esc(o.metodo_pago)}</span><span>${money(o.total)}</span></div></div>
     ${o.nota ? `<div class="banner b-info">${ic('file')} ${esc(o.nota)}</div>` : ''}
     ${o.motivo ? `<div class="banner b-err">${ic('alert')} ${esc(o.motivo)}</div>` : ''}
-    ${o.repartidor_nombre ? `<div class="mut">${ic('truck', 'sm')} Domiciliario: <b>${esc(o.repartidor_nombre)}</b></div>` : ''}
+    ${o.repartidor_nombre ? `<div class="mut">${ic(vehIc(o.vehiculo), 'sm')} Domiciliario: <b>${esc(o.repartidor_nombre)}</b>${o.vehiculo ? ' · ' + esc(VEH_L[o.vehiculo] || '') : ''}</div>` : ''}
     ${o.calificacion ? `<div><span class="stars">${'★'.repeat(Number(o.calificacion))}${'☆'.repeat(5 - Number(o.calificacion))}</span> ${esc(o.comentario || '')}</div>` : ''}
     <div><h4 style="margin-bottom:8px">Historial</h4><ul class="tl">${hist.map(h => `<li><b>${esc(ESTL[h[0]] || h[0])}</b><small>${fdate(h[1])} · ${esc(h[2] || '')}</small></li>`).join('')}</ul></div>
     <div class="actions">${actionsHtml(o)}</div></div>`;
@@ -2105,7 +2130,7 @@ async function pedSimple(btn, action, payload, okMsg) {
   catch (e) { toast(e.message, 'err'); }
 }
 async function assignDlg(o) {
-  const box = openModal(mHead('Asignar domiciliario', 'truck') + `<div class="mb"><div class="skel" style="height:60px"></div></div>`);
+  const box = openModal(mHead('Asignar domiciliario', 'moto') + `<div class="mb"><div class="skel" style="height:60px"></div></div>`);
   let list = [];
   try { list = await call('repartidores', {}); } catch (e) { toast(e.message, 'err'); closeModal(); return; }
   $('.mb', box).innerHTML = `<div class="fld"><label for="asg">Domiciliario</label><select id="asg"><option value="">— Sin asignar —</option>${list.map(r => `<option value="${esc(r[0])}" ${o.repartidor_id === r[0] ? 'selected' : ''}>${esc(r[1])}</option>`).join('')}</select>
@@ -2132,6 +2157,8 @@ function rateDlg(o) {
 /* =====================================================================
  * PANEL (dashboards)
  * ===================================================================== */
+/** Recarga en silencio las cifras del panel cuando llegan o cambian pedidos. */
+const refreshPanel = debounce(() => { if (location.hash === '#/panel' && $('#dashBody')) vPanel($('#main'), true, true); }, 700);
 /** A dónde lleva cada tarjeta del panel: [ruta, pestaña de pedidos]. */
 function kpiGo(id, r) {
   if (r === 'repartidor') return ['#/entregas'];
@@ -2140,10 +2167,10 @@ function kpiGo(id, r) {
   return m[id] || null;
 }
 function fmtK(v, f) { return f === 'money' ? money(v) : f === 'pct' ? (Number(v) || 0).toLocaleString(S.cfg.LOCALE || 'es-CO') + '%' : f === 'rating' ? (Number(v) ? '★ ' + Number(v).toFixed(1) : '—') : num(v); }
-async function vPanel(main, fresh) {
+async function vPanel(main, fresh, quiet) {
   if (!guard(['admin', 'vendedor', 'repartidor'])) return;
   const r = role();
-  main.innerHTML = `<div class="page-h"><h1>${ic('chart')} Panel</h1><span class="sub">${esc(S.tienda ? S.tienda.nombre : ROLE_L[r])}</span><span class="grow"></span>
+  if (!(quiet && $('#dashBody'))) main.innerHTML = `<div class="page-h"><h1>${ic('chart')} Panel</h1><span class="sub">${esc(S.tienda ? S.tienda.nombre : ROLE_L[r])}</span><span class="grow"></span>
     <button class="btn sm" data-act="dash-refresh">${ic('refresh', 'sm')} Actualizar</button></div><div id="dashBody"><div class="kpis">${'<div class="skel" style="height:92px"></div>'.repeat(6)}</div></div>`;
   let d;
   try { d = await call('dash', fresh ? { fresh: 1 } : {}); } catch (e) { $('#dashBody').innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
@@ -2345,7 +2372,7 @@ function hydrateForm(form, onSubmit) {
     const p = (async () => {
       lbl.textContent = 'Subiendo…';
       try {
-        const data = await compressImage(file);
+        const data = await compressImage(file, fld.dataset.k === 'portada' ? 1800 : 1000, fld.dataset.k === 'portada' ? 0.85 : 0.82);
         $('.imgprev', fld).innerHTML = `<img src="${esc(data)}" alt="">`;
         const r = await enqueue('upload', { data, name: file.name });
         hid.value = r.url; toast('Imagen cargada');
@@ -2550,12 +2577,12 @@ function vCuenta(main) {
     S.after = undefined; bindAuth($('#authBody')); return;
   }
   const u = S.user; const um = S.meta.Usuarios;
-  const pf = ['nombre', 'telefono', 'direccion', 'zona_id', 'ubicacion', 'promos'].map(k => ({ nombre: { k: 'nombre', t: 'text', l: 'Nombre completo', req: 1, max: 80 }, telefono: { k: 'telefono', t: 'tel', l: 'Teléfono' }, direccion: { k: 'direccion', t: 'text', l: 'Dirección', max: 160 }, zona_id: { k: 'zona_id', t: 'ref', ref: 'Zonas', l: 'Zona' }, ubicacion: { k: 'ubicacion', t: 'geo', l: 'Mi casa en el mapa', hint: 'Se usa para tus domicilios. Puedes cambiarla en cada pedido.' }, promos: { k: 'promos', t: 'bool', l: 'Recibir ofertas y novedades del pueblo' } }[k]));
+  const pf = ['nombre', 'telefono', 'direccion', 'zona_id', 'ubicacion', 'promos'].concat(u.rol === 'repartidor' ? ['vehiculo'] : []).map(k => ({ nombre: { k: 'nombre', t: 'text', l: 'Nombre completo', req: 1, max: 80 }, telefono: { k: 'telefono', t: 'tel', l: 'Teléfono' }, direccion: { k: 'direccion', t: 'text', l: 'Dirección', max: 160 }, zona_id: { k: 'zona_id', t: 'ref', ref: 'Zonas', l: 'Zona' }, ubicacion: { k: 'ubicacion', t: 'geo', l: 'Mi casa en el mapa', hint: 'Se usa para tus domicilios. Puedes cambiarla en cada pedido.' }, promos: { k: 'promos', t: 'bool', l: 'Recibir ofertas y novedades del pueblo' }, vehiculo: { k: 'vehiculo', t: 'sel', l: 'Mi vehículo de reparto', req: 1, opts: ['moto', 'carro', 'camion', 'lancha'], hint: 'Así aparece en el mapa que ve el cliente.' } }[k]));
   const canReq = u.rol === 'cliente' && String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
   const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + (S.cfg.APP_NOMBRE || 'Mi Tienda'));
   main.innerHTML = `<div class="page-h"><div class="avatar" style="width:48px;height:48px;font-size:18px">${esc(initials(u.nombre))}</div><div><h1>${esc(u.nombre)}</h1><span class="sub">${esc(u.email)} · ${esc(ROLE_L[u.rol])}</span></div><span class="grow"></span><button class="btn danger" data-act="logout">${ic('logout')} Cerrar sesión</button></div>
     <div class="cols" style="grid-template-columns:1fr 1fr">
-      <div class="card pad"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, Object.assign({}, u, { promos: u.promos !== false }), false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
+      <div class="card pad"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, Object.assign({}, u, { promos: u.promos !== false, vehiculo: u.vehiculo || 'moto' }), false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
       <div class="card pad"><h3 style="margin-bottom:12px">${ic('bell', 'sm')} Notificaciones y sonido</h3><div id="pushBox">${pushBoxHtml()}</div></div>
       <div class="card pad"><h3 style="margin-bottom:12px">${ic('lock', 'sm')} Cambiar contraseña</h3>
         <form class="stack" id="pwForm" novalidate>${pwInput('pA', 'actual', 'current-password', 'Contraseña actual')}${pwInput('pN', 'nueva', 'new-password', 'Nueva contraseña')}<small class="hint" style="margin-top:-6px">Mínimo 8 caracteres, con letras y números.</small><button class="btn pri" type="submit">${ic('check')} Cambiar contraseña</button></form></div>
@@ -2622,11 +2649,11 @@ async function tick() {
     if (d.me && S.user && (d.me.r !== S.user.rol || (d.me.t || '') !== (S.user.tienda_id || ''))) { toast('Tus permisos cambiaron. Actualizando…', 'info'); await reboot(''); return; }
     const ch = d.ch || {};
     if (ch.Pedidos) {
-      if (ch.Pedidos.reset) { clearCache('Pedidos'); S.lists.forEach(l => l.o.e === 'Pedidos' && l.load()); }
+      if (ch.Pedidos.reset) { clearCache('Pedidos'); S.lists.forEach(l => l.o.e === 'Pedidos' && l.load()); refreshPanel(); }
       else {
         const recs = toObjs(ch.Pedidos).recs;
         recs.forEach(r => { S.seen.add(r.id); upsertAll('Pedidos', r); patchModal(r); });
-        if (recs.length) refreshCounts();
+        if (recs.length) { refreshCounts(); refreshPanel(); }
       }
     }
     (d.gone || []).forEach(id => S.lists.forEach(l => { if (l.o.e === 'Pedidos') { const r = l.recs.get(id); if (r && r.repartidor_id !== S.user.id) l.remove(id); } }));
@@ -2897,10 +2924,12 @@ const TILES = 'https:' + '\x2f\x2ftile.openstreetmap.org\x2f{z}\x2f{x}\x2f{y}.pn
 const geoP = s => { const m = /^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/.exec(String(s || '')); return m ? [Number(m[1]), Number(m[2])] : null; };
 const geoS = ll => ll[0].toFixed(6) + ',' + ll[1].toFixed(6);
 const centro = () => geoP(S.cfg.MAPA_CENTRO) || [8.9586, -74.0808];
-const rutaUrl = ll => 'https:' + '\x2f\x2fwww.google.com\x2fmaps\x2fdir\x2f?api=1&travelmode=driving&destination=' + ll[0] + ',' + ll[1];
+const rutaUrl = (ll, veh) => veh === 'lancha' ? mapUrl(ll[0] + ',' + ll[1]) : 'https:' + '\x2f\x2fwww.google.com\x2fmaps\x2fdir\x2f?api=1&travelmode=driving&destination=' + ll[0] + ',' + ll[1];
+const VEH_L = { moto: 'Moto', carro: 'Carro', camion: 'Camión', lancha: 'Lancha' };
+const vehIc = v => ({ carro: 'carro', camion: 'camion', lancha: 'lancha' })[v] || 'moto';
 const PIN_SVG = '<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M20 51s17-17.6 17-30A17 17 0 0 0 3 21c0 12.4 17 30 17 30z" fill="var(--sale)" stroke="#fff" stroke-width="3"/><circle cx="20" cy="21" r="6.5" fill="#fff"/></svg>';
-function mkIcon(L, kind) {
-  const icn = kind === 't' ? 'store' : kind === 'r' ? 'truck' : 'pin';
+function mkIcon(L, kind, veh) {
+  const icn = kind === 't' ? 'store' : kind === 'r' ? vehIc(veh) : 'pin';
   return L.divIcon({ className: '', html: `<div class="mk ${kind}">${ic(icn)}</div>`, iconSize: [34, 34], iconAnchor: kind === 'r' ? [19, 19] : [17, 34] });
 }
 function gps() {
@@ -2974,7 +3003,7 @@ function pedMap(box, o) {
     [['t', t], ['d', d], ['r', r]].forEach(([k, ll]) => {
       if (!ll) { if (el._k[k]) { el._k[k].remove(); delete el._k[k]; } return; }
       pts.push(ll);
-      if (el._k[k]) el._k[k].setLatLng(ll); else el._k[k] = L.marker(ll, { icon: mkIcon(L, k), zIndexOffset: k === 'r' ? 1000 : 0 }).addTo(m);
+      if (el._k[k]) el._k[k].setLatLng(ll); else el._k[k] = L.marker(ll, { icon: mkIcon(L, k, o.vehiculo), zIndexOffset: k === 'r' ? 1000 : 0, title: k === 'r' ? (VEH_L[o.vehiculo] || 'Domiciliario') : k === 't' ? 'Tienda' : 'Entrega' }).addTo(m);
     });
     if (!el._fit && pts.length) { if (pts.length === 1) m.setView(pts[0], 17); else m.fitBounds(pts, { padding: [36, 36], maxZoom: 17 }); el._fit = true; }
     setTimeout(() => m.invalidateSize(), 60);
@@ -2998,6 +3027,7 @@ function trackRun() {
   }
   if (!TRK.ids.size && TRK.watch != null) { navigator.geolocation.clearWatch(TRK.watch); TRK.watch = null; }
   const show = TRK.ids.size > 0;
+  document.body.classList.toggle('tracking', show);
   if (show && !TRK.chip) { TRK.chip = document.createElement('div'); TRK.chip.className = 'trackchip'; TRK.chip.innerHTML = '<span class="live"></span> Compartiendo tu ubicación con el cliente'; document.body.appendChild(TRK.chip); }
   if (!show && TRK.chip) { TRK.chip.remove(); TRK.chip = null; }
 }
@@ -3099,7 +3129,7 @@ function openInstall() {
         <li><span class="aj-i">${ic('plus', 'sm')}</span><div><b>Elige "Agregar a inicio"</b><small>Desliza la lista hacia abajo si no lo ves.</small></div></li>
         <li><span class="aj-i">${ic('check', 'sm')}</span><div><b>Toca "Agregar"</b><small>El ícono de ${esc(name)} aparecerá en tu pantalla de inicio.</small></div></li></ol>
         <button class="btn pri block" data-close style="margin-top:14px">Entendido</button>`
-      : `<div class="inst-feat"><div>${ic('bag')}<b>Acceso directo</b><small>Ábrela con un toque, como cualquier app.</small></div><div>${ic('bell')}<b>Siempre a mano</b><small>Pantalla completa, sin barra del navegador.</small></div><div>${ic('truck')}<b>Sigue tus pedidos</b><small>Entra directo a tus compras y entregas.</small></div></div>
+      : `<div class="inst-feat"><div>${ic('bag')}<b>Acceso directo</b><small>Ábrela con un toque, como cualquier app.</small></div><div>${ic('bell')}<b>Siempre a mano</b><small>Pantalla completa, sin barra del navegador.</small></div><div>${ic('moto')}<b>Sigue tus pedidos</b><small>Entra directo a tus compras y entregas.</small></div></div>
         <div class="row" style="margin-top:16px"><button class="btn ghost grow" data-close>Ahora no</button><button class="btn pri grow" id="instGo">${ic('download', 'sm')} Instalar</button></div>`}
   </div>`);
   const go = $('#instGo', box);
