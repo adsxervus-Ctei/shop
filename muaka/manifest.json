@@ -1,0 +1,24 @@
+{
+  "name": "Muaka · Lo que conecta a Loba",
+  "short_name": "Muaka",
+  "description": "Pide a los negocios de tu pueblo y recibe a domicilio o recoge en tienda.",
+  "lang": "es-CO",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#0d5c63",
+  "categories": ["shopping", "food", "lifestyle"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "captura-celular.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow", "label": "Portada en el celular" },
+    { "src": "captura-pc.png", "sizes": "1440x900", "type": "image/png", "form_factor": "wide", "label": "Portada en el computador" }
+  ]
+}
