@@ -23,7 +23,8 @@
   --head-h:80px; --bnav-h:64px; --safe-b:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
+html,body{margin:0}
+html{height:100%} body{min-height:100%}
 body{font:14.5px/1.5 var(--font);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 a{color:var(--pri);text-decoration:none}
 h1,h2,h3,h4{margin:0;line-height:1.2}
@@ -105,7 +106,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 .open-n{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ok);white-space:nowrap}
 .live{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
-body.scrolled .hnav{display:none}
 body:not(.shop) .strip,body:not(.shop) .utilbar,body:not(.shop) .hnav{display:none}
 .icon-btn{position:relative;display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;border:0;background:transparent;color:var(--ink-2);cursor:pointer}
 .icon-btn:hover{background:var(--sur-2);color:var(--ink)}
@@ -201,7 +201,7 @@ main{flex:1;min-width:0;padding:18px 18px 40px;max-width:1240px;margin:0 auto;wi
 .ferr{display:block;color:var(--err);font-size:12px;margin-top:4px;min-height:0}
 .pw{position:relative} .pw input{padding-right:46px!important}
 .pw .icon-btn{position:absolute;right:2px;top:1px;width:42px;height:42px}
-.sw{display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.sw,.fld label.sw{display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
 .sw input{position:absolute;opacity:0;width:1px;height:1px}
 .sw span{width:42px;height:24px;border-radius:12px;background:var(--line);position:relative;transition:background .2s;flex:none}
 .sw span::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
@@ -687,6 +687,110 @@ button.zitem:hover,.zitem.on{border-color:var(--pri);background:var(--pri-l)}
   .pbody{padding:8px 10px 10px}
   .pprice b{font-size:16px}
 }
+/* ---------- v1.1 · aviso centrado (reemplaza la franja negra) ---------- */
+.pp{position:fixed;inset:0;z-index:calc(var(--z-toast) + 5);display:grid;place-items:center;padding:24px;background:rgba(9,22,24,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:fade .18s ease}
+.pp.out{animation:ppOut .22s ease forwards}
+.pp-box{position:relative;width:min(360px,100%);background:var(--sur);border-radius:26px;padding:26px 22px 20px;text-align:center;box-shadow:0 30px 80px rgba(6,30,33,.35);animation:ppIn .42s cubic-bezier(.2,1.3,.4,1)}
+.pp.out .pp-box{animation:ppBoxOut .22s ease forwards}
+.pp-art{width:84px;height:84px;margin:-60px auto 10px;border-radius:50%;display:grid;place-items:center;background:var(--pp,var(--pri));color:#fff;box-shadow:0 0 0 7px var(--sur),0 12px 26px color-mix(in srgb,var(--pp,var(--pri)) 45%,transparent);position:relative}
+.pp-art .ic{width:40px;height:40px;stroke-width:2.4}
+.pp-art::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:3px solid var(--pp,var(--pri));opacity:0;animation:ppRing 1.1s .15s ease-out 2}
+.pp.ok{--pp:var(--pri)} .pp.err{--pp:var(--sale)} .pp.info{--pp:#6d4fd6} .pp.ped{--pp:#e8590c}
+.pp.ok .pp-art .ic{stroke-dasharray:40;stroke-dashoffset:40;animation:ppDraw .5s .18s ease forwards}
+.pp.err .pp-art{animation:ppShake .5s .1s}
+.pp.info .pp-art .ic,.pp.ped .pp-art .ic{animation:ppBell 1s .1s ease-in-out 2;transform-origin:50% 10%}
+.pp-art[data-mascota]{background:none;box-shadow:none;width:120px;height:120px;margin-top:-90px}
+.pp-t{font-size:19px;font-weight:850;letter-spacing:-.02em;margin:0 0 4px}
+.pp-m{color:var(--ink-2);font-size:14.5px;line-height:1.45;margin:0}
+.pp-a{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.pp-a .btn{min-width:120px}
+.pp-bar{position:absolute;left:22px;right:22px;bottom:9px;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.pp-bar i{display:block;height:100%;background:var(--pp,var(--pri));transform-origin:left;animation:ppBar linear forwards}
+.pp-sp{position:absolute;width:7px;height:7px;border-radius:2px;top:44px;left:50%;opacity:0;animation:ppSpark .8s .25s ease-out forwards}
+@keyframes ppIn{0%{opacity:0;transform:translateY(24px) scale(.86)}100%{opacity:1;transform:none}}
+@keyframes ppOut{to{opacity:0}}
+@keyframes ppBoxOut{to{opacity:0;transform:translateY(12px) scale(.94)}}
+@keyframes ppDraw{to{stroke-dashoffset:0}}
+@keyframes ppRing{0%{opacity:.7;transform:scale(.9)}100%{opacity:0;transform:scale(1.45)}}
+@keyframes ppShake{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+@keyframes ppBell{0%,100%{transform:rotate(0)}15%{transform:rotate(16deg)}30%{transform:rotate(-14deg)}45%{transform:rotate(10deg)}60%{transform:rotate(-6deg)}75%{transform:rotate(3deg)}}
+@keyframes ppBar{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+@keyframes ppSpark{0%{opacity:1;transform:translate(-50%,0) rotate(0)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),var(--dy)) rotate(220deg)}}
+/* ---------- menú lateral plegable (escritorio) ---------- */
+.side-tog{display:none}
+@media (min-width:861px){
+  .side-tog{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;color:var(--mut);font-weight:650;font-size:13px;padding:8px 12px;border-radius:10px;cursor:pointer;margin-bottom:6px}
+  .side-tog:hover{background:var(--sur-2);color:var(--ink)}
+  .side{transition:width .22s ease}
+  body.side-mini .side{width:76px;padding-left:10px;padding-right:10px}
+  body.side-mini .side a span,body.side-mini .side .side-u .grow,body.side-mini .side-tog span{display:none}
+  body.side-mini .side a{justify-content:center;padding:12px 0}
+  body.side-mini .side .side-u{justify-content:center;padding:6px 0 14px}
+  body.side-mini .side-tog{justify-content:center;padding:10px 0}
+  body.side-mini .side-tog .ic{transform:rotate(180deg)}
+  body.side-mini .side a{position:relative}
+  body.side-mini .side a .nb{position:absolute;top:4px;right:6px}
+}
+.side a .nb{margin-left:auto;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--sale);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center}
+/* ---------- panel: tarjetas táctiles y cuadrícula en celular ---------- */
+.kpis{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+a.kpi{color:inherit;position:relative;transition:transform .15s,box-shadow .15s,border-color .15s;border:1px solid transparent}
+a.kpi:hover{transform:translateY(-2px);box-shadow:var(--sh-2);border-color:color-mix(in srgb,var(--pri) 30%,transparent)}
+a.kpi .l{padding-right:16px}
+a.kpi::after{content:"›";position:absolute;right:14px;top:10px;color:var(--mut);font-size:20px;font-weight:700}
+a.kpi.hot{border-color:color-mix(in srgb,var(--sale) 45%,transparent)}
+a.kpi.hot .v{color:var(--sale)}
+.toplist a{color:inherit;display:contents}
+.toplist li{cursor:pointer}
+@media (max-width:620px){
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kpi{padding:12px}
+  .kpi .l{font-size:12px;gap:6px}
+  .kpi .v{font-size:19px}
+  a.kpi::after{right:10px;top:6px}
+}
+/* ---------- miniaturas en pedidos ---------- */
+.items li{align-items:center}
+.items .ith{width:38px;height:38px;border-radius:9px;background:var(--sur);flex:none;overflow:hidden;display:grid;place-items:center;color:var(--mut);border:1px solid var(--line)}
+.items .ith img{width:100%;height:100%;object-fit:cover}
+.items .ith .ic{width:18px;height:18px}
+.items li .q{color:var(--mut);min-width:26px}
+.items li .nm{flex:1;min-width:0}
+/* ---------- mapas ---------- */
+.mapbox{height:min(58vh,440px);border-radius:16px;overflow:hidden;position:relative;background:var(--sur-2)}
+.mapbox .leaflet-container{height:100%;width:100%;font:inherit}
+.map-pin{position:absolute;left:50%;top:50%;z-index:500;transform:translate(-50%,-100%);pointer-events:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.3))}
+.map-pin svg{width:40px;height:52px;display:block}
+.map-pin::after{content:"";position:absolute;left:50%;bottom:-4px;width:12px;height:5px;border-radius:50%;background:rgba(0,0,0,.25);transform:translateX(-50%)}
+.mapbox.moving .map-pin{transform:translate(-50%,-112%)}
+.map-info{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);margin-top:8px;min-height:20px}
+.pmap{height:260px;border-radius:14px;overflow:hidden;background:var(--sur-2);position:relative}
+.pmap .leaflet-container{height:100%;width:100%;font:inherit}
+.mk{display:grid;place-items:center;width:34px;height:34px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);color:#fff;border:3px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.mk .ic{transform:rotate(45deg);width:16px;height:16px}
+.mk.t{background:var(--pri)} .mk.d{background:var(--sale)} .mk.r{background:#e8590c;border-radius:50%;transform:none;width:38px;height:38px}
+.mk.r .ic{transform:none}
+.mk.r::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid #e8590c;animation:ppRing 1.6s infinite}
+.geo-v{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.geo-v .geo-s{font-size:13px;color:var(--mut)}
+.geo-v .geo-s.on{color:var(--ok);font-weight:650}
+.locs{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.trackchip{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--bnav-h) + 14px + var(--safe-b));z-index:var(--z-bnav);background:#e8590c;color:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;display:flex;gap:8px;align-items:center;box-shadow:var(--sh-2)}
+@media (min-width:861px){.trackchip{bottom:18px}}
+.trackchip .live{background:#fff}
+/* ---------- solicitudes y avisos push ---------- */
+.solgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.sol{display:flex;flex-direction:column;gap:8px}
+.sol .row{gap:10px}
+.dl{display:grid;grid-template-columns:130px 1fr;gap:6px 12px;font-size:14px}
+.dl dt{color:var(--mut)} .dl dd{margin:0;font-weight:600;word-break:break-word}
+@media (max-width:480px){.dl{grid-template-columns:1fr}.dl dt{margin-top:6px}}
+.pushcard{display:flex;gap:14px;align-items:center;border:1px solid color-mix(in srgb,var(--pri) 25%,var(--line));background:linear-gradient(120deg,var(--pri-l),var(--sur))}
+.pushcard .aj-i{flex:none}
+.serv{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+/* la barra superior de la tienda se mantiene completa al bajar */
+body.scrolled .hd{box-shadow:0 1px 0 var(--line),0 10px 28px rgba(20,24,27,.10)}
+@media (max-width:860px){ body.scrolled.shop .top-in{padding-top:6px;padding-bottom:6px} body.scrolled.shop .search{height:40px} body.scrolled.shop .hnav-in{min-height:42px} }
 @media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto!important;animation:none!important;transition:none!important} }
 </style>
 </head>
@@ -743,6 +847,7 @@ button.zitem:hover,.zitem.on{border-color:var(--pri);background:var(--pri-l)}
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
 </svg>
 
@@ -900,14 +1005,10 @@ window.addEventListener('offline', () => setNet(false));
 window.addEventListener('online', () => setNet(true));
 
 /* ---------- feedback ---------- */
+/** Compatibilidad: todos los avisos ahora salen como ventana centrada (ver popup). */
 function toast(msg, type = 'ok', action) {
-  const el = document.createElement('div');
-  el.className = 'toast ' + type;
-  el.innerHTML = ic(type === 'err' ? 'alert' : type === 'info' ? 'bell' : 'okcircle') + `<span>${esc(msg)}</span>` + (action ? `<button type="button">${esc(action.label)}</button>` : '');
-  if (action) el.querySelector('button').onclick = () => { el.remove(); action.fn(); };
-  const box = $('#toasts'); while (box.children.length >= 2) box.firstElementChild.remove();
-  box.appendChild(el);
-  setTimeout(() => el.remove(), type === 'err' ? 6000 : 3500);
+  if (type === 'err') return popup({ type: 'err', title: 'Revisa esto', msg, action });
+  return popup({ type: type === 'info' ? 'info' : 'ok', title: msg, action });
 }
 async function busy(btn, label, fn) {
   if (!btn) return fn();
@@ -954,6 +1055,7 @@ function openModal(html, { wide = false, onClose = null } = {}) {
 }
 function closeModal() {
   if (!MODAL) return;
+  S.fast = false;
   const m = MODAL; MODAL = null; m.el.remove(); document.body.style.overflow = '';
   if (m.onClose) m.onClose();
   if (lastFocus && lastFocus.focus) lastFocus.focus();
@@ -1083,6 +1185,7 @@ function reconcile(list, recs) {
 }
 /** Actualiza sólo la fila/card del registro en todas las listas visibles. */
 function upsertAll(e, r) {
+  if (e === 'Pedidos' && (role() === 'repartidor' || role() === 'vendedor')) trackCheck(r);
   S.lists.forEach(l => { if (l.o.e === e) l.upsert(r); });
   for (const [k, v] of S.cache) { if (k.indexOf('"e":"' + e + '"') > 0) { const i = v.recs.findIndex(x => x.id === r.id); if (i >= 0) { if (r.del) v.recs.splice(i, 1); else v.recs[i] = Object.assign({}, v.recs[i], r); } } }
 }
@@ -1108,6 +1211,13 @@ async function boot() {
   }
   renderShell(); route(); startSync(); refreshInstallUI();
   window.__booted = true;
+  afterLogin();
+}
+/** Tareas al entrar: renovar el token de notificaciones, ofrecer activarlas y retomar el rastreo en ruta. */
+function afterLogin() {
+  if (!S.user) return;
+  if (pushEstado() === 'granted') pushEnable(false).catch(() => { }); else pushOfrecer();
+  trackBoot();
 }
 function applyBoot(d) {
   S.cfg = d.cfg || {}; S.meta = d.meta || {}; NF = null;
@@ -1125,7 +1235,7 @@ function applyTheme() {
 }
 async function reboot(go) {
   try { applyBoot(await call('boot', {})); } catch (e) { toast(e.message, 'err'); }
-  clearCache(); renderShell(); startSync();
+  clearCache(); renderShell(); startSync(); afterLogin();
   if (go !== undefined) { if (location.hash === '#/' + go) route(); else location.hash = '#/' + go; } else route();
 }
 function setSession(d) { S.tok = d.tok; store.set('tok', d.tok); S.user = d.user; }
@@ -1142,7 +1252,7 @@ function navItems() {
   if (r === 'cliente') return base.concat([['pedidos', 'package', 'Mis pedidos'], ['cuenta', 'user', 'Mi cuenta']]);
   if (r === 'vendedor') return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['g/Productos', 'bag', 'Productos'], ['mi-tienda', 'store', 'Mi tienda'], ['g/Cupones', 'percent', 'Cupones'], ['g/Cuotas', 'card', 'Mensualidades'], ['-'], ['', 'home', 'Marketplace'], ['compras', 'cart', 'Mis compras'], ['cuenta', 'user', 'Mi cuenta']];
   if (r === 'repartidor') return [['entregas', 'truck', 'Entregas'], ['panel', 'chart', 'Panel'], ['-'], ['', 'home', 'Marketplace'], ['compras', 'cart', 'Mis compras'], ['cuenta', 'user', 'Mi cuenta']];
-  return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['g/Tiendas', 'store', 'Tiendas'], ['g/Productos', 'bag', 'Productos'], ['g/Usuarios', 'users', 'Usuarios'], ['g/Categorias', 'layers', 'Categorías'], ['g/Zonas', 'map', 'Zonas'], ['g/Cupones', 'percent', 'Cupones'], ['g/Cuotas', 'card', 'Mensualidades'], ['g/Auditoria', 'file', 'Auditoría'], ['config', 'sliders', 'Configuración'], ['-'], ['', 'home', 'Marketplace'], ['cuenta', 'user', 'Mi cuenta']];
+  return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['solicitudes', 'inbox', 'Solicitudes'], ['g/Tiendas', 'store', 'Tiendas'], ['g/Productos', 'bag', 'Productos'], ['g/Usuarios', 'users', 'Usuarios'], ['g/Categorias', 'layers', 'Categorías'], ['g/Zonas', 'map', 'Zonas'], ['g/Cupones', 'percent', 'Cupones'], ['g/Cuotas', 'card', 'Mensualidades'], ['g/Auditoria', 'file', 'Auditoría'], ['config', 'sliders', 'Configuración'], ['-'], ['', 'home', 'Marketplace'], ['cuenta', 'user', 'Mi cuenta']];
 }
 const cfgList = k => String(S.cfg[k] || '').split(',').map(s => s.trim()).filter(Boolean);
 const pedidosRuta = () => staffish() ? 'compras' : 'pedidos';
@@ -1153,8 +1263,8 @@ function renderShell() {
   const logo = safeUrl(S.cfg.LOGO_URL);
   $('#brandLogo').innerHTML = logo ? `<img src="${esc(logo)}" alt="">` : ic('store');
   const items = navItems();
-  $('#side').innerHTML = (S.user ? `<div class="row" style="padding:6px 10px 14px"><div class="avatar">${esc(initials(S.user.nombre))}</div><div class="grow"><b style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(S.user.nombre)}</b><small class="mut">${esc(ROLE_L[S.user.rol] || '')}${S.tienda ? ' · ' + esc(S.tienda.nombre) : ''}</small></div></div>` : '')
-    + items.map(i => i[0] === '-' ? '<div class="sep"></div>' : `<a href="#/${i[0]}" data-r="${i[0]}">${ic(i[1])}<span>${esc(i[2])}</span></a>`).join('')
+  $('#side').innerHTML = (staffish() ? `<button type="button" class="side-tog" data-act="side-tog" aria-label="Plegar o desplegar el menú">${ic('left', 'sm')}<span>Plegar menú</span></button>` : '') + (S.user ? `<div class="row side-u" style="padding:6px 10px 14px" title="${esc(S.user.nombre)}"><div class="avatar">${esc(initials(S.user.nombre))}</div><div class="grow"><b style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(S.user.nombre)}</b><small class="mut">${esc(ROLE_L[S.user.rol] || '')}${S.tienda ? ' · ' + esc(S.tienda.nombre) : ''}</small></div></div>` : '')
+    + items.map(i => i[0] === '-' ? '<div class="sep"></div>' : `<a href="#/${i[0]}" data-r="${i[0]}" title="${esc(i[2])}">${ic(i[1])}<span>${esc(i[2])}</span></a>`).join('')
     + (S.user ? `<div class="sep"></div><a href="#" data-act="logout">${ic('logout')}<span>Cerrar sesión</span></a>` : '');
   const nav = items.filter(i => i[0] !== '-');
   const shown = nav.length > 5 ? nav.slice(0, 4) : nav;
@@ -1176,6 +1286,8 @@ function renderShell() {
     + (sup ? `<a href="${esc(sup)}" target="_blank" rel="noopener">Ayuda</a>` : '');
   $('#foot').innerHTML = footerHtml();
   renderZona(); updateCartDot(); updateBell(); updateFavDot();
+  document.body.classList.toggle('side-mini', staffish() && store.get('sidemini') === '1');
+  if (role() === 'admin') refreshSolCount();
 }
 function footerHtml() {
   const c = S.cfg; const name = c.APP_NOMBRE || 'Mi Tienda'; const sup = wa(c.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + name); const terms = safeUrl(c.TERMINOS_URL);
@@ -1254,7 +1366,9 @@ const ROUTES = [
   [/^pedidos$/, vPedidos], [/^compras$/, vCompras], [/^entregas$/, vEntregas], [/^panel$/, vPanel],
   [/^g\/(\w+)$/, vGestion], [/^mi-tienda$/, vMiTienda], [/^config$/, vConfig], [/^cuenta$/, vCuenta],
   [/^ofertas$/, m => vCatalogo(m, 'ofertas')], [/^c\/(\w+)(?:\/([\w-]+))?$/, vCatalogo], [/^favoritos$/, vFavoritos], [/^carrito$/, vCarrito],
-  [/^historial$/, vHistorial], [/^vender$/, vVender]
+  [/^historial$/, vHistorial], [/^vender$/, vVender],
+  [/^solicitudes$/, vSolicitudes], [/^s\/([\w-]+)$/, (m, id) => { vSolicitudes(m); setTimeout(() => openSolicitud(id), 80); }],
+  [/^p\/([\w-]+)$/, (m, id) => { if (!guard()) return; if (isStaff()) vPedidos(m); else if (role() === 'repartidor') vEntregas(m); else vCompras(m, true); setTimeout(() => openPedido(id), 80); }]
 ];
 function route() {
   const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
@@ -1575,12 +1689,14 @@ function vVender(main) {
   const name = S.cfg.APP_NOMBRE || 'Mi Tienda'; const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, quiero registrar mi negocio en ' + name);
   const abierta = String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
   const steps = [['file', 'Envía tu solicitud', 'Llena los datos de tu negocio en 2 minutos.'], ['check', 'Te activamos', 'Revisamos y activamos tu vitrina.'], ['bag', 'Sube tus productos', 'Fotos, precios, inventario y ofertas desde tu celular.'], ['truck', 'Recibe pedidos', 'Te avisamos al instante; tú o un domiciliario entregan.']];
-  const perks = [['chart', 'Panel de ventas', 'Ventas del día, pedidos por estado y lo más vendido.'], ['percent', 'Cupones y ofertas', 'Crea descuentos y aparece en Súper ofertas.'], ['truck', 'Domiciliarios del pueblo', 'Usa tu propio domiciliario o los de la plataforma.'], ['star', 'Reseñas de los vecinos', 'Las mejores tiendas salen primero.']];
+  const perks = [['chart', 'Panel de venta y posventa', 'Ventas del día, pedidos por estado, clientes y lo más vendido.'], ['layers', 'Inventario organizado', 'Productos, existencias y alertas de inventario bajo según tu negocio.'], ['percent', 'Cupones y ofertas', 'Emite cupones y aparece en Súper ofertas; avisamos a todo el pueblo.'], ['truck', 'Domicilios con mapa', 'Tu domiciliario o los de la plataforma, con seguimiento en vivo.'], ['bell', 'Avisos al instante', 'Cada pedido suena con el tono de Muaka, aunque la app esté cerrada.'], ['star', 'Reseñas de los vecinos', 'Las mejores tiendas salen primero.']];
+  const servs = [['headset', 'Soporte técnico', 'Te acompañamos para montar y mantener tu tienda.'], ['file', 'Gestión de base de datos', 'Tus productos, clientes y ventas ordenados y respaldados.'], ['trend', 'Marketing digital', 'Campañas, contenidos y presencia en redes sociales.'], ['store', 'Vitrina 24/7', 'Tus clientes te encuentran y piden a cualquier hora.']];
   main.innerHTML = `<section class="vend-hero"><div class="vh-t"><span class="sl-k">Para negocios</span><h1>Vende en ${esc(name)}</h1><p>Tu vitrina en el celular de todo el pueblo. Recibe pedidos, controla tu inventario y llega a más clientes del territorio.</p>
       <div class="row wrap"><button class="btn lime" data-act="vender-go">Registrar mi negocio ${ic('chevr', 'sm')}</button>${sup ? `<a class="btn white" href="${esc(sup)}" target="_blank" rel="noopener">Hablar con un asesor</a>` : ''}</div></div>
       <div class="vh-art" aria-hidden="true">${ic('store')}</div></section>
     <h2 class="vend-h">Así de fácil</h2><ol class="vend-steps">${steps.map((s, i) => `<li><span class="vs-n">${i + 1}</span><span class="aj-i">${ic(s[0])}</span><b>${esc(s[1])}</b><small>${esc(s[2])}</small></li>`).join('')}</ol>
     <h2 class="vend-h">Lo que obtienes</h2><div class="vend-perks">${perks.map(p => `<div class="card pad"><span class="aj-i">${ic(p[0])}</span><b>${esc(p[1])}</b><small>${esc(p[2])}</small></div>`).join('')}</div>
+    <h2 class="vend-h">Servicios ${esc(name)} para tu negocio</h2><div class="serv">${servs.map(p => `<div class="card pad"><span class="aj-i">${ic(p[0])}</span><b>${esc(p[1])}</b><small class="mut" style="display:block">${esc(p[2])}</small></div>`).join('')}</div>
     <div class="card pad" id="venderForm" style="margin-top:22px"><h2 style="margin-bottom:6px">Solicitud de tienda</h2><div id="stForm"></div></div>`;
   const box = $('#stForm');
   if (staffish()) box.innerHTML = `<p class="mut">Tu cuenta ya tiene acceso a un panel.</p><a class="btn pri" href="#/${landing()}">Ir a mi panel</a>`;
@@ -1733,7 +1849,7 @@ function vCheckout(main) {
   if (!gs.length) { main.innerHTML = `<div class="empty">${ic('cart')}<p>Tu carrito está vacío.</p><a class="btn pri" href="#/">Explorar</a></div>`; return; }
   if (!S.user) { main.innerHTML = `<div class="empty">${ic('lock')}<p>Ingresa o crea tu cuenta para confirmar el pedido.</p><button class="btn pri" data-act="auth" data-after="checkout">${ic('login')} Ingresar</button></div>`; openAuth('login', 'checkout'); return; }
   const u = S.user; const metodos = String(S.cfg.METODOS_PAGO || '').split(',').map(s => s.trim()).filter(Boolean);
-  const st = { tipo: 'domicilio', cup: null };
+  const st = { tipo: 'domicilio', cup: null, ub: geoP(u.ubicacion) ? u.ubicacion : '' };
   main.innerHTML = `<div class="page-h"><a class="icon-btn" href="#/" aria-label="Volver">${ic('left')}</a><h1>Confirmar pedido</h1></div>
   <div class="cols" style="margin-top:0">
     <form class="card pad stack" id="coForm" novalidate>
@@ -1743,6 +1859,9 @@ function vCheckout(main) {
         <div class="fld" id="fZona"><label for="coZona">Zona de entrega <span class="req">*</span></label><select id="coZona" name="zona_id"><option value="">Selecciona…</option>${S.zonas.map(z => `<option value="${esc(z.id)}" ${(S.zona || u.zona_id) === z.id ? 'selected' : ''}>${esc(z.nombre)}${z.municipio ? ' · ' + esc(z.municipio) : ''} (${money(z.tarifa)})</option>`).join('')}</select><small class="ferr"></small></div>
         <div class="fld"><label for="coTel">Teléfono de contacto <span class="req">*</span></label><input id="coTel" name="telefono" type="tel" inputmode="tel" value="${esc(u.telefono || '')}" maxlength="20"><small class="ferr"></small></div>
         <div class="fld full" id="fDir"><label for="coDir">Dirección y referencias <span class="req">*</span></label><input id="coDir" name="direccion" maxlength="160" value="${esc(u.direccion || '')}" placeholder="Calle, número, barrio, punto de referencia"><small class="ferr"></small></div>
+        <div class="fld full" id="fUb"><label>¿Dónde lo entregamos en el mapa? <small class="mut">(recomendado)</small></label>
+          <div class="locs">${geoP(u.ubicacion) ? `<button type="button" class="chip on" data-ub="casa">${ic('home', 'sm')} Mi casa</button>` : ''}<button type="button" class="chip" data-ub="gps">${ic('pin', 'sm')} Estoy aquí (GPS)</button><button type="button" class="chip" data-ub="mapa">${ic('map', 'sm')} Elegir en el mapa</button></div>
+          <small class="hint" id="coUbS">${geoP(u.ubicacion) ? '✓ Entregaremos en el punto de tu casa.' : 'Marca el punto y el domiciliario llegará directo.'}</small></div>
         <div class="fld"><label for="coPago">Método de pago <span class="req">*</span></label><select id="coPago" name="metodo_pago">${metodos.map(m => `<option>${esc(m)}</option>`).join('')}</select></div>
         <div class="fld"><label for="coCup">Cupón</label><div class="row"><input id="coCup" maxlength="20" style="text-transform:uppercase" placeholder="Opcional"><button type="button" class="btn sm" id="coCupBtn">Aplicar</button></div><small class="hint" id="coCupMsg"></small></div>
         <div class="fld full"><label for="coNota">Nota para la tienda</label><input id="coNota" name="nota" maxlength="200" placeholder="Ej: sin cebolla, timbre dañado…"></div>
@@ -1770,8 +1889,15 @@ function vCheckout(main) {
     }).join('') + `<div class="sum tot"><span>Total</span><span>${money(tot)}</span></div>`;
   };
   $('#coForm').addEventListener('change', e => {
-    if (e.target.name === 'tipo') { st.tipo = e.target.value; $('#fZona').classList.toggle('hide', st.tipo !== 'domicilio'); $('#fDir').classList.toggle('hide', st.tipo !== 'domicilio'); }
+    if (e.target.name === 'tipo') { st.tipo = e.target.value; ['#fZona', '#fDir', '#fUb'].forEach(x => $(x).classList.toggle('hide', st.tipo !== 'domicilio')); }
     sum();
+  });
+  $('#fUb').addEventListener('click', async e => {
+    const b = e.target.closest('[data-ub]'); if (!b) return;
+    const setUb = (v, txt) => { if (!v) return; st.ub = v; $$('#fUb [data-ub]').forEach(x => x.classList.toggle('on', x === b)); $('#coUbS').textContent = txt; };
+    if (b.dataset.ub === 'casa') setUb(u.ubicacion, '✓ Entregaremos en el punto de tu casa.');
+    if (b.dataset.ub === 'mapa') setUb(await mapPick(st.ub, { title: '¿Dónde te entregamos?' }), '✓ Punto de entrega marcado en el mapa.');
+    if (b.dataset.ub === 'gps') busy(b, 'Buscando…', async () => { try { const g = await gps(); setUb(await mapPick(geoS(g), { title: 'Confirma dónde estás', hint: `GPS con precisión de ~${Math.round(g[2])} m. Ajusta el pin si hace falta.` }), '✓ Entregaremos donde estás ahora.'); } catch (err) { popup({ type: 'err', title: 'GPS', msg: err.message }); } });
   });
   $('#coCupBtn').onclick = e => busy(e.currentTarget, 'Validando…', async () => {
     const c = $('#coCup').value.trim().toUpperCase(); const msg = $('#coCupMsg');
@@ -1794,7 +1920,7 @@ function vCheckout(main) {
         const d = await call('checkout', {
           items: Object.values(S.cart).map(i => ({ id: i.id, c: i.c })), tipo_entrega: st.tipo, zona_id: $('#coZona').value,
           direccion: $('#coDir').value.trim(), telefono: $('#coTel').value.trim(), metodo_pago: $('#coPago').value,
-          cupon: st.cup ? st.cup.codigo : '', nota: $('#coNota').value.trim()
+          cupon: st.cup ? st.cup.codigo : '', nota: $('#coNota').value.trim(), ubicacion: st.tipo === 'domicilio' ? st.ub : ''
         });
         S.cart = {}; saveCart(); clearCache('Pedidos'); clearCache('Productos');
         main.innerHTML = `<div class="card pad" style="max-width:560px;margin:20px auto;text-align:center">
@@ -1802,7 +1928,8 @@ function vCheckout(main) {
           <p class="mut">La tienda confirmará tu pedido en breve. Te avisaremos cada cambio de estado.</p>
           <div class="stack" style="text-align:left;margin:16px 0">${d.pedidos.map(p => `<div class="row between card pad" style="box-shadow:none"><div><b>${esc(p.codigo)}</b><br><small class="mut">${esc(p.tienda_nombre)}</small></div><b>${money(p.total)}</b></div>`).join('')}</div>
           <a class="btn pri" href="#/${role() === 'cliente' ? 'pedidos' : 'compras'}">${ic('package')} Ver mis pedidos</a></div>`;
-        toast('Pedido enviado correctamente');
+        popup({ type: 'ok', title: '¡Pedido enviado!', msg: 'Te avisaremos cada cambio de estado.', sound: 'exito', stay: 2400 });
+        pushOfrecer();
       } catch (err) { toast(err.message, 'err'); }
     });
   };
@@ -1855,7 +1982,7 @@ function pedCard(o) {
     <div class="ped-h"><div><b>${esc(o.codigo)}</b><small>${esc(ago(o.creado))} · ${esc(o.metodo_pago || '')}</small></div>${badge(o.estado)}</div>
     <div class="ped-meta"><span>${ic('store', 'sm')} ${esc(o.tienda_nombre)}</span>${showCli ? `<span>${ic('user', 'sm')} ${esc(o.cliente_nombre)}</span>` : ''}${o.repartidor_nombre ? `<span>${ic('truck', 'sm')} ${esc(o.repartidor_nombre)}</span>` : ''}</div>
     ${progress(o)}
-    <ul class="items">${items.slice(0, 4).map(i => `<li><span>${i[3]}×</span>${esc(i[1])}<b>${money(i[2] * i[3])}</b></li>`).join('')}${items.length > 4 ? `<li class="mut">+ ${items.length - 4} producto(s) más</li>` : ''}</ul>
+    <ul class="items">${items.slice(0, 4).map(itemLi).join('')}${items.length > 4 ? `<li class="mut">+ ${items.length - 4} producto(s) más</li>` : ''}</ul>
     ${o.nota ? `<div class="mut" style="font-size:13px">${ic('file', 'sm')} ${esc(o.nota)}</div>` : ''}
     <div class="ped-foot"><span>${dom ? ic('pin', 'sm') + ' ' + esc(o.direccion || '') + (o.zona_id__n ? ' · ' + esc(o.zona_id__n) : '') : ic('store', 'sm') + ' Recoge en tienda'}</span><b class="tot">${money(o.total)}</b></div>
     ${o.motivo ? `<div class="badge b-err" style="white-space:normal">${esc(o.motivo)}</div>` : ''}
@@ -1867,11 +1994,12 @@ const PED_TABS = [['pendiente', 'Nuevos', 'pendiente'], ['proceso', 'En proceso'
 function vPedidos(main) {
   if (!guard()) return;
   if (!isStaff()) return vCompras(main, true);
+  const tab = PED_TABS.find(t => t[0] === S.pedTab) || PED_TABS[0]; S.pedTab = '';
   main.innerHTML = `<div class="page-h"><h1>${ic('package')} Pedidos</h1><span class="grow"></span>
       <label class="search" style="margin:0;max-width:300px;background:var(--sur);border-color:var(--line)">${ic('search', 'sm')}<input id="pq" type="search" placeholder="Código, cliente o tienda"></label></div>
-    <div class="chips" id="pTabs" style="margin-bottom:14px">${PED_TABS.map((t, i) => `<button class="chip ${i === 0 ? 'on' : ''}" data-act="ptab" data-v="${t[2]}" data-k="${t[0]}">${esc(t[1])} <span class="n" data-n="${t[0]}"></span></button>`).join('')}</div>
+    <div class="chips" id="pTabs" style="margin-bottom:14px">${PED_TABS.map((t, i) => `<button class="chip ${t[0] === tab[0] ? 'on' : ''}" data-act="ptab" data-v="${t[2]}" data-k="${t[0]}">${esc(t[1])} <span class="n" data-n="${t[0]}"></span></button>`).join('')}</div>
     <div class="plist" id="pList"></div>`;
-  S.pedList = new List($('#pList'), { e: 'Pedidos', f: { estado__in: 'pendiente' }, skel: 'ped', render: pedCard, empty: 'No hay pedidos en esta pestaña.' });
+  S.pedList = new List($('#pList'), { e: 'Pedidos', f: tab[2] ? { estado__in: tab[2] } : {}, skel: 'ped', render: pedCard, empty: 'No hay pedidos en esta pestaña.' });
   S.pedList.load();
   $('#pq').addEventListener('input', debounce(e => S.pedList.set({ q: e.target.value.trim() }), 350));
   refreshCounts();
@@ -1919,8 +2047,10 @@ async function openPedido(id) {
   LOOSE.set('Pedidos:' + o.id, o);
   renderPedido(box, o);
 }
+const itemLi = i => `<li><span class="ith">${safeUrl(i[4]) ? `<img src="${esc(i[4])}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ic('bag')}</span><span class="q">${i[3]}×</span><span class="nm">${esc(i[1])}</span><b>${money(i[2] * i[3])}</b></li>`;
+const agoMs = s => { const t = Number(String(s || '').split(',')[2]) || 0; if (!t) return ''; const sg = Math.max(0, Math.round((Date.now() - t) / 1000)); return sg < 60 ? 'hace ' + sg + ' s' : 'hace ' + Math.round(sg / 60) + ' min'; };
 function renderPedido(box, o) {
-  const items = parseJ(o.items, []); const hist = parseJ(o.historial, []); const dom = o.tipo_entrega === 'domicilio';
+  const keep = $('.pmap', box); const items = parseJ(o.items, []); const hist = parseJ(o.historial, []); const dom = o.tipo_entrega === 'domicilio';
   const a = actorOf(o); const staff = a === 'vendedor' || a === 'admin' || a === 'repartidor';
   box.dataset.id = o.id; box.dataset.e = 'Pedidos'; box.dataset.upd = o.upd;
   box.innerHTML = mHead('Pedido ' + o.codigo, 'package') + `<div class="mb stack">
@@ -1935,7 +2065,11 @@ function renderPedido(box, o) {
           ${staff && dom && o.direccion ? `<a class="btn sm" href="${esc(mapUrl(o.direccion + ' ' + (o.zona_id__n || '')))}" target="_blank" rel="noopener">${ic('map', 'sm')} Mapa</a>` : ''}
         </div></div>
     </div>
-    <ul class="items">${items.map(i => `<li><span>${i[3]}×</span>${esc(i[1])}<b>${money(i[2] * i[3])}</b></li>`).join('')}</ul>
+    <ul class="items">${items.map(itemLi).join('')}</ul>
+    ${dom && (geoP(o.ubicacion) || geoP(o.ubic_tienda)) ? `<div><div class="row between" style="margin-bottom:6px"><h4>${ic('map', 'sm')} ${o.estado === 'en_camino' ? 'Seguimiento en vivo' : 'Recorrido'}</h4>${o.estado === 'en_camino' && o.ubic_rep ? `<small class="mut"><span class="live" style="display:inline-block"></span> Domiciliario · ${esc(agoMs(o.ubic_rep))}</small>` : ''}</div><div class="pmap"></div>
+      <div class="row wrap" style="gap:6px;margin-top:8px;font-size:12.5px;color:var(--mut)"><span>${ic('store', 'sm')} Tienda</span><span>${ic('pin', 'sm')} Entrega</span>${o.estado === 'en_camino' ? `<span>${ic('truck', 'sm')} Domiciliario</span>` : ''}</div>
+      ${staff && geoP(o.ubicacion) ? `<a class="btn sm pri" style="margin-top:8px" href="${esc(rutaUrl(geoP(o.ubicacion)))}" target="_blank" rel="noopener">${ic('nav', 'sm')} Cómo llegar a la entrega</a>` : ''}
+      ${a === 'repartidor' && geoP(o.ubic_tienda) && ['aceptado', 'preparando', 'listo'].includes(o.estado) ? `<a class="btn sm" style="margin-top:8px" href="${esc(rutaUrl(geoP(o.ubic_tienda)))}" target="_blank" rel="noopener">${ic('store', 'sm')} Cómo llegar a la tienda</a>` : ''}</div>` : ''}
     <div><div class="sum"><span>Subtotal</span><span>${money(o.subtotal)}</span></div>
       ${Number(o.descuento) ? `<div class="sum" style="color:var(--ok)"><span>Descuento ${esc(o.cupon || '')}</span><span>-${money(o.descuento)}</span></div>` : ''}
       ${dom ? `<div class="sum"><span>Domicilio</span><span>${Number(o.envio) ? money(o.envio) : 'Gratis'}</span></div>` : ''}
@@ -1946,6 +2080,9 @@ function renderPedido(box, o) {
     ${o.calificacion ? `<div><span class="stars">${'★'.repeat(Number(o.calificacion))}${'☆'.repeat(5 - Number(o.calificacion))}</span> ${esc(o.comentario || '')}</div>` : ''}
     <div><h4 style="margin-bottom:8px">Historial</h4><ul class="tl">${hist.map(h => `<li><b>${esc(ESTL[h[0]] || h[0])}</b><small>${fdate(h[1])} · ${esc(h[2] || '')}</small></li>`).join('')}</ul></div>
     <div class="actions">${actionsHtml(o)}</div></div>`;
+  const slot = $('.pmap', box); if (slot && keep && keep._m) slot.replaceWith(keep);
+  pedMap(box, o);
+  S.fast = o.estado === 'en_camino' && actorOf(o) === 'cliente';
 }
 /** Cambio de estado optimista: la card se actualiza al instante y se revierte si falla. */
 async function pedEstado(btn, o, to, mot) {
@@ -1995,6 +2132,13 @@ function rateDlg(o) {
 /* =====================================================================
  * PANEL (dashboards)
  * ===================================================================== */
+/** A dónde lleva cada tarjeta del panel: [ruta, pestaña de pedidos]. */
+function kpiGo(id, r) {
+  if (r === 'repartidor') return ['#/entregas'];
+  const m = { hoyV: ['#/pedidos', 'ok'], hoyN: ['#/pedidos', 'all'], v30: ['#/pedidos', 'ok'], ticket: ['#/pedidos', 'ok'], pend: ['#/pedidos', 'pendiente'], curso: ['#/pedidos', 'proceso'],
+    cancel: ['#/pedidos', 'x'], com: ['#/pedidos', 'ok'], tAct: ['#/g/Tiendas'], tPend: ['#/solicitudes'], users: ['#/g/Usuarios'], cuotas: ['#/g/Cuotas'], rating: ['#/mi-tienda'], bajo: ['#/g/Productos'], total: ['#/pedidos', 'all'] };
+  return m[id] || null;
+}
 function fmtK(v, f) { return f === 'money' ? money(v) : f === 'pct' ? (Number(v) || 0).toLocaleString(S.cfg.LOCALE || 'es-CO') + '%' : f === 'rating' ? (Number(v) ? '★ ' + Number(v).toFixed(1) : '—') : num(v); }
 async function vPanel(main, fresh) {
   if (!guard(['admin', 'vendedor', 'repartidor'])) return;
@@ -2011,15 +2155,17 @@ async function vPanel(main, fresh) {
     ${t ? `<div class="card pad row wrap" style="margin-bottom:14px"><div class="grow"><b>${esc(t.nombre)}</b> <span class="badge ${t.estado === 'activa' ? 'b-ok' : 'b-warn'}">${esc(t.estado)}</span>
         ${t.plan_vence ? `<small class="mut" style="display:block">Mensualidad ${vencida ? '<b style="color:var(--err)">vencida</b> el' : 'vigente hasta'} ${fday(t.plan_vence)}</small>` : ''}</div>
       <label class="sw"><input type="checkbox" id="swOpen" ${t.abierta ? 'checked' : ''}><span></span><em>${t.abierta ? 'Tienda abierta' : 'Tienda cerrada'}</em></label></div>` : ''}
-    <div class="kpis">${d.k.map(k => `<div class="card kpi"><div class="l">${ic(k[4], 'sm')} ${esc(k[1])}</div><div class="v">${fmtK(k[2], k[3])}</div></div>`).join('')}</div>
+    <div class="kpis">${d.k.map(k => { const g = kpiGo(k[0], r); const hot = ['pend', 'tPend', 'bajo', 'disp'].includes(k[0]) && Number(k[2]) > 0;
+      return g ? `<a class="card kpi ${hot ? 'hot' : ''}" href="${g[0]}" data-act="kpi" data-href="${g[0]}" data-tab="${g[1] || ''}" aria-label="${esc(k[1])}: ver detalle"><div class="l">${ic(k[4], 'sm')} ${esc(k[1])}</div><div class="v">${fmtK(k[2], k[3])}</div></a>`
+        : `<div class="card kpi"><div class="l">${ic(k[4], 'sm')} ${esc(k[1])}</div><div class="v">${fmtK(k[2], k[3])}</div></div>`; }).join('')}</div>
     <div class="cols">
       <div class="card pad"><div class="row between" style="margin-bottom:8px"><h3>Ventas entregadas · 14 días</h3></div>${barChart(d.s)}</div>
       <div class="card pad"><h3 style="margin-bottom:10px">Pedidos por estado</h3>${Object.keys(d.st).filter(k => d.st[k]).map(k => `<div class="meter"><span>${esc(ESTL[k])}</span><div class="bar"><i style="width:${Math.round(d.st[k] / tot * 100)}%"></i></div><b style="text-align:right">${num(d.st[k])}</b></div>`).join('') || '<p class="mut">Sin pedidos aún.</p>'}</div>
     </div>
     <div class="cols" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
-      ${d.top.tiendas.length ? `<div class="card pad"><h3 style="margin-bottom:8px">Top tiendas (30 días)</h3><ol class="toplist">${d.top.tiendas.map(x => `<li>${esc(x[0])}<b>${money(x[1])}</b></li>`).join('')}</ol></div>` : ''}
-      ${d.top.productos.length ? `<div class="card pad"><h3 style="margin-bottom:8px">Más vendidos</h3><ol class="toplist">${d.top.productos.map(x => `<li>${esc(x[0])}<b>${num(x[1])} u.</b></li>`).join('')}</ol></div>` : ''}
-      ${d.bajo.length ? `<div class="card pad"><h3 style="margin-bottom:8px">${ic('alert', 'sm')} Inventario bajo</h3><ol class="toplist">${d.bajo.map(x => `<li>${esc(x[1])}<b style="color:var(--warn)">${num(x[2])}</b></li>`).join('')}</ol><a class="btn sm" href="#/g/Productos" style="margin-top:8px">Gestionar productos</a></div>` : ''}
+      ${d.top.tiendas.length ? `<div class="card pad"><h3 style="margin-bottom:8px">Top tiendas (30 días)</h3><ol class="toplist">${d.top.tiendas.map(x => `<li ${x[2] ? `data-act="route-go" data-href="#/t/${esc(x[2])}" title="Ver tienda"` : ''}>${esc(x[0])}<b>${money(x[1])}</b></li>`).join('')}</ol></div>` : ''}
+      ${d.top.productos.length ? `<div class="card pad"><h3 style="margin-bottom:8px">Más vendidos</h3><ol class="toplist">${d.top.productos.map(x => `<li ${x[2] ? `data-act="top-prod" data-id="${esc(x[2])}" title="Ver producto"` : ''}>${esc(x[0])}<b>${num(x[1])} u.</b></li>`).join('')}</ol></div>` : ''}
+      ${d.bajo.length ? `<div class="card pad"><h3 style="margin-bottom:8px">${ic('alert', 'sm')} Inventario bajo</h3><ol class="toplist">${d.bajo.map(x => `<li data-act="top-prod" data-id="${esc(x[0])}" title="Editar existencias">${esc(x[1])}<b style="color:var(--warn)">${num(x[2])}</b></li>`).join('')}</ol><a class="btn sm" href="#/g/Productos" style="margin-top:8px">Gestionar productos</a></div>` : ''}
       ${d.roles ? `<div class="card pad"><h3 style="margin-bottom:8px">Usuarios por rol</h3>${Object.keys(d.roles).map(k => `<div class="sum"><span>${esc(ROLE_L[k] || k)}</span><b>${num(d.roles[k])}</b></div>`).join('')}</div>` : ''}
     </div>`;
   bindChart($('#dashBody .chart'), d.s);
@@ -2162,6 +2308,7 @@ function fieldHtml(f, v, rec, isNew) {
       if (SMALL[f.ref]) { const opts = SMALL[f.ref](); const has = opts.some(o => o.id === val); inp = `<select id="${id}" name="${f.k}"><option value="">${f.req ? 'Selecciona…' : '— Ninguna —'}</option>${!has && val ? `<option value="${esc(val)}" selected>${esc(rec[f.k + '__n'] || val)}</option>` : ''}${opts.map(o => `<option value="${esc(o.id)}" ${o.id === val ? 'selected' : ''}>${esc(o.emoji ? o.emoji + ' ' : '')}${esc(o.nombre)}</option>`).join('')}</select>`; }
       else inp = `<div class="refpick" data-ref="${f.ref}"><input type="search" class="rp-q" placeholder="Buscar…" aria-label="Buscar ${esc(f.l)}"><select id="${id}" name="${f.k}"><option value="">${f.req ? 'Selecciona…' : '— Ninguno —'}</option>${val ? `<option value="${esc(val)}" selected>${esc(rec[f.k + '__n'] || val)}</option>` : ''}</select></div>`;
       break;
+    case 'geo': return geoFieldHtml(f, val, req);
     case 'img': return `<div class="fld fld-img" data-k="${f.k}"><label>${esc(f.l)}</label><div class="imgf"><div class="imgprev">${imgTag(val, f.l)}</div><input type="hidden" name="${f.k}" value="${esc(val)}">
       <div class="row wrap"><label class="btn sm" style="margin:0">${ic('upload', 'sm')} <span>Subir imagen</span><input type="file" accept="image/png,image/jpeg,image/webp" class="hide" data-imgup></label><button type="button" class="btn sm ghost" data-imgrm>Quitar</button></div></div><small class="hint">Se comprime automáticamente antes de subir.</small><small class="ferr"></small></div>`;
     default: {
@@ -2325,7 +2472,7 @@ async function vMiTienda(main) {
 }
 async function vConfig(main) {
   if (!guard(['admin'])) return;
-  main.innerHTML = `<div class="page-h"><h1>${ic('sliders')} Configuración</h1><span class="grow"></span><button class="btn" data-act="reindex">${ic('refresh', 'sm')} Reconstruir índices</button></div>
+  main.innerHTML = `<div class="page-h"><h1>${ic('sliders')} Configuración</h1><span class="grow"></span><button class="btn pri" data-act="anuncio">${ic('bell', 'sm')} Enviar aviso a todos</button><button class="btn" data-act="reindex">${ic('refresh', 'sm')} Reconstruir índices</button></div>
     <p class="mut" style="margin-top:-6px">Todo lo editable sin tocar código. Los cambios aplican en máximo 10 minutos para todos los usuarios.</p>
     <div class="card pad" id="cfgList"><div class="skel" style="height:400px"></div></div>`;
   let rows; try { rows = await call('cfgList', {}); } catch (e) { $('#cfgList').innerHTML = `<p>${esc(e.message)}</p>`; return; }
@@ -2358,6 +2505,7 @@ function authHtml(mode) {
       <div class="fld"><label for="aT">Teléfono / WhatsApp <span class="req">*</span></label><input id="aT" name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required></div>
       <div class="fld"><label for="aZ">Zona</label><select id="aZ" name="zona_id"><option value="">Selecciona…</option>${S.zonas.map(z => `<option value="${esc(z.id)}">${esc(z.nombre)}</option>`).join('')}</select></div>
       <div class="fld"><label for="aD">Dirección</label><input id="aD" name="direccion" maxlength="160" autocomplete="street-address"></div>
+      ${geoFieldHtml({ k: 'ubicacion', l: 'Mi casa en el mapa (opcional)', hint: 'Así el domiciliario llega directo, sin llamadas.' }, '', '')}
       ${pwInput('aP', 'password', 'new-password', 'Contraseña')}<small class="hint" style="margin-top:-6px">Mínimo 8 caracteres, con letras y números.</small>
       ${safeUrl(S.cfg.TERMINOS_URL) ? `<small class="mut">Al registrarte aceptas los <a href="${esc(safeUrl(S.cfg.TERMINOS_URL))}" target="_blank" rel="noopener">términos y condiciones</a>.</small>` : ''}
       <div class="form-err hide"></div>
@@ -2402,17 +2550,19 @@ function vCuenta(main) {
     S.after = undefined; bindAuth($('#authBody')); return;
   }
   const u = S.user; const um = S.meta.Usuarios;
-  const pf = ['nombre', 'telefono', 'direccion', 'zona_id'].map(k => ({ nombre: { k: 'nombre', t: 'text', l: 'Nombre completo', req: 1, max: 80 }, telefono: { k: 'telefono', t: 'tel', l: 'Teléfono' }, direccion: { k: 'direccion', t: 'text', l: 'Dirección', max: 160 }, zona_id: { k: 'zona_id', t: 'ref', ref: 'Zonas', l: 'Zona' } }[k]));
+  const pf = ['nombre', 'telefono', 'direccion', 'zona_id', 'ubicacion', 'promos'].map(k => ({ nombre: { k: 'nombre', t: 'text', l: 'Nombre completo', req: 1, max: 80 }, telefono: { k: 'telefono', t: 'tel', l: 'Teléfono' }, direccion: { k: 'direccion', t: 'text', l: 'Dirección', max: 160 }, zona_id: { k: 'zona_id', t: 'ref', ref: 'Zonas', l: 'Zona' }, ubicacion: { k: 'ubicacion', t: 'geo', l: 'Mi casa en el mapa', hint: 'Se usa para tus domicilios. Puedes cambiarla en cada pedido.' }, promos: { k: 'promos', t: 'bool', l: 'Recibir ofertas y novedades del pueblo' } }[k]));
   const canReq = u.rol === 'cliente' && String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
   const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + (S.cfg.APP_NOMBRE || 'Mi Tienda'));
   main.innerHTML = `<div class="page-h"><div class="avatar" style="width:48px;height:48px;font-size:18px">${esc(initials(u.nombre))}</div><div><h1>${esc(u.nombre)}</h1><span class="sub">${esc(u.email)} · ${esc(ROLE_L[u.rol])}</span></div><span class="grow"></span><button class="btn danger" data-act="logout">${ic('logout')} Cerrar sesión</button></div>
     <div class="cols" style="grid-template-columns:1fr 1fr">
-      <div class="card pad"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, u, false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
+      <div class="card pad"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, Object.assign({}, u, { promos: u.promos !== false }), false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
+      <div class="card pad"><h3 style="margin-bottom:12px">${ic('bell', 'sm')} Notificaciones y sonido</h3><div id="pushBox">${pushBoxHtml()}</div></div>
       <div class="card pad"><h3 style="margin-bottom:12px">${ic('lock', 'sm')} Cambiar contraseña</h3>
         <form class="stack" id="pwForm" novalidate>${pwInput('pA', 'actual', 'current-password', 'Contraseña actual')}${pwInput('pN', 'nueva', 'new-password', 'Nueva contraseña')}<small class="hint" style="margin-top:-6px">Mínimo 8 caracteres, con letras y números.</small><button class="btn pri" type="submit">${ic('check')} Cambiar contraseña</button></form></div>
     </div>
     ${canReq ? `<div class="card pad" style="margin-top:14px"><h3>${ic('store', 'sm')} ¿Tienes un negocio? Ábrelo en ${esc(S.cfg.APP_NOMBRE || 'Mi Tienda')}</h3><p class="mut">Envía la solicitud; el administrador la revisará y activará tu panel de vendedor.</p><div id="stForm"><button class="btn acc" data-act="req-store">${ic('plus')} Solicitar mi tienda</button></div></div>` : ''}
     ${sup || S.cfg.EMAIL_SOPORTE ? `<div class="card pad row wrap" style="margin-top:14px"><b class="grow">¿Necesitas ayuda?</b>${sup ? `<a class="btn" href="${esc(sup)}" target="_blank" rel="noopener">${ic('chat')} WhatsApp soporte</a>` : ''}${S.cfg.EMAIL_SOPORTE ? `<a class="btn" href="mailto:${esc(S.cfg.EMAIL_SOPORTE)}">${ic('mail')} Correo</a>` : ''}</div>` : ''}`;
+  $('#pushBox').addEventListener('change', e => { if (e.target.id !== 'swSnd') return; AUD.on = e.target.checked; store.set('snd', AUD.on ? '1' : '0'); if (AUD.on) { audUnlock(); setTimeout(() => sonar('aviso'), 120); } });
   const pform = $('#pfForm form');
   hydrateForm(pform, btn => {
     const o = collect(pform, pf); if (!validateClient(pform, pf, o, false)) return;
@@ -2427,14 +2577,14 @@ function vCuenta(main) {
   });
 }
 function storeRequestForm() {
-  const m = S.meta.Tiendas; const keys = ['nombre', 'rubro', 'descripcion', 'telefono', 'whatsapp', 'direccion', 'zona_id', 'horario', 'metodos_pago'];
+  const m = S.meta.Tiendas; const keys = ['nombre', 'rubro', 'descripcion', 'telefono', 'whatsapp', 'direccion', 'ubicacion', 'zona_id', 'horario', 'metodos_pago'];
   const fs = keys.map(k => m.fields.find(f => f.k === k)).filter(Boolean);
   const box = $('#stForm'); box.innerHTML = formHtml(m, {}, true, { fields: fs, noCancel: true, okLabel: 'Enviar solicitud' });
   const form = $('form', box);
   hydrateForm(form, btn => {
     const o = collect(form, fs); if (!validateClient(form, fs, o, true)) return;
     busy(btn, 'Enviando…', async () => {
-      try { await enqueue('solicitarTienda', o); box.innerHTML = `<div class="banner b-ok">${ic('okcircle')} Solicitud enviada. Te avisaremos cuando tu tienda sea aprobada.</div>`; toast('Solicitud enviada'); }
+      try { await enqueue('solicitarTienda', o); box.innerHTML = `<div class="banner b-ok">${ic('okcircle')} Solicitud enviada. Te avisaremos cuando tu tienda sea aprobada.</div>`; popup({ type: 'ok', title: 'Solicitud enviada', msg: 'Te avisaremos apenas la revisemos.', sound: 'exito', stay: 2600 }); pushOfrecer(); }
       catch (e) { const fe = $('.form-err', form); fe.textContent = e.message; fe.classList.remove('hide'); toast(e.message, 'err'); }
     });
   });
@@ -2454,13 +2604,14 @@ function openNotifs() {
   S.nList = new List($('#nList', d), { e: 'Notificaciones', n: 30, skel: 'row', render: notifRow, empty: 'No tienes notificaciones.' });
   S.nList.load();
 }
+/** Tiendas, domiciliarios y administración sincronizan cada 8 s como máximo; con un pedido en ruta abierto, cada 6 s. */
+function syncSec() { const b = Math.max(5, Number(S.cfg.SYNC_SEGUNDOS) || 15); return S.fast ? 6 : staffish() ? Math.min(b, 8) : b; }
 function startSync() {
   stopSync(); if (!S.user) return;
-  const sec = Math.max(10, Number(S.cfg.SYNC_SEGUNDOS) || 20);
-  S.sync = setInterval(tick, sec * 1000);
-  setTimeout(tick, 1500);
+  const loop = async () => { await tick(); if (S.sync !== null) S.sync = setTimeout(loop, syncSec() * 1000); };
+  S.sync = setTimeout(loop, 1200);
 }
-function stopSync() { if (S.sync) clearInterval(S.sync); S.sync = null; }
+function stopSync() { if (S.sync) clearTimeout(S.sync); S.sync = null; }
 document.addEventListener('visibilitychange', () => { if (!document.hidden && S.user) tick(); });
 let ticking = false;
 async function tick() {
@@ -2473,31 +2624,23 @@ async function tick() {
     if (ch.Pedidos) {
       if (ch.Pedidos.reset) { clearCache('Pedidos'); S.lists.forEach(l => l.o.e === 'Pedidos' && l.load()); }
       else {
-        const recs = toObjs(ch.Pedidos).recs; let nuevos = 0;
-        recs.forEach(r => {
-          const fresh = Date.now() - (toDate(r.creado) || 0) < 15 * 60000;
-          if (S.user && r.tienda_id === S.user.tienda_id && r.estado === 'pendiente' && fresh && !S.seen.has(r.id)) nuevos++;
-          if (role() === 'repartidor' && !r.repartidor_id && r.estado === 'listo' && !S.seen.has(r.id)) nuevos++;
-          S.seen.add(r.id); upsertAll('Pedidos', r); patchModal(r);
-        });
-        if (nuevos) { beep(); toast(nuevos === 1 ? '¡Nuevo pedido!' : nuevos + ' pedidos nuevos', 'info', { label: 'Ver', fn: () => location.hash = '#/' + (role() === 'repartidor' ? 'entregas' : 'pedidos') }); }
+        const recs = toObjs(ch.Pedidos).recs;
+        recs.forEach(r => { S.seen.add(r.id); upsertAll('Pedidos', r); patchModal(r); });
         if (recs.length) refreshCounts();
       }
     }
     (d.gone || []).forEach(id => S.lists.forEach(l => { if (l.o.e === 'Pedidos') { const r = l.recs.get(id); if (r && r.repartidor_id !== S.user.id) l.remove(id); } }));
-    if (ch.Notificaciones && !ch.Notificaciones.reset) toObjs(ch.Notificaciones).recs.forEach(r => upsertAll('Notificaciones', r));
+    if (ch.Notificaciones && !ch.Notificaciones.reset) {
+      const recs = toObjs(ch.Notificaciones).recs; S.nseen = S.nseen || new Set();
+      const nuevas = recs.filter(r => r.leida !== true && !S.nseen.has(r.id) && Date.now() - (toDate(r.creado) || 0) < 10 * 60000);
+      recs.forEach(r => { S.nseen.add(r.id); upsertAll('Notificaciones', r); });
+      if (nuevas.length) { avisar(nuevas); if (role() === 'admin' && nuevas.some(n => /^TND-/.test(n.ref || ''))) refreshSolCount(); }
+    }
     if (typeof d.nu === 'number') { S.nu = d.nu; updateBell(); }
   } catch (e) { /* reintenta en el siguiente ciclo */ }
   finally { ticking = false; }
 }
-function beep() {
-  try {
-    S.audio = S.audio || new (window.AudioContext || window.webkitAudioContext)();
-    const o = S.audio.createOscillator(); const g = S.audio.createGain();
-    o.frequency.value = 880; g.gain.setValueAtTime(0.0001, S.audio.currentTime); g.gain.exponentialRampToValueAtTime(0.25, S.audio.currentTime + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, S.audio.currentTime + 0.35);
-    o.connect(g); g.connect(S.audio.destination); o.start(); o.stop(S.audio.currentTime + 0.4);
-  } catch (e) { /* audio no disponible */ }
-}
+function beep() { sonar('pedido'); }
 
 /* =====================================================================
  * DELEGACIÓN DE EVENTOS (un solo listener)
@@ -2544,20 +2687,23 @@ const ACTS = {
   'bulk-clear': () => { S.gList.sel.clear(); $$('#gList input[data-act="g-check"]').forEach(c => { c.checked = false; c.closest('.gitem').classList.remove('sel'); }); renderBulk(location.hash.split('/')[2]); },
   'dash-refresh': () => vPanel($('#main'), true),
   'notif-all': async el => { try { const r = await busy(el, 'Marcando…', () => enqueue('leer', {})); (r.recs || []).forEach(x => upsertAll('Notificaciones', x)); S.nu = 0; updateBell(); toast('Notificaciones leídas'); } catch (e) { toast(e.message, 'err'); } },
-  'notif-open': async el => {
-    const r = recOf(el); if (!r) return; closeDrawer();
-    if (r.leida !== true) { S.nu = Math.max(0, S.nu - 1); updateBell(); enqueue('bulk', { e: 'Notificaciones', ids: [r.id], op: 'set', patch: { leida: true } }).catch(() => { }); }
-    if (/^PED-/.test(r.ref)) openPedido(r.ref);
-    else if (/^TND-/.test(r.ref) && role() === 'admin') location.hash = '#/g/Tiendas';
-    else if (/^PRD-/.test(r.ref)) location.hash = '#/g/Productos';
-  },
+  'notif-open': el => { const r = recOf(el); if (!r) return; closeDrawer(); abrirNotif(r); if (r.leida !== true) upsertAll('Notificaciones', Object.assign({}, r, { leida: true })); },
+  'push-on': el => pushActivar(el),
+  'snd-test': () => { audUnlock(); setTimeout(() => sonar('pedido'), 120); },
+  'sol-open': el => { const r = recOf(el); if (r) openSolicitud(r.id); },
+  soltab: el => { el.parentNode.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === el)); S.solList.set({ f: { estado: el.dataset.v } }); },
+  anuncio: () => anuncioDlg(),
+  'side-tog': () => { const on = document.body.classList.toggle('side-mini'); store.set('sidemini', on ? '1' : '0'); },
+  'top-prod': el => { if (staffish()) openForm('Productos', el.dataset.id); },
+  'route-go': el => { location.hash = el.dataset.href; },
+  kpi: el => { S.pedTab = el.dataset.tab || ''; if (location.hash === el.dataset.href) route(); else location.hash = el.dataset.href; },
   'cfg-save': el => {
     const row = el.closest('.cfgrow'); const k = row.dataset.k; const v = $('input', row).value.trim();
     busy(el, 'Guardando…', async () => { try { const r = await enqueue('cfgSave', { k, v }); $('input', row).value = r.v; if (Object.prototype.hasOwnProperty.call(S.cfg, k)) { S.cfg[k] = r.v; NF = null; applyTheme(); renderShell(); } toast('Configuración guardada'); } catch (e) { toast(e.message, 'err'); } });
   },
   reindex: async el => { if (!await confirmDlg({ title: 'Reconstruir índices', msg: 'Relee la base de datos y repara columnas faltantes. Úsalo si editaste la hoja a mano.', ok: 'Reconstruir' })) return; busy(el, 'Reconstruyendo…', async () => { try { await call('reindex', {}); clearCache(); toast('Índices reconstruidos'); } catch (e) { toast(e.message, 'err'); } }); },
   'req-store': () => storeRequestForm(),
-  logout: async (el, ev) => { ev.preventDefault(); closePops(); if (!await confirmDlg({ title: 'Cerrar sesión', msg: '¿Seguro que quieres salir?', ok: 'Cerrar sesión' })) return; call('logout', {}).catch(() => { }); endSession(false); toast('Sesión cerrada'); reboot(''); },
+  logout: async (el, ev) => { ev.preventDefault(); closePops(); if (!await confirmDlg({ title: 'Cerrar sesión', msg: '¿Seguro que quieres salir?', ok: 'Cerrar sesión' })) return; if (PUSH.tok) { await call('pushUnreg', { token: PUSH.tok }).catch(() => { }); store.del('ptoku'); } call('logout', {}).catch(() => { }); TRK.ids.clear(); trackRun(); endSession(false); toast('Sesión cerrada'); reboot(''); },
   auth: el => { closePops(); openAuth(el.dataset.m || 'login', el.dataset.after); },
   'auth-mode': el => { const b = el.closest('#authBody') || el.closest('.mb'); b.innerHTML = authHtml(el.dataset.m); bindAuth(b); },
   eye: el => { const i = el.parentNode.querySelector('input'); const show = i.type === 'password'; i.type = show ? 'text' : 'password'; el.innerHTML = ic(show ? 'eyeoff' : 'eye'); el.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Ver contraseña'); }
@@ -2576,6 +2722,356 @@ document.addEventListener('change', ev => {
   if (el.dataset.act === 'g-toggle') gToggle(host(el).dataset.e, r, el.dataset.k, el);
 });
 document.addEventListener('click', ev => { const a = ev.target.closest('#side a[href]'); if (a) closeDrawer(); });
+
+/* =====================================================================
+ * v1.1 · AVISOS CENTRADOS, SONIDO MUAKA, NOTIFICACIONES PUSH, MAPAS
+ * ===================================================================== */
+/* ---------- sonido propio (compuesto para Muaka: "mua" que sube + "ka" de madera + maraca) ---------- */
+const SND = {
+  aviso: 'SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA__twwAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAeAAAl9QAQEBAYGBghISEpKSkpMTExOTk5QkJCQkpKSlJSUlpaWlpjY2Nra2tzc3Nze3t7hISEjIyMjJSUlJycnKWlpaWtra21tbW9vb29xsbGzs7O1tbW1t7e3ufn5-_v7-_39_f___8AAAAATGF2YzYwLjMxAAAAAAAAAAAAAAAAJAONAAAAAAAAJfUbV0KuAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP_7cMQAAA1Qjz5U94ACmKlqPzdAAAAYdUIsScHOP9JCECYMotguB0OH-KU9KQznIOPWmxXAAGAPxY3acUDI8eK9Xv379-_fx6UpTX-d6-bv1ezzsBpnWz7gPIlPQD4Pv_wQOesEOJAQcCAIA-H_-CAIAmD5_rB8H3_-XB__8uHwAAAIiWWAADJWgAfcmHBAGUkJW7QwN9kJy7GAlQzi8DE8w7bHn0FOBegIWUegwChkL2CzSiMYM0AgiBiDAGDIDRAxZ4DePQ4MLgQQ8BIhSRkNUcohFVg4TSmY5JcIqTrutJXxXACAQnA1qSC3QZBJfjqASQDGZNuMmcLhW229v1V3XYx1-kl_6jcmieQNVrOJpalJJLb_-bpKPmpqIcVd__7ZKJAlYkACwAACqoaSy1pQhAgiCJwDC4n_-3LECYASxJ83Xd4AAiCqarWzvutzOTgD7kCjHJJTA4STCwA2dNKadKZTLblPZvTS5gSBjA4GDg8YBChj82GnXMcVCR8xnGeigBigjW_EohuGL2eesN4fn-G-6_n_r-_hS0teMQ0l8CQEYNDBisbGOQIYpEg0UTCoVDgm6E70y3_xw0Dq4E1gfUNAYEThF7pMQCcoJBOUE8xAD-AAYAvwd22FQgw0Vg5nSH5howGvYcGORTvBN2FnvosVYVlUZh7_ubnG9RTjdCFwoBF6NFPr3M_VZ0052f-aaOCOKBoYYZjwPgFAvT___9rqyGUNvnHHsKsVzIi1SS6x5StEVgOojaNGC9FuYS8qZRqxVvmumN5pLjVI0sTbVDewdW3PFkaqaBADRmEAIA9_EJqEJpYhqy1MvldgWon2eP_7cMQMgBGpU1XtHZdSLhUmte1xKDodi7irqhnJrr7Q-uprNBKf_tWMt1ehA1CZJkqQNJb7nqX_occo1Q6n9VYkLSYuLiccKEDEURQk0X__6Oa045SWah1TB0xcfF2hVLAjKTI-va44mgTDqhASPxJNTJDWHKxVB8LjcWsqUyqj5JdSu96ZGtG7CQAAqAAABVHqWtPXQ14SAVMEcCwwIhTDTzCOMRsNo6DsxYZL1lT-u1Ka0rlV6k_bvK3IDS3ocFMWCM9hM6nQzWazUfwMTCJRuD1WYvdjlhzeHP3n-H___-Gsae1G60hdqB0EpeFYgQBk4goBE_C2LEmmCoKXX387X_m0PRlOs5iAoNP5TrnJ8PzmlTpsAB3gAIBXUQyylApH98EO5gwFGVxqdE2JnQYq6iKITxyRQ13_-3LEEgAUWVNFrjX3GkWU5XHu5TAGXA0MAoFpAKS_e5U4aXREGA4BvuCAWEDwwiQBpMOvEw6GC6VetFFSVGv-cNRxCxGYjD3JdI8ixsMUuDAjEG511f__-LVrnFtvsWg1xvb3L2ZuR0RVE9SqJQmZ91MaSTFtWy-jhXBclpDV0zvo8XP1PSNnD673vYD6a1sRnsVsAAACAAAbEphhL8twgHMCIB4wbQVzCqMUNQ_h4yvQeRI0wwRRYFk-WnQLJ8LVPKLdJm_rBlKmhGA4nGMpDGY4vGZBGGHApGtepmxglg4DmQmHIKhNrLpm3rDPusObz_-65-eepROv5eZ23heYBDAEQzThGaDS1rMEbLM1wMimhXzvJ_-7zmIBI7IFBp-X-TkCldV0AAygAMB6wVWGiqQxpN6k3wgYc__7cMQKAJKNI0OtdSfaPpUjwf7lOGaad3eYXB4EAytZarjQ6hUrl_m1Tqd19v_Gw1pD4ZAst-u9BoVB8wCJkDBu7kYAOQsTz_7KUlUNS9f__-0QhBwB0QYFDF2hFJKfYSM-E9_______vymhzrIpk1SQspS0hTFMaRYiKksyVmrgRCYZBJoQiWiJG5FzvqqxRLJSamhruuszVPoIABTAEwBYwBIBHMBECODTxlW4w1IWLNeTWMqhzMTw6MJgdMEQKAwCphRWVRm1hdyFADEgRMAwAAIUGEYNmRxlmJyaGLZOmS4tm_zSEfHGJQDGAALEI-mDgRtgjta7rfeb5l--Zf___9xrU0RaMu8xjRIVjJoVnEQcxRjsmuSiWXBMx82KEk7WNNfAIBGAABF1iFtzBAEMNhMxwKjO5L_-3LECgJPhKkg7n-mAf2U4oW_2KHOOao1iULyMV3ELjNopzEsTDBoITAcCizqXzWZVZl1nv5VaaMv6w4LACYAiEY3lQagkMZdesbljkDAHYsYIBO_TfSG1j39b_________v__7w_l2QtaUOLtJzGBYKDgGgID0VnSp88LREZDCRcyI0NDWTbpI7f7MFKB-jDCxrM5RSrhM0IFlTBNgG4wH0AzMA4ADgMAVhgAIleuhr455OJ80KxOjOhqAEQCgCAcAwNhVAxaCNAzzbuAzuEAAwfhDAwPgbAwgA6AwYgMAsAsWwrmhuggv___9kTIjRTAbnCQAWDsPsrrMlFtYAJdYCdUskbZQvNYB91bImOABjOMNCb3Syda-yBwW-aYWwX2-coZI6cnpNVdAKkGR00sbQKtMTZvYXOEf_7cMQegBdlm1WttTJaRTRstaWaIG50wm2gVbUkwukEQNgoQm0cGyBCBYZBkG5-vOvv_97CdDgIDZMJAuNCwbSJyjL2G1DpsVrAQF0TCg2PgDGggK1sUOj4BxoGADg8JT5knRpOR16TaJ0CrcLqM10nI6jSbT0C-qMk4gJQIEZEYRpRkyeJyBCbQJrOQLrMI5MD0soAAtoAtttty3v_3qSmBVwRO01W8sEB1AOPJowO12ao0YY__-SDMvc2h3BqIJFg6So-3YuaqMrHMCw1OzqSNMTyqRWzxqLZsPGzT_sWUWgkW8lHoDiLLukSjzE82Upzf7jEpbXqa2LQSRKPhSRrfLeq3Pua7cottzZo4tnotlom5RZC-zmtqNPjPqNT_eUSI_0KeHQDh0ZQ_XE3L0ujjA2mKjkCdQH_-3LECgASSX1r7tBy-kI0bTWEmjqAh_WvRkwXCAwYEExTao79PExRBJPmtSxa1KaXDutuPlemoxF0Bk0AnJGREiQzIyJOlIniiTpRL2CiY3s3D_ar89QFAJgIyNrHJman_5UBdSY_qnUY8M5UBI4ZMoUalqzr9CkBCqJVQwqxqAmTWN6tV_y_1QUFIK01ost_-LB3iCIWYD21tt-WO-ppTv5TtYB1nGq4Z2G5t2vdz1ZwI9bIP_7_i___0zf8dzfV1mI8WJQNjBWSRVEYJyAq0wQGJzegXWjHZqIXuR1OcyhkNkB2qmiAs5FaHZA8pRNstpqP8ss5W5ew-QfSkzJTPKleXuXLY2Xr34PrLbD5XGPSkzCnY1OM8GTSFt2fLKne2WWu_gBQegDcjbVaZdhlb-MrfQVAzWssWP_7cMQLABExH1GtvG9B7Jsn8d2VONYFyrQCoYBqlktNRXPo7K_lZPq2YXwTA1sYlpHVgdqFPYTdDpvVL0vmdBBTXjpUcNYwQzYhSsaq6GjkeVAhJkZrFFCTJrYDhGRop35u4i_qySWKxDmBZqUveHLxGcYBBWLAsCoqK4JpZULJmhX-rqXvs_FXSAABCH3U1Zh21gH3ZgjuOCEYqY4YhhmCiJOlhyqohPDuVcMAoduQy21He3S3v_983MDpM-2fed1TokSvWyvEaGvmoBnqaj1LlIZ_zGoYztKjl2V1Z9yiJ4adQOPFVHiR4sPEN0NEREDVtBYGi2VYV9Q9x7_PSNf_qfENaIICMDgEt9rbbabnrMW3ClAb25ltUeFT2cjCMgJhJ_hEMebjYnKbVJKE2569YvWOH_MDmCj_-3LEGoAWhaNv552LcZqPKHXENdBdQm3lJsgGxqW1D52uPOfPD88fjc4zOF6w7Y_GEpOIpsWT4-WicPIhCKTjE6P1Z4fiQXy8cvOE9x88mTtMXi6fM5C8eGepysSScWT40LZmYGay5w60iRNRQIa6JpRVCPVTr7CdMudfpV6KOJ15mBmPposbYXsXn6OPrG8mtucXvsAIG0CWRyPlthiKbkLHZYEAs8YMDLRBQedlwnpRAMRBuHM5oInoVprteqIHcGV1nMxALpG3ZRtW3W1ZqeDhV0kJQFqBocDVBE79YlXiZYKqg1jAM_IkhK1R5Qdbns7t1PDTH7vHPUyAQDSA7bZZ3CnhinjENpGG4wAOMpfZrXW6BFnlFe0vhaVCsT__-fk2a_-1W50tzbZntr-BDpDuybYz8H2mG__7cMQfgBf9o1GtvY3RzQxnMa9kwN49VyhQomiUWVTpYJaphafFk-PVsBwenyk6PUd7wKBHEgSzwnqz0lB6LgxH4fT4tlswMxAE8rHL0RPcjcmW2GDuC9LwLY331h2cNpENolEkyUtOn9DNtw_heUPun9jk2URuNpDla85ezqpSqXLYG0lf2yNQ87HF-2aWrnY5o2wkWpAAAGAKZlqSuAHDfRW8LCDC6TDwQHMJ4A4ItUk_rYB0E-6kf4hLsH5vv5KZPEMcM8v-nEBaJdjVfl2DDDKeb_w_dgNsA4oJhVBAdY80dyBYbaLF3NeZvOtchbwm56njSS3kZbnvTXpsVyQdu_qq29XrtZQqAJUJTATZVUCEBkAWERbMj94x0JH4MCPCcThaMMvDUxGDg4GlgbjagHgYxlubLIf_-3LEF4AOpF0gTn-GCxaf6HXG6lqhmxLrt6mqT1LWpWtGHigJOJqNRRWOypYEwkPUmb9zTwqYJiykkshVFMVSgRoShlJJZW0UxzKt20UpJLKTRTWRbqb3djXsKIAEPMN7f0Dthx1cP20yFl2Tob3MZjgt6153Y0yBpeHy_CLZMshyrG02reoGglsuvOBRFretNabpkok6YkKj-1owAQt4YIoChpqCyYgGGCECw4dEmVGjoYyABQMFAwsOASCIsLMOFAi4Won6vAgTFzInSIWgnCgowdE7p8ypMzkw5SwoMGRThDsgGm5ghkclAESA1tM5q0BIxwkaY4OnzHhjSijxdCMKat2ArZlEgWSm5NqbmaRFB2D0MEADLJZGL2ALpymuPzWdJG38YegEMFQhOOkjMohZSGdGVWY0X__7cMQMgBL4-zouty9aSx9nsdlhsK3tBaP_0AGsHAmtXT_5iOw1H8LkpZOxMLrCwCahKGQAtOTnRUL3qniTbrrLVmGKCgisRItORiJdItiMgvotuNkgAcgzdASnmkgsYsgPEINoLoLo0FpjjNTfbcwEkVRotQ9Y7lOMAi05YPBAUUU1GAC7CAoaBLbprI-Q4kRDrmiyAIt8XIQbqQ21h21bEBZgIHBp7MBj-AyeUJalAjhh7lJAvUUaT0tGxAxVPOK2_5ZHwAvQNtkJUNMwjM82ZHoRF-AU0mzMHdpXIiCXUXhyNrbUPaC3sbXQ1tcipux-GpQshMGB1AaqxnfT-xh-IIDXybLJUOy2n3Xk48jjbRYzHUmVvsWWpLoGBIC-KaRZ1FF73polIAAzq3MAANbiDpxBua-CEJT_-3LECQBQFPtBzrXywf0fZ7nIMljCGCzCQFA4AWnMFfqMvXu3AL9vPQQ5jG6dT0EaxVKOl__kgSZMYFpWobpI2V5ctpxQo2M7cECqdMCFpA_mlQocxIUrpUIUkE_i_PY7c_enO-VSUHwtRjrhqBCmBiY1qChynYGVVHo4G7DQzJ1Ic5EyAACMS9Ac7LYtFWvOyBQwdc_hhomgYLK5a9Ds841r5VKbNnVN2qjRZ6YX5GmhT__qIuRx8GS9glIIzAqMh3PDNUGBcEg6EOMcm1ZNDw-Qyye3PikkTQD-TyUNjwDJNNC6XRQQywvXJSQfB-VR-PRJJxKJgfl0aR_CqMqXHtY9BCAAEJloAAD8H_a45axFNwcDhwGMpjyLQKAFnTkxqOyHfwG91JLMae_UQqZOkMAEdq__600ET__7cMQbgE-o-zvOtZLB8p7mrda-IQukgj5xaPyciLaxxHc3EQnAKJR4WWF7C8xLYglgwOiyOIeLicPw_NDNipmAkcJYfSiMiVDigFJ8ahzEoG5NF5VLq8RiSUvCAAe_yNV3YYe1hL8CAMYPiedEViZuCmwCG3Ajdi3KpLPy3HSTooKRVSqBgGVr__rLo6Eicp_MKpowNy-nGYxUQV1F5GVYy4aYmQzkKfHOYB2otXOBqGScKER1YlEx1acp_K8-EK2xEoYYiNJ9RzTiLlZDlUScuYR2RWtmEAgAA96gG6j7soaWmgFQDTAKB4MSlIAwuwDQcBsly20VnorPWDh1JBCm_TVQBLEBOh__l0YAqOaKiV1RwQ5O2UClX3CqtXZrGPHOhVaQ2E5QlMzsrTFX2xC1EoE3mKqTGNj_-3LEMIBP0PszbzXvQf2fpq3VPehTSj5OC6TSLCqW1XpZrRCbVirSyeLisqFRqKqPf7FQAB_8Nbehn70KPpTBYTzVnqzA4ZjCABS-TLX6lsus9F4-Jc51Y7NsOgk9P_0KhfgrDRYXL9RKypdyFn4lHNSRTQbJjgnYW1GJppG-W8_7rtVquE1H0p1yyw36HrafbGRwakgfj-CnC8GgQhD0-oyXrzAoVQvKM3FAmUurHBn3JlAAJai1AAAAP7FH7dRe8ILtHOH8YuG5dJrrlRmmjNNjTS21zrOZDahmNdP_8BQK5AmiYl0dE8MVOjyLmpVEjGEedDEc1yaKENaksnUKhqdhR5gFxUdHjUTJG3LYuzs58nunYrOcsM-1I3D1qeRcj6NAurk_WpkKngH6m0NaRUgAVaZp4Afg7f_7cMREAE_I-z_uKfEB-Z9nvca96K7HbXYu8wICjuqmMxjJL19mAvtEZVV0eNm9G7qTrDqb6bf_qGGHUeotxIl9QlKhNlK0FxjwoLFQnx4DWT5vyNirPaQ7USXJcslkIPE6lwaZ-0P5eYkscKqSapRi83sLCxsrU0qFDWw0lk8U-rlGoVKT1ApB2gMQAEdwiIAAADWcMNbdhW9AQYChuagSaY_AWrTB7UYVRQqctpq_fvccortX__WOMSc3UJKGt8fxKEGqI6p00nab7fGQlC0SzHsS4kx1Q1OrV9ClekTRQqGZLAd5knuaKEFxPxDEONqAiihLgf6JQ0saVcEWnFHDOzK5R6gViGF0HhOIQAJpqA3p01oOmqoKgGIheMNv0MZw_AQdI4tOh2XOLFrxwxS9XqqDoN2v_-f_-3DEV4BQRPs57rXvQgAfZnHWvehLBGA5ZGS3lArkNWEsUlzFJ-lHAxCoJiuoTQww0c_RKmc0EXI8WXasNg0UPOJPoa8itbCTLUNQGs8UJLC_mEScdqrUCWQ4vUZQqBbYx8qYhMxfI1UNgALXOgAAAd5alsPLtUyMDA9OSdxMOSQMJgNLXLpd6Mw9S9q02Perr1Abi4ug__8co6CKykFUhZbTcNE5VtWKpKqt_Uwi3FG2Nx-p8eaJRSynFOxpBDkakGtrbUeXFFKJSnSf7JI9aD9ZlW_V6xgyVgnR5IciVmGdrU6ikjF4kggACqNwHLcONfdxY5bwwrAE9kOozWKswXAxCSsM5MNRmm2cSv9u1gbggen_8oGYrGF4SBjpFOqdlOtTq06DbYy_K40HJwL9GjHi8UzGzlkX__tyxGgAUAD5Ma618QHyn2Xx1T3opKGQoWM68KplZjlNRGoWnHf6UXycryWW0WjznfKYt5znkczUtnozr7-xBF7SjIAF-MIAACjmrDvsmA3d73gLiHt6gGjmQPa5dNGF8o_t0DAsvoq0uW4SmjZWDsPsVXpiwK15wjRXiOaGleE7NtaCZ0I0M2GUxOkY6xIhPZsUCGTaqxEXCcyATB891PIMGgu1_____6uYWczhuT_Za-PAHmF2kaSPOIDiKdIjgTj3UAB_9MQADYtFxDMlhCTYi0Z_lUTKJVjT8ZsS66fSGYuwdkMbGgJbzcQzLEjdrhGlNoXMGsIjRgxwsDMQJQwZc9LTXShbWkwwEFTcCASDKEIVAJriMJM0KIzLi_Oz1_______8D___xCeCyMUnBMQngqwKlxSWNH_-3DEfAAQEPNBrbBySnS0arWgpyoJgUoBUdJSI-KUCGmlWVtQwQpNKuRTQpMrPVgimykytqGDVsrYtQUABHN0AAAB3CVwwytGwRgQZSMQeAMbwjBwRK5EYxXGLB-rUP0-tnB_LZ4vo_UwDctm_fMz_fMzMzogkVGRWj4qh6oYTJTksfAR3BxEIwPzvhEDEp0KRBHRDKp6HwuMB485Q06GYqCGenaAusVk5wekVcOaxGVSawUzk-TsQA2OCc-owAdt9yAAYmIsGAy0zoAHDTFgHda0aH6Y0MmC15drWnZOHONZHM6-M_AMg_Mi6Mc5Me0MgxMisMgnNfGNzENI9M28Mk_ApoCGwCiChcwJIwpIyTMyK4yCsx6YxSUw6IwSUCpAwUMrK2GnLLF2v_NtZte7q1yybus2vlrL__tyxH8AEET7Ka11hkLYKuf1oZsrrTKeTfKzsTUzI__5YRl-AgUBAoCAICCQoKCQoiSIkgkKCgkKCQoJCiJIJCQkJTIgYGFrLLLLgyqqqypNAA7bSAAAJKAqVDiQoRLsMKuYkOdp8OiV-Nsu1uTpnqbAvsexmcy2Yu4Y-SbZILjziFzXsDFOQZkaSwe-eA5ywITUpEv1YE8kfkqVUlb1qLeTpUyWTESlZRATK6MF-wWPVv6WqZ_bYtyiddhqE9_Uts0od______jSJBiQkGJBiYlEShMRYJhiAmkSiKiURIPREoiUkAgAknOgBjlep4Aay2xMDTtp5MojgSArQm0f-OHJaHwdCWkWozw7TKSwfmB2NAkgWYEsQ4nYsqV3Dt_3mEOkPR2KQKlHbRlHTujpGkdI01PG25_Ir7_-3DEdQBSrFs5rGsnWb2e5LXGGaDxcPus0dzdYyyKO_cSOoRYd_6f3zD_0G_f_mYJAASSzIAAoMNZESiZgwIHHRkhSIRAGnp-UeYyBgYlLVKyrsY-eJebuYBJ5iWJtghvQxrE5i2AVUmaHEVI6SE3EcGyjNtTdBgU6MoRMGcFSJiAxQhPS8OJhMDkNPLOkSPCWOhBNHWbI5bmNOay3Z03UbdrxpSaKRpR9oEnKTUkRNMtAk5VxhI2LUcadGyka1wupjfss-zTtqki-x40BAYhNBEkaYmpI0qE0SRplqSBhJAeNAQKIJhwkGEiExoUCiSA8aSEiCYaSsqKoSDVLBURYrDSlZUVYlFUsSiLFZEpWVFSqDVLkqlisyWmUAaeG4uqogEL0GCYmmOZKnbdvGm4egIYhoEIah2T__tyxISAHXFZKa3oy9ngnmIGupAA45cq__nThV_-xs9Vf_7Wf19_pFdqimliaBrCIQiJEPOTSCzCqxENqYfPZFGLNrEJCYUakhUomQrCEz5ETSJUFQNPSbQkqJQmTGjbIdETm_ToR_bxvT007f__XSAAIAUIRCIQyAAAAAAFeGAxSCAWYMEOumJZiPDwyIZzAYax2YkDhhoAA4RCID62Q4MiAY4GF0YEkAwAGzgBgithPPEkACgRoRcLnSNDLoxPBsQM6KXFsEdikRBEZwQlGj8ZMgYoMiYlMcYrwypMCtmHK_k-kgbmBoRImhzi-Q4niN_qLhoXDRicZyaNyApFEnTEipp_zRabGaaabl9yZJ0sEyeJoxOF5RNf_m6kHQQQQYuITRZ8yLxmTRsUTJZdl01MS7__3ZNNabr_-3DEZQAccfcjuckAAAAANIOAAARpzd2TUykG_6BdNTIxQLzGRskXkzI2OmTl1UxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV__tyxG0DwAABpAAAACAAADSAAAAEVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX_-3DEbYPAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV__tyxG0DwAABpAAAACAAADSAAAAEVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX_-3DEbYPAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV__tyxG0DwAABpAAAACAAADSAAAAEVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX_-3DEbYPAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV',
+  pedido: 'SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA__twwAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAA5AABHBQAIDQ0RERYWGh4eIyMnJywwMDQ0OTk9QkJGRktLT1NTWFhcXGFlZWlpbm5yd3d7e39_hIiIjY2RkZaamp6eo6OnrKywsLS0ub29wsLGxsvPz9PT2Njc4eHl5enp7vLy9_f7-_8AAAAATGF2YzYwLjMxAAAAAAAAAAAAAAAAJAR3AAAAAAAARwU7gb-eAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP_7cMQAAAtghUZUx4AC07ZpdzlQAQAqfSuCYHy2VABACIiQJB505RY5Hhv1ec5by5rZfAj4h5c3OlPDfvHjymve96UpT_-l77-b3w8V6vfjgQd5cH__wfB8PwICH8Rg-D4Pic5wcBAEPEDi5___y58AAD_lMAJMgACFtgIECAQqSWBCAb9gU3ipzJgQMzSoDJMxNWRJsmHhE6wkYDCIQQqiouEZQxG4kHsgYUHQGERMG-gYhHwGajWCwPACBID1wGDjQPhDEJLCiE05dBwFZcm2cixXqpIfD2AMEBILqCq5uXgFwUA4BjfvGeANDAWnkXdAixeP0TFH9v1mRFkbLWvbUq__VMnZzFjq2fX0Vur_5iTRtUfRv______qSSZ1mSNRsarWwAFAAHoR1FgBdILgMPBEzgwwJsz_-3LECgAR3KE3Pd4AAi-q6z2zsurq5Q_NAwx2SswQEswuANnTKmnSmhne26S9TLDA0EGBwMHCIwGFDIJwNQuw42FD6zUM-FIDFRIN1H0icxYw33Dmud___fc_w_uv_Glm4xDSXwFARg0MGKxwY7AhikTDRRMLhUOCboTt_g__zh84ET7v-oAJ4ETWB0cBlCaOIAJwwABABfxTWwACGIjcgd5VMwUOEx9AxdkriFPgYgChcCclkq2nzT9_WtzjyqbxuhEYADhtXmf_M_OHUuljjP6mlB8oQMMMx4bAuB-n__-mdYw481TUObOPuzEhbZbU9cKPMxFw2Dkqu1Mniak8-E4niCQnpZPSUTBknPUiFGVTkJUQGlo-oSNetliAnoAAgFNplwwcIaXTI6oBAJDnhNQjGWhuKzqZlf_7cMQPABK1V0-tqTdSQpUmGe7hMAwArUYfD0Rf2K6y-q_qyWEBg6DAh8goCmiBa3rPkI3_Vn-xv80qSCcJotiGE4SxUGA8JDCoLoFmi___odNNQ5kO6sdyRScu7oRSW1aUwCigEYYREy4l5KMgZDwFRmqKUAAWCImnyElgAoRAYNLilnCI6DZ0i3_8YAwACko5x51cLWBwFJgzgiGBwOEbS4ZBjAiVGOgqmC4JFuVTNZdKM1s5iWXqeVs6QnBAGgYEQwHTBcDjDAiTKUpDJklzOOmjDwOEnWhjwJxzqWfww5-H___-s_w5_cZXaf-VPaw5twYExBSIA2h4wEcVAGAqgysAhsj_3857_qOB8u_b4g1DHLPqHHMiU4fDBeqMgF6gAMBXYQE9bVFzvQQgMsgYzDptiRmRgyn_-3LEDYASyVdLrik3EkKU5eXu4TBdEWfROSILq0tswJ1o6pjj_aaG2TIsKXysvKJBgwGIh4qQPThgQL8iPNstDk_oaKwkiMOD8fnMaxwqmCFFQTqt__5f1LbQ4sqzKW-1YRjGlprTTRNkvjywaB0NRmQkpwmgTEQGi4GayhUTAMJkyFlVQmFSAAQuKQywiRPAAGAADqm4gytHhIcwEgEDBRA9MIAmgz9bGDIhBZGibEgtHgCYK80Cz1JbzlEYsSuOtOZE1cwBDYxJGQyVEYyWGgwmDo0Xpk0wDcMAJuoBskc9tbG3n-ef___-8Pz__1Usxi87cITSLxFwjKQZKIRtOaZBtWuW9Xhnne_6gwJx4fVu_Lqei9Z8MSYnfg4JxxzbcIALpADAdtENQCOgEIQFaMOgOGAIYgiGaP_7cMQMgBL9V0WunTcSPZUkGf7lOL0-YTBoGAayZgrjRVXTu00URWcaX1bPKRyklhkBy-bD0yhUGTAAhwcFb-SwB46YrcdKPVJppv9SQihQIxsDwSCCqNQei0ZIFBbZzv__15NWqhgiQ4ia32rDxjlTrbaaVyMcIj5E-WqoVrSQqCptm4snAzSJFvVQxKhlQmRWyrgBAgACHXWbVXwYAAmAGgCBgBgB6YB0D9GjcJmxhewnuanl8ZLDKYihkYQAuYGgMWhU2isqh21hd0ghFgJAQBAUIDB0FTH4szEJEDE0izIUTzcZdiOvjEAAgACRCNpgsDr4TNarr94__4_____-u45U0RbExMwiRIFopmSm0IcAxipmiKk2X9Mhk0oE17W7V9UAgFYAAEPqaFtzBQEMOhUx0LDPZNP_-3LECoIPmKkg7n-mAe-UJUnuNTiRbI1p8MCMWXERjN4qzE8TjBwIzAcDCyqQzWZVZl1nv5VaaMuyw4KACYAiIY5lYakkUZffYbrjsDAJYsYIBO_TfSG1j38N6_________9f_8_l2QtaUOLtJfGBYLDgHgIE0JTpS_OxaASkJhlaXgJABMAQA4wFwKTA6BmMKcY04-qZzMYFJMbAYHBNKxr7sQW7TytWZu4kNyivhbnLNaPtwL7mFgWZgzRlwUIS2doOK6i-G8rN8plxP2d0H__-s4SxwGZb2OSZC2WMGsmaNfmeGzAW_IGwH-ZAAWbMmv6Og2Z_oNLdgA_8Bf3__y-5OTf4fpn3f_eqE7ORMhGAcKiwKrU5rrxivbsf683Kkt7vD8KAJgUHEXg0IZkRxIZX5MtvGfwGG__7cMQggBflo3-thZJSNzRrdbamOJS_9fKTTfofoSlUIgFzI9LZmXDQlrjQzY6aNlQsNks-JkHUXsJzo9LYhrlC-DmIrsIaCIhXaZj3WGVzpbOHWlbi8JB5H4DATlYjEyp2qMHG2lR5jpbEAeyESQYGaRxtcWBDKw_uPCQU1TlFljwrmQ6FdcTIYY07yix4OZ0bHkLAGwABaA223jrvKtxnpkLith-aZW1DkSLpwFwFgNomHaL_26xBxt1LPHwHQPNB1qWyS0ElrZL1o0W___qf_8s_wsKlyWEclS2_RC_JWzHyRVMhg1cY5GpeVxWkhihg0qcJolTKJcUktarvWaVg1FEWNRWakibFK5KhSJrzyZqYpYmKXbUrQ5SJ6FNn_9v2AAAQHgztl9dx5Y68gSuP-tDJCdOpusP_-3LEDAARtVtLbehpwc-dqjm3iehQwABh6HIsAXfS-2fKKf-f559_VcgJzeGd-USyCxImweL1BwghwMDMIINEL-I5u56J9d9EL9CDgYuIaIibv_u513L-vonE_y-ucL_-8QtOnESun_-5fCd4gvDEuDkEHVg-oEK3rB9PnA-IC4DD8uHgff1LD_E8MoAIATEHLAOPfibXIDWJDaXh0akZCEQ7T5u4oMHYaUdAotMd3kDd_ek2fsnpX6zd5tDyYK6aV7DbID9_NE8xV9E9irp93Mq0Q5yWZTuif0RG9TszjHfR92sSEXvUzmwRC7aXvF-8w31DNro5dpvGsb4p0qXVAEAUg0sFyA34bm-jK2ABUMmsLmEIVbsDQy3YdDJgQnPvOq4ImqjNqv-ECgD1XwcRlKAeqkEpYChIKP_7cMQdgA1IV0mOIe6CizRqPbYa4B3iUFSw91QdEp6DU8DS3ZUFQ0zyOSiURfPZUsPesNedWHdZ2j2EuvrDX5Ko9_Z6ohQAAArMDbe6126aVrQj7cI-VAAwboBQG06UzVlu5jAvWsU05C_VghuNz34YZ9_Ss2X_1_Kgca_h8eFdGSFB2rYVsOdMzf9vdfZZFf8p1_Y5evc5fATEMnoR4kPKnZ-w43v77EGEMjtltF2em0Z4z8xAmnD7--xJOoeHYgiD0AFEI9k09aKjxhOiB4Q9_w5PSe8mm2f3bEMPTaGzWh2IShn_634AABQEGVLAKvXecVyjAIHza2UTCsYAEEKlziv9IjGsIFRwhADDdRK4b1X7SBcxEC3uY7KXwA1o9bsyoCCo07iU9igMlg6IjxGDTzwiW7Kgq4P_-3LEKQAP2Fs_bpsOgnOz7nz0mueVuKnjsseLP-dxEJQEAn-WKiIiJToVDalu3B0FazqBEW-eOrK6w2S5GJdR4FZp1BVSLaL_a2VRnWCkEzOghagDrGYykuYWphC1kMgTCGKd4cB2lzdoZnV9_5Luav1_BMvOuEBWNCQRhsoSLki6Pf_DFIKILRyhCewYjpASZBTEZwMKm0D0CCKN6DL8OT3DAAhGNlsgememyH8PrEDQHSF6-W2H0Qy32HJnEDSbp74iPeX30ySZRNo72xB0MYhl_3GH7EPe33tntkIC4ACgsNxiJuQ7a5AaCaXRvzGRlWHDO7GU8t06BdxZdjJ4fp7_2LHMu85hdJC7u6w7ZuU6Eh57OWu1crQlBIGuHKRetolGAzEoiEpIRD24lDQzRBZCb577rBEVEf_7cMQtgA7oZT0M90YB2gulBY9siQmeCruSPBMYbiJyj3BURP4l4ldcVtdiUf8qM-eAagfdkCPYMIY8mAwCcYIospl3XsmQIC8boPg5CBwqsscOjo0FQtMVnVd5qeMxmW45UtLZu0jvmHKokzv5GHTxtRAaKoYr2clooLwFFZBR0IK6CnYgroIrwo7wp-JvxTfi_wb-Q3oKdiC_BN-E_gU_E3sV3BX8XgAAIAbkbbpaCC2wKplQDDA3MT0I0_MZDBbGnOxWDOhsxMGDg0wcPNFYlvtMiFds05uvT2_3nvKy7RhhcNRUHTDdZnKPlraVgeEBwH3ic-CDgQOA-8E3ghE7hO8EIILB94fiCj7P_7P_tAEsRAvwI46lhesFAMBwNZhdBAnY7FaZOZUh4D6Z-aGMCJgIAYoRnKD_-3LESIMNGFcnTntmAfAYpE3tmThqGr7yJyp-OwDHaeXWrOHZVK2NEswCiaS3353nUUCl3c2Zvk59wMQAhR2ESJ0IjQxACFUxwMdA0aGMLNljjqxFJdmzMHCqTaw0LtNm0mxdqdIvRm4AQCsrGFhy5Bijmosd-pg0A5GJCLKfVD4ppRFimqtRhhSDQwQApVEjAR0tM60RcWjxs_qmrVbNW9K2GGMwQOeHHhtpFNuq4NneJQVBXEoKgsHcFQaChuLA0DT8UBo9lgaA2WFAZd5j3df_zv0hAz8GARgoiYsTGXpJq0IYFKCOmC_B-BoGrvsY6ODOH_hw9khykJFiKRppQChenXZebSWYc3XzpKSpORpTUzVLFzli8BodoCxuSS5gCYPh98Tg-D4PmnQuD4IBAEMoUECNtLQ_8P_7cMRogg2MWR7M-2RBrosixb_siPo-7_6Xr-scXiUPEAAEkTDJjL1TALgM4wD0NlMMrdhTDdgpw8QtTTZMMjB8xOEgcGRJipMs2dG8_sZjMtpZTZrdrXZInaKsMxgA6Co1q5ha6HZEGgaBoFcBAyCoKgqdoFwVBYDPrLA0IjfkSV3X9f__o-3r_5oQVLVDsPOqwZHEwSAjGBBNo9AzahN0MHsDwTBWwM4wIABZN2qM4RMKeMmTTWjsQg6apKSkpLHM89V5Q0sx3cIlu5KHDlJcTmwQZg4CAIBgMA_0kwfLhf8Uqf_3eQUw3fpXXs6tv-wCQBftMABAMwgCjEodMkDo0ybz1zANZjFTTGFxNo5A5zMpqMTC8wqHFSgIHF_ZzCLS3u8ccauVNlTXnGMNAwiXTyShR2I6aWD_-3LEjoIN4FUYLX-EQZgJ41nP6MhkFQVBUJgYDR4LA0DQNA0CoT2YvYr39f__Lf9n9V367Hp9QCJGGFipkhcaGpm3RB3PSYKgDlGGRi1ZyHkzWZqkLzmcl8Y3LZhITAUGl5FK2ANbh-ct___QfvKrNPCOgQwFGDMYMfWeUxp6PH_vod-e_lOn29l1ejfShzzdJBFu3IU9H_41_Ff__tttyVVMQU1FMy4xMDBVVVVVCAVVGwoEGEjZjRoZqumtVBgUoLaYKsKnGXi1axj4YLOfrVxsYhmYw8YyBoCFwYDUzm8jkRpuf-rnPwzqRNVQwqqAEVGvxtrEaD19zfR_n_4pZ-L1Gf3fp9v32-z66fZ-sW__-lKokBRwSEJOCEoCyoBBcjBBhm81rXsJMKeH_jDpggEwX8DwPIhzc__7cMS2gw1MURZOf4YBpwshhb_wiE40QtMlFAEOqubqzqHbX_-eH87ekTNShqJyBf77ouPtisnd2NaLaF_0ZienbKnr9TmtY6j5zQjiThTuT6mClX9ldTalqkddQzWhiYAV3QX_u2ibBauB05F-JWCEBC4oeRHBjiAgNzn4UwbMCgcuujm6isphoqYeAhY4NcUDCic0dFtW69uJxyDk51HlWIoDIG0J441FKTnmAEhnyAY0EmcopnI-CgYy5WNiQB01N2agc4meppnoqIBgyQaQGreU8YIFCQImmmusGYGAjoEYsMFAYYUKGIBQGEASImKmJqpebNrHBS5_7Wc9o6gRIMnnHLrSiKRixzP889YZ0_aSMTk27b9wWpmydVRBx3S_6a7cEf4XKGsSatJkq1fo3lx2-BhAhAj_-3LE14MMiE8QTf-EQcIKIUG_7JBKCnqNFxF_JCPJTumqdwi4CfAWMAqDozWNawIADgOCWfFgCEIQNsSKjBHjTHgZYeFP5JYu-kUrxvlPlY3bypEAiO0ZA_MsJAOljI6YAAkiEkkkgR5eBiQBAoBlgoAkB0dzUmrEoEBmbvFG5C3dfiazrF3WkRYEgyCMBBK2JdhTxSBo87ZgACYqZGfAZlAEIXUyUBMACh4afxmbLFzo_PGWxY4pcqskUMAIOBV8lqU8ExmJO2ul0nxk76xWVR2INen2Uw9MxFnLuqHGGiwiRTVkIFpp6Z2cZUHFOBsysZ0HBcBV06tyZtyzPndb-rbxWtWpliqZCmtDVk_lpuc5IzC1L6NP5CZC_HUTEYpPi5K8gyvVNW14hzEZ4uRGQ6UUTpHH6TlGDf_7cMT_gCSdZ0et5x4bt6pptb2-OtMU_jqu2qmieiPrvYUaCGv___-ljQATrJSQrkFLFoq-cCM3ijFzXMk-UEDiFvmmw9LYekM-78oprPcM-f-t6u0Cy1gDH0g0RzPYuDHAQxQIazGqXL2mR7SP-__9hIwMWMEUzWAsz92N7ODXOM56uNnvTn283Y-CA1X8Yr3MQ4Z5vzLl9I10tTfFkgQLCwbMB6LBtHMAAGhgAEAF9LalsjNIMQ2CDZdyLs0MJKDJqUeC37jEvlhpYePPg05HhpR0DObvAGdT46VCMlMAGjDQ3DnccuV49RKBuaocYeOEwpDGOt61vDvO463t2IfgSRyGLQ7Dz_PrBUf_6opg-Ojcme9C46KwQG7t___-kVIn0MUaMS6OOk5j9PY7zcQ9CE0eSEocnV3_-3DEiAAP0MNPrYd4k5S0av2zv5Iu1I3otUH2WhTCwhfAaoFYEaDHBSBBwnAlQJ0G0ElC0h8BnheBhiACJiAhzJ5SrpfUivZFtYVKuVqmXLYxqxnc1lVK1XKVeb2B45ulplZlaxNrWwJtAALMgBAJ0N60K4mCmMrbwKAgyo9zDOBNMHwuS4VDchmGpS11w1mwdFnVdqS4fnhvcQa-IAtMmFBSOAQABYySlDLAMZLLrPrU66lsko-Spk6KV0l3_9FIfSIFSDhCtE9CuEnGIIwPBMYwE2AaZu___ZKyS36xnFYUu64jPWqHFhSR9fF9WfmsLiPo_zxL8rzpMJDC9HK2OTC8Zm2HNuK-g0tLDMAALMiASsb_u4ueCJTkzt9GVmGAxmjCEuBWAPdLaZqLjxCejFWfqY26mNjP__tyxGgAFF1XRa41-RH6l-p9sJsRWH95NMCL2ugAgEKggKGamevpgNlZwHRsBIZf_suxIkSEmEHHIQJX_Ek5FJosjku0jkLIJyLW7syXY3ZpHORSTkEcl2d2azlIpJzEers7s1uxGo0AASQAhtuq0N3HjeqC5MUB4zCMzJU4ArhBAIaK7UZytTtFbqXa2OdTe8se3IJUeIACDge1FXpgIWjg4NBhVa0t7o1UqRyymqi2bZ_07ioMHQAGKQRiWDQeJw6JQYFoEPmRookaIXiu29J1bdEGVEpqdX-g1MKamly4uxFLzAAcPz8oZZk2FDsMARiQC5gNAXmHuA4bHIUJhOgGA4iiwOUizaBaPO1e7Vrb3__q7WlNMtcwcOTGokMcAMCgkw0czvZMDBGvR-5YaJoX13U22r__y8T_-3DEaYCPqL9FjhU4geoX5uXuNXCo4SQAugDeCWAcoLUBeBeB1Lw-BDgQFy2v9MW6zyHr9SBZyHhadgAC_IAYCtadLNk2jDQZAQ6MfAwvGDjAFBKZWjJ4WLAUIrwfeIKrq2NLEfcxMo1AE36s6EQ47UxAoMg37dJXqco3lSDMIMGhZboyaYxzMxShrM1vDW_nHvrfQ5DXJsXa4a30Z43tn_-Mf6-ILUu0iqkMUES9YDkim9nw_3_vdL0zbV6Uzau8Zx9bUCLO5DTyNVNt5vG7Y-CRk4Vb8-zaR6kXbZES6BQlUEmISrkwe6GMSgNc8WdTIl8yIeh6kbXJUKNQMbEEpKhYAWFgZEWBkRiekYGFlgAAsEoEqmZJBbREXRkCQwHAHzCoD_MBMh018BNjC-ArMC8AYFAKoDmC__tyxH-AmsFXQa5p65n3mCZp4T8RwNOUEprbwv2ct71nhnUfos6wQdAsME0EEiAyFgRggx0iApY9B0-dF_sZUdjKrO3_0UBuSkyT9Bsi4BIz0QhebjuFLGdvyf-6r-etQ9YrTdulFXK7-QUQAAB6AAMAWGQv2YJAYYOhCBACMCQTMGAoMoRFMxyKMuLEPotLMZBsMBwjFAIQLZk-tolAEQgYCALMAwAM0AQM5mXDRjZXMVqW_OU9SCWu2HCCw6aMRmpuB00yFgJlbsP_G6SvrG_YzqapZ6cl8om5qlnZ-WSvW8uZ54b1j3DPDW-83cj7DUeVLlmWm6ttvLm3Dtm5bM-5sOz5oQDiBJIaPCwQWKIjhgWCAQkkGHkAcCNRWgTMLORTTIHnStAmYUakpMgeVKqOmRcjSskp0kr_-3DEaAAcVVcv7uzRyf8X5Ka9YACmWLVKpL-6j9_bbu_vttPt_8_QAAHAKQDrrwQcagYA4FZgfgmmD2FuYMIHhiagjGF6nIfR5q5lujDmHeGGAg6zAYASMBABYIAYqpitCIGpkdND6KKS1JmZuRYZAPbC-QNAMAYCDLAanw8gYdQWgYDQEhctpTImn_qWzoqUu7PUtd__6SSIe0ACAgGoBScOrJI9cYpHgAAERSVVcEXKTZ2i0WCxPgxWC58w8OEbDBIxM1AwwPHl1GBAPKWTImyp5HXZ2vZt5Q0ktuF7k1EIxil0IS4fiBm5Au5unwWYCKU85KDEgnO7DJWB0kQdFS9UbiWJufRTde1FSQEMcClRZ__894E42IXQgIX2gc15Rd1VUWs___17_ddicqfikhichq0_0ByK__tyxEiAHg2Zd_nNshG5jmr7tUAAWQH_____-zhyIEdy9muiHOUdl95ukhE7IYJ_______0fIpyjcB-Hcjr9qDuvQzmcxflOF2AOTX_________-E40tp83F6Rx5iWZw3F-yjdLVoIzTdi1TerOV6f___8MTUiAEAAKAYBMs5WK8imTp6dSMAwWeI1VoXJlsphmdGdAMCgap0AcCFLOiySLakkn6yGi4H_qSLxNG4m4CxMWEBHgV4KnfAowKgqGxKdf9YKhMNKUDQNA17NQdZ-rrGA07bErvPHp3Vbw7r_UHf675AAgAwColiV0jt4P_DCcaFwWTjpk1Hx_6T40_8bcgKARjKeEAj-O5YwGlyBgQkMCzLJv03emRpNi5AJoNgmDQ5wfD5cPrB8HzAIAgYBMHw_EAPvlATB__-3DEK4AQIHdNjYZSQeIO6nm3tVh4IAg_KAmD79QIO9GXB-XB_BAHwfwcDH9P8P4gBAMYnB99QIAg8hgSXB99cQAyAl0GkaXBnbdIqvqIucpcCSQ4EbT6H6dUOM1NjSUwAaHO0KxgsMobT3c6talRqDfSZX7pn3KQBLjhJqxQjmHCwifULxQUDhhgoKC6HB17QaQAVLawagwpjETb-YN1M6FsSbmQv8X3mzcUr66KDEV3PxQiaqFKraIACgN6QHuW2CvcHDGHJouFK1-OaMkznkmHsqMYcASwy_sv2Qia8Ogor6dZZKJt-yMcmdSyS134ZjbrjOre33DLoBgIsZDlvf-___EXdQ51-2pu1TtbnGza202mspFtTmrTWEjYlLmzTZLO_fB0CMDCv_wmd38tcDT538sekei5__tyxECAEAEBV-09cUH-n-o1uj5ygAMBIgFQExKGVhngfZnM02ZNUEF5vhMrCsCZfHg4ZAo01MuhkyAwkCiEYsbzN1u-pBrppDVEeIu7_UiLwDErAoCGRIIaMt7fUg1BBDWm_TegghoIIdBWK-Ph5E1vdH6vT7PHpSG_ZIn__sSA8T3_lwfOfggsEDmXD__5z___VZmAAQkgAnAVOR2PFy38YHKG_bOFh44YfT4Z0HXpEVJ4UcQs4GFB7uwmVS62Ym1Door6A0UP21DPgYFaH7DOmrJbfRRRRSR_o2tWvr7Pq1rX5rXEFhi132FWq2euIzEnmZmV0S3__gDuc3__iKt3lgkDQNFRMDQ5_Bp6n9RjMgJUpTk_H1tWWtUrZ0rgauPGnX8IARp_wYoLypeNlqNIAoh3JNXp-lz_-3DEUwIPfP9RrdHzUd0f6impPnI3a-pBew_DNuu304y4B8gWknyfTf_TTTemm9Ta0Naeggn_YEPQ9zkeVV7PeGn0PQ-dg0r1eyU__zAJGVz__lAfKGHbg_B8_iQMeoEPyiq-gAABsAKcB1-R9rDxpyOmsxihgMZm-RoVgULAUyrAzEgFa1jGqR4hwMurLrXcTV0006SSlLXTEmdvqdRmOQEMQZ8PaJ4-jpfS-tFqkklakqKLaKKNFaL21axa1VqtVtsQnzEnlc-fUjf_-4nL7_6wV_yo8FRKWrGu-Jng1UCroAAgAJ0IXM06nsgZvWJDw8MhBcxlITyEAMWA0wyFgfiANbg4SpRt68DEguLG_uS6mpq1mr3VJTpPUJWGrDqS3TSukaE0JwA5I0AbEGATBlLp96FN0Er___tyxGsAD9T_Sa5R84H9IGdpyi6iaLhk89RfzzSNW_WHk3LFacUjeHgPID8kGhWp8aGBkLIN_oF6mbOUL0AAAGQAVpt_Fpq2BcEmCBsZbCpjkDmyMsbvA1phhAEkIhRmrv8GMgF0YIIEJgAAGFp1dqQBgN6ahP0TV7s2pOmxuLgAOPo2E2OuswKZODlhiwDAYLAy1LQocAJAgW4kSemyKPqSr_9aKKn__9ej1VsktFSLdSQjIBJYDEKCpaAAAUQAdoY5bg6BodYM00iC8wzAwwfPY0DN8wTCAwOEEzLmMxmCsICdGtjLx0avYpsKKRvzCpqK61d7hh-3wdvLn4a53DfbsHmFALCiDbf__7mMm3xX9eekloHNr3O5Ze2OJl8In0Jq0SeQBNHeocPof8NBsdy3-X-N8-ceACT_-3DEfoAPrQEq7nqoyfYgJ7XcrbINx5u65BUAEGANGAeC6YMgFxgWAUGJWNedbI9RiGgNmEeCUbnRNBnOgUB34DlsBCiCRu5iUCmq_V-rZ1Vs6y7jjrLlq834RLPfYzw592pRxBaYsGk2MZqHA7kky6aspLSosp1_9a2Zupr1t__9JaKkWraTh1AQANEjG2uLQc5yjBQAFhwBaYCaAJGC8ABhhHgISYKsQSmMXDvhgVwMaYEkFFGQfooRh6gO0dLSmjKRlZmYmJgYQNPpGeTcXwqcqYbz7h_O3JmCiQpMEIn1rXdU0Ey4QMUgA8IgY4moARcDlSJFU2Rf_________-pMjAFxAUTZGgAgGAEBOmvAZAAQoAHAUA1MAMApDAdQFMKgN5hAwM8aM4EmmD5AYQ4E3mLCpOJh__tyxJMDz6EDJE9trZHmIGOB_dWokAOibTHGHHoWECIJQDmMOKEMgiUPbjNqrS4Vu_V1u9Rr1CNFjk_Y7v9d5nOLGNikjQg8BvDCl4upf1JV1ospKjV_______YJ2FMLflzlQDQAGLAEA8A1GBEAAphGYAmYYmCqGCzlshigJT2YBKDAGDTgFZoSQksTIcR4IMGnw-ZMFBhoUGAw-BTkjPAsbp8qTPWHM8_1zG49JYGAhFrxVbm_wzqSt9GBggJGe48PL8eiqfZK____1____b_-gZgUkyRqACAERaMm-IgAILgDIUAQDABwMEwFABKMB5AxjCsQAg1akFiMLLAtzBjAr4yaFTuMR-CJD57U25YM_PzISESRCqIjwg7MhlUup4al12U46y7j9qdU2Es5T9Fnz9_-W5pGUz3_-3DEqgLPQP8cz-2tid0gIsH-SbDdMhDgGiJkSpeRt__________uPAbRAAMgFALA7Yi7qNukAJAXg4SgwygRzAyM7MCkvYdAjMCoNcybXkzFWCnMCUCQEAAulFXGdWHjT_90lqErEiWr-mgQMDdUFkjM4PTcwbe1tMpLdNyv3pfK_Tffzvzcr_0vnbbn36fz5whrlCxv5YhecX76xl9Yy8JitSyQABAADv6B-5iC5iC1ZImoCYQA4ebB4SjwKNiAooVyiD3ywgKoq___HP_kAMD2X26end-3HlSNvAERkRjAwGiioYbH5gEFDg9NzP41gZDOB8MwEQwMIzCYHMpm0zqszU4ZMCsA6JEDLRRNBokyqVDXiMMsIIyogzWoAMNvo6c4DWCKMrxs5uqwEIDR8VPE3E0iHjQD__tyxMMADvD_GK_trZHjn6Up6bIhmDo6YRCiaBrB0GYjEbsiR07AHImodTX4sDDH4vMMII1EcDOM7NfogwDPTjJJM8n01JeDNhIMLBMxaEwKATDo9ARbcuN5WbZoAOAgX6gf9iX2JfFESxIFDpkMTFuChEBjL8CMOABr8Yp6exng___lB3_0EBIIIVEo_uMQLInjwo4Ge0hQAk4zFYmMqB0y4JTFwLMMkAGmQyYRTK52MuF0zORTBwgMtj455FjA72MJFk-ysj_2nN8UA6SKjQUVPVSQ0VnDltKMkJg3GahGszZdVP6UEzDIzeatM0kMxC2zDYLC48MKkYylBTRx_NzGk2ASzVCtGr4ZtHBipCmpLWaOAZtFLGhwyZnOhheRGszCZ2U5hwYEyVMTlQzmiwgxS_4jM7VREAD_-3DE3QAbfQVDriuPU2qgqKnD8iJUcgAAAb1BrYJK2BR-GkUjB4YOPgsIDwICJlmUmJgKxKM5UsWltoh_0PRTdA__48MgExMmw-k9tKhPIBicF4lmp6WhUSj4mkE-ODYdy3GXFkZWZLQMUMvDiY-nPS-OJuTbHkYlJS0D9kw9DrKaxdcdRj0JRCJRbRmIAAGDMAfxx10Q-xByxoMCCUkkze4hAsWAg_YKNZNh75ZKJu5dX_1ZzqBmBMv_UKIPhYgq5SxFE_YTWeIUvs66VcKSCfpyIl6bj5zR5yyp11GlNBikVz5bdPnJDy2WUyFKNVJ5Nos0TQ2o3CjtIKU3lfpAE2gxesHO0iyAADBkAAABrceemgfFjTigYEmHiOeQGRhYAlQRGl9AY0CigbsRuH4pP2Db_QqPKSzE__tyxJOAT1T7Q64dkRHpH2f1tT4iUG_6yiNBfOqFlHUeq1fWPFInojB8slRgcUzJbRmhwLhxNx8KZeVmIzNyUyM0o1sLjIShXY7IpCLhbLzw5K4ICoPzpfI54BpOOLB-gmEAVgD810IPw4ztdgkE4GEYUM4z4McGAoCA3MuYRMWgfQDOzcootLbRp_pfUsWAWlD_qGsO4wyA973GpkHhCZi9SifXkpehqXl0ZZeMQdJIgllcPBIL8DT65atXnRALMBdq6egdTsJVSm8RXWRp1a9cD5wVicP5Rto0AHKQAAAP1ALdo6wpN1EYwZAYwzIY4jGsDCMHAGa8AKLLGPAgzd-HYicxQr_nnzjF0BN__B-BoDCfzuIkPzk-LTr6GfLj0mFAxQD44hVEpeUYCOOQ4mHtLxJEqxWXjij_-3DEq4FPvPs9rjWREeKfZzXWsiLoBCAS421pAJR8lWqLlgRjs9PgbDkCJMbebNzYIgAASVAD-Rt_H_ZwsOLBQDhBAJpmpJlGB4KmAQeGZ8iGJwTFw2GOXG5ZbwGx22rMhxM51BmF8v_NNBELJAuXE4-GxubRAkbecDiZOuVo3zSyWhmaBxHI8QiooME68LJiMoBYjgwUIUyw8a5OHkSonLoQYXFcV1V37TcgAAFJAYAAADW5VANaIukv0IApg4mnEh0TA0gB5mucmLgKsaM6sy6W0xJ__5CGjf9AvCARZO0oacQhCcQxyZC3j7LmvFzbS_pYfaWJwoIjATiHBLAfiKkLZFYVtMlIZbCcycOhFr55Rz-O0uRypc3CCKjKTYD3PNcv0ulVAaruLJVD8A6AAAByH_GHbjDl__twxMIAT3j7N06dkRHjn6b11SYiwwnGiUFE46xNL0I1nTBI9HrcgeWQxK6l1f__KCz_6A3A-yra29Eol46UyKK_L1QG8iWdJKc5nJtgMq8S5JJ40jdSSXK1PLoc1spdClAXRaWCWscyrVbthUI4CmQ90_bNp1Jmb8H-craaEQ41EQAADBgABjlKYahlcyNpEFRhuCxiOfBzqZ4kPxgwJhorkxjcHAHoZYFBjnkQK5o___mQ9v_zEigWskRSSiy4A4q2GcrZe1jkihppCPyl8JfuVy5ebztOi6sENJAJxJ2K8WBRVeKAEVwEFn8OMVIgq7eNwnZoF6OMvpvkOrXnyUQDHL7XurO0NljsIJ2SuqtdnT7LmT8VmFpLe5KhsAAGAUAfhG3YYeXcL3hwgDQgmEpznHpwDwzmDP_7csTZgNB8-z_uKfEB2p8oObU-IAimlttmTQXgYDl0z1WNS2mb__WMwav_YJINwDJxpk8zTFdGmqVSX4GmQosY_1UZ0M0g_RSh-kJEoaQyHFLKE7whr0XQQEkR7EJGGshhilFzBCGUdIshZrxfBh7UZLQqDwSZcDLLi-SpPgTyEkqK8NgQ4fxpj_mVDIAAEHoAAAGWNNGY05KPRMHhiMD5iYlZzAgRiQCZQNxxERYZCZEHiJbBH0j9BdX_6m0JNDgb_pB3CqmV1GyBslIrU6YC2Q8mS04jdHqRJvI4rx-lIimMxRxQi2i9G8ZQ5iYC5mAM86E0TJOHitFKc5xt5PiFGMrBxBVEHDmMOx5mStGspDyfmiUDaGixpgW8wACBABrN9GVuwreCACgMDGRAtGCMJIZuwkI8EiIg__twxO6AU2z7MY7DDYJLn2Y11T4geDFfRWMIwFowBQDUeGHu_AkXsP__vIAaW_1RAPgCysTA8FSc5vHkZapLwLImB6SdKckK7bGIvZjnsaAwhQi0gNZCR8EnNw8CvNw5jHLmKS9HpKR4JkcmxJD9CPE5LGcxtiFkDLRDh2It4DxQw-x-HgaZ1nMEUV5q5Q4AACxWAAAB_y2HkUTAoCdkmB5h8CGG1QcfSphUGGBhSa51plgKoLO7apZdLbTf66nW2ZEP_zMCDhcgmCNJeQuYfRqHE-Q9CqJqh8D8EM2FoMRvGOPJEiyFaX5yP9VELQ52wHGoW5UEemyCBeBuRkLPxGFsXZxg2BHCEj1QLq5Othvuz0GYaBbFhVINCEmq9BoAAGCoAfqG2kOGjYsGLABLAwiWzxZeEg2iOf_7csTpAFH4-S-utfECWx8laeU-IMWKok_yIAN_FIYldS6j_p7v1m3_mYJQEmGglhxDELoZhj1FSUhemtHs58lKb5bSxiPkxLwJIewiRzFKqBORcTkRqIT5YR_sYSUurWc0VjJyMQUxTHeqCdE9L4haKJchStFPLmni0PsvBihDCdC5qgP0tiWVJGAAAAeOAAAAmISAvOYSJm_wJwcnI3ZTMCp-aIYDwIIgIx-kL4NbtxvmNPTnBt5q5uEDRkB8c9NHp3J0sCaeImLJhmyIaYmGjHBkgQKhJlx1ER3u7_u71gTUKWWwakjBoYykX1OUqo8iDL1EysXZJci-WU3FcCiKcedbtlIi5B4L2huSITHkEGXGmP___8MFwfeCYPqBA4IAQcD4eWD58QA-pQAAN8QAACoBWFNyzMMo__twxOgAUfz9N6418RI5n2b1xr4igZXPsupW4s6aGr1QEmdyhhHLkqlNLS8MGaNSwNqyNWeNWEApw2sQ59I58QyYZa4AGmUMmYNmLFa5pFGWOmc7VWzmwnHn7WmXJsTrT_VWbsdt85TeWdqeGmoqE6iyqXUxmN9niD3f-JXQalj0TPhqCoKqBo8IgaeCoNLBU6IQVg0HSyo_AaVAAAGNXRCaIOTImokKqLUeeqdLs7xDEqMaDG3hwAABxhCjWYX2dZOTE5Qo8FxoOEZoUK___8-vM6XEhyDLj44UtDSSImYVUHpNyBqZQeOMreAfKEqR8u0KxJ3FyxETipsVG5m3xSSFhLQ8JTROOqYhT_8ck4FgATYFtg4Bl1AAL_wAABJ2agkDi5JkIKGURgFwGYKAKqCtBgkBr_IQ4f_7csTqgBQ8-0XtmTbSRR7pNY0ZapPsxhYHKbxSyvlQBizATEg0M2owx8azKQlM_lwRiI0KDDGxLMtDoymMjAZrGjwYjNQqQTFZARNe1Ac2VVimyma_bhK8kmhVFTkSEuQIzhOgwtLA8UFE3nJOUVWanBRAfohQNqoFZYoqSonm12mIDa6MkLNEKJs8sWZasIwUDU___v__-CdQRrGU1jrGCxWNYOqMCNYykPHBEsIUSSiZigTkKKpaNVMAATh-wAAG4BkJc4vUKATEA3wca2sE3jlMJNLlEiLXvzf6TuTSGthA68ZpubAaFZGwI6Y3kQ5mo6XhnMl2AEqiCiQwoGJQV_LkutLEVipVbIkYxf23UhEpPTHwV6fOQWvBFMHv______mhY5ZY8bYccade8ut5Y86yw9z7XlmP__twxOMAD-T5O0ftKJMVrOc1xI8jQBQwLFeLwA1yZcNxmtCNg8S5aYXAJ5Bega7jwUT7a4UFYUVRvUYuFz2GTnU5IIrtqMXDz8MSOCpGbJz0CcSExwcDybFpk4XttRk0PlD4rJIJzO0SrVPmSdlMRoUixxV65kPzHyBhRkLCY0USkeJUJQmhh__pQXVc9h9LC6BtLaAANlgAACMAxVCcWuTbMCAdbokBmTCEKGJwGxMqDAzn9DEQYT3bo_cKgqH35HmG3ASICPLorJLitYLvFAwAkOSIRApSZSRTtpCtRUyZMyFdNx8tjgqXkK6ZxpmLRGLLpNkLLnkwvcS1EtN2XJWpXB9NKx7flrK0XNTOTaWIm1lFIrtJKqwgXE0Dv_____wqLCSoSRUUNCosJKy55p0usu997jrTb__7csTSgFAInUftYFJZ-Z9l5Z4lSB6SAAILFeH44_kVctnKsxxWZSgsAgeMGhjN2d7M9A_MFQCTFgYex-UpKr_YcgWVX_Sm36_07b_T8pt545JtnICM-RXxxORkQUUC1U000WRJNC6OuYkP16w7JPfiU9Q6H7Gg1D0yMlp6gr8JtD4weULB6H5di4dkRyteIzjaCRAAEkgAABMRiqexcZlZgAAaxWjMqLUgADRoJDC8BTh5LzQUDxoQEu1oOJI4aj50mgYZ3BEgss0iT3Mx04AKQOEX1AxU9AAFcBapCpMkvC0gtkv9aVxqWkLGoGfBCiamya5t1NFLZXuj8UEis0vqbC16vOMCZGtFhdIi-ucsfWf7hP4UVK5MbNCjjpsu9c-8GFiiKnCgqLBRNmjRsXJtk0aKhZJWDjRU__twxOWAVOT5M65hLVnuHyThjrEQLFhj___l7yKfTVCwApYAiAoMpgXDAGWPdAYiwkgGnrgYpABhRYNnwswH3Fsf__63_6kh-LzZ8IpULiknDmHI9BkbEJdtDMrIhehKjKjTZcXMK08I4OL_VkNMTR3IitcUw4KodjiA0ej6w3KBGFQuQWRCN21ouX-J5yiqcAAAAnAAN3-_8MsqRNLJGAWAcYCwEZgbgrGE0Kea6dGJmMB5mD6B8YEQBaQTMUxlis6M8_3TekqXf_iY4OEZK2HwWMPFhUQESMgaO2AkotsQIB4wMCVZALlWCcPBdJ4mIgbQgmSyNkKIXLkkUJCTA-GFzxpDRI02CopiFwAx__R__aml_-qAAAfv9e3RN8gACRlDgFQMC2YNwFhiVhwnXY4OauIXJh8AcP_7csTmAFVY9ymu4S8Z3h9iweoxsGDKA-YFwDgGiQApwbyB7aPX_q86f_8sl0qLzrymSzJ48HI_WDi2PoiqTxODZ6x5VMbKYRKKZWOxPieKpeKxi6hHbjKwk1KgnjSIK-XlRykJXiTdrxBIozeMTE8Nf_S__7P8Qe5n6pD79Fn66mAAAoH-_rrrpmEwAcBgB0wAgApHQGQwBEDnMBqDIjFI12owgAJmNdyzLF4yMxMZCwgwFhdIAT_9fz39fQ0f_zc7cgIJexxIKQamtKWKzC0oNRUVHfJrW1lWsNsLHCw-rnUYHx0kioq5K1FzUlB84qpI7ZtSlvsToTpiqxcKWicxCj_HidjGPRs613ZNPhlCbQAgRl-uXk5QKCDCAfMUioyaUjNiFNgwQwcwNzM-jZvzIXAokwXkDKMC__twxOcAEMD7FY8dMQI5HyHV6bHqOARwwBWAo8DfIDUkAERONqrZTIvUy2lMrLV007UCBFtN6dXrdZUUqluyT11bo2qrpmLr0ETJlob81WktltQTRPWvxtF7veU0e9j72LdZ7rH_M7LbWgW1fsXv6WTX0IP09yBw1aG8AdhtF23--r-N1YM5-P8TIEYAaIgBoRACIOASTAYwBcwNQByMIbBxzTCDYsyYEF5A-IggNjlEDNBIAxQNgMJiMAAHAPA5da6r2ahQegkWSsn1q3rGvV5X4Rz0WdTstP-Tn0-b4QynIa58c_c6u1tMGIYjgItCvTLLJwlP1Meefy55vmVh98vX6W_CPzPMz5_eMoIzCYzrur2Rm03M_32vx2fNfA9ggAOAkEilpnlbd_HDZ40lq6dZdQKgqAB0Mv_7csTugBIA-QsP7QxCYJ8glc_NScfcMMhWEYJpPNdFhXLxdKRyfKVZ-cMvOL2GY1YiFcpHJseL4GlqMmEspHJOIg6PFNHhE6WEZWwnSxTFoJgGETYJipp9AsTAAWSNIGQiQyAEFg2DhMBipsIiqNAWEwACyRpB39I7p_zHu_x3Sgk2ADbbbZGi_r7CgMYAF4ygQaEQZhGYFoIGyx1CTCghnWaAyiArGxVAClUxtnAS7OshNzAMNFMU4NEOCNxrjpk1RYUmOKB0c0QMy5YwZ4G3OABeR0SY6FipiMGjBYjQ0LwC6QcwW0aBglQ6stWRQB0jAUVQFwhwBZwGKDCkAi8ZWIIMCAjokBZegWCWmEQUOCP5MEt8XNRecBobJV3Mxbg09oLLmVNjchz2msObq4AVgyAiBYViIGQD__twxOyBE1mhBC_UbYoTlOSp1g3oQSC0cxYDIEQ6DsdBcFISiYZoBaMS8dnikyKqQ_RHxyhHCs9MkqQ_UnzUNI3WoWH3lrUNI3WobxPMtN0jdJDgmlQrDREpUVSwVESlZUpKKLEqGkz-5XiTuqClojBIDzE0bD1b0jbURj6DIklNGEMZfCAzi7JUiYfV8TLHtMLakjLH1cbxROsqaKsSsUC21Y1ynOYcW0SNUlcypdcU_xKyjFvJ1IvC6r0I7eov9P9NCbgAct2sjREgdtQ5NgxELCgsYIDg5DNETCRgaaXbMEJjQagefAgTSEbKBtTTBAhgWDHwjcOALYFIB8B1QGDWZaQmQbrIUeMgkM3NBIsLHAme4ZzWBW84SjuEN-cggN8Q5gjVhIXgFacI5nPDDJliG6OCBBwFCP_7csTugCC9VzmtYZcZgw3hydytiIIEBoaDSQJa8QgpbIWlv2ANxaEuhgbSXOXQyNwnNYm0h9Q2AOBQQQzAgC4hBABAOxCFgEwcEkXmBSWm5gX1xoZpFygzSLVZgnXKzCGzi-Cr7cFX2IbONw2cbgq-xMknA5EcgZOQnA5AwFNAAyWuRtESB11LGHodBABmJjRkQyDh4eJlcF3zAAw0m1MGGwaAIOqbI5N4ztgBo4mNYCXyqYXRDqRLoe1GozaMMWEKVENYheMVQxgR6Ya4FuwVoZYoUQLDK-WZOC_T2M3ZIydyIIUVSORtUCYK1NXCQ6gagi52jK2qmWKyZoDBFjrCLDsobCypdq1gKFg2FAHAQFxhCJQaBkJCQLiAHwcGiEmHQkHBOKBGB4wHyyEXFh8SEhGkVWVk5tth__twxM2AG9EfK63lj9uYJGT1vKX6uCayqzLm2EaBdJVaQbAYJhETAsZBMICwLBsBqFqTEWbNPi2af5r__16VGQAGlQXDEXikDMNTSSNQmoCjAcwpEI4sn40ZCoweAEu0ra2NpjfvkLniYhIjiNhuD2Wo3VwWhsdm5pmV1MbSm6VyuophkyBgWFQyZAQTY6LM-tK72MFGvPhUSNjxRV_jX4tgLF9KmYstfZYxPtR0PNBV-iLXrSqgAlACW7fWIANqzdiDD00E30nkQSywCCwsASINmJggcFOxhkGgAhfdVAE6BETCYBJBYhsI9sOoBlllwYARhHAEBxCItSXGQNHgkw0DC-aARCWjYjum0IQF7UAxfFA5FlEtERAOiepgquthbLIlysSZqxVT6_GThQCYcCsTA6HEQhFHYf_7cMR9AA74gQ5MdSqDhB3jtcwxuWjMWCOZmBXLhTLxVMj0soJoWzA_MCuw0y0y87HE--sbYhgZaddeVRgdFQMLVSBlVUUYskDKaQlZdGB00gyqqpCqqMqssGVVwVlkkOmmy6qqOmqMqqpVVVdZZaqu0FZZQBwoNjEblkihl8Hbn3TLcGCYfmvVGmVIVg4GFnvkGeKLEHmCxZBNBJE40UUTQTNQRSz8_OdQcjVlaVLigEGkPKgyJGgUCijRIHt0sE-MEbBV76Hios00ih5NCaYTOE-eXZfeLW2alTLiaa00oQQCE1WaeqxjagnksRAAZKs9SxQdLxNNHRF9DkFwIEApg4MY8DnB8x1oERsB0YOIMgQwRQYIIw1FFHV9MBSGRSStT6Vai2hAhWhoiunOlQnuqgnap0vFczH_-3LEYoIOwIsKLphvA00cYqm8sbEUrU-lIq1KgUmpYpupgrYBcFAvC4HQmBERgqD0XDY3ND8wMzs4TpENMcnR6tedRxPuL1jDbEMDLTNrVei-J-l7sNwQwQkGVVAwAMLVRgkYskDwMjSEgwtVUADC1VQSErLB4GB00gwMqqABgZVUVCVlg8DA6aSQMqqgDAyqqCEjFl0YGRpVAAKTcAMHyBGgPktNCoZKI2GoxFQiGxQfMokJEdTUnVllBo5GrKClln2SkZGstn35bDIyZZLLPslQyNWtn_y2GRk1ksssslQyNWtn3stjkZMsn_yyVDI1lvyywGDA1URK3000BiyWlUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf_7cMRQA8zRawZkpGXIAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX_-3LEbQPAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf_7cMRtg8AAAaQAAAAgAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX_-3LEbQPAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf_7cMRtg8AAAaQAAAAgAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX_-3LEbQPAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ',
+  exito: 'SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA__twwAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAASAAAXQwAaGhoaGigoKCgoKDU1NTU1Q0NDQ0NDUFBQUFBeXl5eXl5ra2tra3l5eXl5eYaGhoaGlJSUlJSUoaGhoaGhr6-vr6-8vLy8vLzKysrKytfX19fX1-Xl5eXl8vLy8vLy______8AAAAATGF2YzYwLjMxAAAAAAAAAAAAAAAAJAZmAAAAAAAAF0M1mPSVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP_7cMQAAA8Fx1S084AKcKhwPzFAA4AAh83ve936vQw0DQQiCW8W8hbSAsAsH43G5M89_44IgDwdiWcIgAgAAODQeA8Ghnz3_PMMMqefMHxuTPPzNTz3__5hnU8wyeeee6Hnnn_6GN___z3_MPP_nnn____nn__Qxp5hhhhjVPGg0AHeGAAj_D_gOiGZh7u7u5mbw7u5Gf_kFtkEgbCOLQmHROriQlBul0orZNuQrQ8IBk8JMP1AGLASEAVXgDMQgGk-LmE4rSHJFqOF1korwwXRHLEC1h5R5C24j0QWIiI_I4zHJIqQ2gZHZ06algqFJjFkv8vkNJcn0zMuLNkjIxZTfU5TQIagXkTJdkVsZJJP_zBEzMTI0dM3Nkkk10WU6K__5kgyvfUIyZUWhEAAACASAP7FIZh-3KX_-3LEB4ARCGFB3c0AAmUx6_WWppPlZayV2U0V4BcLGT2wY0vZm4dmGguYMIYUELHl1Ud_DX3vy__5nfvy6HQsDMMbPktHi0PuLDXbvTtGANDQRAYgD5wcBgiBCb6AMyLANBALDSgKE2Pb5uVJeOQ10IgmDCdaJHf8UdvrYfMtpIHyQ2waBCZE8RRYlg5LHbagBYAZJJHVuSuTU25e8DG6OZvU2DZQO1XlFjvPir7Wp2rS6y5-qicFIwdaS_-EorK9RtpcSD8WFkZCDpATMkomTY1YlGiuweef3sTknCUXbapEdJES5EH2A0ZQk1FU0JxdMojdL955pdJU4o2yiIVk6irSlpJlEZ5lTzzFpoVTwSPWkuovuWtHJR-f3VXv_nm_qLzBlQa8NZrOxgAVdBf_6yAXcZtMurFlmv_7cMQJABH9S1nsoS9B7i_oebeV4EIrLC-ruvFlGhgc9Cn5q2wimizXjTzVO5rbZpB0AQGta03__cVl3ak200KVpPVZOBkRH4ilRqMEJEjPPUbZlcJ0rkk8Yfap4VLoYlSURG2UKUjSJEnDok4Sy0p5CaTSK8WXYajKr-bFR8fH_144myiaEiR0s4j0eWBUyWJHkHEM4gAAAcBBrFZ6JjIW_aw9bty2kdOVRMwQyNWs0tJ1D04PJNrCreR4lL4remcViQ38ZCAZbW-ZBIqXRhpz1s5CKRX6uh0Y8TGB0NBxQ5Do3__uhJGPJvWjTo3U5NnXun_Irv-eeT_7_0UxR4uQLZT-1zljkEF6rXdVMapbbAAbALbXbauwA_85cp7F6TdxrZTwOM91V2xAoDBDpgPCvmNswf9-mcv_-3LEFQAVHaNdrBqUwj6v6TVfU4sSZzW5svno4ApM-5__-2Lk40w_vpE5zIxmS2J46RAnx9gQDAYOyB5zoBw8GxBLkNKTGaD61LpLs-yT0XRUlW13QNjV2SWgzoqdFR1A1NmWg6OpaDmpkZnjZS1OikdQdEyWjqWpB1JtSX7H5CBcGBgCAIiQqJsm11IrZJFJ0VZiW2UAOAAJwAVOTRsRU4ZkskYMTZmRYPhAURhInzMTuB22SBvQGqFWBjo1AaHGYGeBelSRVR6kEDMvBfJIzdb___9eXZQildClbG9S9yIAkwDwCDAgBnNnwxcwDDxzBmDxMFAEwHBbgoG0wAQClZVV0PsF3NdkDHoHVsfn_____________-paBuQgGydjTMaav_0AAKNICZEfSsPZyKRFhkQ8wumW5v_7cMQLABCFf1Gsbo9SSC-nudHXCCDDUqcKZQ4UG_0uh-gPWhV6SzHW7_am88Mable12rS2E62a5ZKYsocqRxXF-qeWxzu2qpNv_xGAHLLCUi8yTf_21sbLRRWaqNq2nKjZkWLyK1pGJg6aCaJigkdPF5ak_1W_2oq___83C04qP__0ksQhAAAAAApqotdai00rQcAzEW6PBPQ7DTdRkDDFcPhoDk1UYB0Gzz9IDFEERYBJFDEP0FBVnqS7Um6lfPn4TZb2U1qoWZNYp2KGWfJns9S1oS-XCPEBAEhMDdiPAwcCRWpbZV2oLVWpau7fqXs_rSbQTdt9S196S1K1LQTQv2ovt-3_-qGdgNF0lQWd_bpNVNRVUltIALJAAMGspmijV-IwK7UtqyT7iiaE2GYacJW04QB9PCX_-3LEEYATFX1Drr2-WlmvqbXEq8r0VrDPut8tZZY9y__uLDWsf____uxJTRkE5Xv_DEptXb2FeYpH8sPvPU8_KFyQzUcfMx7EIXRD2duWIDJZkjMqrOdiLYZDfDNBUKQ0CEKCK-cScLuynfL5plzVyFqMbAKOTGYc-v__6v_6Vl0n9L__UmXAdaS0238ABqIABZrS1RFAY1-Wvm7iGBIDjAAHMFgCEsvVIl5SXaJOc4OGVRQjuPcOZ4bcp4Xaf2HoG5__EcN9____3DL30cx8irztqXyCtT0leKyK3LIrFqeBqHKmjkdMQA8ApcjYIgsRxztsCJkYpGowGxCTJsOXMgGUYXMPFIgESYwFCHzgERYE7___dnbff0____2EGCEWT22IBUYAAEH9x9woned1TKtEGB6utkGQPP_7cMQMgBFpfUeuMb5SOa_pNcerys5RpW08wXFe38L_N_vndVec3nh3_j3cv____1Wqy6PX7FK_1DO46iUihFLWl8vtTt6XxZ9LVPBRkUUBME0ZXOVqomryapa1BKywoHZkII9FOkRXwjrx7GJ4bNJ34jwQiXJYlhMhjJf__6__9____8xCVdba1gBWAAgM6xVcjg48EuU3kw6D0vVQzUAjoCyqxFiR0s4tkluW9Y41rNttHnaY_buRjPmV63Vnr3____9l13VrCtXj0ujlJarYVbVDOcpr96rdxziBjgGhqz8P5aeMqdSTNJCUzGn1mOstrlfEXF8aZnnzZ7Wr5-40HqRXI2___0VFqlU9X____oKgEZI6BGWIAAApQAAANGXjNliziOMRxMmQwDAIDcclIcQAgDQN4xr_-3LEEYLS2X856226wjSv5mFuN1ogDgSi5jF0XRVc1s6kF0UkHNf6zJiaiczGorahmUONFYeoozI3Fuv5MULsTdl_6Ohkh5ZoQAUNQc5Esj0DOFB79XHZmpbVflxJNBMZsSOMT9WHV0s27O2qJ2YzNQuJOEOcP5oMQehZ__________QPgG0eQwL_9ZkLwDA-FQQSFkhl0AEEwHTlfoAQPhBEgxdSNVIv3qpoJMTzpL_WVSMGix2s111I_F5DFWrQBdi05TtyX827AIaa9D1efhTinDhiOBFYVgtaE53M5fL3_lMBwTFW7zMYdp0cGzXZWzJwlxzTvw1RSuAKG22aFMxCTFiwvQ8yj__________mIAmm7QJJIAFoAAAD__-GeGdSpN0EzEnpBAMxmVPsKASc2N0Xph6ly__7cMQSABARez2uvb5Z669mqWefyhy__-NxiJxySxnLHvM-Z4f___6u5W6kqzyyp9WKKVV8KOzWlshoeWJdKqPbxBhtCnOb3Vo0WNilpoT2C9ap7TvY73MGJZifYzGpHcWLVGpk8m__________9QWQkA-AbAAAAP9SkUkS8MqBgPBoKWGZEcgJBEBu3aOAMBYXKRYupLdtFGyTLR6SSX8vlk3QYnnKiRjdIul4zQPqUo-VCCEQJ5QvwLFQAfy4z3miOcJ1eDbs7G3u4WE7AlV8sBhizLlwwy5pGjWYxwgRCAoX__________1DCgABWAD_7ouajnAYHggiDRZQXSAQDcDh1JIDAYAUQsQEvIqZ____WcNDWvH8Y7LLFNLqtudp7FLGbkWlspnvpq823Q78LIQKR15rcZj_-3LEJgDPLXswi2z6weAvZaFtn1jHLPLUxIsZXjTXqCG5bGbGV3Co_2czel2E28sSwrBIHkQnFZ3_________-gjgBwB_92NiCgYMwlBxwj0LJQEhOA5U45AwFgOD0RyiZMlu3___rQMjTcioZmXUkqtVc6a9ORalnKKvH79HNXcFZT1iolCX4l0Zq3MY3LZTOX52UzOUr1ForDW6fKVTc_bjsspp3K1KspRPggaIocR__________8VVBgAH_2c8O4DCAEMNBEfAPAAA4LoHErowAAFQ9oZ0jjqDP___9i6lY1cpq9HDtDnqthy_NQffqVp2Mv7Yp1ZDz0EgBH-pp67WpqtLTXO6rRaUU1emxq0mWqWWzFS_S8prd2dv0VkwGKMDw7__________h3_7sfIQDAgQF4FgBv_7cMQ_gM5peyqrbLrR5i9kQX4XWILKQDABECIFUBivJjaA8A0BoABiRDdIwvm55____PrMblmWRivyepa0ZqY6s0FDSXrN_K1L6RHc5ciiqFYFr2Zb8tq0FTKl1WuVqezHbOElq4Wo3DMimrGHZ6zapsawIIFAEBQz__________gZ7zOcbcwMoBdKAD0IADgKASDIH-Yp4koGAHgK4wAIJPs8eMgBcN2___9UyIuxfNDjnyubJzcqJF8qskT1IlCOIGEgIB31vhAHhijIkeVTFM3QOpnj5eJ8sE8X3KJVOGxeRNiDFIvl0yKBZTLpVLpVJ84iYF49__________yr_7OaE-J0AwOUAeBEAjgMACIBgBOBgAgIoBhDqkGBgHwDAAaAKg3oIRjGDnk-VH___9BZQ3Wnq9T_-3LEWwPPvXscAH6pAcoe40F-G1DO7u3QT-6epT6l89zlepjAA6BzsT8GQ69lHV1b-lvbw_LDV6qSV2EwxzkUxxaGnxpIiIt0HIf____y6u2Je7iAcwYYBAAQEYCgDoEgJhgHIOKYqLDHGBagVJgDABkBQA8vInOux3IvY7_r_98yZZiiYskXqLJJPRRROms4bkYMeBAKAfz1IEBkKkVTZR_RtRRZS0aKi8bGzoo0WMi8bCUNuBUr_0XfX_-6chAYbP_13f7_uFPGGdgAAEMHrA8zAWwBMMASRgBdMBuCIjNpqcUwSwDQNvBMYYAocv4mO191J_lt7atfr3_VmO_9S1JmBDxSAC4GwNBiDgFwciYkkedlX__bb__9-1Vu1tp_Z92Qoo8vWz_-jvZ_9FX______86SH2GAEP_7cMR1AQ3Y5RIAfqlBvaRh4f1aCAPMIQBmDAXgCIeARgoAuGBNhGpqvNoYYMeBsnSiGZNmEDFp0JC7HHln6_9X9epa-02v9fUswL5ABSYCwGAM66MQFgYCrLR9nR9H9s____9X-vvzTS-pvv-mxk9iX-n8t9f-lyFgKa5r_1-_3hTwwwMCACRg9YQCYCiAWiQBgYASAlmBYA-RtGlQqYNsBfHddmeKGJBloEV13u5L-Oyv-u9Xrb3aa70v06ZgTYswB4EQMtCAAHghGwV2T9b_1qWaU_-j-1uf-v-6g2i3kLfvQvc__vYq___f___XlD7q2AUAbMIACqDATgDwBAE5gDwCEYG-D2nEY2DxhDoF6fhwa0mZAIBg5eBUjX5Znrq7fr-23yv9vTUtAzJgWeAsAwDJqhUBwGj_-3LEl4FN2SEMD-rQQb2Z4aH9Wghpmjui5W7XZRgT1dLkb_oHITRo7j5G6rin6K6ip1pOa7uxMCBBd__3_759SVxBkYUAFjBjwpUwDEA3AAAIYBGARmBlAsRwf0YSYPYBCHrQmmDAo2EAEU2Hv5T86rNavt_1680__ugXyAARAIGutABUDkga9ektd0bmf6xrlgRkJ1a1fvS39v7kfeveSToqcYAKRwqY517XJqKYWnYpXgIQaaOpQiGhg4GmAMAKZgioJuaTagtDAFAGAcgGABi6JfuXwxHX7t9fSBKlWHKSijcrn7FBAh5ycsms-aLf6b__emYF8MgAYrWIngzFf7ityP19W_vIr_i2_9H_pTttgAG_gFjJEBgQCEQmLFRvysZ7DmVtBOCnEu5ktCaS7AtQNbTzHHIzQ__7cMS6gQ5MqwoP6tBBq5Thof1WCPTDCAAvugBMTQT5LczQQQdQjSEY26zN2sQbFjxlA3-lBMgbsTnGp5or6ZHhHaF55bmblcGSS5y4odIzGqypoDyAwY4ZcM7gzK14e5TcVMypwMoPRrYLjogKApNoBEy1hkuEVFF1jKQeFtIp0m0kDkp4W0m7Sbp4oGOEDF2FpCvCoF1F8FYFWMEZwcgZ45hmhziOE9GqHObh-ps0DfTyMOg708lDTRCdS5oJBWpc6EWrkYh6QfOCvbHrmwNcZzYGt84MbVFZ2NqiubA1xnBjnRyJJkk7MjMhachORkLSVf-qACSlbYEdLAP4fJuGOWEgyRV6El-RaAMp6zHrHSgp5krhndMwKWpKW3KdxpI9SRsbTxs1aJzXlPGzTbLP3F9LSZ9LEZn_-3LE3YANmKcWbn6vBB2q6DW0P4uGApibLteZ1lPL7Iqj9X1hVMLU5uKurRTFdtykpig4rKDSktN2b2SWq0VVJqklisxXdgAADQbeq8Y6rAwGUxBpaBphIgIA0kDjg9g8M6NObRJgIgZjCn4pBUi-qaskk9TrRakl-pJJutHUii3_smUBxB0I0kDb_GgrKhQ8sNcGj36gaBoYDT4MhpT1h3-JSwNA1z3BVypMQU1FMy4xMDCqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqAPVopIhCNDIeGxANjI0IVMuV5TqgvQKoBtArAoQdwMsGYP_7cMS1gA7sxUNHmfMZjxUg5D3BYDbBuEQP4vp3Hydh_n4i0yKEigMQLBCZ5hZxpRZieyzt_2qacoso8xnqSiygcM_4SFhYWFxUVFTL1iv6hYWabCQsLC3_9YqKiqZMQU1FMy4xMDCqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr_-3DEowPNWJ56pLzLQAAANIAAAASqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq'
+};
+const AUD = { ctx: null, buf: {}, on: store.get('snd') !== '0' };
+function audUnlock() {
+  if (AUD.ctx) { if (AUD.ctx.state === 'suspended') AUD.ctx.resume().catch(() => { }); return; }
+  const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+  try { AUD.ctx = new AC(); } catch (e) { return; }
+  Object.keys(SND).forEach(k => {
+    try {
+      const bin = atob(SND[k].replace(/-/g, '+').replace(/_/g, '\x2f') + '==='.slice((SND[k].length + 3) % 4));
+      const u8 = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+      AUD.ctx.decodeAudioData(u8.buffer, b => { AUD.buf[k] = b; }, () => { });
+    } catch (e) { /* formato no soportado */ }
+  });
+}
+['pointerdown', 'keydown', 'touchend'].forEach(ev => document.addEventListener(ev, audUnlock, { passive: true }));
+function sonar(k) {
+  if (k === 'pedido' && navigator.vibrate) { try { navigator.vibrate([90, 60, 90, 160, 220]); } catch (e) { /* sin vibración */ } }
+  if (!AUD.on || !AUD.ctx || !AUD.buf[k]) return;
+  try {
+    if (AUD.ctx.state === 'suspended') AUD.ctx.resume();
+    const s = AUD.ctx.createBufferSource(); const g = AUD.ctx.createGain();
+    s.buffer = AUD.buf[k]; g.gain.value = k === 'exito' ? 0.45 : 0.95; s.connect(g); g.connect(AUD.ctx.destination); s.start();
+  } catch (e) { /* audio no disponible */ }
+}
+
+/* ---------- aviso centrado con fondo opaco y animación ---------- */
+const PPS = { el: null, tm: 0 };
+/** Espacio reservado para la mascota animada: Configuración → MASCOTA_URL (GIF, WebP o SVG animado). */
+const mascota = () => { const u = safeUrl(S.cfg.MASCOTA_URL); return u ? `<img src="${esc(u)}" alt="" style="width:100%;height:100%;object-fit:contain">` : ''; };
+function popup({ title = '', msg = '', type = 'ok', action = null, stay, sound = '', icon = '' } = {}) {
+  closePopup(true);
+  const ttl = stay !== undefined ? stay : (type === 'err' ? 4200 : type === 'ped' ? 0 : action ? 3400 : 1700);
+  const pass = type === 'ok'; // las confirmaciones no bloquean: los toques pasan a la pantalla
+  const wrap = document.createElement('div');
+  wrap.className = 'pp ' + type; wrap.setAttribute('role', type === 'err' || type === 'ped' ? 'alertdialog' : 'status'); wrap.setAttribute('aria-live', 'assertive');
+  if (pass) wrap.style.pointerEvents = 'none';
+  const m = mascota();
+  const ico = icon || (type === 'err' ? 'alert' : type === 'ok' ? 'check' : type === 'ped' ? 'package' : 'bell');
+  const spark = type === 'ok' ? Array.from({ length: 8 }, (x, i) => { const a = i / 8 * Math.PI * 2; return `<i class="pp-sp" style="--dx:${Math.round(Math.cos(a) * 74)}px;--dy:${Math.round(Math.sin(a) * 58)}px;background:${['var(--pri)', 'var(--acc)', 'var(--gold)', 'var(--sale)'][i % 4]}"></i>`; }).join('') : '';
+  wrap.innerHTML = `<div class="pp-box" ${pass && !action ? 'style="pointer-events:none"' : 'style="pointer-events:auto"'}><div class="pp-art" ${m ? 'data-mascota' : ''}>${m || ic(ico)}</div>${spark}
+    ${title ? `<p class="pp-t">${esc(title)}</p>` : ''}${msg ? `<p class="pp-m">${esc(msg)}</p>` : ''}
+    ${action || !pass ? `<div class="pp-a">${!pass || action ? `<button type="button" class="btn ghost" data-ppx>${action ? (type === 'ped' ? 'Después' : 'Cerrar') : 'Entendido'}</button>` : ''}${action ? `<button type="button" class="btn ${type === 'err' ? 'danger' : 'pri'}" data-ppa>${esc(action.label)}</button>` : ''}</div>` : ''}
+    ${ttl ? `<div class="pp-bar"><i style="animation-duration:${ttl}ms"></i></div>` : ''}</div>`;
+  wrap.addEventListener('click', e => {
+    if (e.target.closest('[data-ppa]')) { closePopup(); action.fn(); return; }
+    if (e.target === wrap || e.target.closest('[data-ppx]')) closePopup();
+  });
+  document.body.appendChild(wrap); PPS.el = wrap;
+  if (ttl) PPS.tm = setTimeout(closePopup, ttl);
+  if (!pass) setTimeout(() => { const b = wrap.querySelector('[data-ppa],[data-ppx]'); if (b) b.focus(); }, 60);
+  if (sound) sonar(sound);
+  return wrap;
+}
+function closePopup(now) {
+  clearTimeout(PPS.tm); const el = PPS.el; PPS.el = null; if (!el) return;
+  if (now) { el.remove(); return; }
+  el.classList.add('out'); setTimeout(() => el.remove(), 230);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && PPS.el) closePopup(); }, true);
+
+/* ---------- avisos nuevos (notificaciones) mientras la app está abierta ---------- */
+const esPedidoN = n => /^(Nuevo pedido|Pedido disponible|Te asignaron)/.test(n.titulo || '');
+function avisar(list) {
+  if (!list.length) return;
+  const n = list[0]; const ped = list.some(esPedidoN); const mas = list.length > 1 ? ' · y ' + (list.length - 1) + ' más' : '';
+  popup({ type: ped ? 'ped' : 'info', title: n.titulo + mas, msg: n.mensaje, sound: ped ? 'pedido' : 'aviso', stay: ped ? 0 : 6000,
+    action: { label: ped ? 'Ver pedido' : 'Ver', fn: () => abrirNotif(n) } });
+  if (document.hidden && 'Notification' in window && Notification.permission === 'granted' && !PUSH.tok) {
+    try { new Notification(n.titulo, { body: n.mensaje, icon: 'icon-192.png', tag: n.ref || n.id }); } catch (e) { /* sin notificación del sistema */ }
+  }
+}
+function abrirNotif(r) {
+  if (r.leida !== true && r.id) { S.nu = Math.max(0, S.nu - 1); updateBell(); enqueue('bulk', { e: 'Notificaciones', ids: [r.id], op: 'set', patch: { leida: true } }).catch(() => { }); }
+  const ref = String(r.ref || '');
+  if (/^PED-/.test(ref)) openPedido(ref);
+  else if (/^TND-/.test(ref)) { if (role() === 'admin') openSolicitud(ref); else location.hash = role() === 'vendedor' ? '#/panel' : '#/vender'; }
+  else if (/^PRD-/.test(ref)) location.hash = staffish() ? '#/g/Productos' : '#/';
+}
+
+/* ---------- notificaciones con la app cerrada (Firebase Cloud Messaging) ---------- */
+const PUSH = { tok: store.get('ptok') || '', mod: null, msg: null };
+function pushCfg() {
+  if (IN_GAS || !('serviceWorker' in navigator) || !('Notification' in window) || !('PushManager' in window)) return null;
+  const fw = parseJ(S.cfg.FIREBASE_WEB || '', null);
+  return fw && fw.apiKey && fw.messagingSenderId && fw.appId && S.cfg.FIREBASE_VAPID ? fw : null;
+}
+const pushEstado = () => !pushCfg() ? 'off' : (typeof Notification !== 'undefined' ? Notification.permission : 'off');
+async function fbMessaging() {
+  if (PUSH.msg) return PUSH.msg;
+  const base = 'https:' + '\x2f\x2fwww.gstatic.com\x2ffirebasejs\x2f12.15.0\x2f';
+  const appMod = await import(base + 'firebase-app.js'); const m = await import(base + 'firebase-messaging.js');
+  const app = appMod.initializeApp(pushCfg()); PUSH.mod = m; PUSH.msg = m.getMessaging(app);
+  return PUSH.msg;
+}
+async function pushEnable(interactive) {
+  if (!S.user) return false;
+  if (!pushCfg()) throw new Error('Las notificaciones aún no están configuradas por la administración.');
+  if (PLAT === 'ios' && !isStandalone()) throw new Error('En iPhone primero instala la app: botón Compartir → "Agregar a inicio". Luego ábrela desde el ícono y activa las notificaciones.');
+  let perm = Notification.permission;
+  if (perm === 'default') { if (!interactive) return false; perm = await Notification.requestPermission(); }
+  if (perm !== 'granted') throw new Error('Las notificaciones están bloqueadas. Toca el candado junto a la dirección (o Ajustes → Notificaciones) y permítelas para esta app.');
+  const reg = await navigator.serviceWorker.ready;
+  const msg = await fbMessaging();
+  const tok = await PUSH.mod.getToken(msg, { vapidKey: S.cfg.FIREBASE_VAPID, serviceWorkerRegistration: reg });
+  if (!tok) throw new Error('No se pudo activar en este dispositivo.');
+  if (tok !== PUSH.tok || store.get('ptoku') !== S.user.id) { await call('pushReg', { token: tok }); PUSH.tok = tok; store.set('ptok', tok); store.set('ptoku', S.user.id); }
+  return true;
+}
+async function pushActivar(btn) {
+  try {
+    const ok = await busy(btn, 'Activando…', () => pushEnable(true));
+    if (ok) { popup({ title: '¡Notificaciones activas!', msg: 'Te avisaremos al instante, aunque la app esté cerrada.', sound: 'aviso', type: 'info', icon: 'bell', stay: 3200 }); call('pushTest', {}).catch(() => { }); }
+    if ($('#pushBox')) $('#pushBox').innerHTML = pushBoxHtml();
+  } catch (e) { popup({ type: 'err', title: 'No se pudieron activar', msg: e.message }); }
+}
+/** Ofrece activar notificaciones una vez (cada 4 días si dice "Después"). */
+function pushOfrecer() {
+  if (!S.user || pushEstado() !== 'default') return;
+  if (PLAT === 'ios' && !isStandalone()) return;
+  const last = Number(store.get('pushAsk') || 0); if (Date.now() - last < 4 * 86400000) return;
+  store.set('pushAsk', String(Date.now()));
+  setTimeout(() => popup({ type: 'info', icon: 'bell', stay: 0, title: 'Activa las notificaciones',
+    msg: staffish() ? 'Suena con el tono de Muaka apenas llegue un pedido, aunque tengas la app cerrada.' : 'Te avisamos cuando tu pedido cambie y de las ofertas del pueblo.',
+    action: { label: 'Activar', fn: () => pushActivar(null) } }), 2500);
+}
+function pushBoxHtml() {
+  const st = pushEstado();
+  const txt = st === 'granted' && PUSH.tok ? ['okcircle', 'Notificaciones activas en este dispositivo', 'Recibirás los avisos aunque la app esté cerrada.']
+    : st === 'denied' ? ['alert', 'Notificaciones bloqueadas', 'Permítelas en los ajustes del navegador para esta app y vuelve a intentar.']
+      : st === 'off' ? ['bell', 'Avisos dentro de la app', IN_GAS ? 'Abre la app desde su dirección publicada para recibir avisos con la app cerrada.' : 'La administración aún no activa las notificaciones con la app cerrada.']
+        : ['bell', 'Activa las notificaciones', 'Pedidos, cambios de estado y ofertas, al instante.'];
+  return `<div class="card pad pushcard"><span class="aj-i">${ic(txt[0])}</span><div class="grow"><b>${esc(txt[1])}</b><div class="mut" style="font-size:13px">${esc(txt[2])}</div></div>
+    ${st === 'default' || (st === 'granted' && !PUSH.tok) ? `<button class="btn pri" data-act="push-on">${ic('bell', 'sm')} Activar</button>` : ''}</div>
+    <label class="sw" style="margin-top:12px"><input type="checkbox" id="swSnd" ${AUD.on ? 'checked' : ''}><span></span><em>Sonido de Muaka con la app abierta</em></label>
+    <button type="button" class="btn sm ghost" data-act="snd-test" style="margin-top:6px">${ic('bell', 'sm')} Escuchar el tono</button>`;
+}
+if (!IN_GAS && 'serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('message', e => {
+    const m = e.data || {};
+    if (m.t === 'nav' && m.u) { if (location.hash === m.u) route(); else location.hash = m.u; }
+    if (m.t === 'push') {
+      const d = m.d || {};
+      if (/^(oferta|tienda|anuncio)-/.test(d.tag || '')) popup({ type: 'info', title: d.t, msg: d.b, sound: 'aviso', stay: 6000, action: d.u ? { label: 'Ver', fn: () => { location.hash = d.u; } } : null });
+      else tick();
+    }
+  });
+}
+
+/* ---------- mapas (Leaflet + OpenStreetMap, sin llaves ni costos) ---------- */
+let LFP = null;
+function cargarMapa() {
+  if (window.L) return Promise.resolve(window.L);
+  if (LFP) return LFP;
+  const base = 'https:' + '\x2f\x2funpkg.com\x2fleaflet@1.9.4\x2fdist\x2f';
+  LFP = new Promise((res, rej) => {
+    const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'leaflet.css'; document.head.appendChild(l);
+    const s = document.createElement('script'); s.src = base + 'leaflet.js'; s.async = true;
+    s.onload = () => res(window.L); s.onerror = () => { LFP = null; rej(new Error('No se pudo cargar el mapa. Revisa tu conexión.')); };
+    document.head.appendChild(s);
+  });
+  return LFP;
+}
+const TILES = 'https:' + '\x2f\x2ftile.openstreetmap.org\x2f{z}\x2f{x}\x2f{y}.png';
+const geoP = s => { const m = /^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/.exec(String(s || '')); return m ? [Number(m[1]), Number(m[2])] : null; };
+const geoS = ll => ll[0].toFixed(6) + ',' + ll[1].toFixed(6);
+const centro = () => geoP(S.cfg.MAPA_CENTRO) || [8.9586, -74.0808];
+const rutaUrl = ll => 'https:' + '\x2f\x2fwww.google.com\x2fmaps\x2fdir\x2f?api=1&travelmode=driving&destination=' + ll[0] + ',' + ll[1];
+const PIN_SVG = '<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M20 51s17-17.6 17-30A17 17 0 0 0 3 21c0 12.4 17 30 17 30z" fill="var(--sale)" stroke="#fff" stroke-width="3"/><circle cx="20" cy="21" r="6.5" fill="#fff"/></svg>';
+function mkIcon(L, kind) {
+  const icn = kind === 't' ? 'store' : kind === 'r' ? 'truck' : 'pin';
+  return L.divIcon({ className: '', html: `<div class="mk ${kind}">${ic(icn)}</div>`, iconSize: [34, 34], iconAnchor: kind === 'r' ? [19, 19] : [17, 34] });
+}
+function gps() {
+  return new Promise((res, rej) => {
+    if (!navigator.geolocation) return rej(new Error('Este dispositivo no permite ubicación.'));
+    navigator.geolocation.getCurrentPosition(p => res([p.coords.latitude, p.coords.longitude, p.coords.accuracy]),
+      e => rej(new Error(e.code === 1 ? 'Permite el acceso a tu ubicación en el navegador para usar el GPS.' : 'No se pudo obtener tu ubicación. Sal a un lugar abierto e intenta de nuevo.')),
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 20000 });
+  });
+}
+/** Selector de punto: el mapa se mueve debajo de un pin fijo. Devuelve "lat,lng" o null. */
+function mapPick(inicial, { title = 'Marca la ubicación', hint = 'Mueve el mapa hasta que el pin quede sobre el lugar exacto.', autoGps = false } = {}) {
+  return new Promise(resolve => {
+    const wrap = document.createElement('div'); wrap.className = 'modal dlg'; wrap.setAttribute('role', 'dialog'); wrap.setAttribute('aria-modal', 'true');
+    wrap.innerHTML = `<div class="mbox wide"><div class="mh"><h3>${ic('pin')} ${esc(title)}</h3><button class="icon-btn" data-x aria-label="Cerrar">${ic('x')}</button></div><div class="mb stack">
+      <p class="mut" style="margin:0;font-size:13.5px">${esc(hint)}</p>
+      <div class="mapbox" id="mpBox"><div class="map-pin">${PIN_SVG}</div></div>
+      <div class="map-info" id="mpInfo"></div>
+      <div class="ffoot" style="justify-content:space-between;flex-wrap:wrap"><button class="btn" data-gps>${ic('pin', 'sm')} Usar mi ubicación (GPS)</button><span class="row" style="gap:8px"><button class="btn ghost" data-x>Cancelar</button><button class="btn pri" data-ok>${ic('check')} Confirmar punto</button></span></div></div></div>`;
+    document.body.appendChild(wrap);
+    let map = null;
+    const done = v => { if (map) map.remove(); wrap.remove(); resolve(v); };
+    wrap.addEventListener('click', e => { if (e.target === wrap || e.target.closest('[data-x]')) done(null); });
+    const info = $('#mpInfo', wrap);
+    cargarMapa().then(L => {
+      const ll = geoP(inicial); map = L.map($('#mpBox', wrap), { zoomControl: true, attributionControl: true }).setView(ll || centro(), ll ? 18 : 15);
+      L.tileLayer(TILES, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+      const box = $('#mpBox', wrap); map.on('movestart', () => box.classList.add('moving')); map.on('moveend', () => { box.classList.remove('moving'); const c = map.getCenter(); info.innerHTML = ic('pin', 'sm') + ' ' + c.lat.toFixed(5) + ', ' + c.lng.toFixed(5); });
+      map.fire('moveend');
+      const usarGps = btn => busy(btn, 'Buscando…', async () => {
+        try { const g = await gps(); map.setView([g[0], g[1]], 18); info.innerHTML = ic('okcircle', 'sm') + ` Ubicación por GPS (precisión ~${Math.round(g[2])} m). Ajusta el pin si hace falta.`; }
+        catch (err) { popup({ type: 'err', title: 'GPS', msg: err.message }); }
+      });
+      $('[data-gps]', wrap).onclick = e => usarGps(e.currentTarget);
+      if (autoGps) usarGps($('[data-gps]', wrap));
+    }).catch(err => { $('#mpBox', wrap).innerHTML = `<div class="empty">${ic('alert')}<p>${esc(err.message)}</p></div>`; });
+    $('[data-ok]', wrap).onclick = () => { if (!map) return; const c = map.getCenter(); done(geoS([c.lat, c.lng])); };
+  });
+}
+/** Campo de formulario tipo "geo": muestra estado y abre el selector. */
+function geoFieldHtml(f, val, req) {
+  const has = !!geoP(val);
+  return `<div class="fld fld-geo full" data-k="${f.k}"><label>${esc(f.l)}${req}</label><input type="hidden" name="${f.k}" value="${esc(val || '')}">
+    <div class="geo-v"><button type="button" class="btn sm" data-geo-pick>${ic('map', 'sm')} ${has ? 'Cambiar en el mapa' : 'Marcar en el mapa'}</button><button type="button" class="btn sm ghost" data-geo-gps>${ic('pin', 'sm')} Estoy aquí (GPS)</button>
+    <span class="geo-s ${has ? 'on' : ''}">${has ? '✓ Ubicación guardada' : 'Sin ubicación'}</span>${has ? '<button type="button" class="btn sm ghost" data-geo-rm>Quitar</button>' : ''}</div>
+    ${f.hint ? `<small class="hint">${esc(f.hint)}</small>` : ''}<small class="ferr"></small></div>`;
+}
+function geoSet(fld, v) {
+  $('input[type=hidden]', fld).value = v || '';
+  const f = { k: fld.dataset.k, l: $('label', fld).textContent.replace(/\*\s*$/, '').trim(), hint: ($('.hint', fld) || {}).textContent };
+  const t = document.createElement('template'); t.innerHTML = geoFieldHtml(f, v, '').trim(); fld.replaceWith(t.content.firstElementChild);
+}
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest('[data-geo-pick],[data-geo-gps],[data-geo-rm]'); if (!b) return;
+  const fld = b.closest('.fld-geo'); const cur = $('input[type=hidden]', fld).value;
+  if (b.hasAttribute('data-geo-rm')) return geoSet(fld, '');
+  if (b.hasAttribute('data-geo-gps')) {
+    return busy(b, 'Buscando…', async () => { try { const g = await gps(); const v = await mapPick(geoS(g), { title: 'Confirma tu ubicación', hint: `GPS con precisión de ~${Math.round(g[2])} m. Ajusta el pin si hace falta.` }); if (v) geoSet(fld, v); } catch (e) { popup({ type: 'err', title: 'GPS', msg: e.message }); } });
+  }
+  const v = await mapPick(cur); if (v) geoSet(fld, v);
+});
+/** Mapa de un pedido: tienda, destino y domiciliario (en vivo). Conserva la instancia entre actualizaciones. */
+function pedMap(box, o) {
+  const el = $('.pmap', box); if (!el) return;
+  const t = geoP(o.ubic_tienda), d = geoP(o.ubicacion), rr = String(o.ubic_rep || '').split(',');
+  const r = rr.length >= 2 && o.estado === 'en_camino' ? [Number(rr[0]), Number(rr[1])] : null;
+  cargarMapa().then(L => {
+    if (!el.isConnected) return;
+    if (!el._m) { el._m = L.map(el, { zoomControl: false, attributionControl: true, scrollWheelZoom: false }); L.tileLayer(TILES, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(el._m); el._k = {}; }
+    const m = el._m; const pts = [];
+    [['t', t], ['d', d], ['r', r]].forEach(([k, ll]) => {
+      if (!ll) { if (el._k[k]) { el._k[k].remove(); delete el._k[k]; } return; }
+      pts.push(ll);
+      if (el._k[k]) el._k[k].setLatLng(ll); else el._k[k] = L.marker(ll, { icon: mkIcon(L, k), zIndexOffset: k === 'r' ? 1000 : 0 }).addTo(m);
+    });
+    if (!el._fit && pts.length) { if (pts.length === 1) m.setView(pts[0], 17); else m.fitBounds(pts, { padding: [36, 36], maxZoom: 17 }); el._fit = true; }
+    setTimeout(() => m.invalidateSize(), 60);
+  }).catch(() => { el.innerHTML = `<div class="empty">${ic('alert')}<p>No se pudo cargar el mapa.</p></div>`; });
+}
+
+/* ---------- el domiciliario comparte su ubicación mientras el pedido va en camino ---------- */
+const TRK = { ids: new Set(), watch: null, last: {}, chip: null };
+function trackCheck(r) {
+  if (!S.user || !r || !r.id) return;
+  const mine = (r.repartidor_id === S.user.id) || (role() === 'vendedor' && r.tienda_id === S.user.tienda_id && S.tienda && S.tienda.delivery_propio && !r.repartidor_id);
+  if (mine && r.estado === 'en_camino' && r.tipo_entrega === 'domicilio') TRK.ids.add(r.id); else TRK.ids.delete(r.id);
+  trackRun();
+}
+function trackRun() {
+  if (TRK.ids.size && !TRK.watch && navigator.geolocation) {
+    TRK.watch = navigator.geolocation.watchPosition(p => {
+      const pos = p.coords.latitude.toFixed(6) + ',' + p.coords.longitude.toFixed(6);
+      TRK.ids.forEach(id => { if (Date.now() - (TRK.last[id] || 0) < 10000) return; TRK.last[id] = Date.now(); call('ubic', { id, pos }).then(x => { if (x && x.off) { TRK.ids.delete(id); trackRun(); } }).catch(() => { }); });
+    }, () => { }, { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+  }
+  if (!TRK.ids.size && TRK.watch != null) { navigator.geolocation.clearWatch(TRK.watch); TRK.watch = null; }
+  const show = TRK.ids.size > 0;
+  if (show && !TRK.chip) { TRK.chip = document.createElement('div'); TRK.chip.className = 'trackchip'; TRK.chip.innerHTML = '<span class="live"></span> Compartiendo tu ubicación con el cliente'; document.body.appendChild(TRK.chip); }
+  if (!show && TRK.chip) { TRK.chip.remove(); TRK.chip = null; }
+}
+async function trackBoot() {
+  if (!S.user || !(role() === 'repartidor' || role() === 'vendedor')) return;
+  try { const d = toObjs(await call('list', { e: 'Pedidos', g: 0, f: { estado__in: 'en_camino' }, q: '', s: '', d: -1, n: 0, p: 1 })); d.recs.forEach(trackCheck); } catch (e) { /* sin pedidos en ruta */ }
+}
+
+/* ---------- solicitudes de tienda (administrador) ---------- */
+function solCard(t) {
+  return `<article class="card pad sol"><div class="row"><span class="mini-logo">${safeUrl(t.logo) ? imgTag(t.logo, '') : esc(initials(t.nombre))}</span><div class="grow"><b>${esc(t.nombre)}</b><div class="mut" style="font-size:13px">${esc(t.rubro || '')} · ${esc(ago(t.creado))}</div></div>${fmtVal({ t: 'sel', k: 'estado' }, t)}</div>
+    ${t.descripcion ? `<p class="mut" style="margin:0;font-size:13.5px">${esc(String(t.descripcion).slice(0, 140))}</p>` : ''}
+    <div class="row wrap" style="gap:8px"><button class="btn sm pri" data-act="sol-open">${ic('eye', 'sm')} Revisar solicitud</button></div></article>`;
+}
+function vSolicitudes(main) {
+  if (!guard(['admin'])) return;
+  main.innerHTML = `<div class="page-h"><h1>${ic('store')} Solicitudes de tienda</h1><span class="grow"></span><div class="chips"><button class="chip on" data-act="soltab" data-v="pendiente">Por revisar</button><button class="chip" data-act="soltab" data-v="rechazada">Rechazadas</button><button class="chip" data-act="soltab" data-v="activa">Aprobadas</button></div></div>
+    <div class="solgrid" id="solList"></div>`;
+  S.solList = new List($('#solList'), { e: 'Tiendas', g: 1, f: { estado: 'pendiente' }, skel: 'card', render: solCard, empty: 'No hay solicitudes en esta pestaña. ¡Todo al día!' });
+  S.solList.load();
+}
+async function openSolicitud(id) {
+  if (role() !== 'admin') return;
+  const box = openModal(mHead('Solicitud de tienda', 'store') + `<div class="mb"><div class="skel" style="height:320px"></div></div>`, { wide: true });
+  let d; try { d = await call('solicitud', { id }); } catch (e) { $('.mb', box).innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
+  if (!box.isConnected) return;
+  const t = d.t; const u = d.dueno || {}; const ll = geoP(t.ubicacion); const pend = t.estado === 'pendiente';
+  const row = (k, v) => v ? `<dt>${esc(k)}</dt><dd>${v}</dd>` : '';
+  $('.mb', box).innerHTML = `<div class="stack">
+    <div class="row wrap"><span class="mini-logo" style="width:54px;height:54px">${safeUrl(t.logo) ? imgTag(t.logo, '') : esc(initials(t.nombre))}</span><div class="grow"><h2 style="margin:0">${esc(t.nombre)}</h2><span class="mut">${esc(t.rubro || '')} · enviada ${esc(fdate(t.creado))}</span></div>${fmtVal({ t: 'sel', k: 'estado' }, t)}</div>
+    ${t.descripcion ? `<p style="margin:0">${esc(t.descripcion)}</p>` : ''}
+    <div class="frm"><div class="card pad" style="box-shadow:none"><h4 style="margin-bottom:8px">${ic('store', 'sm')} Negocio</h4><dl class="dl">
+      ${row('Teléfono', esc(t.telefono))}${row('WhatsApp', esc(t.whatsapp))}${row('Dirección', esc(t.direccion))}${row('Zona', esc(t.zona_id__n || ''))}${row('Horario', esc(t.horario))}${row('Pagos', esc(String(t.metodos_pago || '').split(',').join(', ')))}</dl></div>
+      <div class="card pad" style="box-shadow:none"><h4 style="margin-bottom:8px">${ic('user', 'sm')} Solicitante</h4><dl class="dl">
+      ${row('Nombre', esc(u.nombre))}${row('Correo', u.email ? `<a href="mailto:${esc(u.email)}">${esc(u.email)}</a>` : '')}${row('Teléfono', esc(u.telefono))}${row('Cliente desde', u.creado ? esc(fday(u.creado)) : '')}</dl>
+      <div class="row wrap" style="gap:6px;margin-top:10px">${u.telefono || t.whatsapp ? `<a class="btn sm" href="${esc(wa(t.whatsapp || u.telefono, 'Hola, te escribimos por la solicitud de "' + t.nombre + '" en ' + (S.cfg.APP_NOMBRE || 'la app')))}" target="_blank" rel="noopener">${ic('chat', 'sm')} WhatsApp</a>` : ''}${u.telefono ? `<a class="btn sm" href="tel:${esc(u.telefono)}">${ic('phone', 'sm')} Llamar</a>` : ''}</div></div></div>
+    ${ll ? `<div class="pmap" id="solMap"></div><a class="btn sm" href="${esc(rutaUrl(ll))}" target="_blank" rel="noopener">${ic('map', 'sm')} Ver en Google Maps</a>` : '<div class="banner b-info">' + ic('pin') + ' El negocio no marcó su ubicación en el mapa.</div>'}
+    ${pend ? `<div class="ffoot" style="flex-wrap:wrap"><button class="btn danger" data-sol="no">${ic('x', 'sm')} Rechazar</button><button class="btn pri" data-sol="si">${ic('check')} Aprobar y publicar</button></div>`
+      : `<div class="banner ${t.estado === 'activa' ? 'b-ok' : 'b-err'}">${ic(t.estado === 'activa' ? 'okcircle' : 'alert')} Esta solicitud ya fue ${t.estado === 'activa' ? 'aprobada' : 'rechazada'}.</div>`}</div>`;
+  if (ll) cargarMapa().then(L => { const el = $('#solMap', box); if (!el) return; const m = L.map(el, { zoomControl: false, scrollWheelZoom: false }).setView(ll, 17); L.tileLayer(TILES, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(m); L.marker(ll, { icon: mkIcon(L, 't') }).addTo(m); }).catch(() => { });
+  $$('[data-sol]', box).forEach(b => b.onclick = async () => {
+    const ok = b.dataset.sol === 'si'; let motivo = '';
+    if (!ok) { motivo = await confirmDlg({ title: 'Rechazar "' + t.nombre + '"', msg: 'El solicitante verá este motivo y podrá enviar una nueva solicitud.', ok: 'Rechazar', danger: true, input: { label: 'Motivo del rechazo', req: true } }); if (!motivo) return; }
+    else if (!await confirmDlg({ title: 'Aprobar "' + t.nombre + '"', msg: 'Se publicará en el marketplace y el solicitante pasará a ser vendedor con su panel.', ok: 'Aprobar' })) return;
+    busy(b, ok ? 'Aprobando…' : 'Rechazando…', async () => {
+      try {
+        const r = await enqueue('decidirTienda', { id: t.id, ok, motivo: motivo.trim() });
+        closeModal(); upsertAll('Tiendas', r); if (S.solList && !S.solList.dead) S.solList.load(); refreshSolCount();
+        popup({ title: ok ? 'Tienda aprobada' : 'Solicitud rechazada', msg: ok ? '"' + t.nombre + '" ya está publicada. Avisamos al solicitante.' : 'Le avisamos al solicitante con el motivo.', type: ok ? 'ok' : 'info', sound: ok ? 'exito' : '' });
+      } catch (e) { popup({ type: 'err', title: 'No se pudo guardar', msg: e.message }); }
+    });
+  });
+}
+const refreshSolCount = debounce(async () => {
+  if (role() !== 'admin') return;
+  try { const d = await call('list', { e: 'Tiendas', g: 1, f: { estado: 'pendiente' }, q: '', s: '', d: -1, n: 1, p: 1 }); S.solN = d.t || 0; } catch (e) { return; }
+  const a = $('#side a[data-r="solicitudes"]'); if (a) { let nb = $('.nb', a); if (!S.solN) { if (nb) nb.remove(); return; } if (!nb) { nb = document.createElement('span'); nb.className = 'nb'; a.appendChild(nb); } nb.textContent = S.solN; }
+}, 300);
+
+/* ---------- anuncio a todos (administrador) ---------- */
+function anuncioDlg() {
+  const box = openModal(mHead('Enviar aviso a los usuarios', 'bell') + `<div class="mb"><form class="frm" id="anForm" novalidate>
+    <div class="fld full"><label for="anT">Título <span class="req">*</span></label><input id="anT" maxlength="60" placeholder="Ej: ¡Feria del pueblo este sábado!"></div>
+    <div class="fld full"><label for="anM">Mensaje <span class="req">*</span></label><textarea id="anM" rows="3" maxlength="180" placeholder="Corto y claro: qué pasa, cuándo y por qué entrar."></textarea></div>
+    <div class="fld"><label for="anA">Para</label><select id="anA"><option value="todos">Todos (respeta quien no quiere ofertas)</option><option value="cliente">Clientes</option><option value="vendedor">Negocios</option><option value="repartidor">Domiciliarios</option></select></div>
+    <div class="fld"><label for="anU">Al tocarla abre</label><select id="anU"><option value="#/">Inicio</option><option value="#/c/ofertas">Ofertas</option><option value="#/tiendas">Tiendas</option><option value="#/vender">Registra tu negocio</option></select></div>
+    <div class="form-err hide"></div><div class="ffoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('bell')} Enviar ahora</button></div></form></div>`);
+  $('#anForm', box).addEventListener('submit', ev => {
+    ev.preventDefault(); const btn = $('button[type=submit]', ev.target);
+    const p = { titulo: $('#anT', box).value.trim(), mensaje: $('#anM', box).value.trim(), aud: $('#anA', box).value, url: $('#anU', box).value };
+    if (p.titulo.length < 3 || p.mensaje.length < 3) { const fe = $('.form-err', box); fe.textContent = 'Escribe un título y un mensaje.'; fe.classList.remove('hide'); return; }
+    busy(btn, 'Enviando…', async () => { try { const r = await call('anuncio', p); closeModal(); popup({ title: 'Aviso enviado', msg: 'Llegó a ' + num(r.enviados) + ' dispositivo(s).', type: 'ok', sound: 'exito' }); } catch (e) { popup({ type: 'err', title: 'No se envió', msg: e.message }); } });
+  });
+}
 
 /* =====================================================================
  * INSTALACIÓN COMO APP (PWA) · sólo en la web publicada (GitHub / dominio)
