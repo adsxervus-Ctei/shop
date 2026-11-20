@@ -1120,6 +1120,60 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 .estc .eb{padding:10px 12px;display:flex;flex-direction:column;gap:6px;font-size:13.5px}
 .rutas{display:flex;flex-direction:column;gap:8px}
 .rutas .row select{flex:1}.rutas .row input{width:120px}
+/* v1.4.1 · tarjetas de gestión estilo producto */
+.gg-m.soft{aspect-ratio:16/9;display:grid;place-items:center;background:linear-gradient(150deg,var(--pri-l),var(--sur-2))}
+.gg-m.soft .ic{width:42px;height:42px;color:var(--pri)}
+.gc-emo{font-size:52px;line-height:1}
+.gc-av .avatar{width:76px;height:76px;font-size:26px;box-shadow:0 0 0 4px var(--sur)}
+.gg-i{display:flex;flex-direction:column;gap:3px;margin-top:4px;font-size:12.5px;color:var(--ink-2);min-width:0}
+.gg-i span{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+.gg-i i{font-style:normal;color:var(--mut);margin-right:3px}
+.gg-i i::after{content:":"}
+.gg-i .badge{font-size:11px;padding:1px 7px}
+@media (max-width:620px){ .ggrid.g-Cuotas{grid-template-columns:repeat(2,minmax(0,1fr))} .cuota .cu-v{font-size:20px} .gc-emo{font-size:40px} .gc-av .avatar{width:60px;height:60px;font-size:21px} .gg-i{font-size:11.5px} }
+@media (min-width:621px) and (max-width:1024px){ .ggrid,.ggrid.g-Cuotas{grid-template-columns:repeat(3,minmax(0,1fr))} }
+/* listas (pedidos, soporte, equipo, estados): 2 columnas en celular, 3 en tablet */
+@media (max-width:620px){
+  .plist,.team,.estg{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}
+  .plist .ped,.tk,.tm{padding:10px;font-size:13px;min-width:0}
+  .plist .ped .actions,.tk .actions,.tm-a{flex-direction:column;align-items:stretch;gap:6px}
+  .plist .ped .actions .btn,.tk .actions .btn,.tm-a .btn{width:100%;justify-content:center;font-size:12.5px;padding:0 8px}
+  .ped-h,.tk-h,.tm-h{flex-wrap:wrap;gap:6px}
+  .tm-h{flex-direction:column;align-items:flex-start}
+  .ped-meta{flex-direction:column;align-items:flex-start;gap:3px;font-size:12px}
+  .estc .eb{padding:8px;font-size:12.5px}
+}
+@media (min-width:621px) and (max-width:1024px){ .plist,.team,.estg{grid-template-columns:repeat(3,minmax(0,1fr))!important} }
+.tm-h>div{min-width:0}.tm-h small{display:block;overflow-wrap:anywhere}
+.ped,.tk,.tm{min-width:0}.ped-t,.ped-items{min-width:0;overflow-wrap:anywhere}
+@media (max-width:620px){
+  .plist .items{padding:8px}
+  .plist .items li{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"t n" "t q";column-gap:8px;row-gap:0;align-items:center;padding:3px 0}
+  .plist .items .ith{grid-area:t;width:34px;height:34px}
+  .plist .items li .nm{grid-area:n;color:var(--ink);font-size:12.5px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .plist .items li .q{grid-area:q;font-size:12px}
+  .plist .items li b{grid-area:q;justify-self:end;font-size:12.5px}
+  .plist .ped-foot{flex-direction:column;align-items:flex-start;gap:4px;font-size:12px}
+  .plist .ped-foot .tot{font-size:16px}
+}
+/* Mi cuenta: en celular, notificaciones arriba y una sola columna */
+.acc-cols{grid-template-columns:1fr 1fr}
+@media (max-width:620px){
+  .acc-cols{grid-template-columns:1fr}
+  .acc-not{order:-1;padding:12px 14px}
+  .acc-not h3{margin-bottom:8px!important;font-size:15px}
+}
+/* menú "Más" que se despliega sobre la barra de abajo */
+.bsheet{position:fixed;left:0;right:0;bottom:calc(var(--bnav-h) + var(--safe-b));z-index:calc(var(--z-bnav) + 1);background:var(--sur);border-top:1px solid var(--line);border-radius:18px 18px 0 0;box-shadow:0 -10px 30px rgba(14,30,32,.14);padding:12px 6px 6px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;animation:bsUp .2s ease-out;max-height:60vh;overflow:auto}
+.bsheet.hide{display:none}
+.bsheet a,.bsheet button{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;padding:8px 2px;border-radius:12px;font-size:11px;font-weight:600;color:var(--ink-2);text-align:center;line-height:1.15;background:none;border:0;font-family:inherit;cursor:pointer;min-height:64px}
+.bsheet a .ic,.bsheet button .ic{width:22px;height:22px}
+.bsheet a.on{color:var(--pri);background:var(--pri-l)}
+.bsheet .bs-out{color:var(--err)}
+.bscrim{position:fixed;inset:0;z-index:var(--z-bnav);background:rgba(10,20,22,.28)}
+@keyframes bsUp{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+@media (min-width:861px){ .bsheet,.bscrim{display:none!important} }
+.bnav button.on{color:var(--pri)}
 </style>
 </head>
 <body>
@@ -1218,6 +1272,7 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
   <main id="main" tabindex="-1"></main>
 </div>
 <footer class="foot" id="foot"></footer>
+<div class="bsheet hide" id="bsheet" role="menu" aria-label="Más opciones"></div><div class="bscrim hide" id="bscrim" data-act="mas-x"></div>
 <nav class="bnav" id="bnav" aria-label="Navegación"></nav>
 <div class="scrim hide" id="scrim"></div>
 <div id="toasts" role="status" aria-live="polite"></div>
@@ -1627,7 +1682,9 @@ function renderShell() {
   const nav = items.filter(i => i[0] !== '-');
   const shown = nav.length > 5 ? nav.slice(0, 4) : nav;
   $('#bnav').innerHTML = shown.map(i => `<a href="#/${i[0]}" data-r="${i[0]}">${ic(i[1])}<span>${esc(i[2])}</span></a>`).join('')
-    + (nav.length > 5 ? `<button type="button" data-act="menu">${ic('menu')}<span>Más</span></button>` : '');
+    + (nav.length > 5 ? `<button type="button" data-act="mas" id="bnMas" aria-expanded="false" aria-controls="bsheet">${ic('menu')}<span>Más</span></button>` : '');
+  S.masItems = nav.length > 5 ? nav.slice(4) : [];
+  closeMas();
   $('#btnBell').classList.toggle('hide', !S.user);
   $('#btnUser').innerHTML = (S.user ? avatarHtml(S.user) : ic('user')) + `<span class="acct-t"><small>${S.user ? 'Hola,' : 'Bienvenido'}</small>${S.user ? esc(S.user.nombre.split(' ')[0]) : 'Ingresar'}</span>${ic('chevd', 'sm')}`;
   $('#btnPanel').classList.toggle('hide', !staffish());
@@ -1736,7 +1793,7 @@ function route() {
   S.lists.forEach(l => l.destroy()); S.lists.clear(); LOOSE.clear();
   closeModal(); closeDrawer(); closePops(); stopTimers();
   const shop = /^($|tiendas$|t\/|ofertas$|c\/|favoritos$|carrito$|checkout$|historial$|vender$|producto\/|comprar\/)/.test(h) || !staffish();
-  stopProdSlides();
+  stopProdSlides(); closeMas();
   document.body.classList.toggle('shop', shop);
   document.body.classList.toggle('home', h === '');
   $('#topSearch').classList.toggle('hide', !shop);
@@ -2654,8 +2711,8 @@ function vGestion(main, e) {
       ${srt.length ? `<select class="sel" id="gSort" aria-label="Ordenar"><option value="">Orden predeterminado</option>${srt.map(f => `<option value="${f.k}:1">${esc(f.l)} ↑</option><option value="${f.k}:-1">${esc(f.l)} ↓</option>`).join('')}<option value="creado:-1">Más recientes</option></select>` : ''}</div>
     </div>
     <div class="bulkbar hide" id="bulk"></div>
-    <div class="${GCARD[e] ? 'ggrid g-' + e : 'glist'}" id="gList"></div>`;
-  const list = S.gList = new List($('#gList'), { e, g: 1, skel: GCARD[e] ? 'card' : 'row', render: GCARD[e] ? GCARD[e](e) : gRow(e), empty: 'No hay registros. ' + (m.can.c ? 'Crea el primero con “Nuevo”.' : ''),
+    <div class="${gCardDe(e) ? 'ggrid g-' + e : 'glist'}" id="gList"></div>`;
+  const list = S.gList = new List($('#gList'), { e, g: 1, skel: gCardDe(e) ? 'card' : 'row', render: gCardDe(e) ? gCardDe(e)(e) : gRow(e), empty: 'No hay registros. ' + (m.can.c ? 'Crea el primero con “Nuevo”.' : ''),
     onData: (l) => { $('#gCount') && ($('#gCount').textContent = num(l.total) + ' registro(s)'); } });
   list.sel = new Set();
   list.load();
@@ -2977,9 +3034,9 @@ function vCuenta(main) {
   const canReq = u.rol === 'cliente' && String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
   const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + (S.cfg.APP_NOMBRE || 'Mi Tienda'));
   main.innerHTML = `<div class="page-h prof-h">${avatarHtml(u, 'xl')}<div><h1>${esc(u.nombre)}</h1><span class="sub">${esc(/@equipo\.muaka\.app$/.test(u.email) ? (u.telefono || '') : u.email)} · ${esc(rolL(u))}${S.tienda ? ' · ' + esc(S.tienda.nombre) : ''}</span>${u.bio ? `<p class="prof-bio">${esc(u.bio)}</p>` : ''}</div><span class="grow"></span><button class="btn danger" data-act="logout">${ic('logout')} Cerrar sesión</button></div>
-    <div class="cols" style="grid-template-columns:1fr 1fr">
-      <div class="card pad"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, Object.assign({}, u, { promos: u.promos !== false, vehiculo: u.vehiculo || 'moto' }), false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
-      <div class="card pad"><h3 style="margin-bottom:12px">${ic('bell', 'sm')} Notificaciones y sonido</h3><div id="pushBox">${pushBoxHtml()}</div></div>
+    <div class="cols acc-cols">
+      <div class="card pad acc-dat"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, Object.assign({}, u, { promos: u.promos !== false, vehiculo: u.vehiculo || 'moto' }), false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
+      <div class="card pad acc-not"><h3 style="margin-bottom:12px">${ic('bell', 'sm')} Notificaciones y sonido</h3><div id="pushBox">${pushBoxHtml()}</div></div>
       ${u.rol === 'repartidor' && !u.tienda_id ? `<div class="card pad"><h3 style="margin-bottom:6px">${ic('route', 'sm')} Viajes entre municipios</h3><p class="mut" style="margin:0 0 10px;font-size:13.5px">Si los activas, los clientes de otros municipios podrán pedirte que recojas su compra y se la lleves. Tu municipio base es "${esc(munNombre(u.municipio_id) || 'sin definir')}".</p><div id="vjBox">${viajesHtml(u)}</div></div>` : ''}
       <div class="card pad"><h3 style="margin-bottom:12px">${ic('lock', 'sm')} Cambiar contraseña</h3>
         <form class="stack" id="pwForm" novalidate>${pwInput('pA', 'actual', 'current-password', 'Contraseña actual')}${pwInput('pN', 'nueva', 'new-password', 'Nueva contraseña')}<small class="hint" style="margin-top:-6px">Mínimo 8 caracteres, con letras y números.</small><button class="btn pri" type="submit">${ic('check')} Cambiar contraseña</button></form></div>
@@ -3074,7 +3131,8 @@ const host = el => el.closest('[data-id]');
 const recOf = el => { const h = host(el); return h ? (findRec(h.dataset.e, h.dataset.id) || LOOSE.get(h.dataset.e + ':' + h.dataset.id)) : null; };
 const ACTS = {
   filters: el => { const f = $('#gFilters'); const o = f.classList.toggle('open'); el.setAttribute('aria-expanded', o); },
-  menu: () => { $('#side').classList.add('open'); $('#scrim').classList.remove('hide'); },
+  menu: () => { closeMas(); $('#side').classList.add('open'); $('#scrim').classList.remove('hide'); },
+  mas: () => { const sh = $('#bsheet'); if (sh && !sh.classList.contains('hide')) closeMas(); else openMas(); },
   cart: () => openCart(),
   notifs: () => openNotifs(),
   cq: el => changeQty(el.dataset.pid, Number(el.dataset.d)),
@@ -3729,7 +3787,28 @@ function gCuota(e) {
     <small class="mut">${r.estado === 'pagada' ? 'Pagada el ' + (r.fecha_pago ? fday(r.fecha_pago) : '—') : r.estado === 'exonerada' ? 'No se cobra este mes' : 'Pendiente de pago'}</small>
     <div class="gc-f">${m.can.u && role() === 'admin' ? `<label class="ck"><input type="checkbox" data-act="g-check" aria-label="Seleccionar"></label>` : '<span></span>'}<div class="gc-a">${role() === 'admin' ? `<button type="button" class="btn sm" data-act="g-edit">${ic('edit', 'sm')} Editar</button>` : r.estado === 'pendiente' ? `<button type="button" class="btn sm pri" data-act="cuota-pagar" data-p="${esc(perTxt(r.periodo))}" data-v="${esc(r.valor)}">${ic('chat', 'sm')} Avisar mi pago</button>` : ''}</div></div></div>`;
 }
+const GC_IC = { Usuarios: 'user', Tiendas: 'store', Categorias: 'layers', Municipios: 'map', Localidades: 'pin', Zonas: 'moto', Tickets: 'tool', Estados: 'film', Asistencia: 'clock' };
+function gGen(e) {
+  const m = S.meta[e]; const vf = m.fields.filter(f => f.v && !f.sec && !hiddenOwn(m, f));
+  const img = vf.find(f => f.t === 'img');
+  const tog = m.can.u && !m.ro ? vf.filter(f => f.t === 'bool' && f.bulk && (!f.adm || role() === 'admin')) : [];
+  const info = vf.filter(f => f.k !== m.title && f !== img && !tog.includes(f) && f.t !== 'json' && f.t !== 'img' && f.t !== 'textarea').slice(0, 5);
+  const media = r => {
+    if (e === 'Usuarios') return `<span class="gc-av">${avatarHtml(r, 'xl')}</span>`;
+    if (e === 'Categorias' && r.emoji) return `<span class="gc-emo">${esc(r.emoji)}</span>`;
+    if (img && safeUrl(r[img.k])) return imgTag(r[img.k], r[m.title], m.icon);
+    return `<span class="gc-ico">${ic(GC_IC[e] || m.icon || 'file')}</span>`;
+  };
+  return r => `<div class="gcard gg ${r.activo === false || r.estado === 'suspendido' || r.estado === 'suspendida' ? 'off' : ''}">
+    ${m.can.d || tog.length ? `<label class="ck gc-ck"><input type="checkbox" data-act="g-check" aria-label="Seleccionar"></label>` : ''}
+    <button type="button" class="gc-img gg-m ${e === 'Usuarios' || !(img && safeUrl(r[img.k])) ? 'soft' : ''}" data-act="g-edit" aria-label="Abrir ${esc(r[m.title] || '')}">${media(r)}</button>
+    <div class="gc-b"><button type="button" class="gc-t" data-act="g-edit">${esc(r[m.title] || '—')}</button>
+      <div class="gg-i">${info.map(f => `<span><i>${esc(f.l)}</i> ${fmtVal(f, r)}</span>`).join('')}</div></div>
+    <div class="gc-f">${tog.length ? `<div class="gc-sw">${gToggles(e, r)}</div>` : ''}<div class="gc-a"><button type="button" class="icon-btn" data-act="g-edit" aria-label="Editar">${ic(m.ro || !m.can.u ? 'eye' : 'edit')}</button>${m.can.d && !m.ro ? `<button type="button" class="icon-btn" data-act="g-del" aria-label="Eliminar">${ic('trash')}</button>` : ''}</div></div>
+  </div>`;
+}
 const GCARD = { Productos: gProd, Cupones: gCupon, Cuotas: gCuota };
+const gCardDe = e => GCARD[e] || (e === 'Auditoria' ? null : gGen);
 function cuotasAyuda() {
   const adm = role() === 'admin'; const val = Number(S.cfg.MENSUALIDAD_VALOR) ? ' de ' + money(S.cfg.MENSUALIDAD_VALOR) : ''; const gen = String(S.cfg.GENERAR_CUOTAS || '').toUpperCase() === 'SI';
   const pasos = adm ? [['refresh', 'Se crean solas', gen ? `El día 1 de cada mes se genera una mensualidad${val} para cada tienda activa.` : 'Activa GENERAR_CUOTAS = SI en Configuración para crearlas cada mes; también puedes crearlas con "Nuevo".'],
@@ -4007,7 +4086,7 @@ async function loadStories() {
   const sec = el.closest('.stories-top'); if (sec) sec.classList.toggle('hide', !conEst.length && !resto.length);
   renderStatic(el, 'Tiendas', conEst.concat(resto), storyCard);
   const n = tds.filter(t => t.abierta === true).length; const on = $('#openN'); if (on) on.innerHTML = n ? `<i class="live"></i>${num(n)} ${n === 1 ? 'tienda abierta' : 'tiendas abiertas'} ahora` : '';
-  if (!conEst.length) autoRail(el, 2600);
+  autoRail(el, 2600);
 }
 function openStories(tid) {
   const list = (S.stories || []).filter(t => t._est && t._est.length); let ti = Math.max(0, list.findIndex(t => t.id === tid)); if (!list.length) return;
@@ -4537,6 +4616,22 @@ Object.assign(ACTS, {
   'est-no': async el => { const r = recOf(el); if (!r) return; const mot = await confirmDlg({ title: 'Rechazar estado', msg: 'La tienda verá el motivo.', ok: 'Rechazar', danger: true, input: { label: 'Motivo', req: true } }); if (!mot) return; busy(el, '…', async () => { try { const x = await call('estadoDecidir', { id: r.id, ok: false, motivo: mot.trim() }); upsertAll('Estados', x); toast('Estado rechazado'); } catch (e) { toast(e.message, 'err'); } }); },
   'es-tab': el => { el.parentNode.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === el)); S.esList.set({ f: { revision: el.dataset.v } }); }
 });
+
+/* v1.4.1 · menú "Más" de la barra inferior */
+function openMas() {
+  const sh = $('#bsheet'); if (!sh || !(S.masItems || []).length) return;
+  const key = location.hash.replace(/^#\/?/, '');
+  sh.innerHTML = S.masItems.map(i => `<a href="#/${i[0]}" data-r="${i[0]}" role="menuitem" class="${key === i[0] ? 'on' : ''}">${ic(i[1])}<span>${esc(i[2])}</span></a>`).join('')
+    + (S.user ? `<button type="button" class="bs-out" data-act="logout" role="menuitem">${ic('logout')}<span>Cerrar sesión</span></button>` : '');
+  sh.classList.remove('hide'); $('#bscrim').classList.remove('hide');
+  const b = $('#bnMas'); if (b) { b.classList.add('on'); b.setAttribute('aria-expanded', 'true'); }
+}
+function closeMas() {
+  const sh = $('#bsheet'); if (sh) sh.classList.add('hide'); const sc = $('#bscrim'); if (sc) sc.classList.add('hide');
+  const b = $('#bnMas'); if (b) { b.classList.remove('on'); b.setAttribute('aria-expanded', 'false'); }
+}
+Object.assign(ACTS, { 'mas-x': () => closeMas() });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMas(); });
 </script>
 </body>
 </html>
