@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d5c63">
-<title>Mi Tienda</title>
+<title>La Wuaka</title>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -1174,9 +1174,155 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 @keyframes bsUp{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
 @media (min-width:861px){ .bsheet,.bscrim{display:none!important} }
 .bnav button.on{color:var(--pri)}
+/* ====================== v1.5 · PRECARGA, BIENVENIDA, GUÍAS, SEGUIMIENTO, COMPRA ====================== */
+#pre{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 20%,color-mix(in srgb,var(--pri) 78%,#fff) 0%,var(--pri) 45%,color-mix(in srgb,var(--pri) 55%,#000) 100%);color:#fff;transition:opacity .45s ease,visibility .45s}
+#pre.out{opacity:0;visibility:hidden}
+.pre-b{display:flex;flex-direction:column;align-items:center;gap:16px}
+.wk-mark{width:92px;height:92px;border-radius:28px;background:var(--acc);display:grid;place-items:center;box-shadow:0 18px 40px rgba(0,0,0,.25);animation:wkPop .7s cubic-bezier(.2,1.4,.4,1) both}
+.wk-mark svg{width:62px;height:62px}
+.wk-mark path{fill:none;stroke:var(--osc);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:120;stroke-dashoffset:120;animation:wkDraw 1.1s .25s ease forwards}
+.wk-mark circle{fill:var(--osc);transform-origin:center;transform:scale(0);animation:wkDot .4s 1.1s ease forwards}
+.pre-n{font-weight:800;font-size:26px;letter-spacing:-.5px;opacity:0;animation:wkUp .5s .55s ease forwards}
+.pre-s{font-size:13.5px;opacity:0;animation:wkUp .5s .75s ease forwards;color:rgba(255,255,255,.85)}
+.pre-bar{width:132px;height:4px;border-radius:4px;background:rgba(255,255,255,.22);overflow:hidden;margin-top:6px}
+.pre-bar i{display:block;width:40%;height:100%;border-radius:4px;background:var(--acc);animation:wkBar 1.1s ease-in-out infinite}
+@keyframes wkPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes wkDraw{to{stroke-dashoffset:0}}
+@keyframes wkDot{to{transform:scale(1)}}
+@keyframes wkUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes wkBar{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+@media (prefers-reduced-motion:reduce){.wk-mark,.wk-mark path,.wk-mark circle,.pre-n,.pre-s{animation:none;opacity:1;stroke-dashoffset:0;transform:none}.pre-bar i{animation-duration:2.4s}}
+
+/* pantalla de bienvenida (stand-by) */
+#splash{position:fixed;inset:0;z-index:190;color:#fff;display:flex;overflow:auto;background:var(--osc)}
+#splash.out{animation:spOut .35s ease forwards}
+@keyframes spOut{to{opacity:0;transform:scale(1.02);visibility:hidden}}
+.sp-bg{position:fixed;inset:0;background:linear-gradient(160deg,color-mix(in srgb,var(--pri) 85%,#fff) 0%,var(--pri) 40%,color-mix(in srgb,var(--pri) 40%,#000) 100%)}
+.sp-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.sp-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,16,.15) 0%,rgba(10,14,16,.35) 40%,rgba(10,14,16,.88) 78%,rgba(10,14,16,.96) 100%)}
+.sp-deco{position:absolute;inset:0;overflow:hidden;opacity:.18}
+.sp-deco .ic{position:absolute;width:64px;height:64px;stroke-width:1.4}
+.sp-in{position:relative;margin:auto;width:100%;max-width:460px;min-height:100%;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 26px) 24px calc(env(safe-area-inset-bottom,0px) + 22px)}
+.sp-top{display:flex;align-items:center;gap:10px}
+.sp-top .wk-mark{width:44px;height:44px;border-radius:14px;animation:none;box-shadow:none}
+.sp-top .wk-mark svg{width:30px;height:30px}.sp-top .wk-mark path{animation:none;stroke-dashoffset:0}.sp-top .wk-mark circle{animation:none;transform:none}
+.sp-top b{font-size:19px;letter-spacing:-.3px}
+.sp-mid{margin-top:auto;padding-top:40px}
+.sp-mid h1{font-size:clamp(30px,8.5vw,40px);line-height:1.05;letter-spacing:-1px;font-weight:800}
+.sp-mid h1 em{font-style:normal;color:var(--acc)}
+.sp-mid p{margin:12px 0 0;color:rgba(255,255,255,.82);font-size:15px;max-width:34ch}
+.sp-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0 22px}
+.sp-feat div{display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;font-size:12.5px;font-weight:600;line-height:1.25}
+.sp-feat span{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px)}
+.sp-feat .ic{color:var(--acc)}
+.sp-btns{display:flex;flex-direction:column;gap:10px}
+.sp-btns .btn{height:52px;border-radius:16px;font-size:16px;font-weight:700;justify-content:center}
+.sp-go{background:var(--acc);color:var(--osc);border:0}
+.sp-login{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}
+.sp-inst{background:none;border:0;color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;margin-top:4px;opacity:.92;cursor:pointer}
+.sp-inst .ic{color:var(--acc)}
+.sp-foot{text-align:center;font-size:12px;color:rgba(255,255,255,.55);margin-top:8px}
+@media (min-width:900px){.sp-in{max-width:520px}.sp-mid h1{font-size:46px}}
+
+/* guías y videos */
+.gv{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:9/16;max-height:62vh;margin:0 auto;width:min(100%,calc(62vh * 9 / 16))}
+.gv video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+.gsteps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:g}
+.gsteps li{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--sur)}
+.gsteps .aj-i{flex:none}
+.gsteps b{display:block}.gsteps small{color:var(--mut);display:block}
+.gsteps li.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line));background:var(--ok-l)}
+.gsteps li.done .aj-i{background:var(--ok);color:#fff}
+.gsteps .btn{margin-top:8px}
+.g-cols{display:grid;gap:16px}
+.g-btns{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.g-btns .btn{justify-content:center}
+@media (min-width:860px){.g-cols{grid-template-columns:minmax(260px,340px) 1fr;align-items:start}}
+.g-hero{display:flex;gap:14px;align-items:center;padding:18px;border-radius:var(--rad);background:linear-gradient(135deg,var(--pri),color-mix(in srgb,var(--pri) 60%,#000));color:#fff;margin-bottom:16px}
+.g-hero h1{font-size:22px}.g-hero p{margin:4px 0 0;color:rgba(255,255,255,.85)}
+.g-ring{--p:0;width:64px;height:64px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;background:conic-gradient(var(--acc) calc(var(--p)*1%),rgba(255,255,255,.2) 0)}
+.g-ring span{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--pri) 70%,#000);font-size:14px}
+.g-list{display:grid;gap:10px}
+.g-card{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--sur);cursor:pointer;text-align:left;width:100%}
+.g-card:hover{border-color:var(--pri)}
+.g-card .th{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--pri-l);color:var(--pri);flex:none}
+
+/* verificación de correo */
+.vcode{display:flex;gap:8px;justify-content:center}
+.vcode input{width:46px;height:54px;text-align:center;font-size:24px;font-weight:800;border:1.5px solid var(--line);border-radius:12px;background:var(--sur)}
+.vcode input:focus{border-color:var(--pri);outline:none}
+.vbanner{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+/* seguimiento del pedido */
+.trk{text-align:center;padding:6px 0 2px}
+.trk-ic{width:84px;height:84px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:var(--ok);color:#fff;box-shadow:0 0 0 10px color-mix(in srgb,var(--ok) 14%,transparent)}
+.trk-ic .ic{width:40px;height:40px;stroke-width:2.4}
+.trk-ic.wait{background:var(--warn);box-shadow:0 0 0 10px color-mix(in srgb,var(--warn) 14%,transparent)}
+.trk-ic.go{background:var(--pri);box-shadow:0 0 0 10px color-mix(in srgb,var(--pri) 14%,transparent)}
+.trk-ic.bad{background:var(--err);box-shadow:0 0 0 10px color-mix(in srgb,var(--err) 14%,transparent)}
+.trk h2{font-size:22px;letter-spacing:-.3px}
+.trk p{margin:4px 0 0;color:var(--mut);font-size:13.5px}
+.stp{display:grid;grid-template-columns:repeat(var(--n,4),1fr);position:relative;margin:4px 0}
+.stp li{list-style:none;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;position:relative;font-size:12px;line-height:1.2}
+.stp li::before{content:"";position:absolute;top:19px;right:50%;width:100%;height:3px;background:var(--line);z-index:0}
+.stp li:first-child::before{display:none}
+.stp li.on::before{background:var(--ok)}
+.stp .c{position:relative;z-index:1;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--sur);border:2px solid var(--line);color:var(--mut)}
+.stp li.on .c{background:var(--ok);border-color:var(--ok);color:#fff}
+.stp li.now .c{box-shadow:0 0 0 5px color-mix(in srgb,var(--ok) 22%,transparent)}
+.stp b{font-size:12.5px}.stp small{color:var(--mut);font-size:11.5px}
+.stp li{min-width:0}.stp.mini b{display:none}.stp.mini{margin:2px 0}
+.stp.mini .c{width:30px;height:30px}.stp.mini .c .ic{width:15px;height:15px}.stp.mini li::before{top:14px}.stp.mini small{display:none}.stp.mini b{font-size:11.5px;font-weight:600}
+.trk-card h4{margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.trk-info{display:grid;gap:10px}
+.trk-info>div{display:flex;gap:10px;align-items:flex-start}
+.trk-info .aj-i{width:36px;height:36px;flex:none}
+.trk-info small{display:block;color:var(--mut)}
+
+/* compra exitosa */
+.buyok{max-width:560px;margin:14px auto;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,#0f1f17 0%,#0b1611 100%);color:#fff;box-shadow:var(--sh-2)}
+.bo-top{position:relative;padding:34px 22px 18px;text-align:center}
+.bo-chk{position:relative;width:112px;height:112px;margin:0 auto 18px}
+.bo-chk svg{width:112px;height:112px}
+.bo-chk .r{fill:none;stroke:#22c55e;stroke-width:5;stroke-dasharray:302;stroke-dashoffset:302;animation:wkDraw .7s ease forwards;transform:rotate(-90deg);transform-origin:center}
+.bo-chk .f{fill:rgba(34,197,94,.14)}
+.bo-chk .k{fill:none;stroke:#22c55e;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:70;stroke-dashoffset:70;animation:wkDraw .45s .6s ease forwards}
+.bo-cf{position:absolute;inset:-26px;pointer-events:none}
+.bo-cf i{position:absolute;left:50%;top:50%;width:4px;height:16px;border-radius:3px;margin:-8px 0 0 -2px;transform:rotate(var(--a)) translateY(-78px) scaleY(0);opacity:0;animation:boCf .9s calc(.55s + var(--d)) ease-out forwards}
+@keyframes boCf{40%{opacity:1;transform:rotate(var(--a)) translateY(-84px) scaleY(1)}100%{opacity:0;transform:rotate(var(--a)) translateY(-104px) scaleY(.4)}}
+.buyok h2{font-size:26px;letter-spacing:-.5px}
+.buyok .bo-sub{color:rgba(255,255,255,.72);margin:8px auto 0;max-width:36ch}
+.bo-peds{display:grid;gap:8px;margin:18px 0 4px;text-align:left}
+.bo-peds div{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.bo-peds small{color:rgba(255,255,255,.6);display:block}
+.bo-peds .codebox{display:flex;gap:10px;align-items:center;background:rgba(198,244,50,.12);border:1px dashed #c6f432;color:#fff}.bo-peds .codebox b{font-size:24px;letter-spacing:4px;color:#c6f432;display:block}.bo-peds .codebox small{color:rgba(255,255,255,.75)}
+.bo-btns{display:grid;gap:10px;padding:6px 22px 22px}
+.bo-btns .btn{height:50px;border-radius:14px;justify-content:center;font-weight:700}
+.bo-main{background:#22c55e;color:#06210f;border:0}
+.bo-sec{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3)}
+.bo-trust{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.bo-trust div{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:14px 6px;font-size:11.5px;color:rgba(255,255,255,.75);line-height:1.25}
+.bo-trust .ic{color:#22c55e}
+@media (prefers-reduced-motion:reduce){.bo-chk .r,.bo-chk .k{animation:none;stroke-dashoffset:0}.bo-cf{display:none}}
+
+/* gestor de pautas */
+.pau-grid{display:grid;gap:14px}
+@media (min-width:900px){.pau-grid{grid-template-columns:1fr 1fr}}
+.pau{border:1px solid var(--line);border-radius:var(--rad);background:var(--sur);overflow:hidden}
+.pau-pv{position:relative;background:var(--sur-2);display:grid;place-items:center;overflow:hidden}
+.pau-pv img,.pau-pv video{width:100%;height:100%;object-fit:cover;display:block}
+.pau-pv .ph{color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12.5px;padding:14px;text-align:center}
+.pau-b{padding:12px 14px;display:grid;gap:8px}
+.pau-b .spec{font-size:12px;color:var(--mut);display:flex;flex-wrap:wrap;gap:4px 10px}
+.pau-b .spec span{display:inline-flex;align-items:center;gap:4px}
+.pau-tag{position:absolute;left:10px;top:10px;background:rgba(0,0,0,.6);color:#fff;font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:999px}
+.slide video.sl-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide.img-only .sl-tx{display:none}
+.promo.img-only .pr-t,.promo.img-only>.ic{display:none}
+.promo video.pr-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 </style>
 </head>
 <body>
+<div id="pre" role="status" aria-label="Cargando"><div class="pre-b"><div class="wk-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 18 L21 47 L32 25 L43 47 L54 18"/><circle cx="32" cy="54" r="4"/></svg></div><div class="pre-n">La Wuaka</div><div class="pre-s">Lo que conecta a Loba</div><div class="pre-bar"><i></i></div></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
@@ -1283,6 +1429,7 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 /* Muestra en pantalla cualquier error de arranque (útil para diagnosticar sin abrir la consola). */
 window.__booted = false;
 function __showBootError(msg, line) {
+  var pr = document.getElementById('pre'); if (pr) pr.remove();
   var m = document.getElementById('main'); if (!m || window.__booted) return;
   m.innerHTML = '<div style="margin:16px;padding:18px;border-radius:14px;background:#fee2e2;color:#991b1b;font:15px/1.5 system-ui,sans-serif">'
     + '<b>No se pudo iniciar la aplicación.</b><br>' + String(msg || 'Error desconocido').replace(/[<>&]/g, '')
@@ -1294,7 +1441,7 @@ window.addEventListener('unhandledrejection', function (e) { __showBootError(e &
 <script>
 'use strict';
 /* =====================================================================
- * MI TIENDA · Cliente SPA (mobile-first, sin librerías)
+ * LA WUAKA · Cliente SPA (mobile-first, sin librerías)
  * ===================================================================== */
 const S = {
   tok: null, user: null, cfg: {}, meta: {}, cats: [], zonas: [], tienda: null, muns: [], locs: [], mun: '', sop: [],
@@ -1304,7 +1451,7 @@ const S = {
 const ESTL = { pendiente: 'Pendiente', aceptado: 'Aceptado', preparando: 'En preparación', listo: 'Listo', en_camino: 'En camino', entregado: 'Entregado', cancelado: 'Cancelado', rechazado: 'Rechazado', asignado: 'Domiciliario asignado', liberado: 'Domiciliario liberado' };
 const ESTC = { pendiente: 'b-warn', aceptado: 'b-pri', preparando: 'b-pri', listo: 'b-info', en_camino: 'b-info', entregado: 'b-ok', cancelado: 'b-err', rechazado: 'b-err' };
 const STEPS = ['pendiente', 'aceptado', 'preparando', 'listo', 'en_camino', 'entregado'];
-const ROLE_L = { admin: 'Superadministrador', soporte: 'Soporte', vendedor: 'Vendedor', repartidor: 'Domiciliario', cliente: 'Cliente' };
+const ROLE_L = { admin: 'Superadministrador', gestor: 'Administrador', soporte: 'Soporte', vendedor: 'Vendedor', repartidor: 'Domiciliario', cliente: 'Cliente' };
 const CARGO_L = { dueno: 'Dueño', administrador: 'Administrador del negocio', vendedor: 'Vendedor' };
 const rolL = u => !u ? '' : u.rol === 'vendedor' ? (CARGO_L[u.cargo] || 'Dueño') : u.rol === 'repartidor' ? (u.tienda_id ? 'Domiciliario propio' : 'Domiciliario') : (ROLE_L[u.rol] || u.rol);
 
@@ -1336,8 +1483,10 @@ const imgTag = (u, alt, ph = 'image') => { const s = safeUrl(u); return s ? `<im
 const badge = st => `<span class="badge ${ESTC[st] || ''}">${esc(ESTL[st] || st)}</span>`;
 const toObjs = d => ({ recs: (d.r || []).map(row => { const o = {}; d.c.forEach((c, i) => o[c] = row[i]); return o; }), t: d.t || 0, p: d.p || 1, n: d.n || 0 });
 const role = () => S.user ? S.user.rol : 'anon';
-const isStaff = () => ['admin', 'vendedor'].includes(role());
-const staffish = () => ['admin', 'vendedor', 'repartidor', 'soporte'].includes(role());
+const isStaff = () => ['admin', 'gestor', 'vendedor'].includes(role());
+const esAdm = () => ['admin', 'gestor'].includes(role());
+const esSuper = () => esAdm();
+const staffish = () => ['admin', 'gestor', 'vendedor', 'repartidor', 'soporte'].includes(role());
 const cargo = () => S.user && S.user.rol === 'vendedor' ? (S.user.cargo || 'dueno') : '';
 const jefe = () => role() === 'vendedor' && cargo() !== 'vendedor';
 
@@ -1356,6 +1505,7 @@ function handleRes(r, res, rej) {
   if (r && r.ok) return res(r.data);
   const err = new Error((r && r.error) || 'Error inesperado'); err.code = r && r.code;
   if (err.code === 'AUTH' && S.tok) endSession(true);
+  if (err.code === 'VERIFY') setTimeout(() => verifDlg(), 60);
   rej(err);
 }
 function call(action, payload) {
@@ -1612,11 +1762,11 @@ async function boot() {
     if (first && d.first) { const k = JSON.stringify(Object.assign({}, first, { p: 0 })); const o = toObjs(d.first); o.ts = Date.now(); S.cache.set(k, o); }
   } catch (e) {
     $('#main').innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p><button class="btn pri" onclick="location.reload()">${ic('refresh')} Reintentar</button></div>`;
-    return;
+    preOff(); return;
   }
   if (!S.mun && S.user && S.user.municipio_id) S.mun = S.user.municipio_id;
   renderShell(); route(); startSync(); refreshInstallUI();
-  window.__booted = true;
+  window.__booted = true; appReady();
   afterLogin(); munBoot();
 }
 /** Tareas al entrar: renovar el token de notificaciones, ofrecer activarlas y retomar el rastreo en ruta. */
@@ -1639,19 +1789,20 @@ function applyTheme() {
   const css = document.documentElement.style;
   if (/^#[0-9a-f]{6}$/i.test(S.cfg.COLOR_PRIMARIO || '')) { css.setProperty('--pri', S.cfg.COLOR_PRIMARIO); const tc = $('meta[name=theme-color]'); if (tc) tc.content = S.cfg.COLOR_PRIMARIO; }
   if (/^#[0-9a-f]{6}$/i.test(S.cfg.COLOR_ACENTO || '')) css.setProperty('--acc', S.cfg.COLOR_ACENTO);
-  document.title = S.cfg.APP_NOMBRE || 'Mi Tienda';
+  document.title = S.cfg.APP_NOMBRE || 'La Wuaka';
 }
 async function reboot(go) {
   try { applyBoot(await call('boot', {})); } catch (e) { toast(e.message, 'err'); }
   clearCache(); renderShell(); startSync(); afterLogin();
   if (go !== undefined) { if (location.hash === '#/' + go) route(); else location.hash = '#/' + go; } else route();
+  setTimeout(guiaAuto, 700);
 }
 function setSession(d) { S.tok = d.tok; store.set('tok', d.tok); S.user = d.user; }
 function endSession(expired) {
   S.tok = null; S.user = null; S.tienda = null; store.del('tok'); stopSync(); clearCache();
   if (expired) { toast('Tu sesión expiró. Ingresa de nuevo.', 'info'); reboot('cuenta'); }
 }
-function landing() { return { admin: 'panel', vendedor: 'panel', repartidor: 'entregas', soporte: 'panel' }[role()] || ''; }
+function landing() { return { admin: 'panel', gestor: 'panel', vendedor: 'panel', repartidor: 'entregas', soporte: 'panel' }[role()] || ''; }
 
 /* ---------- shell ---------- */
 function navItems() {
@@ -1665,12 +1816,13 @@ function navItems() {
   }
   if (r === 'repartidor') return [['entregas', 'moto', 'Entregas'], ['panel', 'chart', 'Panel'], ['mi-carnet', 'id', 'Mi carnet'], ['-'], ['', 'home', 'Marketplace'], ['compras', 'cart', 'Mis compras'], ['cuenta', 'user', 'Mi cuenta']];
   if (r === 'soporte') return [['panel', 'chart', 'Panel'], ['soporte', 'tool', 'Solicitudes'], ['negocios', 'store', 'Mis negocios'], ['g/Productos', 'bag', 'Inventario'], ['mi-carnet', 'id', 'Mi carnet'], ['-'], ['', 'home', 'Marketplace'], ['cuenta', 'user', 'Mi cuenta']];
-  return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['solicitudes', 'inbox', 'Solicitudes'], ['estados', 'film', 'Estados'], ['g/Tiendas', 'store', 'Tiendas'], ['g/Productos', 'bag', 'Productos'], ['g/Usuarios', 'users', 'Usuarios'], ['equipo', 'id', 'Equipos y soporte'], ['soporte', 'tool', 'Soporte técnico'], ['asistencia', 'clock', 'Asistencia'], ['g/Categorias', 'layers', 'Categorías'], ['g/Municipios', 'map', 'Municipios'], ['g/Localidades', 'pin', 'Pueblos'], ['g/Zonas', 'map', 'Zonas'], ['g/Cupones', 'percent', 'Cupones'], ['g/Cuotas', 'card', 'Mensualidades'], ['g/Auditoria', 'file', 'Auditoría'], ['config', 'sliders', 'Configuración'], ['-'], ['', 'home', 'Marketplace'], ['cuenta', 'user', 'Mi cuenta']];
+  if (r === 'gestor') return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['solicitudes', 'inbox', 'Solicitudes'], ['estados', 'film', 'Estados'], ['g/Tiendas', 'store', 'Tiendas'], ['g/Productos', 'bag', 'Productos'], ['g/Usuarios', 'users', 'Usuarios'], ['equipo', 'id', 'Equipos'], ['soporte', 'tool', 'Soporte técnico'], ['asistencia', 'clock', 'Asistencia'], ['g/Categorias', 'layers', 'Categorías'], ['g/Municipios', 'map', 'Municipios'], ['g/Localidades', 'pin', 'Pueblos'], ['g/Zonas', 'map', 'Zonas'], ['ayuda', 'play', 'Ayuda'], ['-'], ['', 'home', 'Marketplace'], ['cuenta', 'user', 'Mi cuenta']];
+  return [['panel', 'chart', 'Panel'], ['pedidos', 'package', 'Pedidos'], ['solicitudes', 'inbox', 'Solicitudes'], ['estados', 'film', 'Estados'], ['pautas', 'image', 'Pautas'], ['g/Tiendas', 'store', 'Tiendas'], ['g/Productos', 'bag', 'Productos'], ['g/Usuarios', 'users', 'Usuarios'], ['equipo', 'id', 'Equipos y soporte'], ['soporte', 'tool', 'Soporte técnico'], ['asistencia', 'clock', 'Asistencia'], ['g/Categorias', 'layers', 'Categorías'], ['g/Municipios', 'map', 'Municipios'], ['g/Localidades', 'pin', 'Pueblos'], ['g/Zonas', 'map', 'Zonas'], ['g/Cupones', 'percent', 'Cupones'], ['g/Cuotas', 'card', 'Mensualidades'], ['g/Auditoria', 'file', 'Auditoría'], ['config', 'sliders', 'Configuración'], ['-'], ['', 'home', 'Marketplace'], ['cuenta', 'user', 'Mi cuenta']];
 }
 const cfgList = k => String(S.cfg[k] || '').split(',').map(s => s.trim()).filter(Boolean);
 const pedidosRuta = () => staffish() ? 'compras' : 'pedidos';
 function renderShell() {
-  const name = S.cfg.APP_NOMBRE || 'Mi Tienda'; const parts = name.split(' ');
+  const name = S.cfg.APP_NOMBRE || 'La Wuaka'; const parts = name.split(' ');
   $('#brandName').innerHTML = parts.length > 1 ? esc(parts[0]) + ' <em>' + esc(parts.slice(1).join(' ')) + '</em>' : '<em>' + esc(name) + '</em>';
   $('#brandTag').textContent = S.cfg.APP_ESLOGAN || '';
   const logo = safeUrl(S.cfg.LOGO_URL);
@@ -1702,10 +1854,10 @@ function renderShell() {
   $('#foot').innerHTML = footerHtml();
   renderZona(); renderMun(); updateCartDot(); updateBell(); updateFavDot();
   document.body.classList.toggle('side-mini', staffish() && store.get('sidemini') === '1');
-  if (role() === 'admin') refreshSolCount();
+  if (esAdm()) refreshSolCount();
 }
 function footerHtml() {
-  const c = S.cfg; const name = c.APP_NOMBRE || 'Mi Tienda'; const sup = wa(c.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + name); const terms = safeUrl(c.TERMINOS_URL);
+  const c = S.cfg; const name = c.APP_NOMBRE || 'La Wuaka'; const sup = wa(c.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + name); const terms = safeUrl(c.TERMINOS_URL);
   const parts = name.split(' ');
   return `<div class="wrapw foot-in">
     <div><a class="brand" href="#/"><span class="logo">${safeUrl(c.LOGO_URL) ? `<img src="${esc(safeUrl(c.LOGO_URL))}" alt="">` : ic('store')}</span><span class="b-t"><b>${parts.length > 1 ? esc(parts[0]) + ' <em>' + esc(parts.slice(1).join(' ')) + '</em>' : esc(name)}</b></span></a>
@@ -1807,7 +1959,7 @@ function route() {
 window.addEventListener('hashchange', route);
 function guard(roles) {
   if (!S.user) { const after = location.hash.replace(/^#\/?/, ''); location.hash = '#/cuenta'; setTimeout(() => openAuth('login', after), 60); return false; }
-  if (roles && !roles.includes(role())) { toast('No tienes acceso a esa sección.', 'err'); location.hash = '#/' + landing(); return false; }
+  const rr = role(); if (roles && !(roles.includes(rr) || (rr === 'gestor' && roles.includes('admin')) || (rr === 'admin' && roles.includes('super')))) { toast('No tienes acceso a esa sección.', 'err'); location.hash = '#/' + landing(); return false; }
   return true;
 }
 
@@ -1892,8 +2044,8 @@ function stopTimers() { S.timers.forEach(t => clearInterval(t)); S.timers = []; 
 /* ---------- portada: franja de pautas ---------- */
 const SLIDE_COLORS = ['#0d5c63', '#c8102e', '#6d4fd6', '#1e8a45', '#b7791f'];
 function parseBanner(v) {
-  const b = String(v || '').split('|').map(x => x.trim()); if (!b[0]) return null;
-  return { t: b[0], s: b[1] || '', cta: b[2] || '', href: (/^#[\w\/-]*$/.test(b[3] || '') || safeUrl(b[3])) ? b[3] : '', img: safeUrl(b[4]), color: /^#[0-9a-f]{6}$/i.test(b[5] || '') ? b[5] : '' };
+  const b = String(v || '').split('|').map(x => x.trim()); const img = safeUrl(b[4]); const vid = mediaUrl(b[6]); if (!b[0] && !img && !vid) return null;
+  return { t: b[0], s: b[1] || '', cta: b[2] || '', href: (/^#[\w\/-]*$/.test(b[3] || '') || safeUrl(b[3])) ? b[3] : '', img, vid, color: /^#[0-9a-f]{6}$/i.test(b[5] || '') ? b[5] : '', solo: !b[0] && !!(img || vid) };
 }
 function banners() {
   const b = [1, 2, 3, 4, 5].map(i => parseBanner(S.cfg['BANNER_' + i])).filter(Boolean);
@@ -1905,14 +2057,14 @@ function promos() {
 }
 function slideHtml(b, i, n) {
   const col = b.color || SLIDE_COLORS[i % SLIDE_COLORS.length];
-  return `<div class="slide ${b.img ? 'has-img' : ''} ${i ? '' : 'on'}" data-color="${esc(col)}" style="--sc:${esc(col)}" role="group" aria-roledescription="diapositiva" aria-label="${i + 1} de ${n}" ${i ? 'aria-hidden="true"' : ''}>
-    ${b.img ? `<img class="sl-bg" src="${esc(b.img)}" alt="" ${i ? 'loading="lazy"' : ''} referrerpolicy="no-referrer">` : `<span class="sl-deco" aria-hidden="true">${ic(['bag', 'tag', 'moto', 'store', 'heart'][i % 5])}</span>`}
-    <div class="sl-tx"><span class="sl-k">${esc(S.cfg.APP_NOMBRE || 'Mi Tienda')}</span><h2>${esc(b.t)}</h2>${b.s ? `<p>${esc(b.s)}</p>` : ''}${b.cta && b.href ? `<button class="btn lime" data-act="cta" data-href="${esc(b.href)}">${esc(b.cta)} ${ic('chevr', 'sm')}</button>` : ''}</div></div>`;
+  return `<div class="slide ${b.img || b.vid ? 'has-img' : ''} ${b.solo ? 'img-only' : ''} ${i ? '' : 'on'}" ${b.solo && b.href ? `data-act="cta" data-href="${esc(b.href)}"` : ''} data-color="${esc(col)}" style="--sc:${esc(col)}" role="group" aria-roledescription="diapositiva" aria-label="${i + 1} de ${n}" ${i ? 'aria-hidden="true"' : ''}>
+    ${b.vid ? `<video class="sl-bg" src="${esc(b.vid)}" ${b.img ? `poster="${esc(b.img)}"` : ''} muted loop playsinline preload="${i ? 'none' : 'metadata'}" ${reduceMotion() ? '' : 'autoplay'} aria-hidden="true"></video>` : b.img ? `<img class="sl-bg" src="${esc(b.img)}" alt="" ${i ? 'loading="lazy"' : ''} referrerpolicy="no-referrer">` : `<span class="sl-deco" aria-hidden="true">${ic(['bag', 'tag', 'moto', 'store', 'heart'][i % 5])}</span>`}
+    <div class="sl-tx"><span class="sl-k">${esc(S.cfg.APP_NOMBRE || 'La Wuaka')}</span><h2>${esc(b.t)}</h2>${b.s ? `<p>${esc(b.s)}</p>` : ''}${b.cta && b.href ? `<button class="btn lime" data-act="cta" data-href="${esc(b.href)}">${esc(b.cta)} ${ic('chevr', 'sm')}</button>` : ''}</div></div>`;
 }
 function promoHtml(p) {
   const col = p.color || '#14181b';
-  return `<button type="button" class="promo ${p.img ? 'has-img' : ''}" style="--sc:${esc(col)}" data-act="cta" data-href="${esc(p.href || '#/tiendas')}">
-    ${p.img ? `<img class="pr-bg" src="${esc(p.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '<span class="pr-x" aria-hidden="true"></span>'}
+  return `<button type="button" class="promo ${p.img || p.vid ? 'has-img' : ''} ${p.solo ? 'img-only' : ''}" style="--sc:${esc(col)}" data-act="cta" data-href="${esc(p.href || '#/tiendas')}" ${p.solo ? `aria-label="${esc(p.t || 'Pauta')}"` : ''}>
+    ${p.vid ? `<video class="pr-bg" src="${esc(p.vid)}" ${p.img ? `poster="${esc(p.img)}"` : ''} muted loop playsinline preload="metadata" ${reduceMotion() ? '' : 'autoplay'} aria-hidden="true"></video>` : p.img ? `<img class="pr-bg" src="${esc(p.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '<span class="pr-x" aria-hidden="true"></span>'}
     <span class="pr-t"><b>${esc(p.t)}</b>${p.s ? `<small>${esc(p.s)}</small>` : ''}</span>${ic('chevr')}</button>`;
 }
 function startSlider() {
@@ -2009,7 +2161,7 @@ function renderRecent() {
 
 /* ---------- portada ---------- */
 function vHome(main) {
-  const bs = banners(); const ps = promos(); const name = S.cfg.APP_NOMBRE || 'Mi Tienda';
+  const bs = banners(); const ps = promos(); const name = S.cfg.APP_NOMBRE || 'La Wuaka';
   const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, quiero ser domiciliario en ' + name);
   main.innerHTML = `
   ${S.setup ? `<div class="wrapw"><div class="banner b-warn" style="margin-top:14px">${ic('alert')} Falta la instalación inicial: abre el editor de Apps Script y ejecuta <b>instalar()</b>.</div></div>` : ''}
@@ -2088,7 +2240,7 @@ function vHistorial(main) {
   if (S.hist.length) renderStatic($('#hList'), 'Productos', S.hist, prodCard);
 }
 function vVender(main) {
-  const name = S.cfg.APP_NOMBRE || 'Mi Tienda'; const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, quiero registrar mi negocio en ' + name);
+  const name = S.cfg.APP_NOMBRE || 'La Wuaka'; const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, quiero registrar mi negocio en ' + name);
   const abierta = String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
   const steps = [['file', 'Envía tu solicitud', 'Llena los datos de tu negocio en 2 minutos.'], ['check', 'Te activamos', 'Revisamos y activamos tu vitrina.'], ['bag', 'Sube tus productos', 'Fotos, precios, inventario y ofertas desde tu celular.'], ['moto', 'Recibe pedidos', 'Te avisamos al instante; tú o un domiciliario entregan.']];
   const perks = [['chart', 'Panel de venta y posventa', 'Ventas del día, pedidos por estado, clientes y lo más vendido.'], ['layers', 'Inventario organizado', 'Productos, existencias y alertas de inventario bajo según tu negocio.'], ['percent', 'Cupones y ofertas', 'Emite cupones y aparece en Súper ofertas; avisamos a todo el pueblo.'], ['moto', 'Domicilios con mapa', 'Tu domiciliario o los de la plataforma, con seguimiento en vivo.'], ['bell', 'Avisos al instante', 'Cada pedido suena con el tono de Muaka, aunque la app esté cerrada.'], ['star', 'Reseñas de los vecinos', 'Las mejores tiendas salen primero.']];
@@ -2128,7 +2280,7 @@ async function vTienda(main, id) {
   try { t = await call('get', { e: 'Tiendas', id }); } catch (e) { main.innerHTML = `<div class="empty">${ic('store')}<p>${esc(e.message)}</p><a class="btn" href="#/tiendas">Ver tiendas</a></div>`; return; }
   if (location.hash !== '#/t/' + id) return;
   const cover = safeUrl(t.portada);
-  const w = wa(t.whatsapp, 'Hola, te escribo desde ' + (S.cfg.APP_NOMBRE || 'Mi Tienda'));
+  const w = wa(t.whatsapp, 'Hola, te escribo desde ' + (S.cfg.APP_NOMBRE || 'La Wuaka'));
   main.innerHTML = `<div class="store-band pat"><section class="store-hero"><div class="cover" ${cover ? `style="background-image:url('${esc(cover)}')"` : ''}></div>
     <div class="info"><div class="slogo">${safeUrl(t.logo) ? imgTag(t.logo, t.nombre) : esc(initials(t.nombre))}</div>
       <div class="grow" style="padding-top:10px"><h1 style="font-size:22px">${esc(t.nombre)}</h1>
@@ -2357,12 +2509,8 @@ function vCheckout(main) {
           cupon: st.cup ? st.cup.codigo : '', nota: $('#coNota').value.trim(), ubicacion: st.tipo === 'domicilio' ? st.ub : '', municipio_id: munEnt(), viajes: st.tipo === 'domicilio' ? st.sel : {}
         });
         S.cart = {}; saveCart(); clearCache('Pedidos'); clearCache('Productos');
-        main.innerHTML = `<div class="card pad" style="max-width:560px;margin:20px auto;text-align:center">
-          <div style="color:var(--ok)">${ic('okcircle', 'lg')}</div><h2 style="margin:8px 0">¡Pedido enviado!</h2>
-          <p class="mut">La tienda confirmará tu pedido en breve. Te avisaremos cada cambio de estado.</p>
-          <div class="stack" style="text-align:left;margin:16px 0">${d.pedidos.map(p => `<div class="row between card pad" style="box-shadow:none"><div><b>${esc(p.codigo)}</b><br><small class="mut">${esc(p.tienda_nombre)}${p.viaje ? ' · viaje entre municipios' : ''}</small></div><b>${money(p.total)}</b></div>${p.viaje && p.cod_entrega ? `<div class="codebox">${ic('lock')}<div><small>Código de entrega · dáselo al domiciliario cuando recibas</small><b>${esc(p.cod_entrega)}</b></div></div>` : ''}`).join('')}</div>
-          <a class="btn pri" href="#/${role() === 'cliente' ? 'pedidos' : 'compras'}">${ic('package')} Ver mis pedidos</a></div>`;
-        popup({ type: 'ok', title: '¡Pedido enviado!', msg: 'Te avisaremos cada cambio de estado.', sound: 'exito', stay: 2400 });
+        main.innerHTML = compraOkHtml(d.pedidos); window.scrollTo(0, 0);
+        sonar('exito');
         pushOfrecer();
       } catch (err) { toast(err.message, 'err'); }
     });
@@ -2374,7 +2522,7 @@ function vCheckout(main) {
  * ===================================================================== */
 function actorOf(o) {
   const u = S.user; if (!u) return '';
-  if (u.rol === 'admin') return 'admin';
+  if (u.rol === 'admin' || u.rol === 'gestor') return 'admin';
   if (u.rol === 'vendedor' && o.tienda_id === u.tienda_id) return 'vendedor';
   if (u.rol === 'repartidor' && o.repartidor_id === u.id) return 'repartidor';
   if (o.cliente_id === u.id) return 'cliente';
@@ -2402,11 +2550,9 @@ function actionsHtml(o) {
     ? `<button class="btn sm ${x.cls || ''}" data-act="${x.act}">${x.icon ? ic(x.icon, 'sm') : ''}${esc(x.label)}</button>`
     : `<button class="btn sm ${x.cls}" data-act="ped-st" data-to="${x.to}" data-mot="${x.mot}">${esc(x.label)}</button>`).join('');
 }
-function progress(o) {
+function progress(o, full) {
   if (o.estado === 'cancelado' || o.estado === 'rechazado') return '';
-  const steps = o.tipo_entrega === 'recoger' ? STEPS.filter(s => s !== 'en_camino') : STEPS;
-  const i = steps.indexOf(o.estado);
-  return `<div class="prog" aria-label="Progreso: ${esc(ESTL[o.estado])}">${steps.map((s, j) => `<i class="${j <= i ? 'on' : ''}"></i>`).join('')}</div>`;
+  return stepper(o, full);
 }
 function pedCard(o) {
   const items = parseJ(o.items, []); const dom = o.tipo_entrega === 'domicilio'; const a = actorOf(o);
@@ -2459,7 +2605,7 @@ function vCompras(main, own) {
 function vEntregas(main) {
   if (!guard(['repartidor'])) return;
   main.innerHTML = `<div class="page-h"><h1>${ic('moto')} Entregas</h1><span class="grow"></span><label class="dispo sw" style="margin:0"><input type="checkbox" id="swDispo" ${S.user.disponible !== false ? 'checked' : ''}><span></span><em>Estoy disponible</em></label></div>
-    ${S.user.tienda_id ? `<div class="banner b-info">${ic('store')} Eres domiciliario propio de <b>${esc((S.tienda && S.tienda.nombre) || 'tu negocio')}</b>: aquí ves sólo sus pedidos.</div>` : S.user.viajes ? `<div class="banner b-info">${ic('route')} Tienes activos los viajes entre municipios. Revisa tus rutas y tarifas en Mi cuenta.</div>` : ''}
+    ${S.user.tienda_id ? `<div class="banner b-info">${ic('store')} <div>Eres domiciliario propio de <b>${esc((S.tienda && S.tienda.nombre) || 'tu negocio')}</b>: aquí ves sólo sus pedidos.</div></div>` : S.user.viajes ? `<div class="banner b-info">${ic('route')} Tienes activos los viajes entre municipios. Revisa tus rutas y tarifas en Mi cuenta.</div>` : ''}
     <div class="chips" style="margin-bottom:14px"><button class="chip on" data-act="etab" data-v="disp">Disponibles</button><button class="chip" data-act="etab" data-v="mias">Mis entregas</button><button class="chip" data-act="etab" data-v="hist">Historial</button></div>
     <div class="plist" id="pList"></div>`;
   S.pedList = new List($('#pList'), entregasCfg('disp'));
@@ -2490,8 +2636,9 @@ function renderPedido(box, o) {
   const a = actorOf(o); const staff = a === 'vendedor' || a === 'admin' || a === 'repartidor';
   box.dataset.id = o.id; box.dataset.e = 'Pedidos'; box.dataset.upd = o.upd;
   box.innerHTML = mHead('Pedido ' + o.codigo, 'package') + `<div class="mb stack">
-    <div class="row wrap between">${badge(o.estado)}<small class="mut">${fdate(o.creado)}</small></div>
-    ${progress(o)}
+    ${trackHero(o)}
+    ${progress(o, true)}
+    <h4 style="margin-top:4px">${ic(dom ? 'truck' : 'store', 'sm')} ${dom ? 'Información del envío' : 'Información de la entrega'}</h4>
     <div class="frm">
       <div class="card pad" style="box-shadow:none"><small class="mut">Tienda</small><div><b>${esc(o.tienda_nombre)}</b></div><a href="#/t/${esc(o.tienda_id)}" data-close style="font-size:13px">Ver tienda</a></div>
       <div class="card pad" style="box-shadow:none"><small class="mut">${dom ? 'Entrega a domicilio' : 'Recoge en tienda'}</small><div><b>${esc(o.cliente_nombre)}</b></div>
@@ -2501,6 +2648,7 @@ function renderPedido(box, o) {
           ${staff && dom && o.direccion ? `<a class="btn sm" href="${esc(mapUrl(o.direccion + ' ' + (o.zona_id__n || '')))}" target="_blank" rel="noopener">${ic('map', 'sm')} Mapa</a>` : ''}
         </div></div>
     </div>
+    <h4>${ic('bag', 'sm')} Productos (${items.reduce((a, i) => a + Number(i[3] || 0), 0)})</h4>
     <ul class="items">${items.map(itemLi).join('')}</ul>
     ${dom && (geoP(o.ubicacion) || geoP(o.ubic_tienda)) ? `<div><div class="row between" style="margin-bottom:6px"><h4>${ic('map', 'sm')} ${o.estado === 'en_camino' ? 'Seguimiento en vivo' : 'Recorrido'}</h4>${o.estado === 'en_camino' && o.ubic_rep ? `<small class="mut"><span class="live" style="display:inline-block"></span> Domiciliario · ${esc(agoMs(o.ubic_rep))}</small>` : ''}</div><div class="pmap"></div>
       <div class="row wrap" style="gap:6px;margin-top:8px;font-size:12.5px;color:var(--mut)"><span>${ic('store', 'sm')} Tienda</span><span>${ic('pin', 'sm')} Entrega</span>${o.estado === 'en_camino' ? `<span>${ic(vehIc(o.vehiculo), 'sm')} ${esc(VEH_L[o.vehiculo] || 'Domiciliario')}</span>` : ''}</div>
@@ -2685,7 +2833,7 @@ function hiddenOwn(m, f) { return role() === 'vendedor' && m.own && f.k === m.ow
 function gRow(e) {
   const m = S.meta[e]; const vf = m.fields.filter(f => f.v && !f.sec);
   const img = vf.find(f => f.t === 'img');
-  const tog = m.can.u && !m.ro ? vf.filter(f => f.t === 'bool' && f.bulk && (!f.adm || role() === 'admin')) : [];
+  const tog = m.can.u && !m.ro ? vf.filter(f => f.t === 'bool' && f.bulk && (!f.adm || esAdm())) : [];
   const info = vf.filter(f => f.k !== m.title && f !== img && !tog.includes(f) && f.t !== 'json' && !hiddenOwn(m, f)).slice(0, 6);
   return r => `<div class="gitem">
     ${m.can.d || tog.length ? `<label class="ck"><input type="checkbox" data-act="g-check" aria-label="Seleccionar"></label>` : ''}
@@ -2699,7 +2847,7 @@ function vGestion(main, e) {
   const m = S.meta[e];
   if (!guard()) return;
   if (!m || !m.can.l || m.hide || e === 'Pedidos') { toast('No tienes acceso a esa sección.', 'err'); location.hash = '#/' + landing(); return; }
-  const flt = m.fields.filter(f => f.f && !hiddenOwn(m, f) && (f.t === 'sel' || f.t === 'bool' || (f.t === 'ref' && (SMALL[f.ref] || (f.ref === 'Tiendas' && role() === 'admin')))));
+  const flt = m.fields.filter(f => f.f && !hiddenOwn(m, f) && (f.t === 'sel' || f.t === 'bool' || (f.t === 'ref' && (SMALL[f.ref] || (f.ref === 'Tiendas' && esAdm())))));
   const srt = m.fields.filter(f => f.o);
   main.innerHTML = `<div class="page-h"><h1>${ic(m.icon)} ${esc(m.label)}</h1><span class="sub" id="gCount"></span><span class="grow"></span>
       ${e === 'Productos' && m.can.c ? `<button class="btn" data-act="imp-open">${ic('upload')} Cargar desde Excel</button>` : ''}${m.can.c && !m.ro ? `<button class="btn pri" data-act="g-new">${ic('plus')} Nuevo</button>` : ''}</div>
@@ -2727,7 +2875,7 @@ function renderBulk(e) {
   const list = S.gList; const bar = $('#bulk'); if (!bar || !list) return;
   const n = list.sel.size; bar.classList.toggle('hide', !n);
   if (!n) return;
-  const m = S.meta[e]; const bf = m.fields.filter(f => f.bulk && (!f.adm || role() === 'admin') && m.can.u);
+  const m = S.meta[e]; const bf = m.fields.filter(f => f.bulk && (!f.adm || esAdm()) && m.can.u);
   bar.innerHTML = `<b>${n} seleccionado(s)</b><span class="grow"></span>
     ${bf.map(f => f.t === 'bool' ? `<button class="btn sm" data-act="bulk-set" data-k="${f.k}" data-v="true">${ic('check', 'sm')} ${esc(f.l)}</button><button class="btn sm" data-act="bulk-set" data-k="${f.k}" data-v="false">${ic('x', 'sm')} ${esc(f.l)}</button>`
       : `<select class="sel" data-bulksel="${f.k}" aria-label="${esc(f.l)}"><option value="">${esc(f.l)}…</option>${f.opts.map(o => `<option>${esc(o)}</option>`).join('')}</select>`).join('')}
@@ -2754,7 +2902,7 @@ async function bulkDel(e, btn) {
 
 /* ---------- formularios generados desde el SCHEMA ---------- */
 function formFields(m, isNew) {
-  const adm = role() === 'admin';
+  const adm = esAdm();
   return m.fields.filter(f => !f.nf && !f.ro && !f.sec && f.t !== 'json' && f.t !== 'datetime' && (!f.adm || adm) && !hiddenOwn(m, f));
 }
 function fieldHtml(f, v, rec, isNew) {
@@ -2951,7 +3099,7 @@ async function vMiTienda(main, sid) {
   });
 }
 async function vConfig(main) {
-  if (!guard(['admin'])) return;
+  if (!guard(['super'])) return;
   main.innerHTML = `<div class="page-h"><h1>${ic('sliders')} Configuración</h1><span class="grow"></span><button class="btn pri" data-act="anuncio">${ic('bell', 'sm')} Enviar aviso a todos</button><button class="btn" data-act="reindex">${ic('refresh', 'sm')} Reconstruir índices</button></div>
     <p class="mut" style="margin-top:-6px">Todo lo editable sin tocar código. Los cambios aplican en máximo 10 minutos para todos los usuarios.</p>
     <div class="card pad" id="cfgList"><div class="skel" style="height:400px"></div></div>`;
@@ -3010,7 +3158,7 @@ function bindAuth(root) {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(fd.email || '')) return fail('Escribe un correo válido.');
       if ((fd.telefono || '').replace(/\D/g, '').length < 7) return fail('Escribe un teléfono válido.');
       if (!fd.password || fd.password.length < 8 || !/[A-Za-z]/.test(fd.password) || !/\d/.test(fd.password)) return fail('La contraseña debe tener mínimo 8 caracteres con letras y números.');
-      busy(btn, 'Creando cuenta…', async () => { try { setSession(await call('registro', fd)); closeModal(); toast('Cuenta creada. ¡Bienvenido!'); await reboot(S.after !== undefined ? S.after : ''); } catch (e) { fail(e.message); } });
+      busy(btn, 'Creando cuenta…', async () => { try { const rd = await call('registro', fd); setSession(rd); closeModal(); toast('Cuenta creada. ¡Bienvenido!'); S.nuevoReg = true; await reboot(S.after !== undefined ? S.after : ''); } catch (e) { fail(e.message); } });
     } else if (kind === 'recover') {
       const step2 = !$('#rcStep2', form).classList.contains('hide');
       if (!step2) busy(btn, 'Enviando…', async () => {
@@ -3026,13 +3174,13 @@ function bindAuth(root) {
 }
 function vCuenta(main) {
   if (!S.user) {
-    main.innerHTML = `<div class="card pad" style="max-width:460px;margin:10px auto"><h2 style="margin-bottom:12px">Ingresa a ${esc(S.cfg.APP_NOMBRE || 'Mi Tienda')}</h2><div id="authBody">${authHtml('login')}</div></div>`;
+    main.innerHTML = `<div class="card pad" style="max-width:460px;margin:10px auto"><h2 style="margin-bottom:12px">Ingresa a ${esc(S.cfg.APP_NOMBRE || 'La Wuaka')}</h2><div id="authBody">${authHtml('login')}</div></div>`;
     S.after = undefined; bindAuth($('#authBody')); return;
   }
   const u = S.user; const um = S.meta.Usuarios;
   const pf = ['foto', 'nombre', 'telefono', 'bio', 'municipio_id', 'direccion', 'zona_id', 'ubicacion', 'promos'].concat(u.rol === 'repartidor' ? ['vehiculo', 'placa'] : []).map(k => ({ municipio_id: { k: 'municipio_id', t: 'ref', ref: 'Municipios', l: 'Mi municipio', hint: 'La app te muestra primero los negocios de tu municipio.' }, placa: { k: 'placa', t: 'text', l: 'Placa del vehículo', max: 12, hint: 'El cliente y la tienda la ven al asignarte un pedido.' }, nombre: { k: 'nombre', t: 'text', l: 'Nombre completo', req: 1, max: 80 }, telefono: { k: 'telefono', t: 'tel', l: 'Teléfono' }, direccion: { k: 'direccion', t: 'text', l: 'Dirección', max: 160 }, zona_id: { k: 'zona_id', t: 'ref', ref: 'Zonas', l: 'Zona' }, ubicacion: { k: 'ubicacion', t: 'geo', l: 'Mi casa en el mapa', hint: 'Se usa para tus domicilios. Puedes cambiarla en cada pedido.' }, promos: { k: 'promos', t: 'bool', l: 'Recibir ofertas y novedades del pueblo' }, foto: { k: 'foto', t: 'img', l: 'Mi foto de perfil' }, bio: { k: 'bio', t: 'textarea', l: u.rol === 'vendedor' ? 'Sobre mí (dueño del negocio)' : 'Sobre mí', max: 300, hint: 'Una frase corta: quién eres y qué haces. Es tu perfil personal, distinto del logo de la tienda.' }, vehiculo: { k: 'vehiculo', t: 'sel', l: 'Mi vehículo de reparto', req: 1, opts: ['moto', 'carro', 'camion', 'lancha'], hint: 'Así aparece en el mapa que ve el cliente.' } }[k]));
   const canReq = u.rol === 'cliente' && String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
-  const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + (S.cfg.APP_NOMBRE || 'Mi Tienda'));
+  const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + (S.cfg.APP_NOMBRE || 'La Wuaka'));
   main.innerHTML = `<div class="page-h prof-h">${avatarHtml(u, 'xl')}<div><h1>${esc(u.nombre)}</h1><span class="sub">${esc(/@equipo\.muaka\.app$/.test(u.email) ? (u.telefono || '') : u.email)} · ${esc(rolL(u))}${S.tienda ? ' · ' + esc(S.tienda.nombre) : ''}</span>${u.bio ? `<p class="prof-bio">${esc(u.bio)}</p>` : ''}</div><span class="grow"></span><button class="btn danger" data-act="logout">${ic('logout')} Cerrar sesión</button></div>
     <div class="cols acc-cols">
       <div class="card pad acc-dat"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, Object.assign({}, u, { promos: u.promos !== false, vehiculo: u.vehiculo || 'moto' }), false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
@@ -3041,7 +3189,7 @@ function vCuenta(main) {
       <div class="card pad"><h3 style="margin-bottom:12px">${ic('lock', 'sm')} Cambiar contraseña</h3>
         <form class="stack" id="pwForm" novalidate>${pwInput('pA', 'actual', 'current-password', 'Contraseña actual')}${pwInput('pN', 'nueva', 'new-password', 'Nueva contraseña')}<small class="hint" style="margin-top:-6px">Mínimo 8 caracteres, con letras y números.</small><button class="btn pri" type="submit">${ic('check')} Cambiar contraseña</button></form></div>
     </div>
-    ${canReq ? `<div class="card pad" style="margin-top:14px"><h3>${ic('store', 'sm')} ¿Tienes un negocio? Ábrelo en ${esc(S.cfg.APP_NOMBRE || 'Mi Tienda')}</h3><p class="mut">Envía la solicitud; el administrador la revisará y activará tu panel de vendedor.</p><div id="stForm"><button class="btn acc" data-act="req-store">${ic('plus')} Solicitar mi tienda</button></div></div>` : ''}
+    ${canReq ? `<div class="card pad" style="margin-top:14px"><h3>${ic('store', 'sm')} ¿Tienes un negocio? Ábrelo en ${esc(S.cfg.APP_NOMBRE || 'La Wuaka')}</h3><p class="mut">Envía la solicitud; el administrador la revisará y activará tu panel de vendedor.</p><div id="stForm"><button class="btn acc" data-act="req-store">${ic('plus')} Solicitar mi tienda</button></div></div>` : ''}
     ${sup || S.cfg.EMAIL_SOPORTE ? `<div class="card pad row wrap" style="margin-top:14px"><b class="grow">¿Necesitas ayuda?</b>${sup ? `<a class="btn" href="${esc(sup)}" target="_blank" rel="noopener">${ic('chat')} WhatsApp soporte</a>` : ''}${S.cfg.EMAIL_SOPORTE ? `<a class="btn" href="mailto:${esc(S.cfg.EMAIL_SOPORTE)}">${ic('mail')} Correo</a>` : ''}</div>` : ''}`;
   $('#pushBox').addEventListener('change', e => { if (e.target.id !== 'swSnd') return; AUD.on = e.target.checked; store.set('snd', AUD.on ? '1' : '0'); if (AUD.on) { audUnlock(); setTimeout(() => sonar('aviso'), 120); } });
   const pform = $('#pfForm form');
@@ -3082,9 +3230,15 @@ function notifRow(n) {
     ${n.leida !== true ? '<span class="badge b-pri">Nueva</span>' : ''}</div>`;
 }
 function openNotifs() {
-  const d = openDrawer(mHead('Notificaciones', 'bell') + `<div class="mb"><div id="nList"></div></div><div class="dfoot"><button class="btn block" data-act="notif-all">${ic('check')} Marcar todas como leídas</button></div>`);
-  S.nList = new List($('#nList', d), { e: 'Notificaciones', n: 30, skel: 'row', render: notifRow, empty: 'No tienes notificaciones.' });
-  S.nList.load();
+  const d = openDrawer(mHead('Notificaciones', 'bell') + `<div class="mb"><p class="mut" style="margin:0 0 10px;font-size:13px">${ic('eye', 'sm')} Las notificaciones desaparecen cuando ya las viste.</p><div id="nList"></div></div><div class="dfoot"><button class="btn block" data-act="notif-all">${ic('check')} Limpiar todas</button></div>`);
+  clearCache('Notificaciones');
+  const L = S.nList = new List($('#nList', d), { e: 'Notificaciones', f: { leida: false }, n: 40, skel: 'row', render: notifRow, empty: 'No tienes notificaciones nuevas.' });
+  L.load().then(() => {
+    const ids = [...L.recs.values()].filter(r => r.leida !== true).map(r => r.id);
+    if (!ids.length) return;
+    S.nu = 0; updateBell();
+    enqueue('leer', { ids }).then(() => clearCache('Notificaciones')).catch(() => { });
+  });
 }
 /** Tiendas, domiciliarios y administración sincronizan cada 8 s como máximo; con un pedido en ruta abierto, cada 6 s. */
 function syncSec() { const b = Math.max(5, Number(S.cfg.SYNC_SEGUNDOS) || 15); return S.fast ? 6 : staffish() ? Math.min(b, 8) : b; }
@@ -3116,7 +3270,7 @@ async function tick() {
       const recs = toObjs(ch.Notificaciones).recs; S.nseen = S.nseen || new Set();
       const nuevas = recs.filter(r => r.leida !== true && !S.nseen.has(r.id) && Date.now() - (toDate(r.creado) || 0) < 10 * 60000);
       recs.forEach(r => { S.nseen.add(r.id); upsertAll('Notificaciones', r); });
-      if (nuevas.length) { avisar(nuevas); if (role() === 'admin' && nuevas.some(n => /^TND-/.test(n.ref || ''))) refreshSolCount(); }
+      if (nuevas.length) { avisar(nuevas); if (esAdm() && nuevas.some(n => /^TND-/.test(n.ref || ''))) { refreshSolCount(); if (location.hash === '#/panel' && $('#dashBody')) vPanel($('#main'), true, true); } }
     }
     if (typeof d.nu === 'number') { S.nu = d.nu; updateBell(); }
   } catch (e) { /* reintenta en el siguiente ciclo */ }
@@ -3169,7 +3323,7 @@ const ACTS = {
   'bulk-del': el => bulkDel(location.hash.split('/')[2], el),
   'bulk-clear': () => { S.gList.sel.clear(); $$('#gList input[data-act="g-check"]').forEach(c => { c.checked = false; c.closest('.gitem').classList.remove('sel'); }); renderBulk(location.hash.split('/')[2]); },
   'dash-refresh': () => vPanel($('#main'), true),
-  'notif-all': async el => { try { const r = await busy(el, 'Marcando…', () => enqueue('leer', {})); (r.recs || []).forEach(x => upsertAll('Notificaciones', x)); S.nu = 0; updateBell(); toast('Notificaciones leídas'); } catch (e) { toast(e.message, 'err'); } },
+  'notif-all': async el => { try { await busy(el, 'Limpiando…', () => enqueue('leer', {})); clearCache('Notificaciones'); if (S.nList && !S.nList.dead) { S.nList.recs.clear(); $('#nList').innerHTML = ''; S.nList.emptyEl.textContent = 'No tienes notificaciones nuevas.'; S.nList.emptyEl.classList.remove('hide'); } S.nu = 0; updateBell(); toast('Notificaciones leídas'); } catch (e) { toast(e.message, 'err'); } },
   'notif-open': el => { const r = recOf(el); if (!r) return; closeDrawer(); abrirNotif(r); if (r.leida !== true) upsertAll('Notificaciones', Object.assign({}, r, { leida: true })); },
   'push-on': el => pushActivar(el),
   'snd-test': () => { audUnlock(); setTimeout(() => sonar('pedido'), 120); },
@@ -3295,9 +3449,9 @@ function abrirNotif(r) {
   if (r.leida !== true && r.id) { S.nu = Math.max(0, S.nu - 1); updateBell(); enqueue('bulk', { e: 'Notificaciones', ids: [r.id], op: 'set', patch: { leida: true } }).catch(() => { }); }
   const ref = String(r.ref || '');
   if (/^PED-/.test(ref)) openPedido(ref);
-  else if (/^TND-/.test(ref)) { if (role() === 'admin') openSolicitud(ref); else location.hash = role() === 'vendedor' ? '#/panel' : '#/vender'; }
+  else if (/^TND-/.test(ref)) { if (esAdm()) openSolicitud(ref); else if (/aprobada|equipo/i.test(r.titulo || '')) reboot('bienvenida'); else location.hash = role() === 'vendedor' ? '#/panel' : '#/vender'; }
   else if (/^PRD-/.test(ref)) location.hash = staffish() ? '#/g/Productos' : '#/';
-  else if (/^EST-/.test(ref)) location.hash = role() === 'admin' ? '#/estados' : '#/mis-estados';
+  else if (/^EST-/.test(ref)) location.hash = esAdm() ? '#/estados' : '#/mis-estados';
   else if (/^TKT-/.test(ref)) location.hash = '#/soporte';
 }
 
@@ -3344,7 +3498,7 @@ function pushOfrecer() {
   const last = Number(store.get('pushAsk') || 0); if (Date.now() - last < 4 * 86400000) return;
   store.set('pushAsk', String(Date.now()));
   setTimeout(() => popup({ type: 'info', icon: 'bell', stay: 0, title: 'Activa las notificaciones',
-    msg: staffish() ? 'Suena con el tono de Muaka apenas llegue un pedido, aunque tengas la app cerrada.' : 'Te avisamos cuando tu pedido cambie y de las ofertas del pueblo.',
+    msg: staffish() ? 'Suena con el tono de la app apenas llegue un pedido, aunque tengas la app cerrada.' : 'Te avisamos cuando tu pedido cambie y de las ofertas del pueblo.',
     action: { label: 'Activar', fn: () => pushActivar(null) } }), 2500);
 }
 function pushBoxHtml() {
@@ -3355,7 +3509,7 @@ function pushBoxHtml() {
         : ['bell', 'Activa las notificaciones', 'Pedidos, cambios de estado y ofertas, al instante.'];
   return `<div class="card pad pushcard"><span class="aj-i">${ic(txt[0])}</span><div class="grow"><b>${esc(txt[1])}</b><div class="mut" style="font-size:13px">${esc(txt[2])}</div></div>
     ${st === 'default' || (st === 'granted' && !PUSH.tok) ? `<button class="btn pri" data-act="push-on">${ic('bell', 'sm')} Activar</button>` : ''}</div>
-    <label class="sw" style="margin-top:12px"><input type="checkbox" id="swSnd" ${AUD.on ? 'checked' : ''}><span></span><em>Sonido de Muaka con la app abierta</em></label>
+    <label class="sw" style="margin-top:12px"><input type="checkbox" id="swSnd" ${AUD.on ? 'checked' : ''}><span></span><em>Sonido de la app con la app abierta</em></label>
     <button type="button" class="btn sm ghost" data-act="snd-test" style="margin-top:6px">${ic('bell', 'sm')} Escuchar el tono</button>`;
 }
 if (!IN_GAS && 'serviceWorker' in navigator) {
@@ -3747,7 +3901,7 @@ async function duPintar(catId, pre) {
 /* ---------- gestión en retícula: productos, cupones y mensualidades ---------- */
 function gToggles(e, r) {
   const m = S.meta[e]; if (!m.can.u || m.ro) return '';
-  return m.fields.filter(f => f.v && f.t === 'bool' && f.bulk && (!f.adm || role() === 'admin')).map(f => `<label class="sw sm"><input type="checkbox" data-act="g-toggle" data-k="${f.k}" ${r[f.k] === true ? 'checked' : ''}><span></span><em>${esc(f.l)}</em></label>`).join('');
+  return m.fields.filter(f => f.v && f.t === 'bool' && f.bulk && (!f.adm || esAdm())).map(f => `<label class="sw sm"><input type="checkbox" data-act="g-toggle" data-k="${f.k}" ${r[f.k] === true ? 'checked' : ''}><span></span><em>${esc(f.l)}</em></label>`).join('');
 }
 function gProd(e) {
   const m = S.meta[e];
@@ -3757,7 +3911,7 @@ function gProd(e) {
       ${m.can.d || m.can.u ? `<label class="ck gc-ck"><input type="checkbox" data-act="g-check" aria-label="Seleccionar ${esc(r.nombre)}"></label>` : ''}
       <button type="button" class="gc-img" data-act="g-edit" aria-label="Editar ${esc(r.nombre)}">${imgTag(r.imagen, r.nombre, 'bag')}${pct ? `<span class="gc-off">-${pct}%</span>` : ''}${r.activo === false ? '<span class="gc-hid">Oculto</span>' : ''}</button>
       <div class="gc-b"><button type="button" class="gc-t" data-act="g-edit">${esc(r.nombre)}</button>
-        <small class="mut">${esc(r.categoria_id__n || '')}${role() === 'admin' && r.tienda_id__n ? ' · ' + esc(r.tienda_id__n) : ''}</small>
+        <small class="mut">${esc(r.categoria_id__n || '')}${esAdm() && r.tienda_id__n ? ' · ' + esc(r.tienda_id__n) : ''}</small>
         <div class="gc-p"><b>${money(r.precio)}</b>${Number(r.precio_antes) ? `<s>${money(r.precio_antes)}</s>` : ''}</div>
         <div class="gc-k"><span class="${low ? 'warn' : ''}">${ctl ? (low ? ic('alert', 'sm') + ' ' : '') + num(r.stock) + ' en stock' : 'Sin control de stock'}</span>${r.vendidos !== undefined ? `<span>${num(r.vendidos)} vendidos</span>` : ''}</div></div>
       <div class="gc-f"><div class="gc-sw">${gToggles(e, r)}</div><div class="gc-a"><button type="button" class="icon-btn" data-act="g-edit" aria-label="Editar">${ic('edit')}</button>${m.can.d && !m.ro ? `<button type="button" class="icon-btn" data-act="g-del" aria-label="Eliminar">${ic('trash')}</button>` : ''}</div></div></div>`;
@@ -3782,16 +3936,16 @@ const perTxt = p => { const m = /^(\d{4})-(\d{2})$/.exec(String(p || '')); retur
 function gCuota(e) {
   const m = S.meta[e];
   return r => `<div class="gcard cuota c-${esc(r.estado)}">
-    <div class="cu-h"><span class="aj-i">${ic('card')}</span><div class="grow"><b>${esc(perTxt(r.periodo))}</b>${role() === 'admin' ? `<small class="mut">${esc(r.tienda_id__n || '')}</small>` : ''}</div>${fmtVal({ t: 'sel', k: 'estado' }, r)}</div>
+    <div class="cu-h"><span class="aj-i">${ic('card')}</span><div class="grow"><b>${esc(perTxt(r.periodo))}</b>${esAdm() ? `<small class="mut">${esc(r.tienda_id__n || '')}</small>` : ''}</div>${fmtVal({ t: 'sel', k: 'estado' }, r)}</div>
     <div class="cu-v">${money(r.valor)}</div>
     <small class="mut">${r.estado === 'pagada' ? 'Pagada el ' + (r.fecha_pago ? fday(r.fecha_pago) : '—') : r.estado === 'exonerada' ? 'No se cobra este mes' : 'Pendiente de pago'}</small>
-    <div class="gc-f">${m.can.u && role() === 'admin' ? `<label class="ck"><input type="checkbox" data-act="g-check" aria-label="Seleccionar"></label>` : '<span></span>'}<div class="gc-a">${role() === 'admin' ? `<button type="button" class="btn sm" data-act="g-edit">${ic('edit', 'sm')} Editar</button>` : r.estado === 'pendiente' ? `<button type="button" class="btn sm pri" data-act="cuota-pagar" data-p="${esc(perTxt(r.periodo))}" data-v="${esc(r.valor)}">${ic('chat', 'sm')} Avisar mi pago</button>` : ''}</div></div></div>`;
+    <div class="gc-f">${m.can.u && esAdm() ? `<label class="ck"><input type="checkbox" data-act="g-check" aria-label="Seleccionar"></label>` : '<span></span>'}<div class="gc-a">${esAdm() ? `<button type="button" class="btn sm" data-act="g-edit">${ic('edit', 'sm')} Editar</button>` : r.estado === 'pendiente' ? `<button type="button" class="btn sm pri" data-act="cuota-pagar" data-p="${esc(perTxt(r.periodo))}" data-v="${esc(r.valor)}">${ic('chat', 'sm')} Avisar mi pago</button>` : ''}</div></div></div>`;
 }
 const GC_IC = { Usuarios: 'user', Tiendas: 'store', Categorias: 'layers', Municipios: 'map', Localidades: 'pin', Zonas: 'moto', Tickets: 'tool', Estados: 'film', Asistencia: 'clock' };
 function gGen(e) {
   const m = S.meta[e]; const vf = m.fields.filter(f => f.v && !f.sec && !hiddenOwn(m, f));
   const img = vf.find(f => f.t === 'img');
-  const tog = m.can.u && !m.ro ? vf.filter(f => f.t === 'bool' && f.bulk && (!f.adm || role() === 'admin')) : [];
+  const tog = m.can.u && !m.ro ? vf.filter(f => f.t === 'bool' && f.bulk && (!f.adm || esAdm())) : [];
   const info = vf.filter(f => f.k !== m.title && f !== img && !tog.includes(f) && f.t !== 'json' && f.t !== 'img' && f.t !== 'textarea').slice(0, 5);
   const media = r => {
     if (e === 'Usuarios') return `<span class="gc-av">${avatarHtml(r, 'xl')}</span>`;
@@ -3810,7 +3964,7 @@ function gGen(e) {
 const GCARD = { Productos: gProd, Cupones: gCupon, Cuotas: gCuota };
 const gCardDe = e => GCARD[e] || (e === 'Auditoria' ? null : gGen);
 function cuotasAyuda() {
-  const adm = role() === 'admin'; const val = Number(S.cfg.MENSUALIDAD_VALOR) ? ' de ' + money(S.cfg.MENSUALIDAD_VALOR) : ''; const gen = String(S.cfg.GENERAR_CUOTAS || '').toUpperCase() === 'SI';
+  const adm = esAdm(); const val = Number(S.cfg.MENSUALIDAD_VALOR) ? ' de ' + money(S.cfg.MENSUALIDAD_VALOR) : ''; const gen = String(S.cfg.GENERAR_CUOTAS || '').toUpperCase() === 'SI';
   const pasos = adm ? [['refresh', 'Se crean solas', gen ? `El día 1 de cada mes se genera una mensualidad${val} para cada tienda activa.` : 'Activa GENERAR_CUOTAS = SI en Configuración para crearlas cada mes; también puedes crearlas con "Nuevo".'],
       ['dollar', 'La tienda paga', 'Por los medios de pago acordados (efectivo, transferencia…). La tienda puede avisarte desde su panel.'],
       ['check', 'Marcas el pago', 'Selecciona la mensualidad y elige "pagada" (o "exonerada" si no se cobra). Se registra la fecha.'],
@@ -3895,7 +4049,7 @@ async function leerArchivo(file) {
   return rows;
 }
 async function importarDlg() {
-  const adm = role() === 'admin' || role() === 'soporte';
+  const adm = esAdm() || role() === 'soporte';
   const box = openModal(mHead('Cargar productos desde Excel o CSV', 'upload') + `<div class="mb stack">
     <ol class="imp-steps"><li><b>Descarga la plantilla</b> (o tus productos actuales para editarlos).</li><li><b>Llénala</b> en Excel o Google Sheets: una fila por producto, con el enlace de su foto.</li><li><b>Súbela aquí</b>, revisa la vista previa y confirma.</li></ol>
     <div class="imp-dl"><label class="fld" style="margin:0"><span class="mut" style="font-size:13px">Plantilla para la categoría</span><select class="sel" id="impCat"><option value="">Todas / varias</option>${S.cats.map(c => `<option value="${esc(c.id)}">${esc((c.emoji || '') + ' ' + c.nombre)}</option>`).join('')}</select></label>
@@ -3962,7 +4116,7 @@ function maybeOfferInstall() {
   store.set('installAsk', String(Date.now())); openInstall();
 }
 function openInstall() {
-  const name = S.cfg.APP_NOMBRE || 'Mi Tienda'; const ios = PLAT === 'ios' && !installEvt;
+  const name = S.cfg.APP_NOMBRE || 'La Wuaka'; const ios = PLAT === 'ios' && !installEvt;
   const box = openModal(`<div class="inst">
     <div class="inst-h"><img src="icon-192.png" alt="" width="72" height="72"><div><h3>${esc(name)}</h3><small>${esc(S.cfg.APP_ESLOGAN || 'Compra local')}</small>
       <div class="inst-meta"><span>${ic('shield', 'sm')} Segura</span><span>${ic('download', 'sm')} Menos de 1 MB</span><span>${ic('check', 'sm')} Gratis</span></div></div>
@@ -4223,21 +4377,24 @@ const usuarioDe = m => m.email || m.telefono || '';
 async function vEquipo(main, tidParam) {
   if (!guard(['admin', 'vendedor', 'soporte'])) return;
   if (role() === 'vendedor' && !jefe()) { toast('Sólo el dueño o el administrador manejan el equipo.', 'err'); location.hash = '#/panel'; return; }
-  const adm = role() === 'admin'; const sop = role() === 'soporte';
+  const adm = esAdm(); const sop = role() === 'soporte';
   if (sop && !tidParam) { location.hash = '#/negocios'; return; }
   S.eqT = tidParam || (adm ? (S.eqT || '') : '');
-  main.innerHTML = pageH('users', adm ? 'Equipos y soporte' : sop ? 'Equipo del negocio' : 'Mi equipo', !sop ? `<button class="btn pri" data-act="eq-new">${ic('plus', 'sm')} Agregar persona</button>` : '')
-    + (adm ? `<div class="chips" style="margin-bottom:12px"><button class="chip ${S.eqT !== 'sop' ? 'on' : ''}" data-act="eq-tab" data-v="">Equipo de un negocio</button><button class="chip ${S.eqT === 'sop' ? 'on' : ''}" data-act="eq-tab" data-v="sop">${ic('tool', 'sm')} Personal de soporte</button></div>
-      <div class="fld ${S.eqT === 'sop' ? 'hide' : ''}" id="eqTf" style="max-width:420px;margin-bottom:12px"><label>Negocio</label><div class="refpick" data-ref="Tiendas"><input type="search" class="rp-q" placeholder="Buscar negocio…"><select id="eqT"><option value="">Selecciona…</option>${S.eqT && S.eqT !== 'sop' && S.eqN ? `<option value="${esc(S.eqT)}" selected>${esc(S.eqN)}</option>` : ''}</select></div></div>` : '')
+  if (!esSuper() && (S.eqT === 'sop' || S.eqT === 'gestor')) S.eqT = '';
+  const plat = S.eqT === 'sop' || S.eqT === 'gestor';
+  main.innerHTML = pageH('users', esSuper() ? 'Equipos y administración' : adm ? 'Equipos de los negocios' : sop ? 'Equipo del negocio' : 'Mi equipo', !sop ? `<button class="btn pri" data-act="eq-new">${ic('plus', 'sm')} Agregar persona</button>` : '')
+    + (adm ? `<div class="chips" style="margin-bottom:12px"><button class="chip ${!plat ? 'on' : ''}" data-act="eq-tab" data-v="">Equipo de un negocio</button>${esSuper() ? `<button class="chip ${S.eqT === 'gestor' ? 'on' : ''}" data-act="eq-tab" data-v="gestor">${ic('shield', 'sm')} Administradores</button><button class="chip ${S.eqT === 'sop' ? 'on' : ''}" data-act="eq-tab" data-v="sop">${ic('tool', 'sm')} Personal de soporte</button>` : ''}</div>
+      ${S.eqT === 'gestor' ? `<div class="banner b-info" style="margin-bottom:12px">${ic('shield')} <div>Los administradores atienden la operación diaria: solicitudes de tienda, estados, pedidos, tiendas, productos, usuarios (no administradores), categorías, municipios, zonas, soporte y asistencia. No ven Configuración, Pautas, Mensualidades, Cupones ni Auditoría, y no pueden borrar.</div></div>` : ''}
+      <div class="fld ${plat ? 'hide' : ''}" id="eqTf" style="max-width:420px;margin-bottom:12px"><label>Negocio</label><div class="refpick" data-ref="Tiendas"><input type="search" class="rp-q" placeholder="Buscar negocio…"><select id="eqT"><option value="">Selecciona…</option>${S.eqT && !plat && S.eqN ? `<option value="${esc(S.eqT)}" selected>${esc(S.eqN)}</option>` : ''}</select></div></div>` : '')
     + `<p class="mut" style="margin-top:-4px">${sop ? 'Como soporte puedes ver el equipo y restablecer contraseñas.' : 'Cada persona entra con su propio usuario. Desde aquí le generas la contraseña, su carnet con código QR y la quitas cuando ya no trabaje contigo.'}</p><div id="eqBox"><div class="skel" style="height:200px"></div></div>`;
   if (adm) { hydrateForm($('#eqTf'), () => { }); $('#eqT').onchange = e => { S.eqT = e.target.value; S.eqN = e.target.selectedOptions[0] ? e.target.selectedOptions[0].textContent : ''; pintaEquipo(); }; }
   pintaEquipo();
 }
 async function pintaEquipo() {
   const box = $('#eqBox'); if (!box) return;
-  const adm = role() === 'admin'; const sop = role() === 'soporte';
+  const adm = esAdm(); const sop = role() === 'soporte';
   if (adm && !S.eqT) { box.innerHTML = `<div class="empty">${ic('store')}<p>Elige un negocio para ver su equipo, o abre "Personal de soporte".</p></div>`; return; }
-  let d; try { d = await call('equipo', S.eqT === 'sop' ? { sop: 1 } : { tienda_id: S.eqT }); } catch (e) { box.innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
+  let d; try { d = await call('equipo', S.eqT === 'sop' || S.eqT === 'gestor' ? { sop: S.eqT === 'gestor' ? 'gestor' : 1 } : { tienda_id: S.eqT }); } catch (e) { box.innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
   S.eqData = d; if (!$('#eqBox')) return;
   const me = S.user.id;
   box.innerHTML = `${d.tienda && !adm && !sop ? '' : d.tienda ? `<h3 style="margin:4px 0 10px">${esc(d.tienda.nombre)}</h3>` : ''}
@@ -4248,16 +4405,16 @@ async function pintaEquipo() {
 }
 function eqMember(el) { const id = el.closest('[data-id]').dataset.id; return (S.eqData.list || []).find(m => m.id === id); }
 function equipoForm(m) {
-  const adm = role() === 'admin'; const sopTab = adm && S.eqT === 'sop'; const nuevo = !m; m = m || {};
+  const adm = esAdm(); const sopTab = esSuper() && S.eqT === 'sop'; const gesTab = esSuper() && S.eqT === 'gestor'; const platTab = sopTab || gesTab; const nuevo = !m; m = m || {};
   const puedeAdm = adm || cargo() === 'dueno';
-  const rolSel = sopTab ? 'soporte' : (m.rol || 'vendedor');
+  const rolSel = gesTab ? 'gestor' : sopTab ? 'soporte' : (m.rol || 'vendedor');
   const fotoF = { k: 'foto', t: 'img', l: 'Foto (para el carnet)' };
   const box = openModal(mHead(nuevo ? 'Agregar persona' : 'Editar · ' + m.nombre, 'users') + `<div class="mb"><form class="frm" novalidate>
     ${fieldHtml(fotoF, m.foto || '', m, nuevo)}
     <div class="fld"><label for="eqN">Nombre completo <span class="req">*</span></label><input id="eqN" name="nombre" maxlength="80" value="${esc(m.nombre || '')}"></div>
     <div class="fld"><label for="eqTel">Celular / WhatsApp</label><input id="eqTel" name="telefono" type="tel" inputmode="tel" maxlength="20" value="${esc(m.telefono || '')}"><small class="hint">Si no tiene correo, entra con este celular.</small></div>
     <div class="fld"><label for="eqE">Correo (opcional)</label><input id="eqE" name="email" type="email" maxlength="120" value="${esc(m.email || '')}"></div>
-    ${sopTab ? '' : `<div class="fld"><label for="eqR">Rol</label><select id="eqR" name="rol" ${m.dueno ? 'disabled' : ''}><option value="vendedor" ${rolSel === 'vendedor' ? 'selected' : ''}>Equipo de la tienda</option><option value="repartidor" ${rolSel === 'repartidor' ? 'selected' : ''}>Domiciliario propio</option></select></div>
+    ${platTab ? '' : `<div class="fld"><label for="eqR">Rol</label><select id="eqR" name="rol" ${m.dueno ? 'disabled' : ''}><option value="vendedor" ${rolSel === 'vendedor' ? 'selected' : ''}>Equipo de la tienda</option><option value="repartidor" ${rolSel === 'repartidor' ? 'selected' : ''}>Domiciliario propio</option></select></div>
     <div class="fld" id="eqCf"><label for="eqC">Cargo</label><select id="eqC" name="cargo" ${m.dueno ? 'disabled' : ''}>${m.dueno || (adm && m.cargo === 'dueno') ? '<option value="dueno" selected>Dueño</option>' : ''}${adm && !m.cargo ? '<option value="dueno">Dueño</option>' : ''}${puedeAdm ? `<option value="administrador" ${m.cargo === 'administrador' ? 'selected' : ''}>Administrador del negocio</option>` : ''}<option value="vendedor" ${!m.cargo || m.cargo === 'vendedor' ? 'selected' : ''}>Vendedor</option></select><small class="hint">El vendedor atiende pedidos y productos; no ve ventas ni datos del negocio.</small></div>`}
     <div class="fld"><label for="eqH">Horario de trabajo</label><input id="eqH" name="horario" maxlength="11" placeholder="07:00-17:00" value="${esc(m.horario || '')}"><small class="hint">Sirve para marcar las llegadas tarde en la asistencia.</small></div>
     <div class="fld" id="eqVf"><label for="eqV">Vehículo</label><select id="eqV" name="vehiculo">${['moto', 'carro', 'camion', 'lancha'].map(v => `<option value="${v}" ${(m.vehiculo || 'moto') === v ? 'selected' : ''}>${esc(VEH_L[v])}</option>`).join('')}</select></div>
@@ -4267,28 +4424,28 @@ function equipoForm(m) {
     <div class="form-err hide"></div>
     <div class="ffoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button type="submit" class="btn pri">${ic('check')} ${nuevo ? 'Crear y generar clave' : 'Guardar'}</button></div></form></div>`, { wide: true });
   const form = $('form', box);
-  const sync = () => { const r = sopTab ? 'soporte' : $('#eqR', box).value; $('#eqVf', box).classList.toggle('hide', r !== 'repartidor'); $('#eqPf', box).classList.toggle('hide', r !== 'repartidor'); const cf = $('#eqCf', box); if (cf) cf.classList.toggle('hide', r !== 'vendedor'); };
+  const sync = () => { const r = platTab ? rolSel : $('#eqR', box).value; $('#eqVf', box).classList.toggle('hide', r !== 'repartidor'); $('#eqPf', box).classList.toggle('hide', r !== 'repartidor'); const cf = $('#eqCf', box); if (cf) cf.classList.toggle('hide', r !== 'vendedor'); };
   if ($('#eqR', box)) $('#eqR', box).onchange = sync; sync();
   if (sopTab) call('opts', { e: 'Tiendas', q: '' }).then(o => { const cur = m.tiendas_sop || []; $('#eqTs', box).innerHTML = o.map(t => `<label><input type="checkbox" name="ts" value="${esc(t[0])}" ${cur.includes(t[0]) ? 'checked' : ''}> ${esc(t[1])}</label>`).join('') || '<span class="mut">No hay negocios.</span>'; }).catch(e => toast(e.message, 'err'));
   hydrateForm(form, btn => {
     const fd = Object.fromEntries(new FormData(form).entries());
-    const o = { id: m.id || '', nombre: (fd.nombre || '').trim(), telefono: fd.telefono || '', email: (fd.email || '').trim(), foto: fd.foto || '', horario: (fd.horario || '').trim(), rol: sopTab ? 'soporte' : ($('#eqR', box).disabled ? m.rol : fd.rol), cargo: $('#eqC', box) && !$('#eqC', box).disabled ? fd.cargo : m.cargo, vehiculo: fd.vehiculo, placa: fd.placa || '' };
+    const o = { id: m.id || '', nombre: (fd.nombre || '').trim(), telefono: fd.telefono || '', email: (fd.email || '').trim(), foto: fd.foto || '', horario: (fd.horario || '').trim(), rol: platTab ? rolSel : ($('#eqR', box).disabled ? m.rol : fd.rol), cargo: $('#eqC', box) && !$('#eqC', box).disabled ? fd.cargo : m.cargo, vehiculo: fd.vehiculo, placa: fd.placa || '' };
     if (!nuevo) { const a = form.querySelector('[name=activo]'); if (a && !a.disabled) o.estado = a.checked ? 'activo' : 'suspendido'; }
     if (sopTab) o.tiendas_sop = $$('[name=ts]:checked', box).map(x => x.value).join(',');
-    if (adm && !sopTab) o.tienda_id = S.eqT;
+    if (adm && !platTab) o.tienda_id = S.eqT;
     if (o.nombre.length < 3) return toast('Escribe el nombre completo.', 'err');
     if (nuevo && !o.email && o.telefono.replace(/\D/g, '').length < 7) return toast('Escribe el celular o el correo de la persona.', 'err');
     busy(btn, 'Guardando…', async () => {
-      try { const r = await enqueue('equipoSave', o); closeModal(); pintaEquipo(); if (r.clave) credDlg(r.m.nombre, r.usuario, r.clave, r.m.telefono, r.m.id); else toast(nuevo ? 'Persona agregada: entra con su contraseña actual' : 'Datos guardados'); }
+      try { const r = await enqueue('equipoSave', o); closeModal(); pintaEquipo(); if (r.clave) credDlg(r.m.nombre, r.usuario, r.clave, r.m.telefono, r.m.id); else if (r.convertido) avisoEquipo(r.m); else toast(nuevo ? 'Persona agregada: entra con su contraseña actual' : 'Datos guardados'); }
       catch (e) { const fe = $('.form-err', form); fe.textContent = e.message; fe.classList.remove('hide'); toast(e.message, 'err'); }
     });
   });
 }
 function credDlg(nombre, usuario, clave, tel, id) {
-  const app = S.cfg.APP_NOMBRE || 'Muaka';
+  const app = S.cfg.APP_NOMBRE || 'La Wuaka';
   const txt = `Hola ${nombre.split(' ')[0]}, ya tienes acceso a ${app}.\nUsuario: ${usuario}\nContraseña: ${clave}\nEntra aquí: ${location.href.split('#')[0]}\nCámbiala en Mi cuenta al ingresar.`;
   const box = openModal(mHead('Acceso de ' + nombre, 'lock') + `<div class="mb stack"><div class="cred"><div>Usuario: <code>${esc(usuario)}</code></div><div style="margin-top:6px">Contraseña: <code>${esc(clave)}</code></div></div>
-    <p class="mut" style="margin:0;font-size:13.5px">Esta contraseña sólo se muestra ahora. Envíasela por WhatsApp; al entrar puede cambiarla en Mi cuenta.</p>
+    <p class="mut" style="margin:0;font-size:13.5px">Esta contraseña sólo se muestra ahora. Envíasela por WhatsApp; al entrar puede cambiarla en Mi cuenta.</p>${/@/.test(usuario) ? `<div class="banner b-ok" style="margin:0">${ic('mail')} <div>También le llegó un correo a <b>${esc(usuario)}</b> con su usuario, su contraseña y el enlace de la app.</div></div>` : ''}
     <div class="row wrap" style="gap:8px">${wa(tel) ? `<a class="btn pri grow" href="${esc(wa(tel, txt))}" target="_blank" rel="noopener">${ic('chat', 'sm')} Enviar por WhatsApp</a>` : ''}<button class="btn grow" id="crCp">${ic('file', 'sm')} Copiar</button>${id ? `<button class="btn grow" id="crCa">${ic('id', 'sm')} Ver carnet</button>` : ''}</div></div>`);
   $('#crCp', box).onclick = () => { try { navigator.clipboard.writeText(txt); toast('Datos copiados'); } catch (e) { toast('Copia los datos a mano.', 'info'); } };
   if ($('#crCa', box)) $('#crCa', box).onclick = () => { closeModal(); carnetDlg(id); };
@@ -4403,7 +4560,7 @@ async function modoAsistencia(tid, tnombre) {
         const v = await leer();
         if (v && (v !== last || Date.now() - lastT > 5000)) {
           last = v; lastT = Date.now(); busyM = true;
-          if (!/^MUAKA:/.test(v)) { show(`${ic('alert', 'lg')}<h2>Ese QR no es un carnet</h2>`, true); sonar('aviso'); }
+          if (!/^(MUAKA|WUAKA):/.test(v)) { show(`${ic('alert', 'lg')}<h2>Ese QR no es un carnet</h2>`, true); sonar('aviso'); }
           else {
             try {
               const r = await call('marcar', { qr: v, tienda_id: tid });
@@ -4423,7 +4580,7 @@ const hm = m => `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')} min`
 async function vAsistencia(main) {
   if (!guard(['admin', 'vendedor'])) return;
   if (role() === 'vendedor' && !jefe()) { location.hash = '#/panel'; return; }
-  const adm = role() === 'admin'; const hoy = new Date(); const d7 = new Date(Date.now() - 6 * 864e5); const f = x => x.toISOString().slice(0, 10);
+  const adm = esAdm(); const hoy = new Date(); const d7 = new Date(Date.now() - 6 * 864e5); const f = x => x.toISOString().slice(0, 10);
   main.innerHTML = pageH('clock', 'Asistencia', `<button class="btn pri" data-act="asis-scan">${ic('scan', 'sm')} Modo asistencia</button>`)
     + `<p class="mut" style="margin-top:-4px">Deja un celular o tablet en la entrada con el <b>Modo asistencia</b> abierto: cada persona pasa su carnet al llegar y al salir.</p>
     <div class="card pad"><div class="row wrap" style="gap:10px;align-items:flex-end">
@@ -4458,7 +4615,7 @@ function resumenAsis(rows) {
 const TK_L = { recibida: 'Recibida', en_proceso: 'En proceso', resuelta: 'Resuelta' };
 const TK_T = { hardware: 'Hardware', software: 'Software', inventario: 'Inventario', otro: 'Otro' };
 function tkCard(t) {
-  const r = role(); const yo = r === 'soporte' || r === 'admin';
+  const r = role(); const yo = r === 'soporte' || r === 'admin' || r === 'gestor';
   return `<article class="tk st-${esc(t.estado)}"><div class="tk-h"><div><b>${esc(TK_T[t.tipo] || t.tipo)} · ${esc(t.tienda_id__n || '')}</b><br><small class="mut">${esc(ago(t.creado))}${t.creado_por__n ? ' · ' + esc(t.creado_por__n) : ''}${t.soporte_id__n ? ' · atiende ' + esc(t.soporte_id__n) : ''}</small></div><span class="badge ${t.estado === 'resuelta' ? 'b-ok' : t.estado === 'en_proceso' ? 'b-info' : 'b-warn'}">${esc(TK_L[t.estado] || t.estado)}</span></div>
     <p>${esc(t.descripcion)}</p>${safeUrl(t.foto) ? `<a href="${esc(t.foto)}" target="_blank" rel="noopener" class="th" style="width:90px;height:90px;border-radius:10px;overflow:hidden;display:block">${imgTag(t.foto, '')}</a>` : ''}
     ${t.respuesta ? `<div class="resp">${ic('tool', 'sm')} ${esc(t.respuesta)}</div>` : ''}
@@ -4598,13 +4755,13 @@ Object.assign(ACTS, {
   'mun-no': () => { const a = $('#munAsk'); if (a) { const b = $('[data-act="mun-set"]', a); if (b) store.set('munNo', b.dataset.v + ':' + new Date().toDateString()); } closeMunAsk(); },
   story: el => openStories(el.dataset.t),
   'cfg-dest': el => destinoDlg(el.closest('.cfgrow')),
-  'eq-new': () => { if (role() === 'admin' && !S.eqT) return toast('Elige primero el negocio o la pestaña de soporte.', 'err'); equipoForm(null); },
+  'eq-new': () => { if (esAdm() && !S.eqT) return toast(esSuper() ? 'Elige primero el negocio, o la pestaña de administradores o de soporte.' : 'Elige primero el negocio.', 'err'); equipoForm(null); },
   'eq-tab': el => { S.eqT = el.dataset.v; vEquipo($('#main')); },
   'eq-edit': el => equipoForm(eqMember(el)),
   'eq-carnet': el => carnetDlg(eqMember(el).id),
   'eq-clave': async el => { const m = eqMember(el); if (!(await confirmDlg({ title: 'Nueva contraseña para ' + m.nombre, msg: 'Se cerrará su sesión en todos los equipos y tendrá que entrar con la nueva.', ok: 'Generar' }))) return; busy(el, '…', async () => { try { const r = await call('equipoClave', { id: m.id }); credDlg(r.nombre, r.usuario, r.clave, m.telefono, m.id); } catch (e) { toast(e.message, 'err'); } }); },
   'eq-quitar': async el => { const m = eqMember(el); if (!(await confirmDlg({ title: 'Quitar a ' + m.nombre, msg: 'Ya no podrá entrar al panel del negocio (su cuenta queda como cliente).', ok: 'Quitar', danger: true }))) return; busy(el, '…', async () => { try { await call('equipoQuitar', { id: m.id }); toast(m.nombre + ' salió del equipo'); pintaEquipo(); } catch (e) { toast(e.message, 'err'); } }); },
-  'asis-scan': () => { if (role() === 'admin') { const t = $('#asT'); if (!t || !t.value) return toast('Elige el negocio donde vas a tomar la asistencia.', 'err'); modoAsistencia(t.value, t.selectedOptions[0].textContent); } else modoAsistencia('', (S.tienda && S.tienda.nombre) || ''); },
+  'asis-scan': () => { if (esAdm()) { const t = $('#asT'); if (!t || !t.value) return toast('Elige el negocio donde vas a tomar la asistencia.', 'err'); modoAsistencia(t.value, t.selectedOptions[0].textContent); } else modoAsistencia('', (S.tienda && S.tienda.nombre) || ''); },
   'tk-new': () => tkNuevo(),
   'tk-tab': el => { el.parentNode.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === el)); S.tkList.set({ f: el.dataset.v ? { estado__in: el.dataset.v } : {} }); },
   'tk-atender': el => { const r = recOf(el); if (r) tkAtender(r); },
@@ -4632,6 +4789,342 @@ function closeMas() {
 }
 Object.assign(ACTS, { 'mas-x': () => closeMas() });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMas(); });
+
+/* =====================================================================
+ * v1.5 · PRECARGA, PANTALLA DE BIENVENIDA, GUÍAS POR ROL, VERIFICACIÓN,
+ *        SEGUIMIENTO DEL PEDIDO, COMPRA EXITOSA Y GESTOR DE PAUTAS
+ * ===================================================================== */
+const WK_MARK = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 18 L21 47 L32 25 L43 47 L54 18"/><circle cx="32" cy="54" r="4"/></svg>';
+/** Video o imagen: acepta https o una ruta de la carpeta publicada (p. ej. videos/inicio.mp4). */
+function mediaUrl(v) {
+  v = String(v || '').trim(); if (!v) return '';
+  if (safeUrl(v)) return v;
+  if (!IN_GAS && /^[\w-]+(?:\x2f[\w.-]+)*\.(mp4|webm|jpe?g|png|webp)$/i.test(v)) { try { return new URL(v, location.href).href; } catch (e) { return ''; } }
+  return '';
+}
+
+/* ---------- precarga ---------- */
+let PRE_T = setTimeout(() => preOff(), 15000);
+function preOff() {
+  clearTimeout(PRE_T); const p = $('#pre'); if (!p || p.classList.contains('out')) return;
+  p.classList.add('out'); setTimeout(() => p.remove(), 500);
+}
+function preOn() {
+  if ($('#pre')) { $('#pre').classList.remove('out'); return; }
+  const p = document.createElement('div'); p.id = 'pre'; p.setAttribute('role', 'status'); p.setAttribute('aria-label', 'Cargando');
+  p.innerHTML = `<div class="pre-b"><div class="wk-mark">${WK_MARK}</div><div class="pre-n">${esc(S.cfg.APP_NOMBRE || 'La Wuaka')}</div><div class="pre-bar"><i></i></div></div>`;
+  document.body.appendChild(p);
+}
+function appReady() {
+  S.ready = true;
+  if (S.splashGo) { S.splashGo = false; splashOff(); }
+  if (!$('#splash')) preOff(); else updSplash();
+  setTimeout(guiaAuto, 900);
+}
+
+/* ---------- pantalla de bienvenida (antes de entrar) ---------- */
+function splashDebe() {
+  if (store.get('tok')) return false;
+  try { if (sessionStorage.getItem('wk_in')) return false; } catch (e) { /* sin sessionStorage */ }
+  const h = location.hash.replace(/^#\/?/, '');
+  return h === '' || h === 'cuenta';
+}
+function splashHtml() {
+  const c = S.cfg || {}; const name = c.APP_NOMBRE || 'La Wuaka'; const slogan = c.APP_ESLOGAN || 'Lo que conecta a Loba';
+  const img = safeUrl(c.INICIO_IMAGEN); const words = slogan.split(' '); const last = words.pop();
+  const deco = [['bag', 8, 12], ['store', 72, 8], ['moto', 18, 34], ['tag', 80, 30], ['heart', 6, 56], ['cart', 64, 50]];
+  return `<div class="sp-bg">${img ? `<img src="${esc(img)}" alt="" referrerpolicy="no-referrer">` : `<div class="sp-deco">${deco.map(d => `<span style="position:absolute;left:${d[1]}%;top:${d[2]}%">${ic(d[0])}</span>`).join('')}</div>`}</div>
+    <div class="sp-in">
+      <div class="sp-top"><span class="wk-mark">${WK_MARK}</span><b>${esc(name)}</b></div>
+      <div class="sp-mid"><h1>${esc(words.join(' '))} <em>${esc(last)}</em></h1>
+        <p>Compra en los negocios de tu pueblo y recibe en tu casa, o recoge en la tienda.</p></div>
+      <div class="sp-feat"><div><span>${ic('store')}</span>Negocios de tu pueblo</div><div><span>${ic('moto')}</span>Domicilio a tu puerta</div><div><span>${ic('shield')}</span>Compra segura</div></div>
+      <div class="sp-btns">
+        <button type="button" class="btn sp-go" data-act="sp-go">Comenzar ${ic('chevr')}</button>
+        <button type="button" class="btn sp-login" data-act="sp-login">${ic('login', 'sm')} Iniciar sesión</button>
+        ${!IN_GAS && !isStandalone() ? `<button type="button" class="sp-inst" data-act="sp-inst">${ic('download', 'sm')} Instalar la aplicación</button>` : ''}
+      </div>
+      <div class="sp-foot">${esc(name)} · ${new Date().getFullYear()}</div>
+    </div>`;
+}
+function splashOn() {
+  if ($('#splash')) return;
+  const el = document.createElement('div'); el.id = 'splash'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Bienvenida');
+  el.innerHTML = splashHtml(); document.body.appendChild(el); document.body.style.overflow = 'hidden';
+  preOff();
+}
+function updSplash() { const el = $('#splash'); if (el && !el.classList.contains('out')) el.innerHTML = splashHtml(); }
+function splashOff() {
+  const el = $('#splash'); if (!el) return;
+  try { sessionStorage.setItem('wk_in', '1'); } catch (e) { /* noop */ }
+  document.body.style.overflow = '';
+  el.classList.add('out'); setTimeout(() => el.remove(), 380);
+}
+function splashSalir(fn) {
+  try { sessionStorage.setItem('wk_in', '1'); } catch (e) { /* noop */ }
+  if (S.ready) { splashOff(); fn(); return; }
+  S.splashGo = true; preOn(); const el = $('#splash'); if (el) el.remove(); document.body.style.overflow = '';
+  const w = setInterval(() => { if (S.ready) { clearInterval(w); fn(); } }, 150);
+}
+if (splashDebe()) splashOn();
+
+/* ---------- guías y videos por rol ---------- */
+const GUIAS = {
+  inicio: { t: 'Bienvenido a ' , v: 'VIDEO_INICIO', ic: 'home', d: 'Así funciona la plataforma, en un minuto.',
+    s: [['pin', 'Elige tu municipio', 'Verás las tiendas y los domiciliarios de tu pueblo.'], ['store', 'Explora tiendas y ofertas', 'Busca productos, mira los estados de las tiendas y guarda tus favoritos.'], ['cart', 'Pide en pocos toques', 'Agrega al carrito, elige domicilio o recoger y confirma.'], ['user', 'Crea tu cuenta gratis', 'Para seguir tus pedidos en vivo y recibir avisos.', 'cuenta']] },
+  cliente: { t: '¡Tu cuenta está lista!', v: 'VIDEO_CLIENTE', ic: 'user', d: 'Ya puedes comprar. Y si tienes un negocio, ábrelo aquí mismo.',
+    s: [['mail', 'Confirma tu correo', 'Te enviamos un código de 6 dígitos. Lo necesitas para comprar y para pedir tu tienda.'], ['bag', 'Compra y sigue tu pedido', 'Te avisamos cada cambio: confirmado, en camino y entregado.', 'pedidos'], ['bell', 'Activa las notificaciones', 'Así te enteras al instante, aunque la app esté cerrada.', 'cuenta'], ['store', '¿Tienes un negocio?', 'Pide tu tienda: la revisamos y te avisamos cuando esté aprobada.', 'vender']] },
+  dueno: { t: '¡Tu tienda fue aprobada!', v: 'VIDEO_DUENO', ic: 'store', d: 'Configúrala en 6 pasos y empieza a vender.', s: [] },
+  equipo: { t: 'Bienvenido al equipo', v: 'VIDEO_EQUIPO', ic: 'users', d: 'Lo que puedes hacer desde tu cuenta.',
+    s: [['package', 'Atiende los pedidos', 'Acepta, prepara y marca "Listo". Suena un tono cuando llega uno nuevo.', 'pedidos'], ['bag', 'Productos e inventario', 'Crea productos con foto, precio y existencias.', 'g/Productos'], ['id', 'Tu carnet', 'Muéstralo al llegar y al salir para marcar tu asistencia.', 'mi-carnet'], ['bell', 'Activa las notificaciones', 'Para no perder ningún pedido.', 'cuenta']] },
+  domiciliario: { t: 'Bienvenido, domiciliario', v: 'VIDEO_DOMICILIARIO', ic: 'moto', d: 'Así tomas y entregas los pedidos.',
+    s: [['check', 'Ponte "Disponible"', 'Sólo te llegan pedidos cuando estás disponible.', 'entregas'], ['package', 'Toma un pedido', 'Mira la tienda, la dirección y el valor del domicilio antes de aceptar.', 'entregas'], ['map', 'Comparte tu ubicación en ruta', 'El cliente ve en el mapa por dónde vas.'], ['lock', 'Pide el código de entrega', 'En los viajes entre municipios el cliente te da un código al recibir.'], ['id', 'Tu carnet', 'Te identifica ante las tiendas y los clientes.', 'mi-carnet']] },
+  soporte: { t: 'Bienvenido al soporte técnico', v: 'VIDEO_SOPORTE', ic: 'tool', d: 'Ayudas a los negocios que tienes asignados.',
+    s: [['inbox', 'Atiende las solicitudes', 'Cada negocio te escribe desde su cuenta; respóndele y cierra el caso.', 'soporte'], ['store', 'Tus negocios', 'Revisa el equipo y la configuración de cada uno.', 'negocios'], ['bag', 'Inventario', 'Ayuda a cargar y ordenar los productos.', 'g/Productos']] },
+  admin: { t: 'Administración de la plataforma', v: 'VIDEO_ADMIN', ic: 'shield', d: 'Tu día a día como administrador.',
+    s: [['inbox', 'Revisa las solicitudes de tienda', 'Apruébalas o recházalas con el motivo. El dueño recibe el aviso.', 'solicitudes'], ['film', 'Aprueba los estados', 'Las tiendas publican estados de 24 horas que tú revisas.', 'estados'], ['package', 'Vigila los pedidos', 'Puedes ver todos y reasignar domiciliarios.', 'pedidos'], ['users', 'Equipos', 'Ayuda a las tiendas con su personal.', 'equipo']] }
+};
+function guiaKey() {
+  const r = role(); if (r === 'anon') return 'inicio'; if (r === 'cliente') return 'cliente';
+  if (r === 'vendedor') return cargo() === 'dueno' ? 'dueno' : 'equipo';
+  if (r === 'repartidor') return 'domiciliario'; if (r === 'soporte') return 'soporte'; return 'admin';
+}
+function guiaTitulo(k) { const g = GUIAS[k]; return k === 'inicio' ? g.t + (S.cfg.APP_NOMBRE || 'La Wuaka') : g.t; }
+function guiaVideo(k) {
+  const src = mediaUrl(S.cfg[GUIAS[k].v]); if (!src) return '';
+  return `<div class="gv"><video controls playsinline preload="metadata" src="${esc(src)}"></video></div>`;
+}
+function bindVid(box) { $$('video', box).forEach(v => v.addEventListener('error', () => { const w = v.closest('.gv'); if (w) w.remove(); }, { once: true })); }
+function guiaSteps(k) {
+  const g = GUIAS[k]; const steps = k === 'admin' && esSuper() ? g.s.concat([['image', 'Pautas de la portada', 'Monta las imágenes o videos del slider grande y de las 2 pautas pequeñas.', 'pautas']]) : g.s;
+  const hecho = s => s[0] === 'mail' && S.user && S.user.verificado !== false;
+  return `<ol class="gsteps">${steps.map((s, i) => `<li class="${hecho(s) ? 'done' : ''}"><span class="aj-i">${ic(hecho(s) ? 'check' : s[0], 'sm')}</span><div class="grow"><b>${i + 1}. ${esc(s[1])}</b><small>${esc(s[2])}</small>${s[3] ? `<a class="btn sm" href="#/${s[3]}" data-close>${ic('chevr', 'sm')} Ir</a>` : ''}</div></li>`).join('')}</ol>`;
+}
+function openGuia(k, auto) {
+  const g = GUIAS[k]; if (!g) return;
+  if (k === 'dueno') { location.hash = '#/bienvenida'; return; }
+  const extra = k === 'cliente' ? `<div class="g-btns"><a class="btn pri grow" href="#/vender" data-close>${ic('store', 'sm')} Quiero abrir mi tienda</a><button class="btn grow" data-close>${ic('bag', 'sm')} Seguir como cliente</button></div>`
+    : k === 'inicio' ? `<div class="g-btns"><a class="btn pri grow" href="#/cuenta" data-close>${ic('user', 'sm')} Crear mi cuenta</a><button class="btn grow" data-close>${ic('search', 'sm')} Explorar primero</button></div>`
+    : `<button class="btn pri block" data-close>${ic('check', 'sm')} Entendido</button>`;
+  const box = openModal(mHead(guiaTitulo(k), g.ic) + `<div class="mb stack"><p class="mut" style="margin:0">${esc(g.d)}</p>${guiaVideo(k)}${guiaSteps(k)}${extra}
+    ${auto ? `<small class="mut" style="text-align:center">Puedes volver a ver esta guía en ${ic('play', 'sm')} Ayuda.</small>` : ''}</div>`, { wide: true });
+  bindVid(box);
+}
+function guiaVista(k) { return 'g_' + k + '_' + (S.user ? S.user.id : 'anon'); }
+function guiaAuto() {
+  if (!S.ready || $('#splash')) return;
+  if (MODAL) { setTimeout(guiaAuto, 2500); return; }
+  if (!S.user) return;
+  if (S.user.verificado === false && S.user.rol === 'cliente' && cfgBool('VERIFICAR_CORREO')) { if (!S.verifAsk) { S.verifAsk = true; verifDlg(true); } return; }
+  const k = guiaKey(); const f = guiaVista(k); if (store.get(f)) return;
+  store.set(f, '1');
+  if (k === 'dueno') { if (location.hash !== '#/bienvenida') location.hash = '#/bienvenida'; return; }
+  openGuia(k, true);
+}
+const cfgBool = k => String(S.cfg[k] || '').toUpperCase() === 'SI';
+
+/* ---------- bienvenida del dueño: lista para configurar la tienda ---------- */
+async function vBienvenida(main) {
+  if (!guard()) return;
+  const k = guiaKey();
+  if (k !== 'dueno') {
+    main.innerHTML = `<div class="g-hero"><span class="g-ring" style="--p:100"><span>${ic(GUIAS[k].ic)}</span></span><div><h1>${esc(guiaTitulo(k))}</h1><p>${esc(GUIAS[k].d)}</p></div></div>
+      <div class="g-cols"><div>${guiaVideo(k) || `<div class="card pad mut">${ic('play')} El video de esta guía estará disponible pronto.</div>`}</div><div>${guiaSteps(k).replace(/data-close/g, '')}</div></div>`;
+    bindVid(main); store.set(guiaVista(k), '1'); return;
+  }
+  main.innerHTML = `<div class="g-hero"><span class="g-ring" id="gRing"><span>0%</span></span><div><h1>¡Bienvenido, ${esc(S.user.nombre.split(' ')[0])}!</h1><p>Configura ${esc(S.tienda ? S.tienda.nombre : 'tu tienda')} y empieza a vender.</p></div></div>
+    <div class="g-cols"><div>${guiaVideo('dueno') || ''}</div><div><ol class="gsteps" id="gChk"><li><span class="spin"></span> Revisando tu tienda…</li></ol></div></div>`;
+  bindVid(main); store.set(guiaVista('dueno'), '1');
+  let t = S.tienda || {}; let np = 0; let ne = 0;
+  try { const [tt, pr, eq] = await Promise.all([S.user.tienda_id ? call('get', { e: 'Tiendas', id: S.user.tienda_id }).catch(() => null) : null, call('list', { e: 'Productos', f: {}, n: 1, p: 1 }).catch(() => null), call('equipo', {}).catch(() => null)]);
+    if (tt) t = tt; if (pr) np = toObjs(pr).t || 0; if (eq && eq.list) ne = eq.list.length; } catch (e) { /* se muestra lo que haya */ }
+  if (!$('#gChk')) return;
+  const P = [
+    [!!safeUrl(t.logo), 'image', 'Sube tu logo', 'Se ve en tu tienda, en tus productos y en el carnet de tu equipo.', 'mi-tienda'],
+    [!!safeUrl(t.portada), 'image', 'Pon una portada', 'Una foto horizontal de tu negocio o tus productos (1600 × 400 px).', 'mi-tienda'],
+    [String(t.descripcion || '').length >= 20 && !!t.horario && !!t.whatsapp, 'edit', 'Descripción, horario y WhatsApp', 'Cuéntale a la gente qué vendes, cuándo abres y cómo escribirte.', 'mi-tienda'],
+    [np >= 1, 'bag', np ? `Productos (${np})` : 'Carga tus productos', 'Foto, precio y existencias. Empieza con los 5 que más vendes.', 'g/Productos'],
+    [ne >= 2, 'users', 'Arma tu equipo', 'Agrega a tu administrador, vendedores y domiciliarios. Cada uno recibe su usuario y su carnet.', 'equipo'],
+    [!!t.abierta, 'store', 'Abre tu tienda', 'Activa "Tienda abierta" en tu panel para recibir pedidos.', 'panel']
+  ];
+  const ok = P.filter(x => x[0]).length; const pct = Math.round(ok * 100 / P.length);
+  $('#gChk').innerHTML = P.map((x, i) => `<li class="${x[0] ? 'done' : ''}"><span class="aj-i">${ic(x[0] ? 'check' : x[1], 'sm')}</span><div class="grow"><b>${i + 1}. ${esc(x[2])}</b><small>${esc(x[3])}</small>${x[0] ? '' : `<a class="btn sm pri" href="#/${x[4]}">${ic('chevr', 'sm')} Hacerlo ahora</a>`}</div></li>`).join('')
+    + `<li><span class="aj-i">${ic('film', 'sm')}</span><div class="grow"><b>Extra · Publica un estado</b><small>Fotos o videos cortos de 24 horas que salen en la portada.</small><a class="btn sm" href="#/mis-estados">${ic('chevr', 'sm')} Ir</a></div></li>`;
+  const r = $('#gRing'); if (r) { r.style.setProperty('--p', pct); r.innerHTML = `<span>${pct}%</span>`; }
+}
+function vAyuda(main) {
+  const k = guiaKey(); const lst = esSuper() ? Object.keys(GUIAS) : [k].concat(k === 'inicio' ? [] : ['inicio']).concat(k === 'cliente' || k === 'inicio' ? [] : ['cliente']);
+  main.innerHTML = pageH('play', 'Ayuda y guías') + `<p class="mut" style="margin-top:-6px">Videos cortos y pasos para sacarle provecho a ${esc(S.cfg.APP_NOMBRE || 'La Wuaka')}.</p>
+    <div class="g-list">${lst.map(x => `<button type="button" class="g-card" data-act="guia" data-k="${x}"><span class="th">${ic(GUIAS[x].ic)}</span><span class="grow"><b>${esc(guiaTitulo(x))}</b><small class="mut" style="display:block">${esc(GUIAS[x].d)}</small></span>${ic('play')}</button>`).join('')}</div>
+    ${wa(S.cfg.WHATSAPP_SOPORTE) ? `<a class="btn" style="margin-top:14px" href="${esc(wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + (S.cfg.APP_NOMBRE || 'La Wuaka')))}" target="_blank" rel="noopener">${ic('chat', 'sm')} Escribir a soporte</a>` : ''}`;
+}
+
+/* ---------- verificación del correo ---------- */
+function verifDlg(auto) {
+  if (!S.user || S.user.verificado !== false) return;
+  if (MODAL && $('#vfForm')) return;
+  const mail = S.user.email || '';
+  const box = openModal(mHead('Confirma tu correo', 'mail') + `<div class="mb stack"><form id="vfForm" class="stack" novalidate>
+    <p style="margin:0">Te enviamos un código de 6 dígitos a <b>${esc(mail)}</b>. Escríbelo aquí.</p>
+    <div class="vcode">${'<input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Dígito">'.repeat(6)}</div>
+    <small class="mut">¿No te llegó? Revisa la carpeta de Spam o Promociones. Vence en 30 minutos.</small>
+    <div class="form-err hide"></div>
+    <div class="row wrap" style="gap:8px"><button type="button" class="btn grow" id="vfRe">${ic('refresh', 'sm')} Enviar otro código</button><button class="btn pri grow" type="submit">${ic('check', 'sm')} Confirmar</button></div>
+    ${auto ? '<button type="button" class="btn ghost" data-close>Lo hago después</button>' : ''}</form></div>`);
+  const ins = $$('.vcode input', box);
+  ins.forEach((inp, i) => {
+    inp.addEventListener('input', () => {
+      const d = inp.value.replace(/\D/g, '');
+      if (d.length > 1) { d.split('').slice(0, 6 - i).forEach((c, j) => { ins[i + j].value = c; }); (ins[Math.min(5, i + d.length)] || inp).focus(); }
+      else { inp.value = d; if (d && ins[i + 1]) ins[i + 1].focus(); }
+      if (ins.every(x => x.value)) $('#vfForm').requestSubmit();
+    });
+    inp.addEventListener('keydown', e => { if (e.key === 'Backspace' && !inp.value && ins[i - 1]) ins[i - 1].focus(); });
+  });
+  setTimeout(() => ins[0].focus(), 120);
+  $('#vfRe', box).onclick = e => busy(e.currentTarget, 'Enviando…', async () => { try { const r = await call('reenviarCodigo', {}); if (r.ya) { S.user.verificado = true; closeModal(); toast('Tu correo ya estaba confirmado.'); return; } toast('Te enviamos un código nuevo a ' + (r.email || mail)); } catch (err) { toast(err.message, 'err'); } });
+  $('#vfForm', box).onsubmit = e => {
+    e.preventDefault(); const code = ins.map(x => x.value).join(''); const fe = $('.form-err', box);
+    if (code.length !== 6) { fe.textContent = 'Escribe los 6 dígitos.'; fe.classList.remove('hide'); return; }
+    busy($('[type=submit]', box), 'Confirmando…', async () => {
+      try { const u = await call('verificar', { codigo: code }); S.user = Object.assign(S.user, u, { verificado: true }); closeModal(); sonar('exito'); popup({ type: 'ok', title: '¡Correo confirmado!', msg: 'Ya puedes comprar y pedir tu tienda.', stay: 2200 }); setTimeout(guiaAuto, 1600); if (location.hash === '#/cuenta') route(); }
+      catch (err) { fe.textContent = err.message; fe.classList.remove('hide'); ins.forEach(x => { x.value = ''; }); ins[0].focus(); }
+    });
+  };
+}
+function verifBanner(main) {
+  if (!S.user || S.user.rol !== 'cliente' || S.user.verificado !== false || !cfgBool('VERIFICAR_CORREO')) return;
+  const h = $('.page-h', main); if (!h) return;
+  h.insertAdjacentHTML('afterend', `<div class="banner b-warn vbanner" style="margin-bottom:12px">${ic('mail')}<div class="grow">Confirma tu correo para poder comprar y pedir tu tienda.</div><button class="btn sm pri" data-act="verif">Confirmar ahora</button></div>`);
+}
+
+/* ---------- seguimiento del pedido ---------- */
+function pasosPedido(o) {
+  const dom = o.tipo_entrega === 'domicilio';
+  return [['Recibido', 'file', ['pendiente']], ['Confirmado', 'check', ['aceptado', 'preparando']], dom ? ['En camino', 'moto', ['listo', 'en_camino']] : ['Listo', 'store', ['listo']], ['Entregado', 'okcircle', ['entregado']]];
+}
+function stepper(o, full) {
+  const P = pasosPedido(o); const hist = parseJ(o.historial, []) || [];
+  let cur = P.findIndex(p => p[2].includes(o.estado)); if (cur < 0) cur = 0;
+  if (o.tipo_entrega === 'domicilio' && o.estado === 'listo') cur = 1;
+  const fecha = p => { if (p[2].includes('pendiente')) return o.creado; const h = hist.find(x => p[2].includes(x[0])); return h ? h[1] : ''; };
+  const hora = s => { const d = toDate(s); return d ? d.toLocaleDateString(S.cfg.LOCALE || 'es-CO', { day: '2-digit', month: 'short' }) + ' · ' + d.toLocaleTimeString(S.cfg.LOCALE || 'es-CO', { hour: 'numeric', minute: '2-digit' }) : ''; };
+  return `<ol class="stp ${full ? '' : 'mini'}" style="--n:${P.length}" aria-label="Progreso: ${esc(ESTL[o.estado] || o.estado)}">${P.map((p, j) => `<li class="${j <= cur ? 'on' : ''} ${j === cur ? 'now' : ''}"><span class="c">${ic(p[1], 'sm')}</span><b>${p[0]}</b>${full ? `<small>${j <= cur ? esc(hora(fecha(p))) : '—'}</small>` : ''}</li>`).join('')}</ol>`;
+}
+function trackHero(o) {
+  const dom = o.tipo_entrega === 'domicilio';
+  const M = { pendiente: ['wait', 'clock', '¡Pedido recibido!', 'Esperando que la tienda lo confirme.'], aceptado: ['go', 'check', '¡Pedido confirmado!', 'La tienda ya lo tiene.'], preparando: ['go', 'package', 'Preparando tu pedido', 'La tienda lo está alistando.'],
+    listo: dom ? ['go', 'package', 'Listo para salir', 'Esperando al domiciliario.'] : ['go', 'store', '¡Listo para recoger!', 'Ya puedes pasar por la tienda.'], en_camino: ['go', 'moto', '¡Pedido en camino!', o.repartidor_nombre ? esc(o.repartidor_nombre) + ' va hacia tu dirección.' : 'Va hacia tu dirección.'],
+    entregado: ['', 'check', '¡Pedido entregado!', 'Gracias por comprar en tu pueblo.'], cancelado: ['bad', 'xcircle', 'Pedido cancelado', ''], rechazado: ['bad', 'xcircle', 'Pedido rechazado', ''] };
+  const m = M[o.estado] || M.pendiente;
+  return `<div class="trk"><div class="trk-ic ${m[0]}">${ic(m[1])}</div><h2>${m[2]}</h2><p>${m[3] ? m[3] + '<br>' : ''}Pedido <b>${esc(o.codigo)}</b> · ${esc(fdate(o.creado))}</p></div>`;
+}
+
+/* ---------- compra exitosa ---------- */
+function compraOkHtml(peds) {
+  peds = peds || []; const uno = peds.length === 1;
+  const conf = Array.from({ length: 14 }, (_, i) => `<i style="--a:${i * (360 / 14)}deg;--d:${(i % 3) * 0.05}s;background:${['#22c55e', '#c6f432', '#facc15', '#38bdf8'][i % 4]}"></i>`).join('');
+  return `<div class="buyok" role="status">
+    <div class="bo-top"><div class="bo-chk"><div class="bo-cf">${conf}</div><svg viewBox="0 0 112 112" aria-hidden="true"><circle class="f" cx="56" cy="56" r="48"/><circle class="r" cx="56" cy="56" r="48"/><path class="k" d="M36 57 L50 71 L77 43"/></svg></div>
+      <h2>¡Gracias por tu compra!</h2>
+      <p class="bo-sub">${uno ? 'Tu pedido' : 'Tus ' + peds.length + ' pedidos'} ya ${uno ? 'llegó' : 'llegaron'} a la tienda. Te avisaremos cuando ${uno ? 'lo confirmen' : 'los confirmen'} y cada cambio de estado.</p>
+      <div class="bo-peds">${peds.map(p => `<div><span><b>${esc(p.codigo)}</b><small>${esc(p.tienda_nombre)}${p.viaje ? ' · viaje entre municipios' : ''}</small></span><b>${money(p.total)}</b></div>${p.viaje && p.cod_entrega ? `<div class="codebox">${ic('lock')}<div><small>Código de entrega · dáselo al domiciliario sólo cuando recibas</small><b>${esc(p.cod_entrega)}</b></div></div>` : ''}`).join('')}</div></div>
+    <div class="bo-btns"><a class="btn bo-main" href="${uno && peds[0].id ? '#/p/' + esc(peds[0].id) : '#/' + pedidosRuta()}">${ic('package', 'sm')} Ver detalles del pedido</a><a class="btn bo-sec" href="#/">${ic('bag', 'sm')} Seguir comprando</a></div>
+    <div class="bo-trust"><div>${ic('shield')}Compra protegida</div><div>${ic('moto')}Pedido con seguimiento</div><div>${ic('headset')}Soporte en tu pueblo</div></div></div>`;
+}
+
+/* ---------- gestor de pautas (superadministrador) ---------- */
+const PAUTAS = [
+  ['BANNER_1', 'Slider grande · 1', 'big'], ['BANNER_2', 'Slider grande · 2', 'big'], ['BANNER_3', 'Slider grande · 3', 'big'],
+  ['PROMO_1', 'Pauta pequeña · arriba', 'small'], ['PROMO_2', 'Pauta pequeña · abajo', 'small']
+];
+const PAU_SPEC = {
+  big: { img: '1600 × 700 px (horizontal, proporción 16:7)', peso: 'máx. 350 KB', fmt: 'JPG o WebP', vid: 'MP4 (H.264), sin sonido, 6 a 15 s, 1280 × 560 px, máx. 4 MB', ar: '16/7', max: 1600, vmb: 4, vs: 15 },
+  small: { img: '800 × 400 px (proporción 2:1)', peso: 'máx. 150 KB', fmt: 'JPG o WebP', vid: 'MP4 (H.264), sin sonido, 5 a 10 s, 800 × 400 px, máx. 2 MB', ar: '2/1', max: 900, vmb: 2, vs: 10 }
+};
+async function vPautas(main) {
+  if (!guard(['super'])) return;
+  main.innerHTML = pageH('image', 'Pautas de la portada', `<a class="btn" href="#/" target="_blank">${ic('eye', 'sm')} Ver portada</a>`)
+    + `<p class="mut" style="margin-top:-6px">El slider grande rota hasta 3 pautas cada 5,5 s. Las 2 pautas pequeñas van fijas a su lado (debajo en el celular). Cada una puede llevar imagen o video, y un botón hacia un producto, una tienda o una sección.</p>
+    <div class="banner b-info" style="margin-bottom:14px">${ic('alert')}<div><b>Consejo:</b> deja el texto importante en el centro de la imagen; en el celular se recortan los bordes. Si la imagen ya trae el texto, deja el título vacío y sólo se verá la imagen.</div></div>
+    <div class="pau-grid" id="pauBox">${'<div class="skel" style="height:320px"></div>'.repeat(4)}</div>`;
+  let rows; try { rows = await call('cfgList', {}); } catch (e) { $('#pauBox').innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
+  const V = {}; rows.forEach(r => { V[r.k] = r.v; }); S.pauV = V;
+  if (!$('#pauBox')) return;
+  $('#pauBox').innerHTML = PAUTAS.map(p => pautaCard(p, V[p[0]])).join('');
+  bindVid($('#pauBox'));
+}
+function pautaParts(v) { const b = String(v || '').split('|').map(x => x.trim()); while (b.length < 7) b.push(''); return b; }
+function pautaCard(p, v) {
+  const b = pautaParts(v); const sp = PAU_SPEC[p[2]]; const act = !!(b[0] || b[4] || b[6]);
+  const img = safeUrl(b[4]); const vid = mediaUrl(b[6]);
+  return `<article class="pau" data-k="${p[0]}">
+    <div class="pau-pv" style="aspect-ratio:${sp.ar};background:${/^#[0-9a-f]{6}$/i.test(b[5]) ? b[5] : 'var(--sur-2)'}">${vid ? `<video src="${esc(vid)}" ${img ? `poster="${esc(img)}"` : ''} muted loop playsinline autoplay></video>` : img ? `<img src="${esc(img)}" alt="" referrerpolicy="no-referrer">` : `<div class="ph" style="color:#fff">${b[0] ? `<b style="font-size:18px">${esc(b[0])}</b><small>${esc(b[1])}</small>` : `${ic('image', 'lg')}Sin pauta`}</div>`}
+      <span class="pau-tag">${esc(p[1])}${vid ? ' · video' : ''}</span></div>
+    <div class="pau-b"><div class="row between"><b>${act ? esc(b[0] || 'Sólo imagen') : 'Vacía · se muestra la de la marca'}</b><span class="badge ${act ? 'b-ok' : ''}">${act ? 'Activa' : 'Inactiva'}</span></div>
+      ${b[3] ? `<small class="mut">${ic('nav', 'sm')} Lleva a ${esc(b[3])}</small>` : ''}
+      <div class="spec"><span>${ic('image', 'sm')} ${esc(sp.img)}</span><span>${ic('download', 'sm')} ${esc(sp.peso)} · ${esc(sp.fmt)}</span><span>${ic('play', 'sm')} ${esc(sp.vid)}</span></div>
+      <div class="row wrap" style="gap:8px"><button class="btn sm pri" data-act="pau-edit">${ic('edit', 'sm')} ${act ? 'Editar' : 'Montar pauta'}</button>${act ? `<button class="btn sm ghost" data-act="pau-off">${ic('xcircle', 'sm')} Quitar</button>` : ''}</div></div></article>`;
+}
+function pautaForm(k) {
+  const p = PAUTAS.find(x => x[0] === k); const sp = PAU_SPEC[p[2]]; const b = pautaParts(S.pauV[k]);
+  const st = { img: safeUrl(b[4]), vid: b[6] || '' };
+  const box = openModal(mHead(p[1], 'image') + `<div class="mb"><form class="frm" id="pauF" novalidate>
+    <div class="fld full"><label>Imagen</label><div class="row wrap" style="gap:8px;align-items:center"><label class="btn">${ic('upload', 'sm')} Subir imagen<input type="file" accept="image/png,image/jpeg,image/webp" class="hide" id="pfImg"></label><button type="button" class="btn ghost" id="pfImgX">${ic('trash', 'sm')} Quitar</button></div>
+      <small class="hint">${esc(sp.img)} · ${esc(sp.peso)} · ${esc(sp.fmt)}. La app la reduce y comprime sola.</small><div id="pfPrev" style="margin-top:8px">${st.img ? `<img src="${esc(st.img)}" alt="" style="max-height:140px;border-radius:10px">` : ''}</div></div>
+    <div class="fld full"><label>Video (opcional)</label><div class="row wrap" style="gap:8px;align-items:center"><label class="btn">${ic('film', 'sm')} Subir video<input type="file" accept="video/mp4,video/webm" class="hide" id="pfVid"></label><input id="pfVidU" style="flex:1;min-width:200px" placeholder="o pega el enlace https:…/video.mp4" value="${esc(st.vid)}"></div>
+      <small class="hint">${esc(sp.vid)}. Se reproduce solo, sin sonido y en bucle; la imagen sirve de portada mientras carga. Para que cargue rápido, súbelo a la carpeta <code>videos</code> de tu GitHub y pega el enlace.</small><div id="pfVPrev"></div></div>
+    <div class="fld"><label for="pfT">Título</label><input id="pfT" maxlength="80" value="${esc(b[0])}" placeholder="Vacío = sólo imagen"></div>
+    <div class="fld"><label for="pfS">Subtítulo</label><input id="pfS" maxlength="140" value="${esc(b[1])}"></div>
+    <div class="fld"><label for="pfC">Texto del botón</label><input id="pfC" maxlength="30" value="${esc(b[2])}" placeholder="Ej: Comprar ahora"></div>
+    <div class="fld"><label for="pfH">Destino</label><div class="row" style="gap:6px"><input id="pfH" maxlength="200" value="${esc(b[3])}" placeholder="#/t/… o #/producto/…" style="flex:1"><button type="button" class="btn" id="pfHd">${ic('nav', 'sm')} Elegir</button></div></div>
+    <div class="fld"><label for="pfCo">Color de fondo</label><input id="pfCo" type="color" value="${/^#[0-9a-f]{6}$/i.test(b[5]) ? b[5] : '#0d5c63'}"></div>
+    <div class="form-err hide"></div>
+    <div class="ffoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Publicar pauta</button></div></form></div>`, { wide: true });
+  let up = null;
+  $('#pfImg', box).onchange = e => { const f = e.target.files[0]; if (!f) return; up = (async () => { $('#pfPrev', box).innerHTML = '<span class="spin"></span> Subiendo imagen…'; try { const d = await compressImage(f, sp.max, 0.8); const r = await call('upload', { data: d }); st.img = r.url; $('#pfPrev', box).innerHTML = `<img src="${esc(d)}" alt="" style="max-height:140px;border-radius:10px">`; } catch (err) { $('#pfPrev', box).innerHTML = ''; toast(err.message, 'err'); } })(); };
+  $('#pfImgX', box).onclick = () => { st.img = ''; $('#pfPrev', box).innerHTML = ''; };
+  $('#pfVid', box).onchange = e => { const f = e.target.files[0]; if (!f) return; up = (async () => {
+    if (f.size > sp.vmb * 1048576) { toast(`El video pesa ${(f.size / 1048576).toFixed(1)} MB. Para esta pauta el máximo es ${sp.vmb} MB.`, 'err'); return; }
+    const vp = $('#pfVPrev', box); vp.innerHTML = '<span class="spin"></span> Revisando video…';
+    try { const inf = await videoInfo(f); if (inf.dur > sp.vs + 0.5) { vp.innerHTML = ''; toast(`El video dura ${Math.round(inf.dur)} s. Para esta pauta el máximo es ${sp.vs} s.`, 'err'); return; }
+      vp.innerHTML = '<span class="spin"></span> Subiendo video…';
+      const [pv, vd] = await Promise.all([st.img ? null : call('upload', { data: inf.poster }), fileB64(f).then(d => call('uploadVideo', { data: d.replace(/^data:video\/[\w.-]+;/, 'data:' + (/webm/.test(f.type) ? 'video/webm' : 'video/mp4') + ';') }))]);
+      if (pv) st.img = pv.url; $('#pfVidU', box).value = vd.url; vp.innerHTML = `<span class="badge b-ok">${ic('check', 'sm')} Video listo · ${Math.round(inf.dur)} s</span>`;
+    } catch (err) { vp.innerHTML = ''; toast(err.message, 'err'); } })(); };
+  $('#pfHd', box).onclick = () => { const fake = document.createElement('div'); fake.innerHTML = `<input value="${esc(['x', '', $('#pfC', box).value, $('#pfH', box).value].join(' | '))}">`; const inp = fake.firstChild;
+    const obs = setInterval(() => { if (!MODAL || !$('#dsT')) { clearInterval(obs); const parts = pautaParts(inp.value); pautaForm._ret = parts; reabrir(); } }, 250);
+    const keep = { t: $('#pfT', box).value, s: $('#pfS', box).value, co: $('#pfCo', box).value, img: st.img, vid: $('#pfVidU', box).value };
+    const reabrir = () => { const r = pautaForm._ret || []; S.pauV[k] = [keep.t, keep.s, r[2] || '', r[3] || '', keep.img, keep.co, keep.vid].join(' | '); pautaForm(k); };
+    destinoDlg(fake); };
+  $('#pauF', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', box), 'Publicando…', async () => {
+    if (up) await up;
+    const vid = $('#pfVidU', box).value.trim();
+    if (vid && !mediaUrl(vid)) { toast('El enlace del video debe empezar por https.', 'err'); return; }
+    const o = { k, titulo: $('#pfT', box).value.trim(), sub: $('#pfS', box).value.trim(), cta: $('#pfC', box).value.trim(), href: $('#pfH', box).value.trim(), img: st.img, color: $('#pfCo', box).value, video: vid };
+    if (o.cta && !o.href) { toast('Elige el destino del botón.', 'err'); return; }
+    try { await call('pautaSave', o); closeModal(); toast('Pauta publicada. Se verá en la portada en máximo 10 minutos.'); S.cfg[k] = [o.titulo, o.sub, o.cta, o.href, o.img, o.color, o.video].join(' | '); vPautas($('#main')); }
+    catch (err) { const fe = $('.form-err', box); fe.textContent = err.message; fe.classList.remove('hide'); }
+  }); };
+}
+function avisoEquipo(m) {
+  const app = S.cfg.APP_NOMBRE || 'La Wuaka';
+  const txt = `Hola ${String(m.nombre || '').split(' ')[0]}, te agregué al equipo en ${app}. Entra con tu correo y tu contraseña de siempre: ${location.href.split('#')[0]}`;
+  openModal(mHead('Listo: ' + m.nombre + ' ya es parte del equipo', 'users') + `<div class="mb stack"><p style="margin:0">Le enviamos un aviso en la app y un correo. Entra con su contraseña de siempre.</p>
+    ${wa(m.telefono) ? `<a class="btn pri" href="${esc(wa(m.telefono, txt))}" target="_blank" rel="noopener">${ic('chat', 'sm')} Avisarle también por WhatsApp</a>` : ''}<button class="btn ghost" data-close>Cerrar</button></div>`);
+}
+
+ROUTES.push([/^bienvenida$/, vBienvenida], [/^ayuda$/, vAyuda], [/^pautas$/, vPautas]);
+ROUTES.forEach(r => { if (r[1] === vCuenta) r[1] = m => { vCuenta(m); verifBanner(m); }; });
+Object.assign(ACTS, {
+  'sp-go': () => splashSalir(() => { if (!store.get(guiaVista('inicio'))) { store.set(guiaVista('inicio'), '1'); setTimeout(() => openGuia('inicio', true), 350); } }),
+  'sp-login': () => splashSalir(() => { location.hash = '#/cuenta'; }),
+  'sp-inst': () => { if (installEvt) { installEvt.prompt(); installEvt.userChoice.then(ch => { installEvt = null; refreshInstallUI(); if (ch.outcome === 'accepted') toast('Instalando…'); }).catch(() => { }); } else openInstall(); },
+  verif: () => verifDlg(),
+  guia: el => openGuia(el.dataset.k),
+  'pau-edit': el => pautaForm(el.closest('[data-k]').dataset.k),
+  'pau-off': async el => { const k = el.closest('[data-k]').dataset.k; if (!(await confirmDlg({ title: 'Quitar pauta', msg: 'Dejará de verse en la portada.', ok: 'Quitar', danger: true }))) return; busy(el, '…', async () => { try { await call('pautaSave', { k, activa: false }); S.cfg[k] = ''; toast('Pauta quitada'); vPautas($('#main')); } catch (e) { toast(e.message, 'err'); } }); }
+});
 </script>
 </body>
 </html>
