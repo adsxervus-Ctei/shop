@@ -1555,6 +1555,45 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 .slide.img-only{padding:0}.slide.img-only::before,.slide.img-only .sl-deco{display:none}.slide.img-only .sl-bg,.slide.img-only.on .sl-bg{transform:none}
 .promo.img-only{padding:0;min-height:0}.promo.img-only::before{display:none}
 @media (max-width:980px){.promo.img-only{aspect-ratio:2/1}}
+
+/* v1.8 · lista para publicar */
+.pub-box{margin-bottom:16px;border:2px solid var(--acc,#c6f432)}
+.pub-box.ok{border-color:var(--ok,#1a9b5a)}.pub-ic{color:var(--ok,#1a9b5a)}
+.g-ring.sm{width:58px;height:58px;font-size:14px}
+.pub-l{list-style:none;padding:0;margin:12px 0;display:grid;gap:6px}
+@media (min-width:900px){.pub-l{grid-template-columns:1fr 1fr}}
+.pub-l li{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:12px;background:var(--bg)}
+.pub-l li>span{width:26px;height:26px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--line);color:var(--ink-2)}
+.pub-l li.ok>span{background:var(--ok,#1a9b5a);color:#fff}.pub-l li>div{flex:1}.pub-l small{display:block;color:var(--ink-2);font-size:12px}
+.pub-l li.ok b{color:var(--ink-2);font-weight:600}
+.pub-btn:disabled{opacity:.5;cursor:not-allowed}
+/* v1.8 · recorrido con globos (onomatopeyas) */
+#tour{position:fixed;inset:0;z-index:calc(var(--z-toast) + 10);pointer-events:none}
+.tour-blk{position:fixed;inset:0;pointer-events:auto}
+#tour.esp .tour-blk{pointer-events:none}
+.tour-hole{position:fixed;border-radius:16px;box-shadow:0 0 0 3px #c6f432,0 0 0 9999px rgba(4,22,24,.62);transition:all .35s cubic-bezier(.3,.8,.3,1);pointer-events:none}
+#tour.busy .tour-hole{opacity:0}
+.tour-b{position:fixed;pointer-events:auto;background:#c6f432;color:#062a2e;border:3px solid #062a2e;border-radius:22px;padding:16px 16px 12px;box-shadow:6px 8px 0 #062a2e;transform:scale(.4) rotate(-6deg);opacity:0;transition:transform .45s cubic-bezier(.3,1.7,.5,1),opacity .2s}
+.tour-b.in{transform:scale(1) rotate(-1deg);opacity:1}
+.tour-x{position:absolute;top:-22px;left:14px;background:#062a2e;color:#c6f432;font-weight:900;font-size:19px;letter-spacing:.02em;padding:4px 14px;border-radius:12px;transform:rotate(-7deg);box-shadow:3px 3px 0 #c6f432}
+.tour-b b{display:block;font-size:17px;margin:6px 0 4px}.tour-b p{margin:0 0 10px;font-size:14px;line-height:1.4}
+.tour-f{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.tour-f small{font-weight:700}
+.tour-sk{background:none;border:0;color:#062a2e;text-decoration:underline;font:inherit;font-size:12.5px;cursor:pointer;padding:4px}
+.tour-b .btn.pri{background:#062a2e;color:#c6f432;border-color:#062a2e}.tour-b .btn.ghost{color:#062a2e;border-color:#062a2e}
+.tour-tap{display:inline-flex;align-items:center;gap:4px;font-weight:800;animation:tap 1s infinite}
+@keyframes tap{50%{transform:translateY(4px)}}
+.tour-ar{position:absolute;top:-13px;width:18px;height:18px;background:#c6f432;border-left:3px solid #062a2e;border-top:3px solid #062a2e;transform:rotate(45deg)}
+.tour-b.arriba .tour-ar{top:auto;bottom:-13px;transform:rotate(225deg)}
+@media (prefers-reduced-motion:reduce){.tour-b,.tour-hole{transition:none}.tour-tap{animation:none}}
+
+/* v1.8 · diseño del carnet */
+.car-ops{display:grid;gap:8px}@media (min-width:700px){.car-ops{grid-template-columns:repeat(3,1fr)}}
+.car-op input{position:absolute;opacity:0}
+.car-op span{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;height:100%}
+.car-op small{color:var(--ink-2);font-size:12.5px;line-height:1.35}
+.car-op input:checked+span{border-color:var(--pri);background:var(--pri-l)}.car-op input:focus-visible+span{outline:3px solid var(--pri)}
+.car-pv:empty{display:none}.car-pv{display:flex;justify-content:center}
+.car-tips{margin-bottom:14px}.car-tips summary{cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center}.car-tips ol{margin:12px 0 0;padding-left:20px;display:grid;gap:6px;font-size:14px}
 </style>
 </head>
 <body>
@@ -3002,6 +3041,7 @@ async function vPanel(main, fresh, quiet) {
   const t = d.tienda; const vencida = t && t.plan_vence && t.plan_vence < new Date().toISOString().slice(0, 10);
   $('#dashBody').innerHTML = `
     ${S.setup && r === 'admin' ? `<div class="banner b-warn">${ic('alert')} Ejecuta <b>instalar()</b> desde el editor.</div>` : ''}
+    ${t && t.estado === 'aprobada' ? `<a class="banner b-warn" href="#/bienvenida" style="text-decoration:none">${ic('store')} <div><b>Tu tienda todavía no está publicada.</b> Completa la lista y toca "Publicar mi tienda". <u>Ir a la lista</u></div></a>` : ''}
     ${t ? `<div class="card pad row wrap" style="margin-bottom:14px"><div class="grow"><b>${esc(t.nombre)}</b> <span class="badge ${t.estado === 'activa' ? 'b-ok' : 'b-warn'}">${esc(t.estado)}</span>
         ${t.plan_vence ? `<small class="mut" style="display:block">Mensualidad ${vencida ? '<b style="color:var(--err)">vencida</b> el' : 'vigente hasta'} ${fday(t.plan_vence)}</small>` : ''}</div>
       <label class="sw"><input type="checkbox" id="swOpen" ${t.abierta ? 'checked' : ''}><span></span><em>${t.abierta ? 'Tienda abierta' : 'Tienda cerrada'}</em></label></div>` : ''}
@@ -3197,9 +3237,10 @@ function hydrateForm(form, onSubmit) {
     const p = (async () => {
       lbl.textContent = 'Subiendo…';
       try {
-        const data = await compressImage(file, fld.dataset.k === 'portada' ? 1800 : 1000, fld.dataset.k === 'portada' ? 0.85 : 0.82);
+        const ancho = fld.dataset.k === 'portada' ? 1800 : /^CARNET_/.test(fld.dataset.k) ? 1300 : 1000;
+        const data = await compressImage(file, ancho, ancho > 1000 ? 0.86 : 0.82);
         $('.imgprev', fld).innerHTML = `<img src="${esc(data)}" alt="">`;
-        const r = await enqueue('upload', { data, name: file.name, w: fld.dataset.k === 'portada' ? 1800 : 1000 });
+        const r = await enqueue('upload', { data, name: file.name, w: ancho });
         hid.value = r.url; toast('Imagen cargada');
       } catch (e) { toast(e.message, 'err'); $('.imgprev', fld).innerHTML = imgTag(hid.value, ''); }
       finally { lbl.textContent = 'Subir imagen'; inp.value = ''; }
@@ -3330,9 +3371,10 @@ async function vMiTienda(main, sid) {
   const m = S.meta.Tiendas; const fs = formFields(m, false).filter(f => !sid || SOP_K.includes(f.k));
   main.innerHTML = `<div class="page-h">${sid ? `<a class="icon-btn" href="#/negocios" aria-label="Volver">${ic('left')}</a>` : ''}<h1>${ic('store')} ${sid ? esc(t.nombre) : 'Mi tienda'}</h1><span class="badge ${t.estado === 'activa' ? 'b-ok' : 'b-warn'}">${esc(t.estado)}</span><span class="grow"></span><a class="btn" href="#/t/${esc(t.id)}">${ic('eye')} Ver como cliente</a></div>
     ${sid ? `<div class="banner b-info">${ic('tool')} Modo soporte: puedes corregir la imagen, los datos de contacto, la ubicación y el horario. El dinero, los pedidos y la configuración del negocio no se ven aquí.</div>` : ''}
-    ${t.estado !== 'activa' ? `<div class="banner b-warn">${ic('clock')} Tu tienda está ${esc(t.estado)}. El administrador debe activarla para que aparezca en el marketplace.</div>` : ''}
+    ${t.estado === 'aprobada' && !sid ? '<div id="pubHost"></div>' : t.estado !== 'activa' ? `<div class="banner b-warn">${ic('clock')} Tu tienda está ${esc(t.estado)}. ${t.estado === 'aprobada' ? 'El dueño la está configurando y la publica cuando esté lista.' : 'El administrador debe activarla para que aparezca en el marketplace.'}</div>` : ''}
     <div class="row wrap" style="margin-bottom:14px;gap:8px">${Number(t.rating_n) ? `<span class="badge b-pri">★ ${Number(t.rating).toFixed(1)} · ${num(t.rating_n)} calificaciones</span>` : ''}${t.plan_vence ? `<span class="badge">Mensualidad hasta ${fday(t.plan_vence)}</span>` : ''}</div>
     <div id="mtForm">${mtFormHtml(fs, t)}</div>`;
+  if ($('#pubHost')) pubBoxCargar($('#pubHost'));
   S.mtRec = t;
   const form = $('#mtForm form');
   hydrateForm(form, btn => {
@@ -3907,7 +3949,7 @@ function solCard(t) {
 }
 function vSolicitudes(main) {
   if (!guard(['admin'])) return;
-  main.innerHTML = `<div class="page-h"><h1>${ic('store')} Solicitudes de tienda</h1><span class="grow"></span><div class="chips"><button class="chip on" data-act="soltab" data-v="pendiente">Por revisar</button><button class="chip" data-act="soltab" data-v="rechazada">Rechazadas</button><button class="chip" data-act="soltab" data-v="activa">Aprobadas</button></div></div>
+  main.innerHTML = `<div class="page-h"><h1>${ic('store')} Solicitudes de tienda</h1><span class="grow"></span><div class="chips"><button class="chip on" data-act="soltab" data-v="pendiente">Por revisar</button><button class="chip" data-act="soltab" data-v="aprobada">En configuración</button><button class="chip" data-act="soltab" data-v="activa">Publicadas</button><button class="chip" data-act="soltab" data-v="rechazada">Rechazadas</button></div></div>
     <div class="solgrid" id="solList"></div>
     <div class="page-h" style="margin-top:26px"><h2 style="margin:0;display:flex;gap:8px;align-items:center">${ic('moto')} Domiciliarios por aprobar</h2></div>
     <p class="mut" style="margin-top:-6px">Personas que se inscribieron solas como domiciliarios independientes.</p>
@@ -3933,18 +3975,18 @@ async function openSolicitud(id) {
       ${row('Nombre', esc(u.nombre))}${row('Correo', u.email ? `<a href="mailto:${esc(u.email)}">${esc(u.email)}</a>` : '')}${row('Teléfono', esc(u.telefono))}${row('Cliente desde', u.creado ? esc(fday(u.creado)) : '')}</dl>
       <div class="row wrap" style="gap:6px;margin-top:10px">${u.telefono || t.whatsapp ? `<a class="btn sm" href="${esc(wa(t.whatsapp || u.telefono, 'Hola, te escribimos por la solicitud de "' + t.nombre + '" en ' + (S.cfg.APP_NOMBRE || 'la app')))}" target="_blank" rel="noopener">${ic('chat', 'sm')} WhatsApp</a>` : ''}${u.telefono ? `<a class="btn sm" href="tel:${esc(u.telefono)}">${ic('phone', 'sm')} Llamar</a>` : ''}</div></div></div>
     ${ll ? `<div class="pmap" id="solMap"></div><a class="btn sm" href="${esc(rutaUrl(ll))}" target="_blank" rel="noopener">${ic('map', 'sm')} Ver en Google Maps</a>` : '<div class="banner b-info">' + ic('pin') + ' El negocio no marcó su ubicación en el mapa.</div>'}
-    ${pend ? `<div class="ffoot" style="flex-wrap:wrap"><button class="btn danger" data-sol="no">${ic('x', 'sm')} Rechazar</button><button class="btn pri" data-sol="si">${ic('check')} Aprobar y publicar</button></div>`
-      : `<div class="banner ${t.estado === 'activa' ? 'b-ok' : 'b-err'}">${ic(t.estado === 'activa' ? 'okcircle' : 'alert')} Esta solicitud ya fue ${t.estado === 'activa' ? 'aprobada' : 'rechazada'}.</div>`}</div>`;
+    ${pend ? `<div class="ffoot" style="flex-wrap:wrap"><button class="btn danger" data-sol="no">${ic('x', 'sm')} Rechazar</button><button class="btn pri" data-sol="si">${ic('check')} Aprobar</button></div>`
+      : `<div class="banner ${t.estado === 'activa' ? 'b-ok' : t.estado === 'aprobada' ? 'b-info' : 'b-err'}">${ic(t.estado === 'rechazada' ? 'alert' : 'okcircle')} ${t.estado === 'activa' ? 'Aprobada y publicada por el dueño.' : t.estado === 'aprobada' ? 'Aprobada. El dueño la está configurando; él mismo la publica cuando esté lista.' : 'Esta solicitud ya fue ' + esc(t.estado) + '.'}</div>`}</div>`;
   if (ll) cargarMapa().then(L => { const el = $('#solMap', box); if (!el) return; const m = L.map(el, { zoomControl: false, scrollWheelZoom: false }).setView(ll, 17); L.tileLayer(TILES, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(m); L.marker(ll, { icon: mkIcon(L, 't') }).addTo(m); }).catch(() => { });
   $$('[data-sol]', box).forEach(b => b.onclick = async () => {
     const ok = b.dataset.sol === 'si'; let motivo = '';
     if (!ok) { motivo = await confirmDlg({ title: 'Rechazar "' + t.nombre + '"', msg: 'El solicitante verá este motivo y podrá enviar una nueva solicitud.', ok: 'Rechazar', danger: true, input: { label: 'Motivo del rechazo', req: true } }); if (!motivo) return; }
-    else if (!await confirmDlg({ title: 'Aprobar "' + t.nombre + '"', msg: 'Se publicará en el marketplace y el solicitante pasará a ser vendedor con su panel.', ok: 'Aprobar' })) return;
+    else if (!await confirmDlg({ title: 'Aprobar "' + t.nombre + '"', msg: 'El solicitante recibe el aviso y el correo, entra a su panel y una guía le muestra qué llenar: logo, portada, descripción y productos. Cuando todo esté listo, él mismo la publica en la vitrina.', ok: 'Aprobar' })) return;
     busy(b, ok ? 'Aprobando…' : 'Rechazando…', async () => {
       try {
         const r = await enqueue('decidirTienda', { id: t.id, ok, motivo: motivo.trim() });
         closeModal(); upsertAll('Tiendas', r); if (S.solList && !S.solList.dead) S.solList.load(); refreshSolCount();
-        popup({ title: ok ? 'Tienda aprobada' : 'Solicitud rechazada', msg: ok ? '"' + t.nombre + '" ya está publicada. Avisamos al solicitante.' : 'Le avisamos al solicitante con el motivo.', type: ok ? 'ok' : 'info', sound: ok ? 'exito' : '' });
+        popup({ title: ok ? 'Tienda aprobada' : 'Solicitud rechazada', msg: ok ? 'Le avisamos a "' + t.nombre + '" por la app y por correo. Aparecerá en la vitrina cuando el dueño la publique.' : 'Le avisamos al solicitante con el motivo.', type: ok ? 'ok' : 'info', sound: ok ? 'exito' : '' });
       } catch (e) { popup({ type: 'err', title: 'No se pudo guardar', msg: e.message }); }
     });
   });
@@ -4636,7 +4678,7 @@ async function vEquipo(main, tidParam) {
   S.eqT = tidParam || (adm ? (S.eqT || '') : '');
   if (!esSuper() && (S.eqT === 'sop' || S.eqT === 'gestor')) S.eqT = '';
   const plat = S.eqT === 'sop' || S.eqT === 'gestor';
-  main.innerHTML = pageH('users', esSuper() ? 'Equipos y administración' : adm ? 'Equipos de los negocios' : sop ? 'Equipo del negocio' : 'Mi equipo', !sop ? `<button class="btn pri" data-act="eq-new">${ic('plus', 'sm')} Agregar persona</button>` : '')
+  main.innerHTML = pageH('users', esSuper() ? 'Equipos y administración' : adm ? 'Equipos de los negocios' : sop ? 'Equipo del negocio' : 'Mi equipo', (esAdm() ? `<button class="btn" data-act="car-diseno">${ic('id', 'sm')} Diseño del carnet</button>` : '') + (!sop ? `<button class="btn pri" data-act="eq-new">${ic('plus', 'sm')} Agregar persona</button>` : ''))
     + (adm ? `<div class="chips" style="margin-bottom:12px"><button class="chip ${!plat ? 'on' : ''}" data-act="eq-tab" data-v="">Equipo de un negocio</button>${esSuper() ? `<button class="chip ${S.eqT === 'gestor' ? 'on' : ''}" data-act="eq-tab" data-v="gestor">${ic('shield', 'sm')} Administradores</button><button class="chip ${S.eqT === 'sop' ? 'on' : ''}" data-act="eq-tab" data-v="sop">${ic('tool', 'sm')} Personal de soporte</button>` : ''}</div>
       ${S.eqT === 'gestor' ? `<div class="banner b-info" style="margin-bottom:12px">${ic('shield')} <div>Los administradores atienden la operación diaria: solicitudes de tienda, estados, pedidos, tiendas, productos, usuarios (no administradores), categorías, municipios, zonas, soporte y asistencia. No ven Configuración, Pautas, Mensualidades, Cupones ni Auditoría, y no pueden borrar.</div></div>` : ''}
       <div class="fld ${plat ? 'hide' : ''}" id="eqTf" style="max-width:420px;margin-bottom:12px"><label>Negocio</label><div class="refpick" data-ref="Tiendas"><input type="search" class="rp-q" placeholder="Buscar negocio…"><select id="eqT"><option value="">Selecciona…</option>${S.eqT && !plat && S.eqN ? `<option value="${esc(S.eqT)}" selected>${esc(S.eqN)}</option>` : ''}</select></div></div>` : '')
@@ -4662,7 +4704,7 @@ function equipoForm(m) {
   const adm = esAdm(); const sopTab = esSuper() && S.eqT === 'sop'; const gesTab = esSuper() && S.eqT === 'gestor'; const platTab = sopTab || gesTab; const nuevo = !m; m = m || {};
   const puedeAdm = adm || cargo() === 'dueno';
   const rolSel = gesTab ? 'gestor' : sopTab ? 'soporte' : (m.rol || 'vendedor');
-  const fotoF = { k: 'foto', t: 'img', l: 'Foto (para el carnet)' }; const portF = { k: 'portada', t: 'img', l: 'Portada del perfil (opcional)' };
+  const fotoF = { k: 'foto', t: 'img', l: 'Foto (para el carnet)', hint: 'Fondo liso, luz de lado, hombros girados y ropa oscura. La app la recorta y la pone en blanco y negro.' }; const portF = { k: 'portada', t: 'img', l: 'Portada del perfil (opcional)' };
   const box = openModal(mHead(nuevo ? 'Agregar persona' : 'Editar · ' + m.nombre, 'users') + `<div class="mb"><form class="frm" novalidate>
     ${fieldHtml(fotoF, m.foto || '', m, nuevo)}${fieldHtml(portF, m.portada || '', m, nuevo)}
     <div class="fld"><label for="eqN">Nombre completo <span class="req">*</span></label><input id="eqN" name="nombre" maxlength="80" value="${esc(m.nombre || '')}"></div>
@@ -4839,7 +4881,8 @@ async function drawCarnetBack(d) {
 }
 /** Muestra frente y reverso, con descarga (las dos caras juntas) e impresión a tamaño real. */
 async function mostrarCarnet(box, d) {
-  const [f, b] = await Promise.all([drawCarnet(d), drawCarnetBack(d)]); if (!box.isConnected) return;
+  const clasico = d.estilo === 'clasico' || (!d.estilo && !d.pro);
+  const [f, b] = await Promise.all(clasico ? [drawCarnet(d), drawCarnetBack(d)] : [drawCarnetPro(d), drawCarnetProBack(d)]); if (!box.isConnected) return;
   box.innerHTML = `<div class="carnet-w"><div class="car-flip" tabindex="0" role="button" aria-label="Voltear carnet"><div class="car-in"><div class="car-f"></div><div class="car-b"></div></div></div>
     <div class="seg car-seg"><button class="on" data-l="f">Frente</button><button data-l="b">Reverso</button></div>
     <div class="row wrap" style="gap:8px;justify-content:center"><button class="btn pri" data-k="dl">${ic('download', 'sm')} Descargar</button><button class="btn" data-k="pr">${ic('file', 'sm')} Imprimir</button></div>
@@ -4867,7 +4910,15 @@ function imprimirImg(urls) {
 }
 function vMiCarnet(main) {
   if (!guard(['admin', 'vendedor', 'repartidor', 'soporte'])) return;
-  main.innerHTML = pageH('id', 'Mi carnet') + `<p class="mut" style="margin-top:-4px">Muéstralo en el celular o impreso: se escanea al entrar y al salir de tu jornada. Toca el carnet para ver el reverso.</p><div class="card pad" id="mcBox"><div class="skel" style="height:460px;max-width:290px;margin:auto;border-radius:16px"></div></div>`;
+  main.innerHTML = pageH('id', 'Mi carnet') + `<p class="mut" style="margin-top:-4px">Muéstralo en el celular o impreso: se escanea al entrar y al salir de tu jornada. Toca el carnet para ver el reverso.</p>
+    <details class="card pad car-tips"><summary><b>${ic('camera', 'sm')} Cómo tomarte la foto para que quede como en las revistas</b></summary><ol>
+      <li><b>Fondo liso y claro</b> (una pared blanca o gris). La app recorta a la persona sola; con fondo liso el recorte queda perfecto.</li>
+      <li><b>Luz de lado</b>: párate al lado de una ventana, a 45°. Media cara iluminada y media en sombra da el efecto dramático.</li>
+      <li><b>Cámara a la altura de los ojos o un poco más abajo</b>, a un brazo y medio de distancia. Que salgan cabeza, hombros y medio pecho.</li>
+      <li><b>Pose</b>: gira los hombros unos 30° hacia un lado y la cara hacia la cámara. Barbilla un poco adelante y abajo, mirada firme, sin sonrisa forzada.</li>
+      <li><b>Ropa oscura y lisa</b> (camiseta negra o del uniforme), sin estampados. Así el cuerpo se funde con el fondo negro del carnet.</li>
+      <li><b>Deja aire arriba</b> de la cabeza y no cortes la frente. Nada de gafas de sol, gorras ni filtros.</li></ol></details>
+    <div class="card pad" id="mcBox"><div class="skel" style="height:460px;max-width:290px;margin:auto;border-radius:16px"></div></div>`;
   (async () => {
     try { const d = await call('carnet', {}); const b = $('#mcBox'); if (b) await mostrarCarnet(b, d); }
     catch (e) { const b = $('#mcBox'); if (b) b.innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; }
@@ -5334,8 +5385,10 @@ async function vBienvenida(main) {
     bindVid(main); store.set(guiaVista(k), '1'); return;
   }
   main.innerHTML = `<div class="g-hero"><span class="g-ring" id="gRing"><span>0%</span></span><div><h1>¡Bienvenido, ${esc(S.user.nombre.split(' ')[0])}!</h1><p>Configura ${esc(S.tienda ? S.tienda.nombre : 'tu tienda')} y empieza a vender.</p></div></div>
+    <div id="pubHost"></div>
     <div class="g-cols"><div>${guiaVideo('dueno') || ''}</div><div><ol class="gsteps" id="gChk"><li><span class="spin"></span> Revisando tu tienda…</li></ol></div></div>`;
   bindVid(main); store.set(guiaVista('dueno'), '1');
+  pubBoxCargar($('#pubHost')).then(c => { if (c && location.hash === '#/bienvenida' && !TOUR.on) bienvenidaDueno(c); });
   let t = S.tienda || {}; let np = 0; let ne = 0;
   try { const [tt, pr, eq] = await Promise.all([S.user.tienda_id ? call('get', { e: 'Tiendas', id: S.user.tienda_id }).catch(() => null) : null, call('list', { e: 'Productos', f: {}, n: 1, p: 1 }).catch(() => null), call('equipo', {}).catch(() => null)]);
     if (tt) t = tt; if (pr) np = toObjs(pr).t || 0; if (eq && eq.list) ne = eq.list.length; } catch (e) { /* se muestra lo que haya */ }
@@ -5346,7 +5399,7 @@ async function vBienvenida(main) {
     [String(t.descripcion || '').length >= 20 && !!t.horario && !!t.whatsapp, 'edit', 'Descripción, horario y WhatsApp', 'Cuéntale a la gente qué vendes, cuándo abres y cómo escribirte.', 'mi-tienda'],
     [np >= 1, 'bag', np ? `Productos (${np})` : 'Carga tus productos', 'Foto, precio y existencias. Empieza con los 5 que más vendes.', 'g/Productos'],
     [ne >= 2, 'users', 'Arma tu equipo', 'Agrega a tu administrador, vendedores y domiciliarios. Cada uno recibe su usuario y su carnet.', 'equipo'],
-    [!!t.abierta, 'store', 'Abre tu tienda', 'Activa "Tienda abierta" en tu panel para recibir pedidos.', 'panel']
+    [t.estado === 'activa' && !!t.abierta, 'store', t.estado === 'aprobada' ? 'Publica tu tienda' : 'Abre tu tienda', t.estado === 'aprobada' ? 'Cuando la lista de arriba esté en verde, toca "Publicar mi tienda".' : 'Activa "Tienda abierta" en tu panel para recibir pedidos.', t.estado === 'aprobada' ? 'bienvenida' : 'panel']
   ];
   const ok = P.filter(x => x[0]).length; const pct = Math.round(ok * 100 / P.length);
   $('#gChk').innerHTML = P.map((x, i) => `<li class="${x[0] ? 'done' : ''}"><span class="aj-i">${ic(x[0] ? 'check' : x[1], 'sm')}</span><div class="grow"><b>${i + 1}. ${esc(x[2])}</b><small>${esc(x[3])}</small>${x[0] ? '' : `<a class="btn sm pri" href="#/${x[4]}">${ic('chevr', 'sm')} Hacerlo ahora</a>`}</div></li>`).join('')
@@ -6027,6 +6080,263 @@ function cfgGrid(box, rows) {
     const hit = rows.filter(r => normCol(r.k + ' ' + r.d).includes(q)); $('.cfg-grid', box).classList.add('hide'); res.classList.remove('hide');
     res.innerHTML = hit.length ? hit.map(cfgRowHtml).join('') : '<p class="mut">No hay ajustes con esa palabra.</p>'; }, 250));
 }
+
+/* =====================================================================
+ * v1.8 · TIENDA APROBADA → GUÍA PASO A PASO → EL DUEÑO LA PUBLICA
+ * ===================================================================== */
+const fldOf = (k, root) => { const el = (root || document).querySelector(`[name="${k}"], .fld[data-k="${k}"], [data-k="${k}"]`); return el ? (el.closest('.fld') || el) : null; };
+const enModal = () => MODAL && MODAL.el;
+/** Pasos del recorrido. r = ruta, el = qué señalar, x = onomatopeya, t = título, d = texto, espera = 'click' (avanza cuando tocan el elemento). */
+const TOUR_DUENO = [
+  { r: 'mi-tienda', el: () => fldOf('logo'), x: '¡Pum!', t: 'Aquí va tu logo', d: 'Sube el logo de tu negocio o una foto cuadrada. Puedes tomarla con la cámara.' },
+  { r: 'mi-tienda', el: () => fldOf('portada'), x: '¡Zas!', t: 'Tu portada', d: 'Una foto horizontal de tu local o de tus productos. Es lo primero que ve el cliente.' },
+  { r: 'mi-tienda', el: () => fldOf('descripcion'), x: '¡Ojo!', t: 'Cuéntales qué vendes', d: 'Ej.: "Droguería con domicilio en 30 minutos. Medicamentos de venta libre, cuidado del bebé y botiquín."' },
+  { r: 'mi-tienda', el: () => fldOf('whatsapp') || fldOf('telefono'), x: '¡Ring!', t: 'Tu WhatsApp', d: 'El número donde los clientes te escriben y te llegan los pedidos.' },
+  { r: 'mi-tienda', el: () => fldOf('horario'), x: '¡Tic tac!', t: 'Tu horario', d: 'Ej.: "Lun a Sáb 7:00 a.m. - 9:00 p.m."' },
+  { r: 'mi-tienda', el: () => fldOf('ubicacion') || fldOf('direccion'), x: '¡Aquí!', t: 'Dónde queda tu local', d: 'Escribe la dirección y marca el punto en el mapa para que el domiciliario llegue fácil.' },
+  { r: 'mi-tienda', el: () => fldOf('metodos_pago'), x: '¡Cha-ching!', t: 'Cómo te pagan', d: 'Marca efectivo, Nequi, Daviplata o transferencia, y escribe los datos para que te paguen.' },
+  { r: 'mi-tienda', el: () => $('.mt-save [type=submit]'), x: '¡Listo!', t: 'Guarda los cambios', d: 'Toca Guardar cada vez que cambies algo. Los cambios se ven en tu vitrina.' },
+  { r: 'g/Productos', el: () => $('[data-act=g-new]'), x: '¡Pum!', t: 'Sube tu primer producto', d: 'Toca "Nuevo" para crear un producto.', espera: 'click' },
+  { modal: 1, el: () => enModal() && fldOf('imagen', enModal()), x: '¡Clic!', t: 'La foto del producto', d: 'Una foto clara, de frente y con buena luz. Puedes subir hasta 3.' },
+  { modal: 1, el: () => enModal() && fldOf('nombre', enModal()), x: '¡Ojo!', t: 'El nombre', d: 'Claro y con la presentación. Ej.: "Acetaminofén 500 mg x 10 tabletas".' },
+  { modal: 1, el: () => enModal() && fldOf('precio', enModal()), x: '¡Cha-ching!', t: 'El precio', d: 'Si está en oferta, pon el precio anterior en "Precio antes" y se verá el descuento.' },
+  { modal: 1, el: () => enModal() && (fldOf('stock', enModal()) || fldOf('controla_stock', enModal())), x: '¡Cuenta!', t: 'Cuántas unidades tienes', d: 'Si lo activas, el producto se oculta solo cuando se agota.' },
+  { modal: 1, el: () => enModal() && fldOf('categoria_id', enModal()), x: '¡Zas!', t: 'La categoría', d: 'Así el cliente lo encuentra en el menú de categorías.' },
+  { modal: 1, el: () => enModal() && $('[type=submit]', enModal()), x: '¡Guardado!', t: 'Guarda el producto', d: 'Repite hasta tener tus primeros productos. También puedes cargarlos desde Excel.' },
+  { r: 'bienvenida', el: () => $('#pubBox'), x: '¡Ya casi!', t: 'Tu lista para publicar', d: 'Cuando todo esté en verde se activa el botón "Publicar mi tienda". Tú decides cuándo salir a la vitrina.' }
+];
+const TOUR = { on: false, i: 0, pasos: [], key: '' };
+const tourKey = () => 'tour_dueno_' + (S.user ? S.user.id : '');
+function tourIniciar(pasos, key) {
+  tourFin(true); Object.assign(TOUR, { on: true, i: 0, pasos, key: key || tourKey() });
+  const L = document.createElement('div'); L.id = 'tour'; L.innerHTML = `<div class="tour-blk"></div><div class="tour-hole"></div><div class="tour-b" role="dialog" aria-live="polite"></div>`;
+  document.body.appendChild(L);
+  TOUR.rs = () => tourPos(); addEventListener('resize', TOUR.rs); addEventListener('scroll', TOUR.rs, true);
+  tourIr(0);
+}
+function tourFin(silencio) {
+  const L = $('#tour'); if (L) L.remove(); if (TOUR.rs) { removeEventListener('resize', TOUR.rs); removeEventListener('scroll', TOUR.rs, true); }
+  if (TOUR.on && !silencio) { store.set(TOUR.key, '1'); }
+  TOUR.on = false; clearTimeout(TOUR.tm); if (TOUR.clk && TOUR.el) TOUR.el.removeEventListener('click', TOUR.clk, true);
+}
+async function tourIr(i) {
+  if (!TOUR.on) return; if (i < 0) i = 0;
+  if (i >= TOUR.pasos.length) { tourFin(); popup({ title: '¡Recorrido terminado!', msg: 'Cuando tengas todo en verde, toca "Publicar mi tienda". Puedes repetir la guía cuando quieras.', type: 'ok', sound: 'exito' }); return; }
+  if (TOUR.clk && TOUR.el) TOUR.el.removeEventListener('click', TOUR.clk, true);
+  TOUR.i = i; const p = TOUR.pasos[i]; const L = $('#tour'); if (!L) return;
+  L.classList.add('busy'); $('.tour-b', L).classList.remove('in');
+  if (p.r && location.hash !== '#/' + p.r) { if (MODAL) closeModal(); location.hash = '#/' + p.r; }
+  // espera a que aparezca el elemento (máx. 7 s); si no aparece, pasa al siguiente
+  let el = null; const t0 = Date.now();
+  while (TOUR.on && TOUR.i === i && Date.now() - t0 < 7000) { el = p.el(); if (el && el.offsetParent !== null) break; el = null; await sleep(150); }
+  if (!TOUR.on || TOUR.i !== i) return;
+  if (!el) { tourIr(i + 1); return; }
+  TOUR.el = el; el.scrollIntoView({ block: 'center', behavior: 'smooth' }); await sleep(380);
+  L.classList.remove('busy'); L.classList.toggle('esp', p.espera === 'click');
+  const b = $('.tour-b', L); const n = TOUR.pasos.length;
+  b.innerHTML = `<span class="tour-x">${esc(p.x || '¡Pum!')}</span><b>${esc(p.t)}</b><p>${esc(p.d)}</p>
+    <div class="tour-f"><small>${i + 1} de ${n}</small><span class="grow"></span><button type="button" class="tour-sk">Saltar guía</button>${i ? '<button type="button" class="btn sm ghost tour-at">Atrás</button>' : ''}${p.espera === 'click' ? `<span class="tour-tap">${ic('chevd', 'sm')} Tócalo</span>` : `<button type="button" class="btn sm pri tour-sg">${i === n - 1 ? 'Terminar' : 'Siguiente'}</button>`}</div><i class="tour-ar"></i>`;
+  $('.tour-sk', b).onclick = () => tourFin(); const at = $('.tour-at', b); if (at) at.onclick = () => tourIr(i - 1);
+  const sg = $('.tour-sg', b); if (sg) { sg.onclick = () => tourIr(i + 1); setTimeout(() => sg.focus(), 50); }
+  if (p.espera === 'click') { TOUR.clk = () => { setTimeout(() => tourIr(i + 1), 250); }; el.addEventListener('click', TOUR.clk, { capture: true, once: true }); }
+  tourPos(); requestAnimationFrame(() => b.classList.add('in'));
+}
+function tourPos() {
+  const L = $('#tour'); const el = TOUR.el; if (!L || !el || !el.isConnected) return;
+  const r = el.getBoundingClientRect(); const pad = 8; const h = $('.tour-hole', L); const b = $('.tour-b', L);
+  Object.assign(h.style, { left: r.left - pad + 'px', top: r.top - pad + 'px', width: r.width + pad * 2 + 'px', height: r.height + pad * 2 + 'px' });
+  const vw = innerWidth, vh = innerHeight; const bw = Math.min(330, vw - 24); b.style.width = bw + 'px';
+  const bh = b.offsetHeight || 170; const abajo = r.bottom + bh + 26 < vh || r.top < bh + 26;
+  let left = Math.min(Math.max(12, r.left + r.width / 2 - bw / 2), vw - bw - 12);
+  const top = abajo ? Math.min(r.bottom + 18, vh - bh - 12) : Math.max(12, r.top - bh - 18);
+  Object.assign(b.style, { left: left + 'px', top: top + 'px' }); b.classList.toggle('arriba', !abajo);
+  const ar = $('.tour-ar', b); if (ar) ar.style.left = Math.min(Math.max(18, r.left + r.width / 2 - left - 9), bw - 30) + 'px';
+}
+document.addEventListener('keydown', e => { if (!TOUR.on) return; if (e.key === 'Escape') { e.stopPropagation(); tourFin(); } }, true);
+/** Al abrir la bienvenida del dueño por primera vez: video en una ventana y, al cerrarla, el recorrido. */
+function bienvenidaDueno(chk) {
+  if (store.get(tourKey())) return;
+  const vid = guiaVideo('dueno');
+  const box = openModal(mHead('¡Tu tienda fue aprobada!', 'store') + `<div class="mb stack"><p class="mut" style="margin:0">${chk && chk.estado === 'aprobada' ? 'Todavía no aparece en la vitrina. Mira el video y luego te mostramos, punto por punto, qué llenar. Cuando todo esté en verde, la publicas tú mismo.' : 'Mira el video y luego te mostramos, punto por punto, dónde va cada cosa.'}</p>
+    ${vid}<button class="btn pri block" data-close>${ic('play', 'sm')} Empezar la guía paso a paso</button><small class="mut" style="text-align:center">Al cerrar esta ventana empieza la guía. Puedes repetirla cuando quieras.</small></div>`, { wide: true, onClose: () => setTimeout(() => tourIniciar(TOUR_DUENO), 300) });
+  bindVid(box);
+}
+/** Tarjeta "Lista para publicar" (bienvenida y Mi tienda). */
+function pubBoxHtml(c) {
+  const pct = Math.round(c.listos * 100 / c.total); const listo = c.listos === c.total;
+  if (c.estado === 'activa') return `<div class="card pad pub-box ok" id="pubBox"><div class="row"><span class="pub-ic">${ic('okcircle')}</span><div class="grow"><b>Tu tienda está publicada</b><small class="mut">Ya aparece en la vitrina de tu municipio.</small></div><a class="btn sm" href="#/t/${esc(c.id)}">${ic('eye', 'sm')} Ver mi vitrina</a></div></div>`;
+  return `<div class="card pad pub-box" id="pubBox"><div class="row wrap" style="gap:12px"><span class="g-ring sm" style="--p:${pct}"><span>${pct}%</span></span><div class="grow"><b>Lista para publicar</b><small class="mut">${listo ? '¡Todo listo! Ya puedes salir a la vitrina.' : 'Completa los puntos en gris. Tu tienda todavía no se ve en la vitrina.'}</small></div></div>
+    <ul class="pub-l">${c.pasos.map(s => `<li class="${s[1] ? 'ok' : ''}"><span>${ic(s[1] ? 'check' : 'x', 'sm')}</span><div><b>${esc(s[2])}</b>${s[1] ? '' : `<small>${esc(s[3])}</small>`}</div>${s[1] ? '' : `<a class="btn sm ghost" href="#/${s[0] === 'productos' ? 'g/Productos' : 'mi-tienda'}">Ir</a>`}</li>`).join('')}</ul>
+    <div class="row wrap" style="gap:8px"><button class="btn ghost" data-act="tour-dueno">${ic('play', 'sm')} Ver la guía paso a paso</button><span class="grow"></span><button class="btn pri pub-btn" data-act="publicar" ${listo ? '' : 'disabled'}>${ic('store', 'sm')} Publicar mi tienda</button></div></div>`;
+}
+async function pubBoxCargar(host) {
+  try { const c = await call('listaTienda', {}); if (host.isConnected) host.innerHTML = pubBoxHtml(c); return c; } catch (e) { return null; }
+}
+Object.assign(ACTS, {
+  'tour-dueno': () => tourIniciar(TOUR_DUENO),
+  publicar: el => {
+    confirmDlg({ title: 'Publicar mi tienda', msg: 'Aparecerá en la vitrina de tu municipio y empezarás a recibir pedidos. La mensualidad empieza a contar desde hoy.', ok: 'Publicar' }).then(ok => {
+      if (!ok) return;
+      busy(el, 'Publicando…', async () => {
+        try {
+          const c = await enqueue('publicarTienda', {}); if (S.tienda) { S.tienda.estado = 'activa'; S.tienda.abierta = true; }
+          popup({ title: '¡Tu tienda está publicada!', msg: 'Ya aparece en la vitrina. Comparte tu enlace por WhatsApp para recibir tus primeros pedidos.', type: 'ok', sound: 'exito' });
+          const h = el.closest('#pubBox'); if (h) h.outerHTML = pubBoxHtml(c); clearCache('Tiendas');
+        } catch (e) { popup({ type: 'err', title: 'Todavía no se puede publicar', msg: e.message }); const h = $('#pubBox'); if (h) pubBoxCargar(h.parentNode); }
+      });
+    });
+  }
+});
+/* ---------- v1.8 · carnet PRO: foto en blanco y negro recortada, brillo lima y palabra vertical ---------- */
+const MP_BASE = 'https:\x2f\x2fcdn.jsdelivr.net\x2fnpm\x2f@mediapipe\x2fselfie_segmentation@0.1.1675465747\x2f';
+let SEG = null; const MASCARAS = new Map();
+function cargarSeg() {
+  if (SEG) return SEG;
+  SEG = new Promise((res, rej) => { if (window.SelfieSegmentation) return res(); const s = document.createElement('script'); s.src = MP_BASE + 'selfie_segmentation.js'; s.crossOrigin = 'anonymous'; s.onload = res; s.onerror = rej; document.head.appendChild(s); })
+    .then(async () => { const ss = new window.SelfieSegmentation({ locateFile: f => MP_BASE + f }); ss.setOptions({ modelSelection: 0, selfieMode: false }); await ss.initialize(); return ss; });
+  SEG.catch(() => { SEG = null; }); return SEG;
+}
+/** Recorta a la persona de la foto. Devuelve un canvas con la foto en blanco y negro sobre fondo transparente, o null si no se pudo. */
+async function personaBN(img, key) {
+  if (key && MASCARAS.has(key)) return MASCARAS.get(key);
+  const k = Math.min(1, 900 / Math.max(img.width, img.height)); const W = Math.round(img.width * k), H = Math.round(img.height * k);
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d', { willReadFrequently: true }); g.drawImage(img, 0, 0, W, H);
+  let mask = null;
+  try {
+    const ss = await Promise.race([cargarSeg(), sleep(20000).then(() => { throw new Error('tiempo'); })]);
+    const bm = await Promise.race([new Promise(res => { ss.onResults(r => res(r.segmentationMask)); ss.send({ image: c }); }), sleep(12000).then(() => null)]);
+    if (bm) { const m = document.createElement('canvas'); m.width = W; m.height = H; const mg = m.getContext('2d', { willReadFrequently: true }); mg.drawImage(bm, 0, 0, W, H); mask = mg.getImageData(0, 0, W, H).data; }
+  } catch (e) { mask = null; }
+  const id = g.getImageData(0, 0, W, H); const p = id.data; let tiene = 0;
+  for (let i = 0; i < p.length; i += 4) {
+    let y = .3 * p[i] + .59 * p[i + 1] + .11 * p[i + 2]; y = (y - 118) * 1.38 + 122; y = y < 0 ? 0 : y > 255 ? 255 : y;
+    p[i] = p[i + 1] = p[i + 2] = y;
+    if (mask) { const a = mask[i + 3] / 255; const s = a <= .35 ? 0 : a >= .65 ? 1 : (a - .35) / .3; const sm = s * s * (3 - 2 * s); p[i + 3] = Math.round(255 * sm); if (sm > .5) tiene++; }
+  }
+  g.putImageData(id, 0, 0);
+  const ok = !mask || tiene > W * H * .04; const out = { c, recorte: !!mask && ok };
+  if (mask && !ok) { for (let i = 3; i < p.length; i += 4) p[i] = 255; g.putImageData(id, 0, 0); }
+  if (key) MASCARAS.set(key, out); return out;
+}
+function palabraCarnet(d) {
+  const w = String(d.palabra || '').trim() || (d.wuaka ? String(d.org || '').replace(/\(.*?\)/g, '').trim().split(/\s+/).filter(x => x.length > 2).slice(-1)[0] || '' : '') || 'wuaka';
+  return w.toLowerCase().slice(0, 12);
+}
+/** Dibuja la persona (o la foto con desvanecido si no hay recorte) con el brillo de marca. */
+function carnetPersona(g, per, x, y, w, h, LI) {
+  if (!per) return;
+  const im = per.c; const s = Math.max(w / im.width, h / im.height); const dw = im.width * s, dh = im.height * s; const dx = x + (w - dw) / 2, dy = y + (h - dh);
+  if (per.recorte) {
+    g.save(); g.shadowColor = LI; g.shadowBlur = 34; g.globalAlpha = .75; g.drawImage(im, dx, dy, dw, dh); g.shadowBlur = 10; g.globalAlpha = 1; g.drawImage(im, dx, dy, dw, dh); g.restore();
+    // luz de borde (rim light) en el contorno
+    const r = document.createElement('canvas'); r.width = Math.round(dw); r.height = Math.round(dh); const rg = r.getContext('2d');
+    rg.drawImage(im, 0, 0, dw, dh); rg.globalCompositeOperation = 'destination-out'; rg.drawImage(im, 7, 5, dw, dh); rg.drawImage(im, -7, 5, dw, dh);
+    rg.globalCompositeOperation = 'source-in'; rg.fillStyle = LI; rg.fillRect(0, 0, dw, dh);
+    g.save(); g.globalCompositeOperation = 'screen'; g.globalAlpha = .85; g.drawImage(r, dx, dy); g.restore();
+  } else {
+    const t = document.createElement('canvas'); t.width = Math.round(w); t.height = Math.round(h); const tg = t.getContext('2d');
+    tg.drawImage(im, dx - x, dy - y, dw, dh); tg.globalCompositeOperation = 'destination-in';
+    const gr = tg.createRadialGradient(w * .55, h * .42, w * .18, w * .55, h * .5, w * .72); gr.addColorStop(0, '#000'); gr.addColorStop(.7, 'rgba(0,0,0,.85)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); tg.fillStyle = gr; tg.fillRect(0, 0, w, h);
+    g.drawImage(t, x, y);
+  }
+}
+async function drawCarnetPro(d) {
+  const qrf = await cargarQR(); try { await document.fonts.load('900 60px Figtree'); await document.fonts.load('700 20px Figtree'); } catch (e) { }
+  const LI = '#c6f432', NE = '#020c0d', VD = '#062a2e'; const plantilla = d.estilo === 'plantilla';
+  const { c, g, font, fit, rr, cover, ranura } = carnetBase(); const W = CARNET_W, H = CARNET_H;
+  const [foto, fondo] = await Promise.all([loadImg(d.foto), plantilla ? loadImg(d.fondo) : null]);
+  const per = foto ? await personaBN(foto, (d.foto || '').slice(-80) + (d.foto || '').length) : null;
+  g.save(); rr(0, 0, W, H, 34); g.clip();
+  if (fondo) cover(fondo, 0, 0, W, H);
+  else { const bg = g.createLinearGradient(0, 0, W * .4, H); bg.addColorStop(0, '#0a2f33'); bg.addColorStop(.45, NE); bg.addColorStop(1, '#000'); g.fillStyle = bg; g.fillRect(0, 0, W, H); }
+  if (!plantilla) {
+    // palabra gigante vertical (va detrás de la persona)
+    const pw = palabraCarnet(d); g.font = font(900, 100); const fs = Math.min(360, 100 * (H - 40) / g.measureText(pw).width);
+    g.save(); g.translate(fs * .70, H + 6); g.rotate(-Math.PI / 2); g.fillStyle = LI; g.font = font(900, fs); g.textBaseline = 'alphabetic'; g.fillText(pw, 0, 0); g.restore();
+  }
+  // persona
+  if (per) carnetPersona(g, per, 70, 70, W - 40, 830, LI);
+  else { g.fillStyle = 'rgba(198,244,50,.12)'; g.beginPath(); g.arc(W * .6, 420, 190, 0, Math.PI * 2); g.fill(); g.fillStyle = LI; g.font = font(900, 150); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(initials(d.nombre), W * .6, 430); g.textAlign = 'left'; g.textBaseline = 'alphabetic'; }
+  // panel inferior con borde lima (forma de la referencia)
+  const pz = () => { g.beginPath(); g.moveTo(232, H + 4); g.lineTo(258, 772); g.quadraticCurveTo(264, 726, 306, 710); g.lineTo(W + 4, 588); };
+  g.save(); pz(); g.lineTo(W + 4, H + 4); g.closePath(); g.fillStyle = plantilla ? 'rgba(2,12,13,.82)' : NE; g.fill(); g.restore();
+  g.save(); pz(); g.strokeStyle = LI; g.lineWidth = 3.5; g.stroke(); g.restore();
+  // nombre: primera parte blanca, segunda en lima
+  const ps = String(d.nombre || '').trim().split(/\s+/); const n1 = ps.length > 2 ? ps.slice(0, ps.length - 2).join(' ') : ps[0] || ''; const n2 = ps.length > 2 ? ps.slice(-2).join(' ') : ps.slice(1).join(' ');
+  const R = W - 40; g.textAlign = 'right';
+  const sz = Math.min(fit(n1, 900, 58, 330, 30), n2 ? fit(n2, 900, 58, 330, 30) : 58);
+  let y = 812; g.font = font(900, sz); g.fillStyle = '#fff'; g.fillText(n1, R, y); if (n2) { y += sz * .98; g.fillStyle = LI; g.fillText(n2, R, y); }
+  y += 22; g.fillStyle = LI; g.fillRect(R - 200, y, 200, 3);
+  const org = String(d.org || '').toUpperCase(); y += 36; g.fillStyle = '#fff'; g.font = font(600, fit(org, 600, 22, 300, 13)); g.fillText(org, R, y);
+  const cg = String(d.cargo || '').toUpperCase(); y += 36; g.fillStyle = LI; g.font = font(900, fit(cg, 900, 33, 320, 16)); g.fillText(cg, R, y);
+  g.textAlign = 'left';
+  // logo pequeño arriba a la derecha (W de la marca)
+  const mk = await svgImg(WK_MARK.replace('<path', '<path stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"').replace('<circle', '<circle fill="' + NE + '" stroke="none"'), NE);
+  if (mk && !plantilla) { g.fillStyle = LI; rr(W - 94, 34, 58, 58, 16); g.fill(); g.drawImage(mk, W - 90, 36, 50, 50); }
+  g.restore(); ranura();
+  return c;
+}
+async function drawCarnetProBack(d) {
+  const qrf = await cargarQR(); const LI = '#c6f432', NE = '#020c0d';
+  const { c, g, font, fit, rr, cover, ranura } = carnetBase(); const W = CARNET_W, H = CARNET_H; const plantilla = d.estilo === 'plantilla';
+  const fondo = plantilla ? await loadImg(d.reverso) : null;
+  g.save(); rr(0, 0, W, H, 34); g.clip();
+  if (fondo) cover(fondo, 0, 0, W, H); else { const bg = g.createLinearGradient(W, 0, 0, H); bg.addColorStop(0, '#0a2f33'); bg.addColorStop(.5, NE); bg.addColorStop(1, '#000'); g.fillStyle = bg; g.fillRect(0, 0, W, H); }
+  if (!fondo) { const pw = palabraCarnet(d); g.font = font(900, 100); const fs = Math.min(300, 100 * (H - 40) / g.measureText(pw).width);
+    g.save(); g.translate(W - fs * .70, -6); g.rotate(Math.PI / 2); g.globalAlpha = .9; g.fillStyle = LI; g.font = font(900, fs); g.fillText(pw, 0, 0); g.restore(); }
+  const X = 46; g.textAlign = 'left';
+  g.fillStyle = LI; g.font = font(700, 17); g.fillText('CARNET DE IDENTIFICACIÓN', X, 112);
+  g.fillStyle = '#fff'; g.font = font(900, fit(String(d.nombre || ''), 900, 34, 360, 18)); g.fillText(String(d.nombre || ''), X, 152);
+  g.fillStyle = 'rgba(255,255,255,.7)'; g.font = font(600, fit(String(d.cargo || '') + ' · ' + String(d.org || ''), 600, 18, 360, 12)); g.fillText(String(d.cargo || '') + ' · ' + String(d.org || ''), X, 180);
+  // QR grande
+  const qs = 280, qx = X + 8, qy = 222; g.fillStyle = '#fff'; rr(qx - 18, qy - 18, qs + 36, qs + 36, 26); g.fill(); g.strokeStyle = LI; g.lineWidth = 5; rr(qx - 26, qy - 26, qs + 52, qs + 52, 32); g.stroke();
+  const q = qrf(0, 'M'); q.addData(d.qr); q.make(); const n = q.getModuleCount(); const cell = qs / n; g.fillStyle = NE;
+  for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) g.fillRect(qx + k * cell, qy + r * cell, Math.ceil(cell), Math.ceil(cell));
+  g.fillStyle = LI; g.font = font(900, 19); g.fillText('ESCANÉALO AL ENTRAR', X, qy + qs + 64); g.fillText('Y AL SALIR', X, qy + qs + 88);
+  // datos
+  let y = qy + qs + 140; const filas = [['id', 'ID', d.id]]; if (d.doc) filas.push(['tel', 'Cel', d.doc]); if (d.placa || d.vehiculo) filas.push(['moto', 'Vehículo', (VEH_L[d.vehiculo] || 'Moto') + (d.placa ? ' · ' + d.placa : '')]);
+  if (d.municipio) filas.push(['pin', 'Municipio', d.municipio]); if (d.org_tel) filas.push(['chat', 'Si lo encuentras, llama al', d.org_tel]);
+  filas.slice(0, 4).forEach(([k, l, v]) => { carnetIc(g, k === 'chat' ? 'tel' : k, X + 12, y - 8, LI); g.fillStyle = 'rgba(255,255,255,.6)'; g.font = font(600, 13.5); g.fillText(l.toUpperCase(), X + 36, y - 14); g.fillStyle = '#fff'; g.font = font(700, fit(String(v), 700, 19, 330, 12)); g.fillText(String(v), X + 36, y + 7); y += 50; });
+  const fecha = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || ''); return m ? m[3] + '/' + m[2] + '/' + m[1] : (s || ''); };
+  g.fillStyle = 'rgba(255,255,255,.6)'; g.font = font(600, 13.5); g.fillText('EXPEDIDO', X, H - 112); g.fillText('VENCE', X + 160, H - 112);
+  g.fillStyle = '#fff'; g.font = font(800, 19); g.fillText(fecha(d.expedido), X, H - 88); g.fillText(fecha(d.vence), X + 160, H - 88);
+  g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X, H - 46); g.lineTo(X + 230, H - 46); g.stroke(); g.fillStyle = 'rgba(255,255,255,.55)'; g.font = font(600, 12.5); g.fillText('Firma del titular', X, H - 26);
+  g.fillStyle = LI; g.textAlign = 'right'; g.font = font(800, 15); g.fillText(d.web || d.app || '', W - 40, H - 26);
+  g.restore(); ranura();
+  return c;
+}
+/** Superadministrador: elige el diseño del carnet o sube una plantilla propia. */
+async function carnetDiseno() {
+  const box = openModal(mHead('Diseño del carnet', 'id') + `<div class="mb"><div class="skel" style="height:300px"></div></div>`, { wide: true });
+  let rows; try { rows = await call('cfgList', {}); } catch (e) { $('.mb', box).innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
+  if (!box.isConnected) return;
+  const v = k => ((rows.find(r => r.k === k) || {}).v || ''); let est = v('CARNET_ESTILO') || 'pro';
+  const web = location.href.split('#')[0].replace(/[^\x2f]*$/, '');
+  const ops = [['pro', 'Pro (recomendado)', 'Foto en blanco y negro recortada, brillo lima y la palabra del negocio en grande. Como la referencia.'], ['clasico', 'Clásico', 'Foto a color en marco redondeado, datos y QR al frente.'], ['plantilla', 'Plantilla propia', 'Subes el fondo diseñado (frente y reverso) y la app pone la foto, el nombre y el QR.']];
+  $('.mb', box).innerHTML = `<form class="frm car-dz" novalidate><div class="fld full"><label>Estilo</label><div class="car-ops">${ops.map(o => `<label class="car-op"><input type="radio" name="est" value="${o[0]}" ${est === o[0] ? 'checked' : ''}><span><b>${esc(o[1])}</b><small>${esc(o[2])}</small></span></label>`).join('')}</div></div>
+    <div class="fld full cz-pro"><label for="czW">Palabra grande vertical</label><input id="czW" maxlength="14" value="${esc(v('CARNET_PALABRA'))}" placeholder="Vacío = el nombre corto de cada negocio (ej. chimí, wuaka)"><small class="hint">Máximo 14 letras. En minúscula se ve como la referencia.</small></div>
+    <div class="cz-pla full"><div class="banner b-info">${ic('info')} <div><b>Especificaciones de la plantilla</b><br>1276 × 2024 px (vertical, tamaño tarjeta CR80 al doble), PNG o JPG de máx. 600 KB, fondo oscuro.
+      Deja libres: el hueco del cordón arriba al centro, la zona de la foto (centro y derecha) y la esquina inferior derecha donde va el nombre. En el reverso deja libre el cuadro del QR a la izquierda.
+      <div class="row wrap" style="gap:8px;margin-top:8px"><a class="btn sm" href="${esc(web)}carnet-guia-frente.png" download target="_blank" rel="noopener">${ic('download', 'sm')} Guía del frente</a><a class="btn sm" href="${esc(web)}carnet-guia-reverso.png" download target="_blank" rel="noopener">${ic('download', 'sm')} Guía del reverso</a></div></div></div>
+      <div class="frm-in">${fieldHtml({ k: 'CARNET_FONDO', t: 'img', l: 'Frente (fondo)' }, v('CARNET_FONDO'), {}, false)}${fieldHtml({ k: 'CARNET_REVERSO', t: 'img', l: 'Reverso (opcional)' }, v('CARNET_REVERSO'), {}, false)}</div></div>
+    <div class="full car-pv" id="czPv"></div>
+    <div class="ffoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button type="button" class="btn" id="czVer">${ic('eye', 'sm')} Vista previa</button><button type="submit" class="btn pri">${ic('check', 'sm')} Guardar diseño</button></div></form>`;
+  const f = $('form', box);
+  const val = () => ({ estilo: ($('[name=est]:checked', f) || {}).value || 'pro', palabra: $('#czW', f).value.trim(), fondo: ($('[name=CARNET_FONDO]', f) || {}).value || '', reverso: ($('[name=CARNET_REVERSO]', f) || {}).value || '' });
+  const vis = () => { const e = val().estilo; $('.cz-pro', f).classList.toggle('hide', e !== 'pro'); $('.cz-pla', f).classList.toggle('hide', e !== 'plantilla'); };
+  $$('[name=est]', f).forEach(r => r.onchange = vis); vis();
+  $('#czVer', f).onclick = ev => busy(ev.currentTarget, 'Dibujando…', async () => {
+    try { const d = Object.assign(await call('carnet', {}), val()); if (d.estilo === 'plantilla' && !d.fondo) throw new Error('Sube primero la imagen del frente.'); await mostrarCarnet($('#czPv', f), d); }
+    catch (e) { toast(e.message, 'err'); }
+  });
+  f.onsubmit = ev => { ev.preventDefault(); const x = val(); if (x.estilo === 'plantilla' && !x.fondo) { toast('Sube la imagen del frente de la plantilla.', 'err'); return; }
+    busy($('[type=submit]', f), 'Guardando…', async () => {
+      try { for (const [k, vv] of [['CARNET_ESTILO', x.estilo], ['CARNET_PALABRA', x.palabra], ['CARNET_FONDO', x.fondo], ['CARNET_REVERSO', x.reverso]]) if (vv !== v(k)) await enqueue('cfgSave', { k, v: vv });
+        MASCARAS.clear(); closeModal(); popup({ title: 'Diseño guardado', msg: 'Los carnets de todos los negocios ya salen con este diseño.', type: 'ok' }); }
+      catch (e) { toast(e.message, 'err'); }
+    }); };
+}
+ACTS['car-diseno'] = () => carnetDiseno();
 </script>
 </body>
 </html>

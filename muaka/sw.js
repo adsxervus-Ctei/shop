@@ -3,7 +3,7 @@
    2) Muestra las notificaciones push (Firebase Cloud Messaging) aunque la app esté cerrada,
       y al tocarlas abre la app directamente en el pedido, la solicitud o la oferta.
    Las llamadas al servidor (Apps Script) nunca se guardan. */
-const CACHE = 'wuaka-v7';
+const CACHE = 'wuaka-v8';
 const SHELL = ['./', './index.html', './manifest.json', './config.json', './icon-192.png', './icon-512.png', './icon-maskable.png', './badge-96.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
