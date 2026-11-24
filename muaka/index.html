@@ -1246,7 +1246,10 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 .sp-top{text-align:center;animation:wkUp .6s .1s ease both}
 .sp-lock{display:inline-flex;align-items:center;gap:12px}
 .sp-lock .wk-mark{width:42px;height:42px;border-radius:13px;animation:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
-.sp-lock .wk-mark svg{width:28px;height:28px}.sp-lock .wk-mark path{animation:none;stroke-dashoffset:0}.sp-lock .wk-mark circle{animation:none;transform:none;opacity:1}
+.sp-lock .wk-mark svg{width:28px;height:28px}
+#splash .sp-lock .wk-mark path{animation:wkDrawO .9s .15s ease both}#splash .sp-lock .wk-mark circle{animation:wkDotPop .5s .95s cubic-bezier(.3,1.9,.5,1) both}
+#splash .sp-lock .wk-anim{--b:.5s}
+#splash:not(.go) .sp-lock *{animation-play-state:paused!important}
 .sp-lock .wk-word{height:24px}
 .sp-lock .wk-txt{font-size:26px}
 .sp-slogan{margin:12px 0 0;font-size:16px;font-weight:600;color:#fff;letter-spacing:.1px;text-shadow:0 1px 8px rgba(0,0,0,.55)}
@@ -1428,6 +1431,130 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 /* tipos de aviso */
 .citem .th.nt-cliente{background:#e0f2fe;color:#0369a1}.citem .th.nt-tienda{background:#ecfccb;color:#3f6212}.citem .th.nt-solicitud{background:#fef3c7;color:#92400e}.citem .th.nt-domiciliario{background:#ede9fe;color:#5b21b6}
 .citem .th.nt-aviso,.citem .th.nt-{background:var(--pri-l);color:var(--pri)}
+
+/* v1.6.1 · inscripción de domiciliarios */
+.dr-hero{border-radius:var(--rad);padding:26px 22px;margin-bottom:16px;color:#fff;background:linear-gradient(135deg,#0d5c63,#062a2e);position:relative;overflow:hidden}
+.dr-hero::after{content:"";position:absolute;right:-40px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:3px solid var(--acc);opacity:.35}
+.dr-hero h1{font-size:clamp(22px,5vw,30px);margin:10px 0 6px;max-width:22ch}.dr-hero p{margin:0;color:rgba(255,255,255,.85);max-width:46ch}
+.dr-hero .badge{background:var(--acc);color:#0b1a12}
+.dr-wrap{display:grid;gap:16px}
+@media (min-width:900px){.dr-wrap{grid-template-columns:1fr 320px;align-items:start}}
+.dr-veh{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media (min-width:600px){.dr-veh{grid-template-columns:repeat(6,1fr)}}
+.dr-v input{position:absolute;opacity:0}
+.dr-v span{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;font-size:12.5px;text-align:center}
+.dr-v input:checked+span{border-color:var(--pri);background:var(--pri-l);color:var(--pri)}
+.dr-v input:focus-visible+span{outline:3px solid var(--pri);outline-offset:2px}
+.dr-pasos .gsteps .aj-i{font-weight:800}
+
+/* v1.7 · carnet frente/reverso */
+.carnet-w canvas{width:100%;height:auto;border-radius:16px;box-shadow:none;display:block}
+.car-flip{width:min(290px,78vw);aspect-ratio:638/1012;perspective:1400px;cursor:pointer;outline:none}
+.car-flip:focus-visible{outline:3px solid var(--pri);outline-offset:6px;border-radius:18px}
+.car-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.3,.8,.3,1);transform-style:preserve-3d}
+.car-flip.back .car-in{transform:rotateY(180deg)}
+.car-f,.car-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;box-shadow:0 18px 40px -16px rgba(6,42,46,.55)}
+.car-b{transform:rotateY(180deg)}
+.car-seg{display:inline-flex;margin:4px auto 0;padding:4px;border-radius:999px;background:var(--sur-2,#eef2f1);gap:2px}.car-seg button{border:0;background:none;padding:7px 16px;border-radius:999px;font:inherit;font-weight:700;font-size:13px;color:var(--ink-2);cursor:pointer}.car-seg button.on{background:var(--pri);color:#fff}
+@media (prefers-reduced-motion:reduce){.car-in{transition:none}}
+
+/* v1.7 · perfil con portada y jerarquía */
+.prof-hero{border-radius:var(--rad);overflow:hidden;background:var(--sur);box-shadow:var(--sh-1);margin-bottom:16px;--nv:#0d5c63;--nv2:#c6f432}
+.prof-hero.n-super{--nv:#062a2e;--nv2:#f2c94c}.prof-hero.n-adm{--nv:#0d5c63;--nv2:#c6f432}.prof-hero.n-sop{--nv:#103c58;--nv2:#7fd3ff}.prof-hero.n-neg{--nv:#0d5c63;--nv2:#c6f432}.prof-hero.n-dom{--nv:#12352a;--nv2:#c6f432}
+.ph-cov{position:relative;height:clamp(130px,24vw,230px);background:linear-gradient(135deg,var(--nv),#031a1c);background-size:cover;background-position:center}
+.ph-cov:not(.has)::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 30%,color-mix(in srgb,var(--nv2) 35%,transparent),transparent 55%),repeating-linear-gradient(120deg,transparent 0 46px,color-mix(in srgb,var(--nv2) 10%,transparent) 46px 50px)}
+.ph-cacts{position:absolute;right:12px;top:12px;display:flex;gap:8px;z-index:1}
+.btn.glass{background:rgba(0,0,0,.38);color:#fff;border-color:rgba(255,255,255,.3);backdrop-filter:blur(6px)}
+.ph-b{display:flex;gap:16px;align-items:flex-end;padding:0 20px 18px;flex-wrap:wrap}
+.ph-av{position:relative;margin-top:-54px}
+.ph-av .avatar{width:112px;height:112px;font-size:38px;border:5px solid var(--sur);box-shadow:0 0 0 3px var(--nv2),var(--sh-2)}
+.n-super .ph-av .avatar{box-shadow:0 0 0 3px #f2c94c,0 0 0 7px #c6f432,var(--sh-2)}
+.ph-cam{position:absolute;right:2px;bottom:4px;width:34px;height:34px;border-radius:50%;border:3px solid var(--sur);background:var(--nv);color:#fff;display:grid;place-items:center;cursor:pointer}
+.ph-t{flex:1;min-width:220px;padding-top:10px}.ph-t h1{margin:4px 0 2px;font-size:clamp(22px,4vw,30px)}
+.ph-nv{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;background:var(--nv);color:var(--nv2)}
+.n-super .ph-nv{background:linear-gradient(90deg,#062a2e,#0d5c63);color:#f2c94c;box-shadow:inset 0 0 0 1.5px #f2c94c}
+.ph-out{margin-left:auto}
+@media (max-width:620px){.ph-b{padding:0 14px 14px}.ph-out{margin-left:0;width:100%}.ph-cacts .btn span{display:none}}
+.cov-prev canvas{width:100%;height:auto;border-radius:14px;display:block}
+.cov-sw{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);cursor:pointer}.cov-sw.on{outline:3px solid var(--pri);outline-offset:2px}
+/* herramientas de Mi cuenta */
+@media (min-width:621px){.acc-cols{grid-auto-flow:row dense}.acc-dat{grid-row:span 4}}
+.tl-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.tl-kpi a{display:flex;flex-direction:column;padding:10px 12px;border-radius:14px;background:var(--pri-l);color:var(--pri);text-decoration:none}
+.tl-kpi b{font-size:22px;line-height:1.1}.tl-kpi small{color:var(--ink-2);font-size:12px}
+.tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.tl-i{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px;border:1px solid var(--line);border-radius:14px;color:var(--ink);text-decoration:none;font-size:12.5px;font-weight:600;text-align:center}
+.tl-i:hover{border-color:var(--pri);color:var(--pri);background:var(--pri-l)}
+.tl-sh{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:8px}
+/* tarjetas con portada en las listas */
+.gc-img.has-cov{background-size:cover!important;background-position:center!important;position:relative}
+.gc-img.has-cov::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.35))}
+.gc-img.has-cov>*{position:relative}
+.gc-logo{width:72px;height:72px;border-radius:18px;background:#fff;display:grid;place-items:center;overflow:hidden;box-shadow:var(--sh-2)}.gc-logo img{width:100%;height:100%;object-fit:contain}
+
+/* v1.7 · íconos de categoría */
+.cat-ic{display:inline-grid;place-items:center;width:40px;height:40px;flex:none;border-radius:13px;background:linear-gradient(135deg,#0d5c63,#062a2e);color:#c6f432;overflow:hidden}
+.cat-ic svg{width:58%;height:58%}.cat-ic img{width:100%;height:100%;object-fit:cover}
+.cat-ic.chip-ic{width:22px;height:22px;border-radius:7px;vertical-align:-6px}
+.cat-ic.gc-cat{width:84px;height:84px;border-radius:24px;box-shadow:var(--sh-2)}
+.chip.on .cat-ic{background:#c6f432;color:#062a2e}
+.cat-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.cat-pick label{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;font-size:11.5px;text-align:center;line-height:1.2}
+.cat-pick input{position:absolute;opacity:0}.cat-pick input:checked+label{border-color:var(--pri);background:var(--pri-l);color:var(--pri)}
+.cat-pick input:focus-visible+label{outline:3px solid var(--pri)}
+
+/* v1.7 · municipios con escudo y portada */
+.munit{display:flex;gap:12px;align-items:center;position:relative;overflow:hidden}
+.munit.has-cov{background:linear-gradient(90deg,rgba(4,22,24,.88),rgba(4,22,24,.45)),var(--cov) center/cover;color:#fff;border-color:transparent;min-height:84px}
+.munit.has-cov small{color:rgba(255,255,255,.8)}.munit.has-cov.on{box-shadow:0 0 0 3px #c6f432}
+.munit em{display:block;font-size:12.5px;font-style:normal;color:var(--pri)}.munit.has-cov em{color:#c6f432}
+.mun-esc{width:48px;height:48px;flex:none;border-radius:14px;background:var(--pri-l);color:var(--pri);display:grid;place-items:center;overflow:hidden}
+.has-cov .mun-esc{background:rgba(255,255,255,.95)}
+.mun-esc img{width:100%;height:100%;object-fit:contain;padding:3px}
+.z-img{overflow:hidden;padding:0}.z-img img{width:100%;height:100%;object-fit:cover}
+
+/* v1.7 · auditoría por semanas */
+.au-box{display:flex;flex-direction:column;gap:12px}
+.au-mes>details{background:var(--sur);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden}
+.au-mes.act>details{border-color:var(--pri)}
+.au-mh{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none;flex-wrap:wrap}
+.au-mh::-webkit-details-marker,.au-sem summary::-webkit-details-marker{display:none}
+.au-mh h3{margin:0;font-size:17px}
+.au-cal{width:50px;height:54px;border-radius:12px;background:var(--pri);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.au-cal b{font-size:20px}.au-cal small{font-size:10.5px;opacity:.8}
+.au-mes:not(.act) .au-cal{background:var(--sur-2,#eef2f1);color:var(--ink-2)}
+.au-sems{padding:0 12px 4px;display:flex;flex-direction:column;gap:8px}
+.au-sem{border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.au-sem summary{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;list-style:none;flex-wrap:wrap}
+.au-sem[open] summary{border-bottom:1px dashed var(--line)}
+.au-ch{display:flex;gap:4px;flex-wrap:wrap}.au-ch i{font-style:normal;font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--pri-l);color:var(--pri)}
+.au-rows{max-height:420px;overflow:auto}
+.au-r{display:flex;gap:12px;align-items:flex-start;padding:9px 12px;border-bottom:1px solid var(--line);font-size:13.5px}
+.au-r time{flex:none;width:58px;font-weight:700;font-size:12.5px;display:flex;flex-direction:column}.au-r time small{color:var(--ink-2);font-weight:500}
+.au-d{color:var(--ink-2);font-size:12.5px;word-break:break-word}
+.au-u{flex:none;font-size:12px;color:var(--ink-2);display:flex;gap:4px;align-items:center;max-width:34%}
+.au-f{padding:8px 12px;text-align:right}
+@media (max-width:620px){.au-r{flex-wrap:wrap}.au-u{max-width:none;width:100%;padding-left:70px}.au-ch{display:none}}
+
+/* v1.7 · configuración en cuadrícula */
+.cfg-q{margin-bottom:14px;max-width:560px}
+.cfg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:700px){.cfg-grid{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1100px){.cfg-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}}
+.cfg-t{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:16px;border-radius:var(--rad);border:1px solid var(--line);background:var(--sur);cursor:pointer;font:inherit;color:var(--ink);transition:border-color .15s,transform .15s,box-shadow .15s}
+.cfg-t:hover{border-color:var(--pri);transform:translateY(-2px);box-shadow:var(--sh-2)}
+.cfg-t:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+.cfg-i{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#0d5c63,#062a2e);color:#c6f432;margin-bottom:6px}
+.cfg-t b{font-size:14.5px;line-height:1.25}.cfg-t small{color:var(--ink-2);font-size:12.5px;line-height:1.35}.cfg-t em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--pri);margin-top:auto;padding-top:6px}
+@media (max-width:520px){.cfg-t{padding:12px}.cfg-t small{display:none}}
+.cfg-dlg .cfgrow{grid-template-columns:1fr;gap:6px}
+@media (max-width:760px){.cfgrow{grid-template-columns:1fr;gap:6px}}
+
+/* v1.7 · pautas de sólo imagen: se ven completas en cualquier pantalla */
+.slider:not(:has(.slide:not(.img-only))){aspect-ratio:16/7;min-height:0}
+.slide.img-only{padding:0}.slide.img-only::before,.slide.img-only .sl-deco{display:none}.slide.img-only .sl-bg,.slide.img-only.on .sl-bg{transform:none}
+.promo.img-only{padding:0;min-height:0}.promo.img-only::before{display:none}
+@media (max-width:980px){.promo.img-only{aspect-ratio:2/1}}
 </style>
 </head>
 <body>
@@ -1484,7 +1611,7 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
-  <symbol id="i-moto" viewBox="0 0 24 24"><circle cx="5" cy="16.5" r="3"/><circle cx="19" cy="16.5" r="3"/><path d="M5 16.5L7.6 11H13l2.6-3.5"/><path d="M8 16.5h4.6L16 11"/><path d="M14.2 7.5h2.4l2.4 9"/><path d="M6.5 8.5h3.5"/></symbol>
+  <symbol id="i-bici" viewBox="0 0 24 24"><circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5 10 9h5l3.5 7.5M10 9 8.5 6H6M15 9l-3 7.5h-1.5"/></symbol><symbol id="i-van" viewBox="0 0 24 24"><path d="M2 16V8a2 2 0 0 1 2-2h11l5 4v6h-2"/><path d="M2 16h3M9 16h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M15 6v4h5"/></symbol><symbol id="i-moto" viewBox="0 0 24 24"><circle cx="5" cy="16.5" r="3"/><circle cx="19" cy="16.5" r="3"/><path d="M5 16.5L7.6 11H13l2.6-3.5"/><path d="M8 16.5h4.6L16 11"/><path d="M14.2 7.5h2.4l2.4 9"/><path d="M6.5 8.5h3.5"/></symbol>
   <symbol id="i-carro" viewBox="0 0 24 24"><path d="M5 17H3.5a1 1 0 0 1-1-1v-3.2a1 1 0 0 1 .3-.7L5 10l1.8-3.4A1.5 1.5 0 0 1 8.1 6h6.6a1.5 1.5 0 0 1 1.2.6L18.5 10l2.3.9a1 1 0 0 1 .7.9V16a1 1 0 0 1-1 1H19"/><path d="M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 10h13.5"/><path d="M11.5 6v4"/></symbol>
   <symbol id="i-camion" viewBox="0 0 24 24"><path d="M14 17V5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h1"/><path d="M14 8h4l3.5 4.5V16a1 1 0 0 1-1 1H20"/><path d="M14 17h-4"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/></symbol>
   <symbol id="i-lancha" viewBox="0 0 24 24"><path d="M2.5 14.5h17.5l-2.4 3.5H5.2z"/><path d="M6 14.5V11h6.5l3 3.5"/><path d="M20 14.5l1.5-3"/><path d="M2 21c1.4 0 1.4-.9 2.8-.9s1.4.9 2.8.9 1.4-.9 2.8-.9 1.4.9 2.8.9 1.4-.9 2.8-.9 1.4.9 2.8.9 1.4-.9 2.8-.9"/></symbol>
@@ -1997,7 +2124,7 @@ function acctMenu() {
 function depMenu(btn) {
   const m = $('#depMenu'); const wasOpen = !m.classList.contains('hide');
   closePops(); if (wasOpen) return;
-  m.innerHTML = `<div class="dm-h">Comprar por categoría</div><div class="dm-grid">${S.cats.map(c => `<a href="#/c/todos/${esc(c.id)}"><span class="dm-e">${esc(c.emoji || '•')}</span><span>${esc(c.nombre)}</span>${ic('chevr', 'sm')}</a>`).join('') || '<p class="mut">Aún no hay categorías.</p>'}</div>
+  m.innerHTML = `<div class="dm-h">Comprar por categoría</div><div class="dm-grid">${S.cats.map(c => `<a href="#/c/todos/${esc(c.id)}">${catIcono(c, 'dm-e')}<span>${esc(c.nombre)}</span>${ic('chevr', 'sm')}</a>`).join('') || '<p class="mut">Aún no hay categorías.</p>'}</div>
     <div class="dm-f"><a href="#/c/ofertas">${ic('tag', 'sm')} Ofertas</a><a href="#/c/vendidos">${ic('trend', 'sm')} Más vendidos</a><a href="#/c/baratos">${ic('dollar', 'sm')} A buen precio</a><a href="#/tiendas">${ic('store', 'sm')} Tiendas</a></div>`;
   const r = btn.getBoundingClientRect();
   m.style.top = Math.round(r.bottom + 8) + 'px'; m.style.left = Math.max(8, Math.min(Math.round(r.left), window.innerWidth - Math.min(580, window.innerWidth - 16) - 8)) + 'px';
@@ -2243,7 +2370,7 @@ async function loadDep(sec) {
   const promo = recs.filter(r => safeUrl(r.imagen)).concat(recs.filter(r => !safeUrl(r.imagen))).slice(0, 3);
   const tiendas = []; recs.forEach(r => { if (r.tienda_id && !tiendas.some(t => t[0] === r.tienda_id)) tiendas.push([r.tienda_id, r.tienda_id__n, r.tienda_logo]); });
   promo.forEach(r => LOOSE.set('Productos:' + r.id, r));
-  sec.innerHTML = `<aside class="dep-l"><h3>${esc(c.emoji || '')} ${esc(c.nombre)}</h3>
+  sec.innerHTML = `<aside class="dep-l"><h3>${catIcono(c, 'chip-ic')} ${esc(c.nombre)}</h3>
       <a href="#/c/vendidos/${esc(c.id)}">Más vendidos</a><a href="#/c/ofertas/${esc(c.id)}">Ofertas</a><a href="#/c/baratos/${esc(c.id)}">A buen precio</a><a href="#/c/nuevos/${esc(c.id)}">Lo más nuevo</a>
       ${tiendas.slice(0, 4).map(t => `<a class="dep-st" href="#/t/${esc(t[0])}">${miniLogo(t[2], t[1])}${esc(t[1])}</a>`).join('')}
       <a class="dep-all" href="#/c/todos/${esc(c.id)}">Ver todo</a></aside>
@@ -2299,7 +2426,7 @@ function vHome(main) {
       <select class="sel" id="pSort" aria-label="Ordenar productos"><option value="">Recomendados</option><option value="precio:1">Menor precio</option><option value="precio:-1">Mayor precio</option><option value="creado:-1">Más nuevos</option><option value="vendidos:-1">Más vendidos</option></select></div>
       <div class="grid" id="hProds"></div></section>
     <section class="biz"><div><h2>¿Tienes un negocio en tu pueblo?</h2><p>Vende en ${esc(name)}: recibe pedidos, maneja tu inventario y llega a más clientes con tu propia vitrina y cupones.</p></div>
-      <div class="row wrap"><a class="btn lime" href="#/vender">Registra tu negocio</a>${sup ? `<a class="btn white" href="${esc(sup)}" target="_blank" rel="noopener">Hazte domiciliario</a>` : ''}</div></section>
+      <div class="row wrap"><a class="btn lime" href="#/vender">Registra tu negocio</a><a class="btn white" href="#/domiciliario">${ic('moto', 'sm')} Hazte domiciliario</a></div></section>
   </div>`;
   $('#q').value = S.home.q;
   startSlider();
@@ -2332,7 +2459,7 @@ function vCatalogo(main, k, cat) {
     <div class="page-h"><h1>${c ? esc((c.emoji || '') + ' ' + c.nombre) : esc(v.t)}</h1><span class="sub" id="cCount"></span><span class="grow"></span>
       <select class="sel" id="cSort" aria-label="Ordenar"><option value="">Orden sugerido</option><option value="precio:1">Menor precio</option><option value="precio:-1">Mayor precio</option><option value="creado:-1">Más nuevos</option><option value="vendidos:-1">Más vendidos</option></select></div>
     <div class="chips" style="margin-bottom:10px">${Object.keys(V).map(x => `<a class="chip ${x === k ? 'on' : ''}" href="#/c/${x}${c ? '/' + esc(c.id) : ''}">${esc(V[x].t)}</a>`).join('')}</div>
-    <div class="chips" style="margin-bottom:16px"><a class="chip ${c ? '' : 'on'}" href="#/c/${k}">Todas las categorías</a>${S.cats.map(x => `<a class="chip ${c && c.id === x.id ? 'on' : ''}" href="#/c/${k}/${esc(x.id)}">${esc(x.emoji || '')} ${esc(x.nombre)}</a>`).join('')}</div>
+    <div class="chips" style="margin-bottom:16px"><a class="chip ${c ? '' : 'on'}" href="#/c/${k}">Todas las categorías</a>${S.cats.map(x => `<a class="chip ${c && c.id === x.id ? 'on' : ''}" href="#/c/${k}/${esc(x.id)}">${catIcono(x, 'chip-ic')} ${esc(x.nombre)}</a>`).join('')}</div>
     <div class="grid" id="cList"></div>`;
   const l = new List($('#cList'), { e: 'Productos', f, s: v.s, d: v.d, render: prodCard, empty: 'Aún no hay productos aquí. ¡Vuelve pronto!',
     onData: x => { const el = $('#cCount'); if (el) el.textContent = num(x.total) + ' producto(s)'; } });
@@ -2959,6 +3086,7 @@ function vGestion(main, e) {
   const m = S.meta[e];
   if (!guard()) return;
   if (!m || !m.can.l || m.hide || e === 'Pedidos') { toast('No tienes acceso a esa sección.', 'err'); location.hash = '#/' + landing(); return; }
+  if (e === 'Auditoria') return vAuditoria(main);
   const flt = m.fields.filter(f => f.f && !hiddenOwn(m, f) && (f.t === 'sel' || f.t === 'bool' || (f.t === 'ref' && (SMALL[f.ref] || (f.ref === 'Tiendas' && esAdm())))));
   const srt = m.fields.filter(f => f.o);
   main.innerHTML = `<div class="page-h"><h1>${ic(m.icon)} ${esc(m.label)}</h1><span class="sub" id="gCount"></span><span class="grow"></span>
@@ -3034,7 +3162,7 @@ function fieldHtml(f, v, rec, isNew) {
       break;
     case 'geo': return geoFieldHtml(f, val, req);
     case 'img': return `<div class="fld fld-img" data-k="${f.k}"><label>${esc(f.l)}</label><div class="imgf"><div class="imgprev">${imgTag(val, f.l)}</div><input type="hidden" name="${f.k}" value="${esc(val)}">
-      <div class="row wrap"><label class="btn sm" style="margin:0">${ic('upload', 'sm')} <span>Subir imagen</span><input type="file" accept="image/png,image/jpeg,image/webp" class="hide" data-imgup></label><button type="button" class="btn sm" data-cam="${f.k === 'foto' ? 'selfie' : 'foto'}">${ic('camera', 'sm')} Cámara</button><button type="button" class="btn sm ghost" data-imgrm>Quitar</button></div></div><small class="hint">Se comprime automáticamente antes de subir.</small><small class="ferr"></small></div>`;
+      <div class="row wrap"><label class="btn sm" style="margin:0">${ic('upload', 'sm')} <span>Subir imagen</span><input type="file" accept="image/png,image/jpeg,image/webp" class="hide" data-imgup></label><button type="button" class="btn sm" data-cam="${f.k === 'foto' ? 'selfie' : 'foto'}">${ic('camera', 'sm')} Cámara</button>${f.k === 'portada' ? `<button type="button" class="btn sm" data-covgen>${ic('refresh', 'sm')} Generar</button>` : ''}<button type="button" class="btn sm ghost" data-imgrm>Quitar</button></div></div><small class="hint">Se comprime automáticamente antes de subir.</small><small class="ferr"></small></div>`;
     default: {
       const type = f.t === 'email' ? 'email' : f.t === 'tel' ? 'tel' : 'text';
       inp = `<input id="${id}" name="${f.k}" type="${type}" ${f.t === 'tel' ? 'inputmode="tel"' : ''} maxlength="${f.max || 200}" value="${esc(val)}" ${f.t === 'code' ? 'style="text-transform:uppercase"' : ''}>`;
@@ -3071,7 +3199,7 @@ function hydrateForm(form, onSubmit) {
       try {
         const data = await compressImage(file, fld.dataset.k === 'portada' ? 1800 : 1000, fld.dataset.k === 'portada' ? 0.85 : 0.82);
         $('.imgprev', fld).innerHTML = `<img src="${esc(data)}" alt="">`;
-        const r = await enqueue('upload', { data, name: file.name });
+        const r = await enqueue('upload', { data, name: file.name, w: fld.dataset.k === 'portada' ? 1800 : 1000 });
         hid.value = r.url; toast('Imagen cargada');
       } catch (e) { toast(e.message, 'err'); $('.imgprev', fld).innerHTML = imgTag(hid.value, ''); }
       finally { lbl.textContent = 'Subir imagen'; inp.value = ''; }
@@ -3126,6 +3254,7 @@ async function openForm(e, id) {
   if (ro) return;
   const form = $('form', box);
   if (e === 'Usuarios') grupoUsuarios(form, rec, isNew);
+  if (e === 'Categorias') iconoPicker(form);
   $$('input[name=horario]', form).forEach(horarioUI);
   hydrateForm(form, btn => {
     const o = collect(form, fs);
@@ -3222,8 +3351,7 @@ async function vConfig(main) {
     <div class="card pad" id="cfgList"><div class="skel" style="height:400px"></div></div>`;
   let rows; try { rows = await call('cfgList', {}); } catch (e) { $('#cfgList').innerHTML = `<p>${esc(e.message)}</p>`; return; }
   if (!$('#cfgList')) return;
-  $('#cfgList').innerHTML = rows.map(r => `<div class="cfgrow" data-k="${esc(r.k)}"><div><code>${esc(r.k)}</code> ${r.p ? '<span class="badge b-info">público</span>' : ''}<small class="hint">${esc(r.d)}</small></div>
-    <input class="inp" value="${esc(r.v)}" aria-label="${esc(r.k)}" ${/^COLOR_/.test(r.k) ? 'type="text" pattern="#[0-9a-fA-F]{6}"' : ''}><div class="row" style="gap:6px">${/^(BANNER|PROMO)_\d$/.test(r.k) ? `<button class="btn sm ghost" data-act="cfg-dest">${ic('nav', 'sm')} Elegir destino</button>` : ''}<button class="btn sm" data-act="cfg-save">${ic('check', 'sm')} Guardar</button></div></div>`).join('');
+  cfgGrid($('#cfgList'), rows);
 }
 
 /* =====================================================================
@@ -3298,16 +3426,18 @@ function vCuenta(main) {
   const pf = ['foto', 'nombre', 'telefono', 'bio', 'municipio_id', 'direccion', 'zona_id', 'ubicacion', 'promos'].concat(u.rol === 'repartidor' ? ['vehiculo', 'placa'] : []).map(k => ({ municipio_id: { k: 'municipio_id', t: 'ref', ref: 'Municipios', l: 'Mi municipio', hint: 'La app te muestra primero los negocios de tu municipio.' }, placa: { k: 'placa', t: 'text', l: 'Placa del vehículo', max: 12, hint: 'El cliente y la tienda la ven al asignarte un pedido.' }, nombre: { k: 'nombre', t: 'text', l: 'Nombre completo', req: 1, max: 80 }, telefono: { k: 'telefono', t: 'tel', l: 'Teléfono' }, direccion: { k: 'direccion', t: 'text', l: 'Dirección', max: 160 }, zona_id: { k: 'zona_id', t: 'ref', ref: 'Zonas', l: 'Zona' }, ubicacion: { k: 'ubicacion', t: 'geo', l: 'Mi casa en el mapa', hint: 'Se usa para tus domicilios. Puedes cambiarla en cada pedido.' }, promos: { k: 'promos', t: 'bool', l: 'Recibir ofertas y novedades del pueblo' }, foto: { k: 'foto', t: 'img', l: 'Mi foto de perfil' }, bio: { k: 'bio', t: 'textarea', l: u.rol === 'vendedor' ? 'Sobre mí (dueño del negocio)' : 'Sobre mí', max: 300, hint: 'Una frase corta: quién eres y qué haces. Es tu perfil personal, distinto del logo de la tienda.' }, vehiculo: { k: 'vehiculo', t: 'sel', l: 'Mi vehículo de reparto', req: 1, opts: ['moto', 'carro', 'camion', 'lancha'], hint: 'Así aparece en el mapa que ve el cliente.' } }[k]));
   const canReq = u.rol === 'cliente' && String(S.cfg.SOLICITUD_TIENDA || '').toUpperCase() === 'SI';
   const sup = wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, necesito ayuda con ' + (S.cfg.APP_NOMBRE || 'La Wuaka'));
-  main.innerHTML = `<div class="page-h prof-h">${avatarHtml(u, 'xl')}<div><h1>${esc(u.nombre)}</h1><span class="sub">${esc(/@equipo\.muaka\.app$/.test(u.email) ? (u.telefono || '') : u.email)} · ${esc(rolL(u))}${S.tienda ? ' · ' + esc(S.tienda.nombre) : ''}</span>${u.bio ? `<p class="prof-bio">${esc(u.bio)}</p>` : ''}</div><span class="grow"></span><button class="btn danger" data-act="logout">${ic('logout')} Cerrar sesión</button></div>
+  main.innerHTML = `${perfilHero(u)}
     <div class="cols acc-cols">
       <div class="card pad acc-dat"><h3 style="margin-bottom:12px">Mis datos</h3><div id="pfForm">${formHtml(um || {}, Object.assign({}, u, { promos: u.promos !== false, vehiculo: u.vehiculo || 'moto' }), false, { fields: pf, noCancel: true, okLabel: 'Guardar datos' })}</div></div>
       <div class="card pad acc-not"><h3 style="margin-bottom:12px">${ic('bell', 'sm')} Notificaciones y sonido</h3><div id="pushBox">${pushBoxHtml()}</div></div>
+      ${herramientasHtml(u)}
       ${u.rol === 'repartidor' && !u.tienda_id ? `<div class="card pad"><h3 style="margin-bottom:6px">${ic('route', 'sm')} Viajes entre municipios</h3><p class="mut" style="margin:0 0 10px;font-size:13.5px">Si los activas, los clientes de otros municipios podrán pedirte que recojas su compra y se la lleves. Tu municipio base es "${esc(munNombre(u.municipio_id) || 'sin definir')}".</p><div id="vjBox">${viajesHtml(u)}</div></div>` : ''}
       <div class="card pad"><h3 style="margin-bottom:12px">${ic('lock', 'sm')} Cambiar contraseña</h3>
         <form class="stack" id="pwForm" novalidate>${pwInput('pA', 'actual', 'current-password', 'Contraseña actual')}${pwInput('pN', 'nueva', 'new-password', 'Nueva contraseña')}<small class="hint" style="margin-top:-6px">Mínimo 8 caracteres, con letras y números.</small><button class="btn pri" type="submit">${ic('check')} Cambiar contraseña</button></form></div>
     </div>
     ${canReq ? `<div class="card pad" style="margin-top:14px"><h3>${ic('store', 'sm')} ¿Tienes un negocio? Ábrelo en ${esc(S.cfg.APP_NOMBRE || 'La Wuaka')}</h3><p class="mut">Envía la solicitud; el administrador la revisará y activará tu panel de vendedor.</p><div id="stForm"><button class="btn acc" data-act="req-store">${ic('plus')} Solicitar mi tienda</button></div></div>` : ''}
     ${sup || S.cfg.EMAIL_SOPORTE ? `<div class="card pad row wrap" style="margin-top:14px"><b class="grow">¿Necesitas ayuda?</b>${sup ? `<a class="btn" href="${esc(sup)}" target="_blank" rel="noopener">${ic('chat')} WhatsApp soporte</a>` : ''}${S.cfg.EMAIL_SOPORTE ? `<a class="btn" href="mailto:${esc(S.cfg.EMAIL_SOPORTE)}">${ic('mail')} Correo</a>` : ''}</div>` : ''}`;
+  herramientasCargar();
   $('#pushBox').addEventListener('change', e => { if (e.target.id !== 'swSnd') return; AUD.on = e.target.checked; store.set('snd', AUD.on ? '1' : '0'); if (AUD.on) { audUnlock(); setTimeout(() => sonar('aviso'), 120); } });
   const pform = $('#pfForm form');
   hydrateForm(pform, btn => {
@@ -3347,15 +3477,10 @@ function notifRow(n) {
     ${n.leida !== true ? '<span class="badge b-pri">Nueva</span>' : ''}</div>`;
 }
 function openNotifs() {
-  const d = openDrawer(mHead('Notificaciones', 'bell') + `<div class="mb"><p class="mut" style="margin:0 0 10px;font-size:13px">${ic('eye', 'sm')} Las notificaciones desaparecen cuando ya las viste.</p><div id="nList"></div></div><div class="dfoot"><button class="btn block" data-act="notif-all">${ic('check')} Limpiar todas</button></div>`);
+  const d = openDrawer(mHead('Notificaciones', 'bell') + `<div class="mb"><p class="mut" style="margin:0 0 10px;font-size:13px">${ic('eye', 'sm')} Toca una notificación para verla; después desaparece de aquí. Las que no has abierto se quedan.</p><div id="nList"></div></div><div class="dfoot"><button class="btn block" data-act="notif-all">${ic('check')} Limpiar todas</button></div>`);
   clearCache('Notificaciones');
   const L = S.nList = new List($('#nList', d), { e: 'Notificaciones', f: { leida: false }, n: 40, skel: 'row', render: notifRow, empty: 'No tienes notificaciones nuevas.' });
-  L.load().then(() => {
-    const ids = [...L.recs.values()].filter(r => r.leida !== true).map(r => r.id);
-    if (!ids.length) return;
-    S.nu = 0; updateBell();
-    enqueue('leer', { ids }).then(() => clearCache('Notificaciones')).catch(() => { });
-  });
+  L.load();
 }
 /** Tiendas, domiciliarios y administración sincronizan cada 8 s como máximo; con un pedido en ruta abierto, cada 6 s. */
 function syncSec() { const b = Math.max(5, Number(S.cfg.SYNC_SEGUNDOS) || 15); return S.fast ? 6 : staffish() ? Math.min(b, 8) : b; }
@@ -3387,7 +3512,7 @@ async function tick() {
       const recs = toObjs(ch.Notificaciones).recs; S.nseen = S.nseen || new Set();
       const nuevas = recs.filter(r => r.leida !== true && !S.nseen.has(r.id) && Date.now() - (toDate(r.creado) || 0) < 10 * 60000);
       recs.forEach(r => { S.nseen.add(r.id); upsertAll('Notificaciones', r); });
-      if (nuevas.length) { avisar(nuevas); if (esAdm() && nuevas.some(n => /^TND-/.test(n.ref || ''))) { refreshSolCount(); if (location.hash === '#/panel' && $('#dashBody')) vPanel($('#main'), true, true); } }
+      if (nuevas.length) { avisar(nuevas); refrescarPorAviso(nuevas); if (esAdm() && nuevas.some(n => /^TND-/.test(n.ref || ''))) { refreshSolCount(); if (location.hash === '#/panel' && $('#dashBody')) vPanel($('#main'), true, true); } }
     }
     if (typeof d.nu === 'number') { S.nu = d.nu; updateBell(); }
   } catch (e) { /* reintenta en el siguiente ciclo */ }
@@ -3663,8 +3788,8 @@ const geoP = s => { const m = /^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/.ex
 const geoS = ll => ll[0].toFixed(6) + ',' + ll[1].toFixed(6);
 const centro = () => geoP(S.cfg.MAPA_CENTRO) || [8.9586, -74.0808];
 const rutaUrl = (ll, veh) => veh === 'lancha' ? mapUrl(ll[0] + ',' + ll[1]) : 'https:' + '\x2f\x2fwww.google.com\x2fmaps\x2fdir\x2f?api=1&travelmode=driving&destination=' + ll[0] + ',' + ll[1];
-const VEH_L = { moto: 'Moto', carro: 'Carro', camion: 'Camión', lancha: 'Lancha' };
-const vehIc = v => ({ carro: 'carro', camion: 'camion', lancha: 'lancha' })[v] || 'moto';
+const VEH_L = { moto: 'Moto', bici: 'Bicicleta', carro: 'Carro', van: 'Minivan', camion: 'Camión', lancha: 'Lancha' };
+const vehIc = v => ({ carro: 'carro', van: 'van', camion: 'camion', lancha: 'lancha', bici: 'bici' })[v] || 'moto';
 const PIN_SVG = '<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M20 51s17-17.6 17-30A17 17 0 0 0 3 21c0 12.4 17 30 17 30z" fill="var(--sale)" stroke="#fff" stroke-width="3"/><circle cx="20" cy="21" r="6.5" fill="#fff"/></svg>';
 function mkIcon(L, kind, veh) {
   const icn = kind === 't' ? 'store' : kind === 'r' ? vehIc(veh) : 'pin';
@@ -3783,12 +3908,17 @@ function solCard(t) {
 function vSolicitudes(main) {
   if (!guard(['admin'])) return;
   main.innerHTML = `<div class="page-h"><h1>${ic('store')} Solicitudes de tienda</h1><span class="grow"></span><div class="chips"><button class="chip on" data-act="soltab" data-v="pendiente">Por revisar</button><button class="chip" data-act="soltab" data-v="rechazada">Rechazadas</button><button class="chip" data-act="soltab" data-v="activa">Aprobadas</button></div></div>
-    <div class="solgrid" id="solList"></div>`;
+    <div class="solgrid" id="solList"></div>
+    <div class="page-h" style="margin-top:26px"><h2 style="margin:0;display:flex;gap:8px;align-items:center">${ic('moto')} Domiciliarios por aprobar</h2></div>
+    <p class="mut" style="margin-top:-6px">Personas que se inscribieron solas como domiciliarios independientes.</p>
+    <div class="solgrid" id="domList"></div>`;
   S.solList = new List($('#solList'), { e: 'Tiendas', g: 1, f: { estado: 'pendiente' }, skel: 'card', render: solCard, empty: 'No hay solicitudes en esta pestaña. ¡Todo al día!' });
   S.solList.load();
+  S.domList = new List($('#domList'), { e: 'Usuarios', g: 1, f: { rol: 'repartidor', estado: 'pendiente' }, skel: 'card', render: domCard, empty: 'No hay domiciliarios esperando aprobación.' });
+  S.domList.load();
 }
 async function openSolicitud(id) {
-  if (role() !== 'admin') return;
+  if (!esAdm()) return;
   const box = openModal(mHead('Solicitud de tienda', 'store') + `<div class="mb"><div class="skel" style="height:320px"></div></div>`, { wide: true });
   let d; try { d = await call('solicitud', { id }); } catch (e) { $('.mb', box).innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
   if (!box.isConnected) return;
@@ -3820,8 +3950,8 @@ async function openSolicitud(id) {
   });
 }
 const refreshSolCount = debounce(async () => {
-  if (role() !== 'admin') return;
-  try { const d = await call('list', { e: 'Tiendas', g: 1, f: { estado: 'pendiente' }, q: '', s: '', d: -1, n: 1, p: 1 }); S.solN = d.t || 0; } catch (e) { return; }
+  if (!esAdm()) return;
+  try { const [d, dd] = await Promise.all([call('list', { e: 'Tiendas', g: 1, f: { estado: 'pendiente' }, q: '', s: '', d: -1, n: 1, p: 1 }), call('list', { e: 'Usuarios', g: 1, f: { rol: 'repartidor', estado: 'pendiente' }, q: '', s: '', d: -1, n: 1, p: 1 }).catch(() => ({ t: 0 }))]); S.solN = (d.t || 0) + (dd.t || 0); } catch (e) { return; }
   const a = $('#side a[data-r="solicitudes"]'); if (a) { let nb = $('.nb', a); if (!S.solN) { if (nb) nb.remove(); return; } if (!nb) { nb = document.createElement('span'); nb.className = 'nb'; a.appendChild(nb); } nb.textContent = S.solN; }
 }, 300);
 
@@ -3992,7 +4122,7 @@ async function depUnico() {
   const llenas = S.cats.filter(c => by[c.id] && by[c.id].length);
   if (!llenas.length) { sec.remove(); return; }
   const cats = llenas.concat(S.cats.filter(c => !llenas.includes(c)));
-  sec.innerHTML = `<aside class="dep-l du-l"><h3>${ic('layers', 'sm')} Explora por categoría</h3><div class="du-tabs" role="tablist">${cats.map((c, i) => `<button type="button" role="tab" class="du-t ${i ? '' : 'on'} ${by[c.id] ? '' : 'du-empty'}" data-act="du-tab" data-cat="${esc(c.id)}" aria-selected="${i ? 'false' : 'true'}"><span>${esc(c.emoji || '🛍️')}</span>${esc(c.nombre)}<small>${by[c.id] ? by[c.id].length + (by[c.id].length >= 6 ? '+' : '') : ''}</small></button>`).join('')}</div>
+  sec.innerHTML = `<aside class="dep-l du-l"><h3>${ic('layers', 'sm')} Explora por categoría</h3><div class="du-tabs" role="tablist">${cats.map((c, i) => `<button type="button" role="tab" class="du-t ${i ? '' : 'on'} ${by[c.id] ? '' : 'du-empty'}" data-act="du-tab" data-cat="${esc(c.id)}" aria-selected="${i ? 'false' : 'true'}">${catIcono(c)}${esc(c.nombre)}<small>${by[c.id] ? by[c.id].length + (by[c.id].length >= 6 ? '+' : '') : ''}</small></button>`).join('')}</div>
     <div class="du-links" id="duLinks"></div></aside><div class="vpromo" id="duVp"></div><div class="dep-grid" id="duGrid"></div>`;
   sec.classList.add('ready');
   duPintar(cats[0].id, by[cats[0].id]);
@@ -4069,13 +4199,16 @@ function gGen(e) {
   const info = vf.filter(f => f.k !== m.title && f !== img && !tog.includes(f) && f.t !== 'json' && f.t !== 'img' && f.t !== 'textarea').slice(0, 5);
   const media = r => {
     if (e === 'Usuarios') return `<span class="gc-av">${avatarHtml(r, 'xl')}</span>`;
-    if (e === 'Categorias' && r.emoji) return `<span class="gc-emo">${esc(r.emoji)}</span>`;
+    const lg = ['logo', 'escudo', 'imagen', 'icono'].map(k => r[k]).find(v => safeUrl(v));
+    if (lg && safeUrl(r.portada)) return `<span class="gc-logo">${imgTag(lg, r[m.title])}</span>`;
+    if (e === 'Categorias') return catIcono(r, 'gc-cat');
+    if (lg) return imgTag(lg, r[m.title], m.icon);
     if (img && safeUrl(r[img.k])) return imgTag(r[img.k], r[m.title], m.icon);
     return `<span class="gc-ico">${ic(GC_IC[e] || m.icon || 'file')}</span>`;
   };
   return r => `<div class="gcard gg ${r.activo === false || r.estado === 'suspendido' || r.estado === 'suspendida' ? 'off' : ''}">
     ${m.can.d || tog.length ? `<label class="ck gc-ck"><input type="checkbox" data-act="g-check" aria-label="Seleccionar"></label>` : ''}
-    <button type="button" class="gc-img gg-m ${e === 'Usuarios' || !(img && safeUrl(r[img.k])) ? 'soft' : ''}" data-act="g-edit" aria-label="Abrir ${esc(r[m.title] || '')}">${media(r)}</button>
+    <button type="button" class="gc-img gg-m ${safeUrl(r.portada) ? 'has-cov' : e === 'Usuarios' || !(img && safeUrl(r[img.k])) ? 'soft' : ''}" ${safeUrl(r.portada) ? `style="background-image:url('${esc(r.portada)}')"` : ''} data-act="g-edit" aria-label="Abrir ${esc(r[m.title] || '')}">${media(r)}</button>
     <div class="gc-b"><button type="button" class="gc-t" data-act="g-edit">${esc(r[m.title] || '—')}</button>
       <div class="gg-i">${info.map(f => `<span><i>${esc(f.l)}</i> ${fmtVal(f, r)}</span>`).join('')}</div></div>
     <div class="gc-f">${tog.length ? `<div class="gc-sw">${gToggles(e, r)}</div>` : ''}<div class="gc-a"><button type="button" class="icon-btn" data-act="g-edit" aria-label="Editar">${ic(m.ro || !m.can.u ? 'eye' : 'edit')}</button>${m.can.d && !m.ro ? `<button type="button" class="icon-btn" data-act="g-del" aria-label="Eliminar">${ic('trash')}</button>` : ''}</div></div>
@@ -4333,8 +4466,8 @@ function openMun(first) {
   const box = openModal(mHead(first ? '¿En qué municipio estás?' : 'Cambiar de municipio', 'pin') + `<div class="mb stack">
     <p class="mut" style="margin:0">${first ? 'Así te mostramos los negocios de tu municipio y sus corregimientos.' : 'Verás los negocios inscritos en ese municipio y sus corregimientos.'}</p>
     ${navigator.geolocation ? `<button class="btn pri block" id="munGps">${ic('nav', 'sm')} Usar mi ubicación</button>` : ''}
-    <div class="munlist">${S.muns.map(m => `<button type="button" class="munit ${m.id === S.mun ? 'on' : ''}" data-act="mun-set" data-v="${esc(m.id)}"><b>${ic('pin', 'sm')} ${esc(m.nombre)}</b><small>${(byM[m.id] || []).map(l => esc(l.nombre)).join(' · ') || 'Cabecera municipal'}</small></button>`).join('')}</div>
-    ${S.zonas.length ? `<details><summary class="mut" style="cursor:pointer;font-size:13.5px">Ver zonas y tarifas de domicilio</summary><div class="zlist" style="margin-top:8px">${S.zonas.filter(z => !S.mun || !z.municipio_id || z.municipio_id === S.mun).map(z => `<div class="zitem"><span class="aj-i">${ic('moto', 'sm')}</span><span class="grow"><b>${esc(z.nombre)}</b><small>${esc(z.municipio_id__n || z.municipio || '')}</small></span><b class="zt">${Number(z.tarifa) ? money(z.tarifa) : 'Gratis'}</b></div>`).join('')}</div></details>` : ''}</div>`);
+    <div class="munlist">${S.muns.map(m => `<button type="button" class="munit ${m.id === S.mun ? 'on' : ''} ${safeUrl(m.portada) ? 'has-cov' : ''}" ${safeUrl(m.portada) ? `style="--cov:url('${esc(m.portada)}')"` : ''} data-act="mun-set" data-v="${esc(m.id)}">${safeUrl(m.escudo) ? `<span class="mun-esc"><img src="${esc(m.escudo)}" alt="" referrerpolicy="no-referrer"></span>` : `<span class="mun-esc">${ic('pin')}</span>`}<span class="grow"><b>${esc(m.nombre)}</b>${m.lema ? `<em>${esc(m.lema)}</em>` : ''}<small>${(byM[m.id] || []).map(l => esc(l.nombre)).join(' · ') || 'Cabecera municipal'}</small></span></button>`).join('')}</div>
+    ${S.zonas.length ? `<details><summary class="mut" style="cursor:pointer;font-size:13.5px">Ver zonas y tarifas de domicilio</summary><div class="zlist" style="margin-top:8px">${S.zonas.filter(z => !S.mun || !z.municipio_id || z.municipio_id === S.mun).map(z => `<div class="zitem">${safeUrl(z.imagen) ? `<span class="aj-i z-img"><img src="${esc(z.imagen)}" alt="" referrerpolicy="no-referrer"></span>` : `<span class="aj-i">${ic('moto', 'sm')}</span>`}<span class="grow"><b>${esc(z.nombre)}</b><small>${esc(z.municipio_id__n || z.municipio || '')}</small></span><b class="zt">${Number(z.tarifa) ? money(z.tarifa) : 'Gratis'}</b></div>`).join('')}</div></details>` : ''}</div>`);
   const b = $('#munGps', box);
   if (b) b.onclick = () => busy(b, 'Buscando…', async () => {
     try { const g = await ubicarme(true); const loc = munDe(g, g[2]); if (!loc) { popup({ type: 'info', title: 'No te ubicamos', msg: 'Tu ubicación no está cerca de ningún pueblo registrado. Elige tu municipio de la lista.' }); return; } closeModal(); setMun(loc.municipio_id, 'Estás en ' + loc.nombre + '.'); }
@@ -4483,7 +4616,7 @@ async function destinoDlg(row) {
     if (v === 'pv' || v === 'pc') { const id = $('#dsP', box).value; if (!id) return toast('Elige el producto.', 'err'); h = (v === 'pc' ? '#/comprar/' : '#/producto/') + id; }
     if (v === 't') { const id = $('#dsTi', box).value; if (!id) return toast('Elige la tienda.', 'err'); h = '#/t/' + id; }
     parts[3] = h; if (!parts[2]) parts[2] = v === 'pc' ? 'Hacer pedido' : 'Ver más';
-    inp.value = parts.join(' | ').replace(/( \| )+$/, ''); closeModal(); inp.focus(); toast('Destino listo. Ahora pulsa Guardar.', 'info');
+    inp.value = parts.join(' | ').replace(/( \| )+$/, ''); closeModal(); if (row.isConnected) { inp.focus(); toast('Destino listo. Ahora pulsa Guardar.', 'info'); } else enqueue('cfgSave', { k: row.dataset.k, v: inp.value }).then(r => { if (Object.prototype.hasOwnProperty.call(S.cfg, row.dataset.k)) S.cfg[row.dataset.k] = r.v; toast('Destino guardado'); }).catch(e => toast(e.message, 'err'));
   };
 }
 
@@ -4529,16 +4662,16 @@ function equipoForm(m) {
   const adm = esAdm(); const sopTab = esSuper() && S.eqT === 'sop'; const gesTab = esSuper() && S.eqT === 'gestor'; const platTab = sopTab || gesTab; const nuevo = !m; m = m || {};
   const puedeAdm = adm || cargo() === 'dueno';
   const rolSel = gesTab ? 'gestor' : sopTab ? 'soporte' : (m.rol || 'vendedor');
-  const fotoF = { k: 'foto', t: 'img', l: 'Foto (para el carnet)' };
+  const fotoF = { k: 'foto', t: 'img', l: 'Foto (para el carnet)' }; const portF = { k: 'portada', t: 'img', l: 'Portada del perfil (opcional)' };
   const box = openModal(mHead(nuevo ? 'Agregar persona' : 'Editar · ' + m.nombre, 'users') + `<div class="mb"><form class="frm" novalidate>
-    ${fieldHtml(fotoF, m.foto || '', m, nuevo)}
+    ${fieldHtml(fotoF, m.foto || '', m, nuevo)}${fieldHtml(portF, m.portada || '', m, nuevo)}
     <div class="fld"><label for="eqN">Nombre completo <span class="req">*</span></label><input id="eqN" name="nombre" maxlength="80" value="${esc(m.nombre || '')}"></div>
     <div class="fld"><label for="eqTel">Celular / WhatsApp</label><input id="eqTel" name="telefono" type="tel" inputmode="tel" maxlength="20" value="${esc(m.telefono || '')}"><small class="hint">Si no tiene correo, entra con este celular.</small></div>
     <div class="fld"><label for="eqE">Correo (opcional)</label><input id="eqE" name="email" type="email" maxlength="120" value="${esc(m.email || '')}"></div>
     ${platTab ? '' : `<div class="fld"><label for="eqR">Rol</label><select id="eqR" name="rol" ${m.dueno ? 'disabled' : ''}><option value="vendedor" ${rolSel === 'vendedor' ? 'selected' : ''}>Equipo de la tienda</option><option value="repartidor" ${rolSel === 'repartidor' ? 'selected' : ''}>Domiciliario propio</option></select></div>
     <div class="fld" id="eqCf"><label for="eqC">Cargo</label><select id="eqC" name="cargo" ${m.dueno ? 'disabled' : ''}>${m.dueno || (adm && m.cargo === 'dueno') ? '<option value="dueno" selected>Dueño</option>' : ''}${adm && !m.cargo ? '<option value="dueno">Dueño</option>' : ''}${puedeAdm ? `<option value="administrador" ${m.cargo === 'administrador' ? 'selected' : ''}>Administrador del negocio</option>` : ''}<option value="vendedor" ${!m.cargo || m.cargo === 'vendedor' ? 'selected' : ''}>Vendedor</option></select><small class="hint">El vendedor atiende pedidos y productos; no ve ventas ni datos del negocio.</small></div>`}
     <div class="fld full"><label for="eqH">Horario de trabajo</label><input id="eqH" name="horario" maxlength="11" placeholder="07:00-17:00" value="${esc(m.horario || '')}"><small class="hint">Sirve para marcar las llegadas tarde en la asistencia.</small></div>
-    <div class="fld" id="eqVf"><label for="eqV">Vehículo</label><select id="eqV" name="vehiculo">${['moto', 'carro', 'camion', 'lancha'].map(v => `<option value="${v}" ${(m.vehiculo || 'moto') === v ? 'selected' : ''}>${esc(VEH_L[v])}</option>`).join('')}</select></div>
+    <div class="fld" id="eqVf"><label for="eqV">Vehículo</label><select id="eqV" name="vehiculo">${Object.keys(VEH_L).map(v => `<option value="${v}" ${(m.vehiculo || 'moto') === v ? 'selected' : ''}>${esc(VEH_L[v])}</option>`).join('')}</select></div>
     <div class="fld" id="eqPf"><label for="eqP">Placa</label><input id="eqP" name="placa" maxlength="12" value="${esc(m.placa || '')}" style="text-transform:uppercase"></div>
     ${sopTab ? `<div class="fld full"><label>Negocios que atiende <span class="req">*</span></label><div class="ts-bar"><input type="search" id="eqTq" placeholder="Buscar negocio…" aria-label="Buscar negocio"><button type="button" class="btn sm" data-ts="all">${ic('check', 'sm')} Todos</button><button type="button" class="btn sm ghost" data-ts="none">Ninguno</button><small class="mut" id="eqTn"></small></div><div class="checks" id="eqTs"><span class="mut">Cargando negocios…</span></div></div>` : ''}
     ${nuevo ? '' : `<div class="fld fld-sw"><label class="sw" style="margin:0"><input type="checkbox" name="activo" ${m.estado !== 'suspendido' ? 'checked' : ''} ${m.id === S.user.id ? 'disabled' : ''}><span></span><em>Cuenta activa</em></label></div>`}
@@ -4551,7 +4684,7 @@ function equipoForm(m) {
   if (sopTab) call('opts', { e: 'Tiendas', q: '' }).then(o => { const cur = m.tiendas_sop || []; $('#eqTs', box).innerHTML = o.map(t => `<label><input type="checkbox" name="ts" value="${esc(t[0])}" ${cur.includes(t[0]) ? 'checked' : ''}> ${esc(t[1])}</label>`).join('') || '<span class="mut">No hay negocios.</span>'; }).catch(e => toast(e.message, 'err'));
   hydrateForm(form, btn => {
     const fd = Object.fromEntries(new FormData(form).entries());
-    const o = { id: m.id || '', nombre: (fd.nombre || '').trim(), telefono: fd.telefono || '', email: (fd.email || '').trim(), foto: fd.foto || '', horario: (fd.horario || '').trim(), rol: platTab ? rolSel : ($('#eqR', box).disabled ? m.rol : fd.rol), cargo: $('#eqC', box) && !$('#eqC', box).disabled ? fd.cargo : m.cargo, vehiculo: fd.vehiculo, placa: fd.placa || '' };
+    const o = { id: m.id || '', nombre: (fd.nombre || '').trim(), telefono: fd.telefono || '', email: (fd.email || '').trim(), foto: fd.foto || '', portada: fd.portada || '', horario: (fd.horario || '').trim(), rol: platTab ? rolSel : ($('#eqR', box).disabled ? m.rol : fd.rol), cargo: $('#eqC', box) && !$('#eqC', box).disabled ? fd.cargo : m.cargo, vehiculo: fd.vehiculo, placa: fd.placa || '' };
     if (!nuevo) { const a = form.querySelector('[name=activo]'); if (a && !a.disabled) o.estado = a.checked ? 'activo' : 'suspendido'; }
     if (sopTab) o.tiendas_sop = $$('[name=ts]:checked', box).map(x => x.value).join(',');
     if (adm && !platTab) o.tienda_id = S.eqT;
@@ -4582,62 +4715,161 @@ function cargarQR() {
   return QRP;
 }
 const loadImg = src => new Promise(res => { if (!src) return res(null); const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
-async function drawCarnet(d) {
-  const qrf = await cargarQR(); const W = 638, H = 1012; const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
-  const font = (w, px) => `${w} ${px}px system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif`;
-  const fit = (txt, w, px, max) => { g.font = font(w, px); while (g.measureText(txt).width > max && px > 18) { px -= 2; g.font = font(w, px); } return px; };
+const CARNET_W = 638, CARNET_H = 1012;
+const svgImg = (svg, color) => loadImg('data:image\x2fsvg+xml;charset=utf-8,' + encodeURIComponent(svg.replace('<svg ', `<svg xmlns="http:\x2f\x2fwww.w3.org\x2f2000\x2fsvg" fill="none" stroke="${color}" `)));
+function carnetBase(color) {
+  const c = document.createElement('canvas'); c.width = CARNET_W; c.height = CARNET_H; const g = c.getContext('2d');
+  const font = (w, px) => `${w} ${px}px Figtree,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif`;
+  const fit = (txt, w, px, max, min) => { g.font = font(w, px); while (g.measureText(txt).width > max && px > (min || 18)) { px -= 2; g.font = font(w, px); } return px; };
   const rr = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
-  g.fillStyle = '#fff'; rr(0, 0, W, H, 36); g.fill(); g.save(); rr(0, 0, W, H, 36); g.clip();
-  g.fillStyle = d.color; g.fillRect(0, 0, W, 330);
-  g.fillStyle = d.acento; g.globalAlpha = .9; g.beginPath(); g.moveTo(0, 290); g.quadraticCurveTo(W / 2, 360, W, 290); g.lineTo(W, 330); g.lineTo(0, 330); g.fill(); g.globalAlpha = 1;
-  const [logo, foto] = await Promise.all([loadImg(d.logo), loadImg(d.foto)]);
-  g.fillStyle = '#fff'; g.beginPath(); g.arc(78, 78, 46, 0, Math.PI * 2); g.fill();
-  if (logo) { g.save(); g.beginPath(); g.arc(78, 78, 42, 0, Math.PI * 2); g.clip(); const s = Math.max(84 / logo.width, 84 / logo.height); g.drawImage(logo, 78 - logo.width * s / 2, 78 - logo.height * s / 2, logo.width * s, logo.height * s); g.restore(); }
-  else { g.fillStyle = d.color; g.font = font(800, 34); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(initials(d.org), 78, 80); }
+  const cover = (img, x, y, w, h) => { const s = Math.max(w / img.width, h / img.height); g.drawImage(img, x + (w - img.width * s) / 2, y + (h - img.height * s) / 2, img.width * s, img.height * s); };
+  const ranura = (fill) => { g.save(); g.globalCompositeOperation = 'destination-out'; rr(CARNET_W / 2 - 62, 30, 124, 24, 12); g.fill(); g.restore(); if (fill) { g.strokeStyle = fill; g.lineWidth = 2; rr(CARNET_W / 2 - 62, 30, 124, 24, 12); g.stroke(); } };
+  return { c, g, font, fit, rr, cover, ranura };
+}
+/** Íconos simples de línea para las filas de datos. */
+function carnetIc(g, k, x, y, col) {
+  g.save(); g.translate(x, y); g.strokeStyle = col; g.lineWidth = 2.6; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath();
+  if (k === 'id') { g.rect(-11, -8, 22, 16); g.moveTo(-6, 3); g.lineTo(0, 3); g.moveTo(3, -3); g.lineTo(7, -3); g.moveTo(3, 2); g.lineTo(7, 2); }
+  else if (k === 'tel') { g.moveTo(-6, -10); g.lineTo(-2, -10); g.lineTo(0, -4); g.lineTo(-3, -2); g.quadraticCurveTo(0, 4, 3, 5); g.lineTo(5, 2); g.lineTo(10, 4); g.lineTo(10, 8); g.quadraticCurveTo(-10, 10, -6, -10); }
+  else if (k === 'mail') { g.rect(-11, -8, 22, 16); g.moveTo(-11, -8); g.lineTo(0, 1); g.lineTo(11, -8); }
+  else if (k === 'pin') { g.arc(0, -3, 7, Math.PI * .85, Math.PI * .15, false); g.lineTo(0, 10); g.closePath(); g.moveTo(2.5, -3); g.arc(0, -3, 2.5, 0, Math.PI * 2); }
+  else if (k === 'moto') { g.arc(-7, 4, 5, 0, Math.PI * 2); g.moveTo(12, 4); g.arc(7, 4, 5, 0, Math.PI * 2); g.moveTo(-7, 4); g.lineTo(-1, -4); g.lineTo(5, -4); g.lineTo(7, 4); g.moveTo(5, -4); g.lineTo(3, -9); }
+  else if (k === 'reloj') { g.arc(0, 0, 10, 0, Math.PI * 2); g.moveTo(0, -5); g.lineTo(0, 0); g.lineTo(4, 3); }
+  g.stroke(); g.restore();
+}
+async function drawCarnet(d) {
+  const qrf = await cargarQR(); try { await document.fonts.load('800 40px Figtree'); await document.fonts.load('600 20px Figtree'); } catch (e) { }
+  const VD = '#062a2e', VM = '#0d5c63', LI = d.acento && /^#[0-9a-f]{6}$/i.test(d.acento) ? d.acento : '#c6f432';
+  const { c, g, font, fit, rr, cover, ranura } = carnetBase(); const W = CARNET_W, H = CARNET_H;
+  const [logo, foto, mk, mkD] = await Promise.all([loadImg(d.logo), loadImg(d.foto), svgImg(WK_MARK.replace('<path', '<path stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"').replace('<circle', '<circle fill="' + VD + '" stroke="none"'), VD), svgImg(WK_MARK.replace('<path', '<path stroke-width="3" stroke-linecap="round" stroke-linejoin="round"').replace('<circle', '<circle fill="' + LI + '" stroke="none"'), LI)]);
+  g.save(); rr(0, 0, W, H, 34); g.clip();
+  const bg = g.createLinearGradient(0, 0, W, H); bg.addColorStop(0, '#0a3b40'); bg.addColorStop(.55, VD); bg.addColorStop(1, '#031a1c'); g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  // franjas diagonales de marca
+  g.fillStyle = LI; g.beginPath(); g.moveTo(W - 150, 0); g.lineTo(W, 0); g.lineTo(W, 210); g.closePath(); g.fill();
+  g.globalAlpha = .18; g.beginPath(); g.moveTo(W - 240, 0); g.lineTo(W - 175, 0); g.lineTo(W, 270); g.lineTo(W, 370); g.closePath(); g.fill();
+  g.globalAlpha = .12; g.beginPath(); g.moveTo(0, H - 330); g.lineTo(0, H - 220); g.lineTo(230, H); g.lineTo(120, H); g.closePath(); g.fill(); g.globalAlpha = 1;
+  // W grande de fondo
+  if (mkD) { g.globalAlpha = .07; g.drawImage(mkD, W - 380, 300, 460, 460); g.globalAlpha = 1; }
+  // encabezado: organización
+  const hx = 40, hy = 84;
+  if (logo) { g.fillStyle = '#fff'; rr(hx, hy, 76, 76, 20); g.fill(); g.save(); rr(hx + 4, hy + 4, 68, 68, 16); g.clip(); cover(logo, hx + 4, hy + 4, 68, 68); g.restore(); }
+  else { g.fillStyle = LI; rr(hx, hy, 76, 76, 20); g.fill(); if (mk) g.drawImage(mk, hx + 6, hy + 4, 64, 64); }
   g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.fillStyle = '#fff';
-  g.font = font(800, fit(d.org, 800, 34, W - 170)); g.fillText(d.org, 142, 76);
-  g.font = font(500, 20); g.globalAlpha = .85; g.fillText(String(d.sub || '').slice(0, 40), 142, 106); g.globalAlpha = 1;
-  const cx = W / 2, cy = 330, R = 128;
-  g.fillStyle = '#fff'; g.beginPath(); g.arc(cx, cy, R + 10, 0, Math.PI * 2); g.fill();
-  g.save(); g.beginPath(); g.arc(cx, cy, R, 0, Math.PI * 2); g.clip();
-  if (foto) { const s = Math.max(2 * R / foto.width, 2 * R / foto.height); g.drawImage(foto, cx - foto.width * s / 2, cy - foto.height * s / 2, foto.width * s, foto.height * s); }
-  else { g.fillStyle = '#e7ecee'; g.fillRect(cx - R, cy - R, 2 * R, 2 * R); g.fillStyle = d.color; g.font = font(800, 90); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(initials(d.nombre), cx, cy + 4); }
+  const org = String(d.org || '').toUpperCase(); g.font = font(800, fit(org, 800, 30, W - 300, 18)); g.fillText(org, hx + 92, hy + 36);
+  g.fillStyle = LI; g.font = font(600, 18); g.fillText(String(d.sub || (d.app || '')).slice(0, 34), hx + 92, hy + 64);
+  // foto en marco redondeado con borde de acento
+  const fw = 300, fh = 336, fx = (W - fw) / 2, fy = 190;
+  const gb = g.createLinearGradient(fx, fy, fx + fw, fy + fh); gb.addColorStop(0, LI); gb.addColorStop(1, VM);
+  g.fillStyle = gb; rr(fx - 8, fy - 8, fw + 16, fh + 16, 42); g.fill();
+  g.save(); rr(fx, fy, fw, fh, 36); g.clip();
+  const pf = g.createLinearGradient(0, fy, 0, fy + fh); pf.addColorStop(0, '#1c6d5c'); pf.addColorStop(1, '#0a3b40'); g.fillStyle = pf; g.fillRect(fx, fy, fw, fh);
+  if (foto) cover(foto, fx, fy, fw, fh); else { g.fillStyle = LI; g.font = font(800, 120); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(initials(d.nombre), W / 2, fy + fh / 2 + 6); }
   g.restore();
-  g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillStyle = '#14181b';
-  g.font = font(800, fit(d.nombre, 800, 44, W - 80)); g.fillText(d.nombre, cx, 520);
-  g.font = font(700, 24); const cw = g.measureText(d.cargo.toUpperCase()).width + 44;
-  g.fillStyle = d.color; rr(cx - cw / 2, 542, cw, 44, 22); g.fill(); g.fillStyle = '#fff'; g.fillText(d.cargo.toUpperCase(), cx, 573);
-  const q = qrf(0, 'M'); q.addData(d.qr); q.make(); const n = q.getModuleCount(); const qs = 300; const cell = Math.floor(qs / (n + 2)); const qw = cell * (n + 2); const qx = cx - qw / 2, qy = 616;
-  g.fillStyle = '#fff'; g.fillRect(qx, qy, qw, qw); g.fillStyle = '#14181b';
-  for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) g.fillRect(qx + (k + 1) * cell, qy + (r + 1) * cell, cell, cell);
-  g.strokeStyle = '#e3e8ea'; g.lineWidth = 2; rr(qx - 8, qy - 8, qw + 16, qw + 16, 18); g.stroke();
-  g.fillStyle = '#5b6770'; g.font = font(500, 19);
-  g.fillText((d.doc ? 'Tel. ' + d.doc + '  ·  ' : '') + 'Expedido ' + d.expedido, cx, qy + qw + 46);
-  g.fillStyle = d.color; g.fillRect(0, H - 34, W, 34); g.fillStyle = '#fff'; g.font = font(700, 17); g.fillText(d.app + ' · Escanéalo al entrar y al salir', cx, H - 11);
-  g.restore();
+  if (mk) { g.fillStyle = LI; g.beginPath(); g.arc(fx + fw - 6, fy + fh - 6, 34, 0, Math.PI * 2); g.fill(); g.strokeStyle = VD; g.lineWidth = 5; g.stroke(); g.drawImage(mk, fx + fw - 34, fy + fh - 36, 56, 56); }
+  // nombre y cargo
+  g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+  const nm = String(d.nombre || '').trim(); let px = 48, n1 = nm, n2 = '';
+  g.font = font(800, px);
+  if (g.measureText(nm).width > W - 80) { const ps = nm.split(/\s+/); let best = 1, bw = 1e9; for (let i = 1; i < ps.length; i++) { const a = g.measureText(ps.slice(0, i).join(' ')).width, b = g.measureText(ps.slice(i).join(' ')).width; if (Math.max(a, b) < bw) { bw = Math.max(a, b); best = i; } } n1 = ps.slice(0, best).join(' '); n2 = ps.slice(best).join(' '); px = Math.min(fit(n1, 800, 46, W - 80, 26), n2 ? fit(n2, 800, 46, W - 80, 26) : 46); }
+  g.fillStyle = '#fff'; g.font = font(800, px); const y0 = 586; g.fillText(n1, 40, y0); if (n2) g.fillText(n2, 40, y0 + px + 2);
+  const yc = y0 + (n2 ? px + 2 : 0) + 38; g.fillStyle = LI; g.font = font(700, 26); g.fillText(String(d.cargo || '').toUpperCase(), 40, yc);
+  g.fillStyle = LI; g.fillRect(40, yc + 16, 64, 5);
+  // datos + QR
+  const filas = [['id', 'ID', d.id]]; if (d.doc) filas.push(['tel', 'Cel', d.doc]);
+  if (d.placa || d.vehiculo) filas.push(['moto', 'Vehículo', (VEH_L[d.vehiculo] || 'Moto') + (d.placa ? ' · ' + d.placa : '')]); if (d.municipio) filas.push(['pin', 'Municipio', d.municipio]); if (d.email) filas.push(['mail', 'Correo', d.email]);
+  const qs = 196, qx = W - 40 - qs, qy = H - 74 - qs - 22;
+  let fy2 = yc + 60; const maxW = qx - 40 - 64;
+  filas.slice(0, Math.max(2, Math.floor((H - 70 - fy2) / 50) + 1)).forEach(([k, l, v]) => {
+    g.fillStyle = 'rgba(198,244,50,.14)'; g.beginPath(); g.arc(57, fy2 - 8, 17, 0, Math.PI * 2); g.fill(); carnetIc(g, k, 57, fy2 - 8, LI);
+    g.fillStyle = 'rgba(255,255,255,.6)'; g.font = font(600, 15); g.fillText(l.toUpperCase(), 86, fy2 - 14);
+    g.fillStyle = '#fff'; g.font = font(600, fit(String(v), 600, 20, maxW, 13)); g.fillText(String(v), 86, fy2 + 8); fy2 += 50;
+  });
+  g.fillStyle = '#fff'; rr(qx - 12, qy - 12, qs + 24, qs + 24, 22); g.fill();
+  const q = qrf(0, 'M'); q.addData(d.qr); q.make(); const n = q.getModuleCount(); const cell = qs / n; g.fillStyle = VD;
+  for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) g.fillRect(qx + k * cell, qy + r * cell, Math.ceil(cell), Math.ceil(cell));
+  // pie
+  g.fillStyle = LI; g.fillRect(0, H - 62, W, 62); g.fillStyle = VD; g.textAlign = 'center'; g.font = font(800, 19);
+  g.fillText('Escanéalo al entrar y al salir', W / 2, H - 24);
+  g.restore(); ranura();
   return c;
 }
-async function carnetDlg(id) {
-  const box = openModal(mHead('Carnet', 'id') + `<div class="mb"><div class="skel" style="height:420px;max-width:300px;margin:auto;border-radius:16px"></div></div>`);
-  let d; try { d = await call('carnet', id ? { id } : {}); } catch (e) { $('.mb', box).innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
-  let c; try { c = await drawCarnet(d); } catch (e) { $('.mb', box).innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; return; }
-  if (!box.isConnected) return;
-  $('.mb', box).innerHTML = `<div class="carnet-w"></div><div class="row wrap" style="gap:8px;justify-content:center;margin-top:12px"><button class="btn pri" id="caDl">${ic('download', 'sm')} Descargar</button><button class="btn" id="caPr">${ic('file', 'sm')} Imprimir</button></div><small class="hint" style="display:block;text-align:center;margin-top:8px">Tamaño de tarjeta (5,4 × 8,6 cm). Plastifícalo para que dure.</small>`;
-  $('.carnet-w', box).appendChild(c);
-  const name = 'carnet-' + normCol(d.nombre).replace(/ /g, '-') + '.png';
-  $('#caDl', box).onclick = () => c.toBlob(b => descargar(b, name), 'image/png');
-  $('#caPr', box).onclick = () => imprimirImg(c.toDataURL('image/png'));
+async function drawCarnetBack(d) {
+  const VD = '#062a2e', VM = '#0d5c63', LI = d.acento && /^#[0-9a-f]{6}$/i.test(d.acento) ? d.acento : '#c6f432';
+  const { c, g, font, fit, rr, ranura } = carnetBase(); const W = CARNET_W, H = CARNET_H;
+  const word = esWuaka() ? await svgImg(wkWord('').replace(/class="[^"]*"/g, '').replace(/stroke="currentColor"/g, `stroke="${VD}"`).replace(/fill="currentColor"/g, `fill="${VD}"`), VD) : null;
+  const mk = await svgImg(WK_MARK.replace('<path', '<path stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"').replace('<circle', '<circle fill="' + LI + '" stroke="none"'), LI);
+  g.save(); rr(0, 0, W, H, 34); g.clip();
+  g.fillStyle = '#f6f8f1'; g.fillRect(0, 0, W, H);
+  // bloque superior verde con ondas de la W
+  g.fillStyle = VD; g.beginPath(); g.moveTo(0, 0); g.lineTo(W, 0); g.lineTo(W, 250); g.quadraticCurveTo(W * .55, 330, 0, 270); g.closePath(); g.fill();
+  if (mk) { g.globalAlpha = .35; for (let i = 0; i < 4; i++) g.drawImage(mk, W - 210 + i * 14, 40 + i * 10, 200 - i * 28, 200 - i * 28); g.globalAlpha = 1; }
+  g.fillStyle = LI; g.beginPath(); g.moveTo(0, 270); g.quadraticCurveTo(W * .55, 330, W, 250); g.lineTo(W, 262); g.quadraticCurveTo(W * .55, 344, 0, 284); g.closePath(); g.fill();
+  g.textAlign = 'left'; g.fillStyle = LI; g.font = font(700, 18); g.fillText('CARNET DE IDENTIFICACIÓN', 40, 120);
+  g.fillStyle = '#fff'; g.font = font(800, fit(String(d.org || '').toUpperCase(), 800, 34, W - 270, 18)); g.fillText(String(d.org || '').toUpperCase(), 40, 164);
+  g.fillStyle = 'rgba(255,255,255,.75)'; g.font = font(500, 18); g.fillText(String(d.cargo || ''), 40, 196);
+  // condiciones
+  let y = 360; g.fillStyle = VD; g.font = font(800, 22); g.fillText('Condiciones de uso', 40, y); y += 14; g.fillStyle = LI; g.fillRect(40, y, 54, 5); y += 36;
+  const conds = ['Es personal e intransferible.', 'Llévalo visible durante tu jornada.', 'Se escanea al entrar y al salir para registrar tu asistencia.', 'Si dejas de trabajar con ' + d.org + ', debes devolverlo.'];
+  const wrap = (txt, x, maxw, lh) => { const ws = String(txt).split(' '); let l = ''; ws.forEach(w => { const t = l ? l + ' ' + w : w; if (g.measureText(t).width > maxw) { g.fillText(l, x, y); y += lh; l = w; } else l = t; }); if (l) { g.fillText(l, x, y); y += lh; } };
+  g.font = font(500, 19); conds.forEach(t => { g.fillStyle = VM; g.beginPath(); g.arc(48, y - 6, 5, 0, Math.PI * 2); g.fill(); g.fillStyle = '#2b3a3c'; wrap(t, 66, W - 110, 27); y += 6; });
+  // si lo encuentras
+  y += 14; g.fillStyle = '#e9f5c7'; const nl = (d.org_tel ? 1 : 0) + (d.org_dir || d.municipio ? 1 : 0) || 1; const bh = 70 + nl * 32; const by = y - 30; rr(30, by, W - 60, bh, 22); g.fill();
+  g.fillStyle = VD; g.font = font(800, 19); g.fillText('¿Lo encontraste? Devuélvelo a:', 54, y + 4); y += 38;
+  g.font = font(600, 18); g.fillStyle = '#2b3a3c';
+  if (d.org_tel) { carnetIc(g, 'tel', 66, y - 6, VM); g.fillText(d.org_tel, 90, y); y += 32; }
+  if (!d.org_tel && !d.org_dir && !d.municipio) { g.fillText(d.web || d.app || '', 66, y); y += 32; }
+  if (d.org_dir || d.municipio) { carnetIc(g, 'pin', 66, y - 6, VM); g.font = font(600, fit([d.org_dir, d.municipio].filter(Boolean).join(', '), 600, 18, W - 150, 13)); g.fillText([d.org_dir, d.municipio].filter(Boolean).join(', '), 90, y); y += 32; }
+  y = by + bh + 44;
+  if (d.horario) { g.font = font(600, 18); carnetIc(g, 'reloj', 52, y - 6, VM); g.fillStyle = '#2b3a3c'; g.fillText('Horario: ' + d.horario, 76, y); y += 36; }
+  // vigencia + firmas
+  const fecha = s => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || ''); return m ? m[3] + '/' + m[2] + '/' + m[1] : (s || ''); };
+  g.fillStyle = '#5b6770'; g.font = font(600, 16); g.fillText('EXPEDIDO', 40, y); g.fillText('VENCE', 240, y); y += 26;
+  g.fillStyle = VD; g.font = font(800, 22); g.fillText(fecha(d.expedido), 40, y); g.fillText(fecha(d.vence), 240, y);
+  const sy = H - 150; g.strokeStyle = '#9aa7a8'; g.lineWidth = 2; g.beginPath(); g.moveTo(40, sy); g.lineTo(290, sy); g.moveTo(W - 290, sy); g.lineTo(W - 40, sy); g.stroke();
+  g.fillStyle = '#5b6770'; g.font = font(600, 15); g.textAlign = 'center'; g.fillText('Firma del titular', 165, sy + 24); g.fillText('Autoriza', W - 165, sy + 24);
+  // pie con marca
+  g.fillStyle = VD; g.fillRect(0, H - 80, W, 80);
+  if (word) { g.save(); g.filter = 'none'; const ww = 230, wh = ww * 42 / 388; g.globalCompositeOperation = 'source-over';
+    const tmp = document.createElement('canvas'); tmp.width = ww * 2; tmp.height = wh * 2; const tg = tmp.getContext('2d'); tg.drawImage(word, 0, 0, tmp.width, tmp.height); tg.globalCompositeOperation = 'source-in'; tg.fillStyle = '#fff'; tg.fillRect(0, 0, tmp.width, tmp.height);
+    g.drawImage(tmp, 40, H - 40 - wh / 2, ww, wh); g.restore(); }
+  else { g.fillStyle = '#fff'; g.textAlign = 'left'; g.font = font(800, 24); g.fillText(d.app || '', 40, H - 32); }
+  g.fillStyle = LI; g.textAlign = 'right'; g.font = font(600, 16); g.fillText(d.web || d.app || '', W - 40, H - 34);
+  g.restore(); ranura();
+  return c;
 }
-function imprimirImg(url) {
+/** Muestra frente y reverso, con descarga (las dos caras juntas) e impresión a tamaño real. */
+async function mostrarCarnet(box, d) {
+  const [f, b] = await Promise.all([drawCarnet(d), drawCarnetBack(d)]); if (!box.isConnected) return;
+  box.innerHTML = `<div class="carnet-w"><div class="car-flip" tabindex="0" role="button" aria-label="Voltear carnet"><div class="car-in"><div class="car-f"></div><div class="car-b"></div></div></div>
+    <div class="seg car-seg"><button class="on" data-l="f">Frente</button><button data-l="b">Reverso</button></div>
+    <div class="row wrap" style="gap:8px;justify-content:center"><button class="btn pri" data-k="dl">${ic('download', 'sm')} Descargar</button><button class="btn" data-k="pr">${ic('file', 'sm')} Imprimir</button></div>
+    <small class="mut" style="text-align:center">Tamaño tarjeta (CR80 · 5,4 × 8,6 cm). Al imprimir salen las dos caras para pegarlas o plastificarlas.</small></div>`;
+  $('.car-f', box).appendChild(f); $('.car-b', box).appendChild(b);
+  const flip = $('.car-flip', box); const seg = $$('.car-seg button', box);
+  const set = back => { flip.classList.toggle('back', back); seg.forEach(x => x.classList.toggle('on', (x.dataset.l === 'b') === back)); };
+  flip.onclick = () => set(!flip.classList.contains('back')); flip.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip.click(); } };
+  seg.forEach(x => x.onclick = () => set(x.dataset.l === 'b'));
+  const juntos = () => { const k = document.createElement('canvas'); k.width = CARNET_W * 2 + 60; k.height = CARNET_H; const g = k.getContext('2d'); g.drawImage(f, 0, 0); g.drawImage(b, CARNET_W + 60, 0); return k; };
+  const name = 'carnet-' + normCol(d.nombre).replace(/ /g, '-') + '.png';
+  $('[data-k=dl]', box).onclick = () => juntos().toBlob(x => descargar(x, name), 'image\x2fpng');
+  $('[data-k=pr]', box).onclick = () => imprimirImg([f.toDataURL('image\x2fpng'), b.toDataURL('image\x2fpng')]);
+}
+async function carnetDlg(id) {
+  const box = openModal(mHead('Carnet', 'id') + `<div class="mb"><div class="skel" style="height:460px;max-width:290px;margin:auto;border-radius:16px"></div></div>`);
+  try { const d = await call('carnet', id ? { id } : {}); await mostrarCarnet($('.mb', box), d); }
+  catch (e) { const mb = $('.mb', box); if (mb) mb.innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; }
+}
+function imprimirImg(urls) {
+  urls = [].concat(urls);
   const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
-  const doc = f.contentDocument; doc.open(); doc.write('<!doctype html><html><head><style>@page{size:auto;margin:10mm}body{margin:0}img{width:54mm;height:85.6mm;border:1px dashed #bbb;border-radius:3mm}</style></head><body><img src="' + url + '"></body></html>'); doc.close();
-  setTimeout(() => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) { toast('No se pudo abrir la impresión. Descarga la imagen e imprímela.', 'err'); } setTimeout(() => f.remove(), 2000); }, 400);
+  const doc = f.contentDocument; doc.open(); doc.write('<!doctype html><html><head><style>@page{size:auto;margin:10mm}body{margin:0;display:flex;gap:8mm;flex-wrap:wrap}img{width:54mm;height:85.6mm;border:1px dashed #bbb;border-radius:3mm}</style></head><body>' + urls.map(u => '<img src="' + u + '">').join('') + '</body></html>'); doc.close();
+  setTimeout(() => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) { toast('No se pudo abrir la impresión. Descarga la imagen e imprímela.', 'err'); } setTimeout(() => f.remove(), 2000); }, 500);
 }
 function vMiCarnet(main) {
   if (!guard(['admin', 'vendedor', 'repartidor', 'soporte'])) return;
-  main.innerHTML = pageH('id', 'Mi carnet') + `<p class="mut" style="margin-top:-4px">Muéstralo en el celular o impreso: se escanea al entrar y al salir de tu jornada.</p><div class="card pad" id="mcBox"><div class="skel" style="height:420px;max-width:300px;margin:auto;border-radius:16px"></div></div>`;
+  main.innerHTML = pageH('id', 'Mi carnet') + `<p class="mut" style="margin-top:-4px">Muéstralo en el celular o impreso: se escanea al entrar y al salir de tu jornada. Toca el carnet para ver el reverso.</p><div class="card pad" id="mcBox"><div class="skel" style="height:460px;max-width:290px;margin:auto;border-radius:16px"></div></div>`;
   (async () => {
-    try { const d = await call('carnet', {}); const c = await drawCarnet(d); const b = $('#mcBox'); if (!b) return; b.innerHTML = '<div class="carnet-w"></div><div class="row wrap" style="gap:8px;justify-content:center;margin-top:12px"><button class="btn pri" id="caDl">' + ic('download', 'sm') + ' Descargar</button><button class="btn" id="caPr">' + ic('file', 'sm') + ' Imprimir</button></div>'; $('.carnet-w', b).appendChild(c); $('#caDl').onclick = () => c.toBlob(x => descargar(x, 'mi-carnet.png'), 'image/png'); $('#caPr').onclick = () => imprimirImg(c.toDataURL('image/png')); }
+    try { const d = await call('carnet', {}); const b = $('#mcBox'); if (b) await mostrarCarnet(b, d); }
     catch (e) { const b = $('#mcBox'); if (b) b.innerHTML = `<div class="empty">${ic('alert')}<p>${esc(e.message)}</p></div>`; }
   })();
 }
@@ -4989,7 +5221,7 @@ function splashHtml() {
   return `<div class="sp-bg ${img ? 'foto' : 'sin-foto'}">${img ? `<img src="${esc(img)}" alt="" referrerpolicy="no-referrer" fetchpriority="high" decoding="async">` : ''}</div>
     <div class="sp-in">
       <header class="sp-top">
-        <div class="sp-lock"><span class="wk-mark">${WK_MARK}</span>${marcaHtml('sp-word')}</div>
+        <div class="sp-lock"><span class="wk-mark">${WK_MARK}</span>${marcaHtml('sp-word wk-anim')}</div>
         <p class="sp-slogan">${sloganHtml(slogan)}</p>
         <p class="sp-lead sp-lead-l">Los negocios de tu pueblo, en tu celular.</p>
       </header>
@@ -5468,6 +5700,332 @@ function rotarLugar() {
     el.classList.remove('ent'); el.classList.add('sal');
     setTimeout(() => { k = (k + 1) % L.length; el.textContent = L[k]; el.classList.remove('sal'); el.classList.add('ent'); }, 320);
   }, 2800);
+}
+
+/* =====================================================================
+ * v1.6.1 · AVISOS QUE ACTUALIZAN, DOMICILIARIOS INDEPENDIENTES
+ * ===================================================================== */
+/** Cuando llega un aviso de registro, el panel y las listas se ponen al día sin tener que entrar. */
+function refrescarPorAviso(nuevas) {
+  const tipos = new Set(nuevas.map(n => n.tipo).filter(Boolean)); if (!tipos.size || !esAdm()) return;
+  if (tipos.has('cliente') || tipos.has('domiciliario')) clearCache('Usuarios');
+  if (tipos.has('tienda') || tipos.has('solicitud')) clearCache('Tiendas');
+  if (tipos.has('solicitud') || tipos.has('domiciliario')) refreshSolCount();
+  if (MODAL) return;
+  const h = location.hash;
+  if (h === '#/panel') refreshPanel();
+  else if ((h === '#/g/Usuarios' && (tipos.has('cliente') || tipos.has('domiciliario'))) || (h === '#/g/Tiendas' && tipos.has('tienda'))) route();
+  else if (h === '#/solicitudes') { if (S.solList && !S.solList.dead) S.solList.load(); if (S.domList && !S.domList.dead) S.domList.load(); }
+}
+function domCard(u) {
+  return `<article class="card pad sol"><div class="row">${avatarHtml(u, 'lg')}<div class="grow"><b>${esc(u.nombre)}</b><div class="mut" style="font-size:13px">${ic(vehIc(u.vehiculo), 'sm')} ${esc(VEH_L[u.vehiculo] || 'Moto')}${u.placa ? ' · ' + esc(u.placa) : ''}${u.municipio_id__n ? ' · ' + esc(u.municipio_id__n) : ''}</div>
+    <div class="mut" style="font-size:13px">${ic('phone', 'sm')} ${esc(u.telefono || '')}${u.email && !/@equipo\.muaka\.app$/.test(u.email) ? ' · ' + esc(u.email) : ' · sin correo'}</div><small class="mut">${esc(ago(u.creado))}</small></div></div>
+    <div class="row wrap" style="gap:8px">${wa(u.telefono) ? `<a class="btn sm" href="${esc(wa(u.telefono, 'Hola ' + String(u.nombre).split(' ')[0] + ', te escribimos de ' + (S.cfg.APP_NOMBRE || 'La Wuaka') + ' por tu solicitud de domiciliario.'))}" target="_blank" rel="noopener">${ic('chat', 'sm')} WhatsApp</a>` : ''}<button class="btn sm danger" data-act="dom-no">${ic('x', 'sm')} Rechazar</button><button class="btn sm pri" data-act="dom-si">${ic('check', 'sm')} Aprobar</button></div></article>`;
+}
+async function domDecidir(el, ok) {
+  const u = recOf(el); if (!u) return; let motivo = '';
+  if (!ok) { motivo = await confirmDlg({ title: 'Rechazar a ' + u.nombre, msg: 'Se le avisa por correo (si tiene) y su celular queda libre para volver a inscribirse.', ok: 'Rechazar', danger: true, input: { label: 'Motivo (opcional)' } }); if (motivo === false || motivo === null) return; }
+  else if (!await confirmDlg({ title: 'Aprobar a ' + u.nombre, msg: 'Quedará como domiciliario independiente y empezará a recibir pedidos de su zona.', ok: 'Aprobar' })) return;
+  busy(el, ok ? 'Aprobando…' : 'Rechazando…', async () => {
+    try {
+      const r = await enqueue('decidirDomi', { id: u.id, ok, motivo: String(motivo || '').trim() });
+      clearCache('Usuarios'); if (S.domList && !S.domList.dead) S.domList.load(); refreshSolCount();
+      const txt = ok ? `Hola ${String(r.nombre).split(' ')[0]}, ¡aprobamos tu solicitud de domiciliario en ${S.cfg.APP_NOMBRE || 'La Wuaka'}! Ya puedes entrar con tu ${r.email_real ? 'correo' : 'celular'} y la contraseña que elegiste: ${location.href.split('#')[0]}`
+        : `Hola ${String(r.nombre).split(' ')[0]}, por ahora no pudimos aprobar tu solicitud de domiciliario en ${S.cfg.APP_NOMBRE || 'La Wuaka'}.`;
+      openModal(mHead(ok ? 'Domiciliario aprobado' : 'Solicitud rechazada', ok ? 'okcircle' : 'x') + `<div class="mb stack"><p style="margin:0">${r.email_real ? 'Le enviamos un correo y un aviso en la app.' : 'No tiene correo: avísale por WhatsApp.'}</p>
+        ${wa(r.telefono) ? `<a class="btn wa block" href="${esc(wa(r.telefono, txt))}" target="_blank" rel="noopener">${ic('chat', 'sm')} Avisarle por WhatsApp</a>` : ''}<button class="btn ghost" data-close>Cerrar</button></div>`, { centro: true });
+    } catch (e) { toast(e.message, 'err'); }
+  });
+}
+function vDomiReg(main) {
+  const app = S.cfg.APP_NOMBRE || 'La Wuaka';
+  if (S.user) {
+    main.innerHTML = pageH('moto', 'Hazte domiciliario') + `<div class="card pad stack" style="max-width:560px"><p style="margin:0">Ya tienes una sesión abierta como <b>${esc(S.user.nombre)}</b>. La inscripción de domiciliario crea una cuenta nueva con tu celular.</p>
+      <p class="mut" style="margin:0">Cierra sesión y vuelve a esta página, o escríbenos si quieres usar esta misma cuenta.</p>${wa(S.cfg.WHATSAPP_SOPORTE) ? `<a class="btn wa" href="${esc(wa(S.cfg.WHATSAPP_SOPORTE, 'Hola, quiero ser domiciliario en ' + app + ' con mi cuenta ' + (S.user.email || '')))}" target="_blank" rel="noopener">${ic('chat', 'sm')} Escribir por WhatsApp</a>` : ''}</div>`;
+    return;
+  }
+  const muns = (S.muns || []).filter(m => m.activo !== false);
+  main.innerHTML = `<div class="dr-hero"><div><span class="badge">${ic('moto', 'sm')} Domiciliarios</span><h1>Gana dinero haciendo domicilios en tu pueblo</h1><p>Inscríbete gratis. Trabajas cuando quieras, con tu propio vehículo, y cobras cada domicilio.</p></div></div>
+    <div class="dr-wrap"><form class="card pad frm" id="drF" novalidate>
+      <div class="fld full"><label for="drN">Nombre completo <span class="req">*</span></label><input id="drN" maxlength="80" autocomplete="name"></div>
+      <div class="fld"><label for="drT">Celular con WhatsApp <span class="req">*</span></label><input id="drT" type="tel" inputmode="tel" maxlength="15" autocomplete="tel" placeholder="300 123 4567"><small class="hint">También sirve para entrar si no tienes correo.</small></div>
+      <div class="fld"><label for="drE">Correo electrónico</label><input id="drE" type="email" maxlength="120" autocomplete="email"><label class="ck" style="margin-top:8px"><input type="checkbox" id="drSc"> No tengo correo electrónico</label></div>
+      <div class="fld full"><label>Vehículo <span class="req">*</span></label><div class="dr-veh">${Object.keys(VEH_L).map((v, i) => `<label class="dr-v"><input type="radio" name="drV" value="${v}" ${i ? '' : 'checked'}><span>${ic(vehIc(v))}<b>${esc(VEH_L[v])}</b></span></label>`).join('')}</div></div>
+      <div class="fld" id="drPf"><label for="drP">Placa</label><input id="drP" maxlength="12" style="text-transform:uppercase"></div>
+      <div class="fld"><label for="drM">Municipio donde trabajas</label><select id="drM"><option value="">Selecciona…</option>${muns.map(m => `<option value="${esc(m.id)}" ${m.id === S.mun ? 'selected' : ''}>${esc(m.nombre)}</option>`).join('')}</select></div>
+      <div class="fld fld-sw full"><label class="sw" style="margin:0"><input type="checkbox" id="drVj"><span></span><em>También hago viajes a otros municipios</em></label></div>
+      <div class="fld full"><label for="drX">Cuéntanos tu experiencia (opcional)</label><textarea id="drX" rows="2" maxlength="300" placeholder="Ej: Llevo 2 años haciendo mandados en Barranco"></textarea></div>
+      <div class="fld"><label for="drK">Crea una contraseña <span class="req">*</span></label><div class="pw"><input id="drK" type="password" autocomplete="new-password" maxlength="64"><button type="button" class="icon-btn" data-act="eye" aria-label="Ver contraseña">${ic('eye')}</button></div><small class="hint">Mínimo 8 caracteres, con letras y números.</small></div>
+      <div class="form-err hide"></div>
+      <div class="ffoot"><a class="btn ghost" href="#/">Cancelar</a><button class="btn pri" type="submit">${ic('check')} Enviar solicitud</button></div>
+    </form>
+    <aside class="dr-pasos card pad"><h3>¿Cómo funciona?</h3><ol class="gsteps">
+      <li><span class="aj-i">1</span><div><b>Te inscribes</b><small>Con tu celular y tu vehículo. Si tienes correo, te llega un código para confirmarlo.</small></div></li>
+      <li><span class="aj-i">2</span><div><b>Revisamos tu solicitud</b><small>La administración te aprueba y te avisa por correo o WhatsApp.</small></div></li>
+      <li><span class="aj-i">3</span><div><b>Te pones "Disponible"</b><small>Te llegan los pedidos de tu zona y cobras el domicilio al entregar.</small></div></li></ol></aside></div>`;
+  const f = $('#drF'); const sc = $('#drSc'); const em = $('#drE');
+  sc.onchange = () => { em.disabled = sc.checked; if (sc.checked) em.value = ''; };
+  const pv = () => { const v = ($('[name=drV]:checked', f) || {}).value; $('#drPf').classList.toggle('hide', v === 'bici' || v === 'lancha'); };
+  $$('[name=drV]', f).forEach(r => r.onchange = pv); pv();
+  f.onsubmit = ev => {
+    ev.preventDefault(); const fe = $('.form-err', f); fe.classList.add('hide');
+    const o = { nombre: $('#drN').value.trim(), telefono: $('#drT').value.trim(), email: em.value.trim(), sin_correo: sc.checked, password: $('#drK').value, vehiculo: ($('[name=drV]:checked', f) || {}).value || 'moto', placa: $('#drP').value.trim(), municipio_id: $('#drM').value, viajes: $('#drVj').checked, experiencia: $('#drX').value.trim() };
+    const err = o.nombre.length < 3 ? 'Escribe tu nombre completo.' : o.telefono.replace(/\D/g, '').length < 10 ? 'Escribe tu celular de 10 dígitos.' : (!o.sin_correo && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o.email)) ? 'Escribe tu correo o marca "No tengo correo electrónico".' : (o.password.length < 8 || !/[A-Za-z]/.test(o.password) || !/\d/.test(o.password)) ? 'La contraseña necesita mínimo 8 caracteres, con letras y números.' : '';
+    if (err) { fe.textContent = err; fe.classList.remove('hide'); return; }
+    busy($('[type=submit]', f), 'Enviando…', async () => {
+      try { const r = await call('registroDomi', o); sonar('domiciliario'); domiListo(main, o, r); }
+      catch (e) { fe.textContent = e.message; fe.classList.remove('hide'); }
+    });
+  };
+}
+function domiListo(main, o, r) {
+  const app = S.cfg.APP_NOMBRE || 'La Wuaka';
+  const txt = `Hola, me inscribí como domiciliario en ${app}.\nNombre: ${o.nombre}\nCelular: ${o.telefono}${o.email ? '\nCorreo: ' + o.email : ''}\nVehículo: ${VEH_L[o.vehiculo]}${o.placa ? ' · ' + o.placa.toUpperCase() : ''}${o.municipio_id ? '\nMunicipio: ' + (((S.muns || []).find(m => m.id === o.municipio_id) || {}).nombre || '') : ''}\nQuedo atento a la aprobación.`;
+  const waBtn = wa(r.wa) ? `<a class="btn wa block" href="${esc(wa(r.wa, txt))}" target="_blank" rel="noopener">${ic('chat', 'sm')} Enviar mi solicitud por WhatsApp</a>` : '';
+  const fin = () => { main.innerHTML = `<div class="card pad stack dr-ok" style="max-width:560px;margin:20px auto;text-align:center"><div class="trk-ic">${ic('check')}</div><h2 style="margin:0">¡Solicitud enviada!</h2>
+    <p class="mut" style="margin:0">La administración la revisa y te avisa ${o.sin_correo ? 'por WhatsApp' : 'por correo y por WhatsApp'}. Cuando te aprueben, entras con tu ${o.sin_correo ? 'celular' : 'correo'} y tu contraseña.</p>
+    ${o.sin_correo ? '<div class="banner b-info" style="text-align:left">' + ic('chat') + ' <div>Como no tienes correo, envíanos también tu solicitud por WhatsApp para atenderte más rápido.</div></div>' : ''}${waBtn}<a class="btn ghost" href="#/">Volver al inicio</a></div>`; window.scrollTo(0, 0); };
+  if (!r.verificar) { fin(); return; }
+  main.innerHTML = `<div class="card pad stack" style="max-width:480px;margin:20px auto"><h2 style="margin:0">${ic('mail')} Confirma tu correo</h2><p style="margin:0">Te enviamos un código de 6 dígitos a <b>${esc(o.email)}</b>. Escríbelo aquí (revisa también Spam).</p>
+    <input id="drCod" inputmode="numeric" maxlength="6" placeholder="000000" style="font-size:26px;letter-spacing:8px;text-align:center;font-weight:800"><div class="form-err hide"></div>
+    <div class="row wrap" style="gap:8px"><button class="btn ghost grow" id="drSkip">Lo hago después</button><button class="btn pri grow" id="drOk">${ic('check', 'sm')} Confirmar</button></div></div>`;
+  $('#drSkip').onclick = fin;
+  $('#drOk').onclick = e => busy(e.currentTarget, 'Confirmando…', async () => { try { await call('verificarDomi', { id: r.id, codigo: $('#drCod').value }); toast('¡Correo confirmado!'); fin(); } catch (err) { const fe = $('.form-err', main); fe.textContent = err.message; fe.classList.remove('hide'); } });
+}
+ROUTES.push([/^domiciliario$/, vDomiReg]);
+Object.assign(ACTS, { 'dom-si': el => domDecidir(el, true), 'dom-no': el => domDecidir(el, false) });
+
+/* =====================================================================
+ * v1.7 · PORTADAS GENERADAS, PERFIL CON JERARQUÍA, HERRAMIENTAS
+ * ===================================================================== */
+const ROL_NIVEL = { admin: ['Superadministrador', 'shield', 'n-super'], gestor: ['Administrador', 'shield', 'n-adm'], soporte: ['Soporte técnico', 'headset', 'n-sop'], vendedor: ['Equipo del negocio', 'store', 'n-neg'], repartidor: ['Domiciliario', 'moto', 'n-dom'], cliente: ['Cliente', 'user', 'n-cli'] };
+const COV_PAL = [['#0a3b40', '#031a1c', '#c6f432'], ['#0d5c63', '#062a2e', '#c6f432'], ['#062a2e', '#020d0e', '#f2c94c'], ['#12352a', '#06140f', '#7ee0b0'], ['#103c58', '#061a26', '#c6f432']];
+const COV_EST = ['Ondas', 'W de La Wuaka', 'Diagonales', 'Puntos', 'Río'];
+/** Dibuja una portada de marca (1600×560). estilo 0..4, pal 0..4. */
+function genPortada(estilo, pal, texto) {
+  const W = 1600, H = 560; const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  const [b1, b2, ac] = COV_PAL[pal % COV_PAL.length];
+  const bg = g.createLinearGradient(0, 0, W, H); bg.addColorStop(0, b1); bg.addColorStop(1, b2); g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  const glow = g.createRadialGradient(W * .78, H * .3, 10, W * .78, H * .3, 620); glow.addColorStop(0, ac + '40'); glow.addColorStop(1, ac + '00'); g.fillStyle = glow; g.fillRect(0, 0, W, H);
+  g.strokeStyle = ac; g.fillStyle = ac; g.lineCap = 'round'; g.lineJoin = 'round';
+  const wm = (x, y, s, lw, a) => { g.save(); g.globalAlpha = a; g.lineWidth = lw; g.beginPath(); g.moveTo(x - s * .5, y - s * .3); g.lineTo(x - s * .27, y + s * .3); g.lineTo(x, y - s * .14); g.lineTo(x + s * .27, y + s * .3); g.lineTo(x + s * .5, y - s * .3); g.stroke(); g.beginPath(); g.arc(x, y + s * .5, lw * .9, 0, Math.PI * 2); g.fill(); g.restore(); };
+  if (estilo === 0) { for (let i = 0; i < 9; i++) { g.globalAlpha = .55 - i * .055; g.lineWidth = 6; g.beginPath(); g.arc(W + 40, H + 80, 220 + i * 95, Math.PI, Math.PI * 1.5); g.stroke(); } g.globalAlpha = 1; }
+  else if (estilo === 1) { wm(W * .8, H * .44, 520, 34, .9); for (let i = 0; i < 6; i++) wm(W * .8 + (i + 1) * 26, H * .44 + (i + 1) * 16, 520, 3, .35 - i * .05); }
+  else if (estilo === 2) { g.globalAlpha = .95; g.beginPath(); g.moveTo(W - 380, 0); g.lineTo(W, 0); g.lineTo(W, 420); g.closePath(); g.fill(); g.globalAlpha = .22; g.beginPath(); g.moveTo(W - 620, 0); g.lineTo(W - 450, 0); g.lineTo(W, 560); g.lineTo(W, H); g.lineTo(W - 120, H); g.closePath(); g.fill(); g.globalAlpha = .12; g.beginPath(); g.moveTo(0, H - 220); g.lineTo(0, H); g.lineTo(260, H); g.closePath(); g.fill(); g.globalAlpha = 1; }
+  else if (estilo === 3) { for (let y = 30; y < H; y += 44) for (let x = 30; x < W; x += 44) { const d = Math.hypot(x - W * .8, y - H * .35); const r = Math.max(0, 9 - d / 80); if (r > .6) { g.globalAlpha = Math.min(1, r / 7); g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); } } g.globalAlpha = 1; }
+  else { for (let k = 0; k < 7; k++) { g.globalAlpha = .65 - k * .08; g.lineWidth = 5 - k * .4; g.beginPath(); for (let x = 0; x <= W; x += 20) { const y = H * .55 + k * 34 + Math.sin(x / 210 + k * .6) * 38 + Math.sin(x / 90) * 6; x ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); } g.globalAlpha = 1; wm(W * .86, H * .28, 150, 16, .9); }
+  if (texto) { g.globalAlpha = .9; g.fillStyle = '#fff'; g.font = '800 34px Figtree,system-ui,sans-serif'; g.textAlign = 'right'; g.fillText(texto, W - 60, H - 46); g.globalAlpha = 1; }
+  return c;
+}
+/** Abre el generador. Devuelve un File JPG listo para subir o null. */
+function generarPortada(texto, pal0) {
+  return new Promise(res => {
+    let est = Math.floor(Math.random() * 5), pal = pal0 != null ? pal0 : 0, can = null;
+    const box = openModal(mHead('Generar portada', 'image') + `<div class="mb stack"><div class="cov-prev"></div>
+      <div class="fld"><label>Estilo</label><div class="chips cov-est">${COV_EST.map((n, i) => `<button type="button" class="chip" data-e="${i}">${esc(n)}</button>`).join('')}</div></div>
+      <div class="fld"><label>Colores</label><div class="row cov-pal" style="gap:10px">${COV_PAL.map((p, i) => `<button type="button" class="cov-sw" data-p="${i}" aria-label="Colores ${i + 1}" style="background:linear-gradient(135deg,${p[0]} 55%,${p[2]} 55%)"></button>`).join('')}</div></div>
+      <div class="ffoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button type="button" class="btn" data-k="otra">${ic('refresh', 'sm')} Otra</button><button type="button" class="btn pri" data-k="usar">${ic('check', 'sm')} Usar esta</button></div></div>`, { centro: true });
+    let listo = false;
+    const pinta = () => { can = genPortada(est, pal, texto); const pv = $('.cov-prev', box); pv.innerHTML = ''; pv.appendChild(can); $$('.cov-est .chip', box).forEach(b => b.classList.toggle('on', +b.dataset.e === est)); $$('.cov-sw', box).forEach(b => b.classList.toggle('on', +b.dataset.p === pal)); };
+    $$('.cov-est .chip', box).forEach(b => b.onclick = () => { est = +b.dataset.e; pinta(); });
+    $$('.cov-sw', box).forEach(b => b.onclick = () => { pal = +b.dataset.p; pinta(); });
+    $('[data-k=otra]', box).onclick = () => { est = (est + 1 + Math.floor(Math.random() * 3)) % 5; pal = Math.floor(Math.random() * COV_PAL.length); pinta(); };
+    $('[data-k=usar]', box).onclick = () => can.toBlob(b => { listo = true; closeModal(); res(new File([b], 'portada.jpg', { type: 'image\x2fjpeg' })); }, 'image\x2fjpeg', .86);
+    const obs = new MutationObserver(() => { if (!box.isConnected) { obs.disconnect(); if (!listo) res(null); } }); obs.observe(document.body, { childList: true, subtree: true });
+    pinta();
+  });
+}
+/** Botón «Generar» en cualquier campo de portada de un formulario. */
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest('[data-covgen]'); if (!b) return; ev.preventDefault();
+  const fld = b.closest('.fld'); const form = b.closest('form'); const nom = form && form.querySelector('[name=nombre]');
+  const f = await generarPortada(nom && nom.value ? nom.value.trim() : '', 0); if (!f) return;
+  const inp = $('[data-imgup]', fld); if (inp) alimentar(inp, f);
+});
+async function subirArchivoImg(file, ancho) {
+  const data = await compressImage(file, ancho || 1000, ancho >= 1600 ? 0.85 : 0.82);
+  return (await enqueue('upload', { data, name: file.name || 'imagen.jpg', w: ancho || 1000 })).url;
+}
+function perfilHero(u) {
+  const nv = ROL_NIVEL[u.rol] || ROL_NIVEL.cliente; const cargo = rolL(u);
+  const cov = safeUrl(u.portada) ? `style="background-image:url('${esc(u.portada)}')"` : '';
+  return `<section class="prof-hero ${nv[2]}"><div class="ph-cov ${cov ? 'has' : ''}" ${cov}><div class="ph-cacts"><button class="btn sm glass" data-act="pf-cov">${ic('image', 'sm')} Cambiar portada</button><button class="btn sm glass" data-act="pf-covgen">${ic('refresh', 'sm')} Generar</button></div></div>
+    <div class="ph-b"><div class="ph-av">${avatarHtml(u, 'xl')}<button class="ph-cam" data-act="pf-foto" aria-label="Cambiar foto">${ic('camera', 'sm')}</button></div>
+      <div class="ph-t"><span class="ph-nv">${ic(nv[1], 'sm')} ${esc(cargo)}</span><h1>${esc(u.nombre)}</h1><span class="sub">${esc(/@equipo\.muaka\.app$/.test(u.email) ? (u.telefono || '') : u.email)}${S.tienda ? ' · ' + esc(S.tienda.nombre) : ''}</span>${u.bio ? `<p class="prof-bio">${esc(u.bio)}</p>` : ''}</div>
+      <button class="btn danger ph-out" data-act="logout">${ic('logout')} Cerrar sesión</button></div></section>`;
+}
+async function perfilImg(k, file) {
+  if (!file) return; const t = toast(k === 'portada' ? 'Subiendo portada…' : 'Subiendo foto…', 'info');
+  try { const url = await subirArchivoImg(file, k === 'portada' ? 1800 : 1000); S.user = Object.assign(S.user, await enqueue('perfil', { [k]: url })); renderShell(); toast(k === 'portada' ? 'Portada actualizada' : 'Foto actualizada'); if (location.hash === '#/cuenta') route(); }
+  catch (e) { toast(e.message, 'err'); }
+}
+Object.assign(ACTS, {
+  'pf-cov': async () => { const op = await elegirFuente(); if (op) perfilImg('portada', op); },
+  'pf-covgen': async () => { const nv = ROL_NIVEL[S.user.rol] || ROL_NIVEL.cliente; perfilImg('portada', await generarPortada('', S.user.rol === 'admin' ? 2 : S.user.rol === 'soporte' ? 4 : 0)); },
+  'pf-foto': async () => { const op = await elegirFuente('selfie'); if (op) perfilImg('foto', op); }
+});
+/** Pregunta si subir desde la galería o tomar con la cámara. */
+function elegirFuente(modo) {
+  return new Promise(res => {
+    let ok = false;
+    const box = openModal(mHead('Elegir imagen', 'image') + `<div class="mb stack"><button class="btn block" data-k="g">${ic('upload', 'sm')} Subir desde el equipo</button><button class="btn block" data-k="c">${ic('camera', 'sm')} Tomar con la cámara</button><button class="btn ghost" data-close>Cancelar</button></div>`, { centro: true });
+    $('[data-k=g]', box).onclick = async () => { ok = true; closeModal(); res(await pedirArchivo('image\x2fpng,image\x2fjpeg,image\x2fwebp')); };
+    $('[data-k=c]', box).onclick = async () => { ok = true; closeModal(); res(await camara(modo || 'foto')); };
+    const obs = new MutationObserver(() => { if (!box.isConnected) { obs.disconnect(); if (!ok) res(null); } }); obs.observe(document.body, { childList: true, subtree: true });
+  });
+}
+/** Herramientas rápidas en Mi cuenta (llenan el espacio en tablet y computador). */
+function herramientasHtml(u) {
+  const r = u.rol; let t = [];
+  if (r === 'admin' || r === 'gestor') t = [['solicitudes', 'inbox', 'Solicitudes', 'sol'], ['g/Usuarios', 'users', 'Usuarios', 'usr'], ['negocios', 'store', 'Negocios', 'neg'], ['equipo', 'id', 'Equipos'], ['pautas', 'film', 'Pautas'], ['estados', 'play', 'Estados'], ['g/Cuotas', 'card', 'Mensualidades'], ['g/Auditoria', 'file', 'Auditoría'], ['config', 'sliders', 'Configuración'], ['asistencia', 'clock', 'Asistencia']];
+  else if (r === 'soporte') t = [['soporte', 'tool', 'Solicitudes'], ['negocios', 'store', 'Mis negocios'], ['g/Productos', 'bag', 'Inventario'], ['mi-carnet', 'id', 'Mi carnet']];
+  else if (r === 'vendedor') t = [['pedidos', 'package', 'Pedidos'], ['g/Productos', 'bag', 'Productos'], ['mi-tienda', 'store', 'Mi negocio'], ['equipo', 'users', 'Mi equipo'], ['mis-estados', 'play', 'Estados'], ['mi-carnet', 'id', 'Mi carnet']];
+  else if (r === 'repartidor') t = [['entregas', 'moto', 'Entregas'], ['panel', 'chart', 'Mi panel'], ['mi-carnet', 'id', 'Mi carnet']];
+  else return '';
+  const app = S.cfg.APP_NOMBRE || 'La Wuaka'; const base = location.href.split('#')[0];
+  const extra = esAdm() ? `<div class="tl-sh"><b>Invitar</b><div class="row wrap" style="gap:8px">
+      <a class="btn sm wa" href="${esc(wa('', `Inscríbete como domiciliario en ${app}: ${base}#/domiciliario`))}" target="_blank" rel="noopener">${ic('moto', 'sm')} Domiciliarios</a>
+      <a class="btn sm wa" href="${esc(wa('', `Abre tu negocio en ${app}: ${base}#/vender`))}" target="_blank" rel="noopener">${ic('store', 'sm')} Negocios</a>
+      <button class="btn sm" data-act="tl-copy">${ic('file', 'sm')} Copiar enlace</button></div></div>` : '';
+  return `<div class="card pad acc-tools"><h3 style="margin-bottom:12px">${ic('tool', 'sm')} ${r === 'admin' ? 'Herramientas del superadministrador' : 'Accesos rápidos'}</h3>
+    ${esAdm() ? `<div class="tl-kpi"><a href="#/solicitudes"><b id="tlSol">${S.solN || 0}</b><small>por revisar</small></a><a href="#/g/Usuarios"><b id="tlUsr">—</b><small>usuarios</small></a><a href="#/negocios"><b id="tlNeg">—</b><small>negocios activos</small></a></div>` : ''}
+    <div class="tl-grid">${t.map(([h, i, l]) => `<a href="#/${h}" class="tl-i">${ic(i)}<span>${esc(l)}</span></a>`).join('')}</div>${extra}</div>`;
+}
+async function herramientasCargar() {
+  if (!esAdm() || !$('#tlUsr')) return;
+  const n = (e, f) => call('list', { e, g: 1, f: f || {}, q: '', s: '', d: -1, n: 1, p: 1 }).then(d => d.t || 0).catch(() => '—');
+  const [u, t] = await Promise.all([n('Usuarios'), n('Tiendas', { estado: 'activa' })]);
+  if ($('#tlUsr')) $('#tlUsr').textContent = u; if ($('#tlNeg')) $('#tlNeg').textContent = t; if ($('#tlSol')) $('#tlSol').textContent = S.solN || 0;
+}
+ACTS['tl-copy'] = async () => { try { await navigator.clipboard.writeText(location.href.split('#')[0]); toast('Enlace copiado'); } catch (e) { toast('No se pudo copiar', 'err'); } };
+/* ---------- íconos de categoría (monolínea de marca) ---------- */
+const CAT_IC = {
+  comida: ['Comida', '<path d="M7 3v8a3 3 0 0 0 3 3v7M7 7h6M13 3v8a3 3 0 0 1-3 3"/><path d="M18 3c-2 2-2 6 0 8v10"/>'],
+  bebidas: ['Bebidas', '<path d="M6 7h12l-1.5 13a2 2 0 0 1-2 1.8h-5a2 2 0 0 1-2-1.8L6 7Z"/><path d="M5 7h14M12 7l2-4h3"/>'],
+  mercado: ['Mercado', '<path d="M3 9h18l-2 11H5L3 9Z"/><path d="M8 9l3-6M16 9l-3-6M9 13v4M15 13v4M12 13v4"/>'],
+  drogueria: ['Droguería', '<rect x="4" y="4" width="16" height="16" rx="5"/><path d="M12 8v8M8 12h8"/>'],
+  ferreteria: ['Ferretería', '<path d="M14 6a4 4 0 0 0 5 5l-9 9a2 2 0 0 1-3-3l9-9a4 4 0 0 0-2-2Z"/><path d="M14 6l3-3"/>'],
+  ropa: ['Ropa', '<path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c-.5 1.5-2 3-4 3S8.5 4.5 8 3Z"/>'],
+  tecnologia: ['Tecnología', '<rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/>'],
+  belleza: ['Belleza', '<path d="M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10Z"/><path d="M10 14a2 2 0 0 0 2 2"/>'],
+  hogar: ['Hogar', '<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-6h4v6"/>'],
+  mascotas: ['Mascotas', '<circle cx="7" cy="9" r="1.8"/><circle cx="12" cy="6.5" r="1.8"/><circle cx="17" cy="9" r="1.8"/><path d="M12 12c-3 0-5.5 3.5-5.5 6 0 1.5 1.5 2.5 3 2 1-.3 1.8-.6 2.5-.6s1.5.3 2.5.6c1.5.5 3-.5 3-2 0-2.5-2.5-6-5.5-6Z"/>'],
+  panaderia: ['Panadería', '<path d="M4 13c0-4 3.5-7 8-7s8 3 8 7v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5Z"/><path d="M9 9l1 4M12 8.5v4.5M15 9l-1 4"/>'],
+  carnes: ['Carnes y pollo', '<path d="M15 4a5 5 0 0 1 3.5 8.5L13 18l-3-3-3 3a2 2 0 1 1-2-2l3-3-3-3 5.5-5.5A5 5 0 0 1 15 4Z"/>'],
+  frutas: ['Frutas y verduras', '<path d="M12 7c-4-2-8 1-7 6 .8 4 3.5 8 7 7 3.5 1 6.2-3 7-7 1-5-3-8-7-6Z"/><path d="M12 7c0-2 1-4 3-4"/>'],
+  pescado: ['Pescado', '<path d="M3 12c3-4 7-6 11-6 3 0 5 2 7 6-2 4-4 6-7 6-4 0-8-2-11-6Z"/><path d="M3 12c-1-2-1-4 0-5M3 12c-1 2-1 4 0 5"/><circle cx="16" cy="11" r=".8"/>'],
+  agro: ['Agro y campo', '<path d="M12 21V10"/><path d="M12 13c-4 0-7-3-7-7 4 0 7 3 7 7ZM12 10c0-4 3-7 7-7 0 4-3 7-7 7Z"/>'],
+  papeleria: ['Papelería', '<path d="M4 20l4-1L19 8a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"/><path d="M14 7l3 3"/>'],
+  regalos: ['Regalos', '<rect x="3.5" y="8" width="17" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8c-2-4-6-4-6-1.5S10 8 12 8Zm0 0c2-4 6-4 6-1.5S14 8 12 8Z"/>'],
+  servicios: ['Servicios', '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>'],
+  helados: ['Helados y postres', '<path d="M8 10a4 4 0 0 1 8 0"/><path d="M7 10h10l-5 11-5-11Z"/>'],
+  tienda: ['Tienda / variedades', '<path d="M4 9l1.5-5h13L20 9"/><path d="M4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0A2.7 2.7 0 0 0 20 9"/><path d="M5 11v9h14v-9M10 20v-5h4v5"/>']
+};
+const CAT_KW = [['drogueria', /drog|farma|salud|medic/], ['ferreteria', /ferre|constru|herram/], ['ropa', /ropa|moda|calzado|zapat|textil/], ['tecnologia', /tecno|celular|electr|comput/], ['belleza', /belle|cosm|maqui|peluq|spa|cuidado/],
+  ['mascotas', /mascot|veterin|perro|gato/], ['panaderia', /pan(ad|es)|reposter|pastel/], ['carnes', /carne|pollo|carnic|huevo|granja/], ['frutas', /fruta|verdura|legumbr/], ['pescado', /pesca|pescad|mariscos/],
+  ['agro', /agro|campo|semilla|abono|ganad/], ['papeleria', /papel|escolar|libre/], ['regalos', /regal|detalle|flor/], ['servicios', /servic|taller|repar/], ['helados', /helad|postre|dulce/],
+  ['bebidas', /bebida|licor|jugo|cerve|agua/], ['mercado', /mercad|abarrot|víveres|viveres|supermer/], ['comida', /comid|restau|gastro|rápida|rapida|almuerzo|frito/], ['hogar', /hogar|casa|mueble|cocina/]];
+function catClave(c) { if (c && CAT_IC[c.icono]) return c.icono; const n = normCol((c && c.nombre) || ''); const k = CAT_KW.find(([, re]) => re.test(n)); return k ? k[0] : 'tienda'; }
+const catSvg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${(CAT_IC[k] || CAT_IC.tienda)[1]}</svg>`;
+/** Ícono de una categoría: su logo propio si lo subieron; si no, el ícono de marca. */
+function catIcono(c, cls) { return `<span class="cat-ic ${cls || ''}">${c && safeUrl(c.imagen) ? `<img src="${esc(c.imagen)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : catSvg(catClave(c))}</span>`; }
+/** Selector visual de íconos para Categorías (reemplaza la lista desplegable). */
+function iconoPicker(form) {
+  const sel = form.querySelector('select[name=icono]'); if (!sel) return;
+  const nom = form.querySelector('[name=nombre]'); const fld = sel.closest('.fld'); fld.classList.add('full');
+  const wrap = document.createElement('div'); wrap.className = 'cat-pick'; wrap.setAttribute('role', 'radiogroup'); wrap.setAttribute('aria-label', 'Ícono de la categoría');
+  const pinta = () => {
+    const auto = catClave({ nombre: nom ? nom.value : '' });
+    wrap.innerHTML = [['', 'Automático · ' + CAT_IC[auto][0], auto]].concat(Object.keys(CAT_IC).map(k => [k, CAT_IC[k][0], k])).map(([v, l, k], i) => `<span><input type="radio" name="icoR" id="icoR${i}" value="${v}" ${sel.value === v ? 'checked' : ''}><label for="icoR${i}"><span class="cat-ic">${catSvg(k)}</span>${esc(l)}</label></span>`).join('');
+    $$('input', wrap).forEach(r => r.onchange = () => { sel.value = r.value; });
+  };
+  sel.classList.add('hide'); sel.after(wrap); pinta();
+  if (nom) nom.addEventListener('input', debounce(() => { if (!sel.value) pinta(); }, 300));
+}
+/* ---------- Auditoría agrupada: semanas del mes y luego el mes completo ---------- */
+function vAuditoria(main) {
+  if (!guard(['admin'])) return;
+  main.innerHTML = `<div class="page-h"><h1>${ic('file')} Auditoría</h1><span class="sub" id="auN"></span></div>
+    <p class="mut" style="margin-top:-6px">Todo lo que se hace en la plataforma, agrupado por semana. Al terminar el mes, sus 4 semanas se recogen en el resumen del mes.</p>
+    <div class="toolbar"><label class="search">${ic('search', 'sm')}<input id="auQ" type="search" placeholder="Buscar usuario, acción o detalle…"></label>
+      <select class="sel" id="auE" aria-label="Sección"><option value="">Todas las secciones</option>${Object.keys(S.meta).filter(k => k !== 'Auditoria').map(k => `<option value="${esc(k)}">${esc(S.meta[k].label)}</option>`).join('')}</select></div>
+    <div id="auBox" class="au-box"><div class="skel" style="height:220px"></div></div><div style="text-align:center;margin:14px 0"><button class="btn hide" id="auMas">${ic('chevd', 'sm')} Cargar meses anteriores</button></div>`;
+  const st = { recs: [], p: 0, t: 0, q: '', ent: '' };
+  const pinta = () => {
+    const box = $('#auBox'); if (!box) return;
+    if (!st.recs.length) { box.innerHTML = `<div class="empty">${ic('file')}<p>No hay registros con ese filtro.</p></div>`; return; }
+    const hoy = new Date(); const mesAct = hoy.getFullYear() + '-' + String(hoy.getMonth() + 1).padStart(2, '0');
+    const meses = new Map();
+    st.recs.forEach(r => { const d = String(r.creado || ''); const mk = d.slice(0, 7); const dia = Number(d.slice(8, 10)) || 1; const sem = Math.min(4, Math.ceil(dia / 7));
+      if (!meses.has(mk)) meses.set(mk, new Map()); const M = meses.get(mk); if (!M.has(sem)) M.set(sem, []); M.get(sem).push(r); });
+    const semHoy = Math.min(4, Math.ceil(hoy.getDate() / 7));
+    box.innerHTML = [...meses.entries()].map(([mk, M]) => {
+      const [y, mo] = mk.split('-').map(Number); const fin = new Date(y, mo, 0).getDate(); const tot = [...M.values()].reduce((a, x) => a + x.length, 0); const actual = mk === mesAct;
+      const sems = [1, 2, 3, 4].filter(s => M.has(s)).reverse().map(s => { const rs = M.get(s); const desde = (s - 1) * 7 + 1, hasta = s === 4 ? fin : s * 7;
+        return `<details class="au-sem" ${actual && s === semHoy ? 'open' : ''}><summary><b>Semana ${s}</b><span class="mut">${desde}–${hasta} de ${MESES[mo - 1]}</span><span class="grow"></span>${auChips(rs)}<span class="badge">${rs.length}</span></summary>
+          <div class="au-rows">${rs.map(auRow).join('')}</div><div class="au-f"><button class="btn sm ghost" data-act="au-csv" data-m="${mk}" data-s="${s}">${ic('download', 'sm')} Descargar semana (CSV)</button></div></details>`; }).join('');
+      return `<section class="au-mes ${actual ? 'act' : ''}"><details ${actual ? 'open' : ''}><summary class="au-mh"><span class="au-cal"><b>${mo}</b><small>${y}</small></span><div><h3>${MESES[mo - 1][0].toUpperCase() + MESES[mo - 1].slice(1)} ${y}</h3><small class="mut">${actual ? 'Mes en curso · semanas abiertas' : 'Mes cerrado · ' + M.size + ' semana(s) recogidas'}</small></div><span class="grow"></span>${auChips([].concat(...M.values()))}<span class="badge b-pri">${tot} acciones</span></summary>
+        <div class="au-sems">${sems}</div><div class="au-f"><button class="btn sm ghost" data-act="au-csv" data-m="${mk}">${ic('download', 'sm')} Descargar mes (CSV)</button></div></details></section>`;
+    }).join('');
+    $('#auN').textContent = num(st.t) + ' registro(s)'; $('#auMas').classList.toggle('hide', st.recs.length >= st.t);
+  };
+  const cargar = async (mas) => {
+    if (!mas) { st.p = 0; st.recs = []; }
+    try { const d = toObjs(await call('list', { e: 'Auditoria', g: 1, f: st.ent ? { entidad: st.ent } : {}, q: st.q, s: 'creado', d: -1, n: 50, p: st.p + 1 })); st.p = d.p; st.t = d.t; st.recs = st.recs.concat(d.recs); pinta(); }
+    catch (e) { toast(e.message, 'err'); }
+  };
+  S.au = st;
+  $('#auQ').addEventListener('input', debounce(ev => { st.q = ev.target.value.trim(); cargar(); }, 350));
+  $('#auE').onchange = ev => { st.ent = ev.target.value; cargar(); };
+  $('#auMas').onclick = ev => busy(ev.currentTarget, 'Cargando…', () => cargar(true));
+  cargar();
+}
+function auChips(rs) {
+  const c = {}; rs.forEach(r => { const k = String(r.accion || '').split(/[\s:]/)[0] || '—'; c[k] = (c[k] || 0) + 1; });
+  return `<span class="au-ch">${Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k, n]) => `<i>${esc(k)} · ${n}</i>`).join('')}</span>`;
+}
+function auRow(r) {
+  const h = String(r.creado || ''); return `<div class="au-r"><time>${esc(h.slice(8, 10) + '/' + h.slice(5, 7))} <small>${esc(h.slice(11, 16))}</small></time><div class="grow"><b>${esc(r.accion || '')}</b> <span class="mut">${esc(r.entidad || '')}${r.ref_id ? ' · ' + esc(r.ref_id) : ''}</span>${r.detalle ? `<div class="au-d">${esc(r.detalle)}</div>` : ''}</div><span class="au-u">${ic('user', 'sm')} ${esc(r.usuario || 'Sistema')}</span></div>`;
+}
+ACTS['au-csv'] = el => {
+  const st = S.au; if (!st) return; const mk = el.dataset.m, s = Number(el.dataset.s || 0);
+  const rs = st.recs.filter(r => String(r.creado || '').slice(0, 7) === mk && (!s || Math.min(4, Math.ceil((Number(String(r.creado).slice(8, 10)) || 1) / 7)) === s));
+  const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  const csv = '﻿Fecha,Usuario,Acción,Sección,Registro,Detalle\n' + rs.map(r => [r.creado, r.usuario, r.accion, r.entidad, r.ref_id, r.detalle].map(q).join(',')).join('\n');
+  descargar(new Blob([csv], { type: 'text\x2fcsv;charset=utf-8' }), 'auditoria-' + mk + (s ? '-semana' + s : '') + '.csv');
+};
+/* ---------- Configuración en cuadrícula por categorías ---------- */
+const CFG_GRUPOS = [
+  ['marca', 'image', 'Marca y apariencia', 'Nombre, eslogan, logo, colores y foto de bienvenida', /^(APP_NOMBRE|APP_ESLOGAN|LOGO_URL|COLOR_|MASCOTA_URL|INICIO_IMAGEN)/],
+  ['pautas', 'film', 'Pautas y franjas', 'Banners del inicio y franja de negocios', /^(BANNER_|PROMO_|FRANJA_)/],
+  ['contacto', 'chat', 'Contacto y soporte', 'WhatsApp, correo, enlaces públicos', /^(WHATSAPP_|EMAIL_|TERMINOS_URL|WEB_URL)/],
+  ['registro', 'users', 'Registro y cuentas', 'Inscripción, verificación y sesión', /^(REGISTRO_|SOLICITUD_TIENDA|VERIFICAR_CORREO|SESION_HORAS)/],
+  ['pedidos', 'package', 'Pedidos y domicilios', 'Pagos, envío gratis, límites y cancelación', /^(METODOS_PAGO|ENVIO_GRATIS|MAX_ITEMS|AUTO_CANCELAR|CORREO_PEDIDOS|STOCK_BAJO|RUBROS)/],
+  ['cobros', 'card', 'Mensualidades y comisión', 'Valor de la mensualidad y cobro automático', /^(MENSUALIDAD_|GENERAR_CUOTAS|COMISION_)/],
+  ['avisos', 'bell', 'Notificaciones', 'Firebase, avisos masivos y sincronización', /^(FIREBASE_|PUSH_|SYNC_)/],
+  ['estados', 'play', 'Estados y videos', 'Duración, cantidad y peso de los estados', /^(ESTADOS_|VIDEO_MAX)/],
+  ['tutoriales', 'video', 'Videos tutoriales', 'Videos de ayuda por cada rol', /^VIDEO_(INICIO|CLIENTE|DUENO|EQUIPO|DOMICILIARIO|SOPORTE|ADMIN)$/],
+  ['region', 'map', 'Región y formato', 'Moneda, idioma, zona horaria y mapa', /^(MONEDA|LOCALE|ZONA_HORARIA|MAPA_CENTRO|PAGINA_TAM)/],
+  ['sistema', 'tool', 'Sistema', 'Carpetas y ajustes técnicos', /.*/]
+];
+function cfgGrupoDe(k) { return CFG_GRUPOS.find(g => g[4].test(k)) || CFG_GRUPOS[CFG_GRUPOS.length - 1]; }
+function cfgRowHtml(r) {
+  return `<div class="cfgrow" data-k="${esc(r.k)}"><div><code>${esc(r.k)}</code> ${r.p ? '<span class="badge b-info">público</span>' : ''}<small class="hint">${esc(r.d)}</small></div>
+    <input class="inp" value="${esc(r.v)}" aria-label="${esc(r.k)}" ${/^COLOR_/.test(r.k) ? 'type="text" pattern="#[0-9a-fA-F]{6}"' : ''}><div class="row" style="gap:6px">${/^(BANNER|PROMO)_\d$/.test(r.k) ? `<button class="btn sm ghost" data-act="cfg-dest">${ic('nav', 'sm')} Elegir destino</button>` : ''}<button class="btn sm" data-act="cfg-save">${ic('check', 'sm')} Guardar</button></div></div>`;
+}
+function cfgGrid(box, rows) {
+  const by = {}; rows.forEach(r => { const g = cfgGrupoDe(r.k)[0]; (by[g] = by[g] || []).push(r); });
+  const gs = CFG_GRUPOS.filter(g => by[g[0]]);
+  box.classList.remove('card', 'pad');
+  box.innerHTML = `<label class="search cfg-q">${ic('search', 'sm')}<input id="cfgQ" type="search" placeholder="Buscar un ajuste (ej. WhatsApp, color, mensualidad)…"></label>
+    <div class="cfg-grid">${gs.map(g => `<button type="button" class="cfg-t" data-g="${g[0]}"><span class="cfg-i">${ic(g[1])}</span><b>${esc(g[2])}</b><small>${esc(g[3])}</small><em>${by[g[0]].length} ajuste(s)</em></button>`).join('')}</div>
+    <div id="cfgRes" class="card pad hide"></div>`;
+  $$('.cfg-t', box).forEach(b => b.onclick = () => { const g = CFG_GRUPOS.find(x => x[0] === b.dataset.g);
+    openModal(mHead(g[2], g[1]) + `<div class="mb"><p class="mut" style="margin-top:0">${esc(g[3])}. Guarda cada ajuste con su botón.</p><div class="cfg-dlg">${by[g[0]].map(cfgRowHtml).join('')}</div></div>`, { wide: true }); });
+  const res = $('#cfgRes', box);
+  $('#cfgQ', box).addEventListener('input', debounce(ev => { const q = normCol(ev.target.value.trim()); if (!q) { res.classList.add('hide'); $('.cfg-grid', box).classList.remove('hide'); return; }
+    const hit = rows.filter(r => normCol(r.k + ' ' + r.d).includes(q)); $('.cfg-grid', box).classList.add('hide'); res.classList.remove('hide');
+    res.innerHTML = hit.length ? hit.map(cfgRowHtml).join('') : '<p class="mut">No hay ajustes con esa palabra.</p>'; }, 250));
 }
 </script>
 </body>
