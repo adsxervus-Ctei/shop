@@ -1595,6 +1595,241 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 .car-pv:empty{display:none}.car-pv{display:flex;justify-content:center}
 .car-tips{margin-bottom:14px}.car-tips summary{cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center}.car-tips ol{margin:12px 0 0;padding-left:20px;display:grid;gap:6px;font-size:14px}
 </style>
+<style id="wk-v2-css">
+/* ===== La Wuaka · módulo V2 ===== */
+.wk-foot{border-top:1px solid var(--line);padding-top:12px;padding-bottom:12px;font-size:12.5px;color:var(--ink-2)}
+.foot .wk-foot p{margin:4px 0;max-width:none;font-size:12.5px}
+.wk-foot b{color:var(--ink)}
+.foot .wk-links{display:flex;flex-wrap:wrap;gap:4px 18px}
+.foot .wk-links a{display:inline;padding:0;color:var(--ink-2);text-decoration:underline;text-underline-offset:2px;font-size:12.5px}
+.foot .wk-links a:hover{color:var(--pri)}
+.wk-ck{display:grid;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--sur-2);grid-column:1/-1}
+.wk-ckl{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;cursor:pointer}
+.wk-ckl input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--pri)}
+.wk-ckl a,.wk-co a{color:var(--pri);text-decoration:underline}
+.wk-ck-err{color:var(--err);font-weight:600}
+.wk-co{display:grid;gap:10px;margin-top:12px;padding:12px;border-radius:12px;background:var(--warn-l)}
+.wk-co small{line-height:1.45}
+.wk-tags{position:absolute;left:10px;bottom:10px;display:flex;gap:6px;z-index:2;pointer-events:none}
+.wk-tag{font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px;color:#fff;letter-spacing:.2px}
+.wk-18{background:#b42318}
+.wk-rx{background:#175cd3}
+.wk-ban{margin:12px 0}
+.wk-vend{margin-top:18px}
+.wk-vend h3{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.wk-vend dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:0 0 10px;font-size:14px}
+.wk-vend dt{color:var(--mut)}
+.wk-vend dd{margin:0;font-weight:600}
+.wk-vend p{font-size:13px;margin:6px 0 10px}
+.wk-ov{position:fixed;inset:0;background:rgba(6,20,22,.55);z-index:9999;display:grid;place-items:center;padding:16px}
+.wk-ov-box{background:var(--sur);border-radius:18px;width:min(760px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.wk-ov-box .mb{overflow:auto}
+.wk-ov-f{padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end}
+.wk-legal-txt{line-height:1.6;font-size:14.5px}
+.wk-legal-txt h1{font-size:22px;margin:0 0 6px}
+.wk-legal-txt h2{font-size:16px;margin:18px 0 6px}
+.wk-legal-txt ul{padding-left:20px;margin:6px 0}
+.wk-legal-txt li{margin:3px 0}
+.wk-legal-txt a{color:var(--pri);text-decoration:underline}
+.wk-ver{color:var(--mut);font-size:13px}
+.wk-pend{background:#fff3c4;color:#7a4b00;padding:0 4px;border-radius:4px;font-weight:700}
+.wk-doc{max-width:900px;margin:0 auto}
+.wk-doc-bar{align-items:center;margin-bottom:12px}
+.wk-narrow{max-width:720px}
+.wk-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px 14px;align-items:start}
+.wk-form .full,.wk-form h3{grid-column:1/-1}
+.wk-form textarea{width:100%}
+.wk-rad{text-align:left}
+.wk-radnum{font-size:30px;font-weight:800;letter-spacing:1px;margin:4px 0 10px;color:var(--pri)}
+.wk-pre{white-space:pre-wrap;margin:6px 0}
+.wk-resp{background:var(--ok-l);border-radius:10px;padding:10px 12px;margin-top:8px}
+.wk-venc{border-color:var(--err)}
+.wk-tbl{overflow:auto;margin-top:8px}
+.wk-tbl table{width:100%;border-collapse:collapse;font-size:13.5px}
+.wk-tbl th,.wk-tbl td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.wk-tbl th{font-size:12px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.wk-tbl .n{text-align:right;font-variant-numeric:tabular-nums}
+.wk-tbl td:nth-child(4){white-space:normal}
+.wk-click{cursor:pointer}
+.wk-click:hover{background:var(--sur-2)}
+.wk-neg{color:var(--err)}
+.wk-pos{color:var(--ok)}
+.wk-big{font-size:26px;font-weight:800}
+.wk-dif{font-weight:800;font-size:16px;margin:0}
+.wk-dif.ok{color:var(--ok)} .wk-dif.mas{color:var(--info)} .wk-dif.menos{color:var(--err)}
+.wk-chk{list-style:none;padding:0;margin:8px 0 14px;display:grid;gap:8px}
+.wk-chk li{display:flex;gap:10px;align-items:flex-start}
+.wk-chk li.ok .ic{color:var(--ok)} .wk-chk li.no .ic{color:var(--warn)}
+.wk-chk small{display:block;color:var(--mut)}
+@media print{
+  body *{visibility:hidden}
+  .wk-legal-txt,.wk-legal-txt *{visibility:visible}
+  .wk-legal-txt{position:absolute;left:0;top:0;width:100%;border:0;box-shadow:none}
+}
+
+/* ===== La Wuaka · módulo V3 · vitrina ===== */
+:root{--w3-rojo:#e23b3b;--w3-rojo-o:#c22f2f;--w3-borde:#e6e9ec}
+
+/* ---------- slider: texto animado sobre la foto ---------- */
+.w3-s .sl-k{background:var(--acc);color:#0b1a12;letter-spacing:.08em}
+.w3-s .sl-tx h2{max-width:15ch}
+.w3-vacio{display:none!important}
+.w3-kick{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.w3-kick:empty{display:none}
+.w3-kick .sl-k{margin:0}
+.w3-pat{background:rgba(255,255,255,.94);color:#2b3137;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:5px;padding:4px 9px}
+.w3-precio{display:flex;align-items:baseline;gap:12px;margin:2px 0 18px}
+.w3-precio b{font-size:clamp(30px,3.4vw,46px);font-weight:900;color:var(--acc);letter-spacing:-.02em;line-height:1}
+.w3-precio s{font-size:16px;opacity:.78}
+.w3-s .sl-tx p{margin-bottom:14px}
+.slide.on .sl-tx>:nth-child(5){animation-delay:.5s}
+.w3-sello{position:absolute;z-index:3;right:9%;top:16%;width:96px;height:96px;border-radius:50%;background:var(--acc);color:#0b1a12;display:grid;place-content:center;text-align:center;transform:rotate(-12deg);box-shadow:0 10px 26px rgba(0,0,0,.3)}
+.w3-sello b{font-size:27px;font-weight:900;line-height:1;letter-spacing:-.02em}
+.w3-sello small{font-size:12px;font-weight:700}
+.slide.on .w3-sello{animation:w3Sello .7s .45s cubic-bezier(.2,.8,.3,1.3) both}
+@keyframes w3Sello{from{opacity:0;transform:rotate(-40deg) scale(.4)}to{opacity:1;transform:rotate(-12deg) scale(1)}}
+.w3-ref{position:absolute;z-index:3;right:12px;bottom:10px;font-size:10.5px;color:#fff;background:rgba(0,0,0,.45);padding:2px 8px;border-radius:4px;letter-spacing:.02em;pointer-events:none}
+.promo .w3-ref{right:8px;top:8px;bottom:auto;z-index:3}
+@media (max-width:860px){
+  #slider:has(.w3-s){min-height:340px}
+  .w3-s{padding:18px 18px 40px}
+  .w3-s .sl-tx{max-width:100%}
+  .w3-s .sl-tx h2{font-size:24px}
+  .w3-kick{margin-bottom:8px}
+  .w3-s .sl-tx p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .w3-ref{font-size:9.5px;right:8px;bottom:8px}
+  .w3-sello{width:70px;height:70px;right:16px;top:14px}.w3-sello b{font-size:19px}.w3-sello small{font-size:10px}
+  .w3-precio{margin:0 0 12px}.w3-precio b{font-size:28px}
+  .w3-s .sl-tx h2{max-width:none;padding-right:64px}
+}
+@media (prefers-reduced-motion:reduce){.slide.on .w3-sello{animation:none}}
+
+/* ---------- tipos de negocio en cuadritos con foto ---------- */
+.w3-tiposb{margin-top:26px}
+.w3-sech{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}
+.w3-sech h2{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em}
+.w3-tipos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.w3-tipo{display:flex;flex-direction:column;align-items:stretch;gap:8px;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:inherit;text-align:center}
+.w3-tf{position:relative;display:grid;place-items:center;aspect-ratio:1;border-radius:14px;overflow:hidden;background:color-mix(in srgb,var(--pri) 14%,#fff);color:var(--pri);box-shadow:0 1px 0 var(--w3-borde),0 6px 16px rgba(16,24,40,.07);transition:transform .2s,box-shadow .2s}
+.w3-tf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.w3-tf b{font-size:22px;font-weight:800}
+.w3-tf.sm{width:52px;height:52px;flex:0 0 52px;border-radius:10px}
+.w3-tn{font-size:14px;font-weight:700;line-height:1.2}
+.w3-tipo:hover .w3-tf{transform:translateY(-3px);box-shadow:0 1px 0 var(--w3-borde),0 14px 28px rgba(16,24,40,.14)}
+.w3-tipo:hover .w3-tf img{transform:scale(1.06)}
+.w3-tipo:focus-visible{outline:none}.w3-tipo:focus-visible .w3-tf{outline:3px solid var(--pri);outline-offset:2px}
+.w3-tchips{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;margin-bottom:12px;scrollbar-width:thin}
+.w3-tchips .w3-tipo{flex:0 0 92px}
+.w3-tchips .w3-tn{font-size:12.5px}
+.w3-tchips .w3-tipo.on .w3-tf{outline:3px solid var(--pri);outline-offset:2px}
+.w3-tchips .w3-tipo.on .w3-tn{color:var(--pri)}
+.w3-todas{background:var(--pri);color:#fff}.w3-todas .ic{width:34px;height:34px}
+@media (max-width:860px){
+  .w3-tipos:not(.w3-tchips){display:flex;overflow-x:auto;gap:12px;padding-bottom:8px;scroll-snap-type:x mandatory}
+  .w3-tipos:not(.w3-tchips) .w3-tipo{flex:0 0 96px;scroll-snap-align:start}
+  .w3-sech h2{font-size:19px}
+}
+
+/* ---------- categorías con foto ---------- */
+.cat-ic.w3-catf{overflow:hidden;border-radius:9px;background:#eef1f3;position:relative}
+.cat-ic.w3-catf img{width:100%;height:100%;object-fit:cover;display:block}
+.du-t span.cat-ic.w3-catf{width:34px;height:34px;flex:0 0 34px;border-radius:8px}
+.chip-ic.w3-catf{border-radius:8px}
+.dm-e.w3-catf{width:40px;height:40px;border-radius:10px}
+@media (max-width:860px){.du-t span.cat-ic.w3-catf{width:24px;height:24px;flex-basis:24px;border-radius:6px}}
+
+/* ---------- bloque por categoría (estilo Servus) ---------- */
+.w3-dust{display:flex;flex-direction:column;gap:2px;margin:10px 0 6px;padding-top:10px;border-top:1px solid var(--w3-borde)}
+.w3-dust small{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut,#6b7280);margin-bottom:4px}
+.w3-dst{display:flex;align-items:center;gap:10px;padding:5px 0;color:inherit;text-decoration:none;font-size:14px}
+.w3-dst .mini-logo{width:30px;height:30px;border-radius:50%;flex:0 0 30px;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--w3-borde)}
+.w3-dst:hover span{color:var(--pri);text-decoration:underline}
+.dep .vp-shop{background:rgba(20,24,27,.86);color:#fff;letter-spacing:.06em;text-transform:uppercase}
+.dep .vp-off{background:var(--w3-rojo);color:#fff}
+.dep .vp-b em{background:var(--acc);color:#0b1a12}
+
+/* ---------- página de la tienda ---------- */
+.w3-sh,.w3-tabs{--edge:calc(50vw - 50% - var(--sbw,0px) / 2);margin-left:calc(var(--edge) * -1);margin-right:calc(var(--edge) * -1);padding-left:var(--edge);padding-right:var(--edge)}
+.w3-sh{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(120deg,#0b2f33,var(--pri));color:#fff;margin-top:-20px}
+.w3-shbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.w3-sh.has-img::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.45) 60%,rgba(0,0,0,.3))}
+.w3-shin{display:flex;align-items:flex-end;gap:22px;min-height:230px;padding-top:28px;padding-bottom:26px}
+.w3-logo{flex:0 0 104px;width:104px;height:104px;border-radius:20px;overflow:hidden;background:#fff;color:var(--pri);display:grid;place-items:center;box-shadow:0 0 0 4px rgba(255,255,255,.35),0 12px 28px rgba(0,0,0,.35)}
+.w3-logo img{width:100%;height:100%;object-fit:cover}.w3-logo b{font-size:34px;font-weight:900}
+.w3-shtx{flex:1;min-width:0}
+.w3-shtx h1{margin:0;font-size:clamp(28px,3.6vw,46px);font-weight:900;letter-spacing:-.02em;line-height:1.05;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.w3-shtx p{margin:8px 0 10px;font-size:15px;opacity:.94}
+.w3-chips{display:flex;flex-wrap:wrap;gap:8px}
+.w3-chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);padding:4px 10px;border-radius:7px}
+.w3-chip.ok{background:#1e8a45}.w3-chip.off{background:rgba(0,0,0,.4)}.w3-chip.id{background:rgba(198,244,50,.95);color:#0b1a12}
+.w3-chip .stars{color:#ffc53d}
+.w3-shac{display:flex;gap:10px;flex-wrap:wrap}
+.w3-btw{background:#fff;color:var(--ink,#14181b);border:0;border-radius:999px;height:46px;padding:0 20px;font-weight:700}
+.w3-btr{background:var(--w3-rojo);color:#fff;border:0;border-radius:999px;height:46px;padding:0 22px;font-weight:700}
+.w3-btr:hover{background:var(--w3-rojo-o)}
+.w3-tabs{background:#fff;border-bottom:1px solid var(--w3-borde)}
+.w3-tabs>div{display:flex;gap:4px;overflow-x:auto}
+.w3-tabs button{border:0;background:none;font:inherit;font-size:16px;font-weight:600;color:#5b6570;padding:16px 16px 14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.w3-tabs button.on{color:var(--ink,#14181b);border-bottom-color:var(--w3-rojo);font-weight:800}
+.w3-cols{display:grid;grid-template-columns:340px minmax(0,1fr);gap:20px;padding-top:22px;padding-bottom:30px;align-items:start}
+.w3-l{display:flex;flex-direction:column;gap:16px}
+.w3-l>.card,.w3-l .wk-vend{margin:0}
+.w3-r{display:flex;flex-direction:column;gap:20px;min-width:0}
+.w3-r>section{margin:0}
+.w3-due{padding:22px 20px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.w3-duef{width:100px;height:100px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 4px #fff,0 0 0 6px color-mix(in srgb,var(--w3-rojo) 35%,#fff);margin-bottom:10px}
+.w3-duef.w3-ini{display:grid;place-items:center;background:color-mix(in srgb,var(--pri) 14%,#fff);color:var(--pri);font-size:32px;font-weight:900}
+.w3-due b{font-size:17px}.w3-due small{color:var(--mut,#6b7280);font-size:13px}
+.w3-due blockquote{margin:12px 0 4px;font-size:15.5px;line-height:1.5}
+.w3-dstat{display:flex;justify-content:center;gap:22px;margin-top:10px;width:100%}
+.w3-dstat span{display:flex;flex-direction:column}.w3-dstat b{font-size:17px}.w3-dstat small{font-size:12px}
+.w3-cups h3,.w3-ent h3{margin:0 0 14px;font-size:18px}
+.w3-cup{display:flex;align-items:stretch;border:1.5px dashed color-mix(in srgb,var(--w3-rojo) 45%,#fff);border-radius:10px;overflow:hidden;margin-bottom:12px;background:color-mix(in srgb,var(--w3-rojo) 5%,#fff)}
+.w3-cup>div{flex:1;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.w3-cup b{color:var(--w3-rojo);font-size:21px;font-weight:900;line-height:1.1}
+.w3-cup small{font-size:13px}
+.w3-tomar{flex:0 0 86px;border:0;background:var(--w3-rojo);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.w3-tomar:hover{background:var(--w3-rojo-o)}.w3-tomar:disabled{background:#1e8a45;cursor:default}
+.w3-ent ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.w3-ent li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px}.w3-ent li .ic{color:var(--pri);flex:0 0 auto;margin-top:2px}
+.w3-promo{position:relative;overflow:hidden;border-radius:16px;min-height:170px;display:flex;align-items:center;padding:26px 28px;color:#fff;background:linear-gradient(100deg,var(--w3-rojo),#f2685b 55%,#f59b6b)}
+.w3-promo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.w3-promo.has-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(214,40,40,.95),rgba(226,59,59,.72) 45%,rgba(0,0,0,.05))}
+.w3-promo>div{position:relative;z-index:2;max-width:560px}
+.w3-promo h2{margin:0;font-size:clamp(26px,3vw,36px);font-weight:900;letter-spacing:-.02em}
+.w3-promo p{margin:6px 0 0;font-size:16px}
+.w3-promo>div>*{animation:entra .65s cubic-bezier(.2,.7,.2,1) both}.w3-promo>div>:nth-child(2){animation-delay:.14s}
+.w3-sobre dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 16px;margin:12px 0 0}
+.w3-sobre dt{color:var(--mut,#6b7280)}.w3-sobre dd{margin:0}
+.w3-sobre h2{margin:0 0 8px;font-size:20px}
+.w3-cols #w3Ban:empty{display:none}
+.w3-cols #w3Ban .wk-ban{margin:0}
+.w3-cols[data-tab="productos"]{grid-template-columns:1fr}
+.w3-cols[data-tab="productos"] .w3-l,.w3-cols[data-tab="productos"] .w3-promo,.w3-cols[data-tab="productos"] .w3-top,.w3-cols[data-tab="productos"] .w3-sobre{display:none}
+.w3-cols[data-tab="sobre"] .w3-promo,.w3-cols[data-tab="sobre"] .w3-top,.w3-cols[data-tab="sobre"] #tProds,.w3-cols[data-tab="sobre"] #w3All{display:none}
+@media (max-width:860px){.w3-sh{margin-top:-14px}}
+@media (max-width:900px){
+  .w3-shin{flex-wrap:wrap;align-items:flex-end;min-height:0;padding-top:70px;gap:14px}
+  .w3-logo{width:78px;height:78px;flex-basis:78px;border-radius:16px}
+  .w3-shtx h1{font-size:28px}
+  .w3-shac{width:100%}.w3-shac .btn{flex:1;height:44px}
+  .w3-cols{grid-template-columns:1fr}
+  .w3-l{order:2}.w3-r{order:1}
+  .w3-tabs button{font-size:15px;padding:13px 12px 11px}
+}
+
+/* ---------- panel ---------- */
+.w3-prev{margin-top:8px}.w3-prev img{max-height:110px;border-radius:50%;aspect-ratio:1;object-fit:cover}
+.w3-prev.wide img{border-radius:10px;aspect-ratio:auto;max-height:130px}
+.w3-cupf{display:grid;grid-template-columns:1fr 1.2fr 1.2fr 1.4fr;gap:8px}
+.w3-cupf input{min-width:0}
+.w3-tlist{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.w3-trow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px;border:1px solid var(--w3-borde);border-radius:12px;background:#fff}
+.w3-trow.off{opacity:.55}
+.w3-trow input[data-k="nombre"]{flex:1;min-width:140px}
+.w3-pnota{font-size:13px;margin:0 0 8px;padding:8px 10px;gap:8px}
+@media (max-width:700px){.w3-cupf{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
 <div id="pre" role="status" aria-label="Cargando"><div class="pre-b"><div class="wk-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 18 L21 47 L32 25 L43 47 L54 18"/><circle cx="32" cy="54" r="4"/></svg></div><svg class="wk-word pre-w wk-anim" viewBox="-1 -1 388.0 42" role="img" aria-label="La Wuaka"><g fill="none" stroke="currentColor" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"><path class="" style="--i:0" pathLength="1" d="M3.1 3.1V36.9H27.9"/><path class="" style="--i:1" pathLength="1" d="M41.1 36.9L61.0 3.1L80.9 36.9"/><path class="" style="--i:2" pathLength="1" d="M50.3 27H71.7"/><path class="" style="--i:3" pathLength="1" d="M106.1 3.1L120.5 36.9L137.0 12L153.5 36.9L167.9 3.1"/><path class="" style="--i:4" pathLength="1" d="M181.1 3.1V20.0A16.9 16.9 0 0 0 214.9 20.0V3.1"/><path class="ac" style="--i:5" pathLength="1" d="M231.9 2.1Q219.0 20 231.9 37.9"/><path class="ac lam" style="--i:6" pathLength="1" d="M243.1 27.6L256.0 3.1L268.9 27.6"/><circle class="dot" style="--i:6" cx="256.0" cy="35.6" r="3.3"/><path class="ac" style="--i:7" pathLength="1" d="M280.1 2.1Q293.0 20 280.1 37.9"/><path class="" style="--i:8" pathLength="1" d="M297.1 3.1V36.9"/><path class="" style="--i:9" pathLength="1" d="M329.9 3.1L300.1 20L329.9 36.9"/><path class="" style="--i:10" pathLength="1" d="M343.1 36.9L363.0 3.1L382.9 36.9"/><path class="" style="--i:11" pathLength="1" d="M352.3 27H373.7"/></g></svg><div class="pre-s">Lo que conecta al Zode de Loba</div><div class="pre-bar"><i></i></div></div></div><script>window.__pre0 = performance.now();</script>
@@ -5280,7 +5515,7 @@ function splashHtml() {
         <p class="sp-lead">Los negocios de tu pueblo, en tu celular.</p>
         <div class="sp-feat"><div><span>${ic('store')}</span>Tiendas de<br>tu pueblo</div><div><span>${ic('moto')}</span>Domicilio a<br>tu puerta</div><div><span>${ic('dollar')}</span>Pagas al<br>recibir</div></div>
         <div class="sp-btns">
-          <button type="button" class="sp-go" data-act="sp-go"><span>Comenzar</span><i>${ic('chevr')}</i></button>
+          <button type="button" class="sp-go" data-act="sp-go"><span>Explorar tiendas</span><i>${ic('chevr')}</i></button>
           <button type="button" class="sp-login" data-act="sp-login"><span>${ic('user', 'sm')} Iniciar sesión</span>${ic('chevr', 'sm')}</button>
           ${!IN_GAS && !isStandalone() ? `<button type="button" class="sp-inst" data-act="sp-inst">${ic('download', 'sm')} Instalar la aplicación</button>` : ''}
         </div>
@@ -6337,6 +6572,1245 @@ async function carnetDiseno() {
     }); };
 }
 ACTS['car-diseno'] = () => carnetDiseno();
+</script>
+<script id="wk-v2">
+/* =====================================================================
+ * LA WUAKA · MÓDULO V2 · TEXTOS LEGALES
+ * Términos para compradores, términos para negocios y domiciliarios,
+ * y política de tratamiento de datos (Ley 1581 de 2012, Decreto 1377 de 2013).
+ * Los datos del operador se leen de la configuración (Panel → Operador y legal).
+ * Borrador técnico: debe revisarlo un abogado antes de la puesta en marcha.
+ * ===================================================================== */
+const WK_LEGAL = (() => {
+  const v = k => { const x = String((S.wk && S.wk.cfg && S.wk.cfg[k]) || '').trim(); return x ? esc(x) : '<mark class="wk-pend">[por definir]</mark>'; };
+  const app = () => esc(S.cfg.APP_NOMBRE || 'La Wuaka');
+  const op = () => `${v('OPERADOR_RAZON_SOCIAL')}, identificado con NIT ${v('OPERADOR_NIT')}, con domicilio en ${v('OPERADOR_DIRECCION')}, ${v('OPERADOR_MUNICIPIO')}, correo ${v('OPERADOR_CORREO')} y teléfono ${v('OPERADOR_TELEFONO')}`;
+  const ver = () => v('LEGAL_VERSION');
+  const plazo = () => v('PQR_PLAZO_DIAS');
+
+  const terminos = () => `
+<h1>Términos y condiciones de uso para compradores</h1>
+<p class="wk-ver">Versión ${ver()}. Aplican desde esa fecha a todas las personas que usan ${app()} para comprar.</p>
+
+<h2>1. Quién opera ${app()}</h2>
+<p>${app()} es operada por ${op()} (en adelante, "el operador").</p>
+
+<h2>2. Qué es ${app()}</h2>
+<p>${app()} es un <b>portal de contacto</b>: una plataforma electrónica que pone en contacto a los negocios del territorio con los compradores para que la compra se haga directamente entre el comprador y cada negocio (Ley 1480 de 2011, art. 5 num. 18 y art. 53, y Ley 2439 de 2024).</p>
+<p>Cada negocio es el vendedor de sus productos y responde por su calidad, su precio, sus existencias, su garantía y su facturación. El operador no compra ni revende los productos y <b>no recibe el dinero de las ventas</b>: el comprador paga directamente al negocio o a su domiciliario.</p>
+
+<h2>3. Cuenta de usuario</h2>
+<ul>
+<li>Para comprar debes crear una cuenta con datos verdaderos y ser mayor de 18 años.</li>
+<li>Eres responsable de guardar tu contraseña. Si crees que alguien la conoce, cámbiala y avísanos.</li>
+<li>Puedes pedir que borremos tu cuenta en cualquier momento por el canal de PQR.</li>
+</ul>
+
+<h2>4. Productos, precios y disponibilidad</h2>
+<ul>
+<li>Los precios los fija cada negocio, se muestran en pesos colombianos y deben incluir los impuestos. Antes de confirmar el pedido verás el total, incluido el valor del domicilio cuando aplique.</li>
+<li>Si un producto se agota después de tu pedido, el negocio y ${app()} deben avisarte de inmediato; podrás cancelar sin costo o aceptar un cambio.</li>
+<li>Las ofertas y cupones aplican en las condiciones y fechas que se muestran en la app.</li>
+</ul>
+
+<h2>5. Pedidos, entregas y pagos</h2>
+<ul>
+<li>Se crea un pedido por cada negocio. El negocio puede aceptarlo o rechazarlo.</li>
+<li>Los medios de pago disponibles se muestran al confirmar (por ejemplo, efectivo contra entrega, Nequi, Daviplata o datáfono). Pagas directamente al negocio o al domiciliario.</li>
+<li>Si no se pacta un plazo de entrega, el plazo máximo es de 30 días calendario. Si el pedido se retrasa o no hay producto, puedes terminar la compra y recibir la devolución de lo pagado en máximo 15 días calendario (Ley 1480, art. 50 literal h).</li>
+<li>Los domiciliarios son independientes: no son empleados del operador.</li>
+</ul>
+
+<h2>6. Derecho de retracto</h2>
+<p>En las compras a distancia puedes retractarte dentro de los 5 días hábiles siguientes a la entrega, devolviendo el producto en el mismo estado (Ley 1480, art. 47). No aplica, entre otros casos, a bienes perecederos o de rápido deterioro como alimentos, a bienes de uso personal ni a servicios ya prestados. El dinero se devuelve en máximo 15 días calendario.</p>
+
+<h2>7. Garantías</h2>
+<p>Cada negocio responde por la garantía legal de lo que vende (Ley 1480, art. 7). Si el negocio no responde, presenta una PQR y el operador te ayudará a contactarlo y te entregará sus datos de identificación para que puedas reclamar (Ley 1480, art. 53).</p>
+
+<h2>8. Bebidas alcohólicas</h2>
+<p>Está prohibido vender bebidas embriagantes a menores de edad (Ley 124 de 1994). Al comprar licor declaras ser mayor de 18 años. El domiciliario puede pedirte tu documento y no entregará el pedido si no lo presentas.</p>
+
+<h2>9. Medicamentos</h2>
+<p>Las droguerías solo pueden entregar medicamentos de venta con fórmula médica si presentas la fórmula al recibir. Sin fórmula, la droguería no entregará esos productos. Consulta a un profesional de la salud antes de usar cualquier medicamento.</p>
+
+<h2>10. Peticiones, quejas y reclamos (PQR)</h2>
+<p>Puedes presentar PQR en la sección <a href="#/pqr">PQR</a>. Cada solicitud recibe un número de radicado con fecha y hora para hacerle seguimiento. Respondemos en máximo ${plazo()} días hábiles. También puedes acudir a la Superintendencia de Industria y Comercio en <a href="https://www.sic.gov.co" target="_blank" rel="noopener">www.sic.gov.co</a>.</p>
+
+<h2>11. Uso correcto</h2>
+<p>No está permitido publicar información falsa, suplantar a otra persona, hacer pedidos falsos, ofender a otros usuarios ni usar la app para actividades ilegales. Si esto ocurre, podemos suspender la cuenta después de avisarte el motivo.</p>
+
+<h2>12. Datos personales</h2>
+<p>Tratamos tus datos según la <a href="#/legal/privacidad">Política de tratamiento de datos personales</a>.</p>
+
+<h2>13. Cambios a estos términos</h2>
+<p>Si cambiamos estos términos te avisaremos en la app antes de que apliquen y te pediremos aceptarlos de nuevo. Si no los aceptas, puedes dejar de usar la app y pedir el retiro de tus datos.</p>
+
+<h2>14. Ley aplicable</h2>
+<p>Estos términos se rigen por las leyes de Colombia. Las diferencias se intentarán resolver primero por el canal de PQR; si no se resuelven, puedes acudir a la Superintendencia de Industria y Comercio o a los jueces de Colombia.</p>`;
+
+  const aliados = () => `
+<h1>Términos para negocios y domiciliarios</h1>
+<p class="wk-ver">Versión ${ver()}. Aplican a los negocios que venden en ${app()} y a los domiciliarios que entregan pedidos.</p>
+
+<h2>1. Partes</h2>
+<p>El servicio lo presta ${op()} (el operador). "Negocio" es quien publica productos en la vitrina; "domiciliario" es quien entrega pedidos.</p>
+
+<h2>2. Servicio que presta el operador</h2>
+<ul>
+<li>Vitrina del negocio en la app, recepción de pedidos, inventario, caja diaria, registro de fiado, avisos y estadísticas.</li>
+<li>Acompañamiento y soporte técnico en el horario y por los canales que se acuerden por escrito.</li>
+<li>El operador no recibe el dinero de las ventas: cada negocio cobra directamente a sus clientes.</li>
+</ul>
+
+<h2>3. Tarifa</h2>
+<ul>
+<li>Tarifa: ${v('TARIFA_MENSUAL')}. Se informa con y sin IVA antes de cobrarla.</li>
+<li>La prueba gratuita no se convierte en cobro sin tu aceptación expresa.</li>
+<li><b>Sin permanencia mínima:</b> puedes terminar el servicio cuando quieras, avisando por la app o por PQR. Si pagaste por adelantado, se devuelve la parte no usada.</li>
+<li>Cualquier cambio de tarifa se avisa con 30 días de anticipación.</li>
+</ul>
+
+<h2>4. Obligaciones del negocio</h2>
+<ul>
+<li>Publicar información cierta, suficiente y actualizada de sus productos, con precios en pesos que incluyan impuestos.</li>
+<li>Diligenciar y mantener al día su ficha legal (nombre o razón social, documento, dirección y teléfono), que los compradores pueden consultar para reclamar (Ley 1480, art. 53).</li>
+<li>Responder por la calidad, la garantía, la entrega y la facturación de lo que vende, y atender las PQR que le trasladen.</li>
+<li>Cumplir las normas de su actividad: permisos, manipulación de alimentos, y en droguerías la autorización sanitaria y la dirección técnica que exige la regulación del servicio farmacéutico.</li>
+<li>No vender bebidas alcohólicas a menores de edad (Ley 124 de 1994) y marcar en su ficha si vende licor.</li>
+<li>No entregar medicamentos de venta con fórmula sin que el comprador la presente.</li>
+<li>Usar los datos de los compradores solo para atender sus pedidos y no compartirlos con terceros.</li>
+</ul>
+
+<h2>5. Obligaciones del domiciliario</h2>
+<ul>
+<li>Trabajar de forma independiente, con sus documentos y su vehículo en regla.</li>
+<li>Entregar los pedidos en buen estado y cobrar solo los valores informados en la app.</li>
+<li>Pedir el documento antes de entregar bebidas alcohólicas y no entregarlas a menores de edad.</li>
+<li>No entregar medicamentos de venta con fórmula si el comprador no la presenta.</li>
+<li>Usar la ubicación y los datos del comprador solo para la entrega.</li>
+</ul>
+
+<h2>6. Datos del negocio y del comprador</h2>
+<p>Cada negocio es responsable de los datos de sus clientes y el operador los trata por cuenta del negocio para prestar el servicio (encargado del tratamiento). El operador aplica medidas de seguridad, no vende datos y devuelve o borra la información cuando termina el servicio. El negocio puede descargar sus productos, ventas, caja y fiado en cualquier momento y hasta 90 días después de terminar.</p>
+
+<h2>7. Suspensión</h2>
+<p>El operador puede suspender una cuenta solo por estas causas: información falsa, venta de productos ilegales, venta de licor a menores, entrega de medicamentos de control sin fórmula, fraude, maltrato a usuarios o mora en la tarifa por más de 30 días. Antes de suspender se avisa el motivo, salvo que haya un riesgo inmediato para los compradores.</p>
+
+<h2>8. Responsabilidad</h2>
+<p>El operador responde por el funcionamiento de la plataforma con la diligencia de un buen prestador de servicios. No responde por los productos que vende cada negocio ni por la entrega que hace un domiciliario independiente, sin perjuicio de sus deberes como portal de contacto.</p>
+
+<h2>9. Cambios, ley aplicable y contacto</h2>
+<p>Los cambios a estos términos se avisan con 30 días de anticipación. Se rigen por las leyes de Colombia. Contacto: ${v('OPERADOR_CORREO')} · <a href="#/pqr">PQR</a>.</p>`;
+
+  const privacidad = () => `
+<h1>Política de tratamiento de datos personales</h1>
+<p class="wk-ver">Versión ${ver()}, vigente desde esa fecha. Expedida en cumplimiento de la Ley 1581 de 2012 y del Decreto 1377 de 2013 (compilado en el Decreto 1074 de 2015).</p>
+
+<h2>1. Responsable del tratamiento</h2>
+<p>${op()}. Correo para temas de datos personales: ${v('OPERADOR_CORREO_DATOS')}.</p>
+
+<h2>2. Datos que tratamos</h2>
+<ul>
+<li><b>Compradores:</b> nombre, correo, teléfono o WhatsApp, zona, dirección, ubicación en el mapa o por GPS (solo si la compartes), pedidos, calificaciones y mensajes.</li>
+<li><b>Negocios:</b> datos del negocio y de su ficha legal, datos de su equipo, productos, ventas, caja y fiado.</li>
+<li><b>Clientes de fiado de los negocios:</b> nombre, teléfono y saldos, que registra cada negocio bajo su responsabilidad.</li>
+<li><b>Domiciliarios:</b> nombre, celular, correo, vehículo, placa, fotos, ubicación mientras están disponibles y entregas.</li>
+<li><b>Datos técnicos:</b> token de notificaciones, tipo de navegador y registros de acceso.</li>
+</ul>
+<p>No pedimos datos sensibles. Si alguna vez los pedimos, responderlos será opcional.</p>
+
+<h2>3. Para qué los usamos</h2>
+<ul>
+<li>Crear y administrar tu cuenta y verificar tu identidad.</li>
+<li>Tramitar pedidos, entregas, pagos contra entrega, cupones y calificaciones.</li>
+<li>Entregar los pedidos: la ubicación se usa solo para eso y no guardamos un historial de tus movimientos.</li>
+<li>Enviar avisos sobre tus pedidos y, solo si lo autorizas, novedades y ofertas.</li>
+<li>Atender peticiones, quejas y reclamos.</li>
+<li>Cumplir obligaciones legales, contables y tributarias, y atender requerimientos de autoridades.</li>
+<li>Elaborar estadísticas sin identificar a las personas.</li>
+</ul>
+
+<h2>4. Con quién los compartimos</h2>
+<ul>
+<li>Con el negocio al que le compras y con el domiciliario que entrega, solo lo necesario para el pedido.</li>
+<li>Con proveedores tecnológicos que alojan la plataforma y envían notificaciones (por ejemplo, Google y Firebase), que pueden guardar los datos fuera de Colombia. Con ellos actuamos mediante contratos de transmisión que les exigen proteger los datos.</li>
+<li>Con autoridades, cuando la ley lo exija.</li>
+</ul>
+<p>No vendemos ni alquilamos datos personales.</p>
+
+<h2>5. Tus derechos</h2>
+<p>Como titular puedes: conocer, actualizar y rectificar tus datos; pedir prueba de tu autorización; ser informado del uso que les damos; revocar la autorización o pedir que los suprimamos cuando no exista un deber legal de conservarlos; acceder gratis a ellos; y presentar quejas ante la Superintendencia de Industria y Comercio (Ley 1581, art. 8).</p>
+
+<h2>6. Cómo ejercerlos</h2>
+<ul>
+<li>Por la sección <a href="#/pqr">PQR</a> (tipo "Datos personales") o al correo ${v('OPERADOR_CORREO_DATOS')}.</li>
+<li><b>Consultas:</b> respondemos en máximo 10 días hábiles, prorrogables 5 días hábiles más avisándote el motivo (Ley 1581, art. 14).</li>
+<li><b>Reclamos</b> (corrección, actualización, supresión o revocatoria): respondemos en máximo 15 días hábiles, prorrogables 8 días hábiles más avisándote el motivo (Ley 1581, art. 15).</li>
+<li>Área responsable: la administración de ${app()}, a través del correo indicado.</li>
+</ul>
+
+<h2>7. Menores de edad</h2>
+<p>Las cuentas de comprador son para mayores de 18 años. No recolectamos a sabiendas datos de menores.</p>
+
+<h2>8. Seguridad</h2>
+<p>Aplicamos medidas técnicas y administrativas razonables: acceso por roles, contraseñas, conexiones cifradas y registro de las autorizaciones.</p>
+
+<h2>9. Vigencia</h2>
+<p>Esta política rige desde la fecha de su versión. Los datos se conservan mientras tengas cuenta y durante el tiempo que exijan las normas contables, tributarias y de protección al consumidor. Si cambiamos esta política te avisaremos antes y, si cambia la finalidad, te pediremos una nueva autorización.</p>`;
+
+  return { terminos, aliados, privacidad };
+})();
+
+/* =====================================================================
+ * LA WUAKA · MÓDULO V2 (app)
+ * Fase 0: términos, política de datos, autorización, identificación del
+ *         operador, correo de soporte, datos de demostración ocultos.
+ * Fase 1: caja diaria con arqueo, fiado, PQR con radicado, ficha legal de
+ *         cada tienda, reglas para licor y droguería.
+ * Se apoya en las funciones de la app (S, call, openModal, toast…) y en las
+ * acciones "wk." del servidor (servidor/WuakaV2.gs).
+ * Powered by AXERVUS CTeI
+ * ===================================================================== */
+(() => {
+  'use strict';
+  const WK = S.wk = S.wk || {};
+  WK.cfg = WK.cfg || {}; WK.reglas = WK.reglas || {}; WK.on = false;
+  const DEF = {
+    LEGAL_VERSION: '2026-11-26', PQR_PLAZO_DIAS: '15', MOSTRAR_DEMO: 'NO',
+    OPERADOR_CORREO: 'prod.axv@gmail.com', OPERADOR_CORREO_DATOS: 'prod.axv@gmail.com', OPERADOR_MUNICIPIO: 'Barranco de Loba, Bolívar',
+    TARIFA_MENSUAL: 'La que se acuerde por escrito con cada negocio',
+    PALABRAS_LICOR: 'cerveza,aguardiente,ron,whisky,whiskey,vodka,tequila,vino,licor,champaña,champagne,brandy,ginebra,gin,anisado,sangría,sangria,michelada,guaro,pola,six pack,sixpack,águila,aguila,poker,club colombia,costeña,costenita,old parr,buchanan,medellín añejo,tres esquinas,antioqueño',
+    PALABRAS_FORMULA: 'amoxicilina,ampicilina,azitromicina,claritromicina,cefalexina,cefradina,ciprofloxacino,ciprofloxacina,levofloxacino,doxiciclina,clindamicina,metronidazol,trimetoprim,sulfametoxazol,nitrofurantoína,nitrofurantoina,penicilina,dicloxacilina,tramadol,codeína,codeina,morfina,oxicodona,clonazepam,alprazolam,lorazepam,diazepam,zolpidem,fluoxetina,sertralina,escitalopram,amitriptilina,quetiapina,risperidona,haloperidol,carbamazepina,ácido valproico,valproato,fenitoína,levetiracetam,pregabalina,gabapentina,losartán,losartan,enalapril,metformina,glibenclamida,insulina,warfarina,prednisona,prednisolona,dexametasona,sildenafil,tadalafil,misoprostol,isotretinoína,isotretinoina,levotiroxina,atorvastatina,simvastatina,hidroclorotiazida,furosemida,amlodipino'
+  };
+  Object.keys(DEF).forEach(k => { if (WK.cfg[k] === undefined) WK.cfg[k] = DEF[k]; });
+
+  /* ---------- utilidades ---------- */
+  const appName = () => S.cfg.APP_NOMBRE || 'La Wuaka';
+  const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const palabras = s => String(s || '').split(/[,\n]/).map(x => norm(x).trim()).filter(Boolean);
+  const reDe = ws => ws.length ? new RegExp('(^|[^a-z0-9])(' + ws.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?=$|[^a-z0-9])') : null;
+  const numIn = v => Number(String(v == null ? '' : v).replace(/[^\d]/g, '')) || 0;
+  const fechaHora = s => { const d = toDate(s); return d ? d.toLocaleString('es-CO', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : ''; };
+  const soloHora = s => { const d = toDate(s); return d ? d.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }) : ''; };
+  const METODOS = [['efectivo', 'Efectivo'], ['nequi', 'Nequi'], ['daviplata', 'Daviplata'], ['transferencia', 'Transferencia'], ['datafono', 'Datáfono'], ['otro', 'Otro']];
+  const metL = k => (METODOS.find(m => m[0] === k) || [k, k || '—'])[1];
+  const metOpts = (sel = 'efectivo') => METODOS.map(m => `<option value="${m[0]}" ${m[0] === sel ? 'selected' : ''}>${m[1]}</option>`).join('');
+  const errHtml = e => `<div class="empty">${ic('alert')}<p>${esc(e.message || e)}</p>${/wk\.|disponible|Acción/i.test(e.message || '') ? '<p class="mut">El servidor todavía no tiene el módulo V2. Sigue la guía de actualización.</p>' : ''}</div>`;
+  function csv(nombre, filas, cols) {
+    const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+    const txt = [cols.map(c => q(c[1])).join(';')].concat(filas.map(r => cols.map(c => q(r[c[0]])).join(';'))).join('\r\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + txt], { type: 'text/csv;charset=utf-8' })); a.download = nombre;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+  }
+
+  /** Llamada directa al servidor con un token propio (se usa justo después de crear la cuenta). */
+  function wkRaw(action, payload, tok) {
+    if (IN_GAS) return new Promise((res, rej) => google.script.run.withSuccessHandler(r => r && r.ok ? res(r.data) : rej(new Error((r && r.error) || 'Error'))).withFailureHandler(rej).api(action, payload || {}, tok));
+    return apiReady.then(() => fetch(API_URL, { method: 'POST', body: JSON.stringify({ a: action, p: payload || {}, t: tok }), redirect: 'follow' }))
+      .then(r => r.json()).then(r => { if (r && r.ok) return r.data; throw new Error((r && r.error) || 'Error'); });
+  }
+
+  /* ---------- correo de soporte mal escrito ---------- */
+  const TYPO = { 'gail.com': 'gmail.com', 'gmial.com': 'gmail.com', 'gmai.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gamil.com': 'gmail.com', 'gmail.co': 'gmail.com', 'hotmial.com': 'hotmail.com', 'hotmal.com': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'outlok.com': 'outlook.com', 'yaho.com': 'yahoo.com' };
+  function corrigeCorreo(e) {
+    const m = /^([^@\s]+)@([^@\s]+)$/.exec(String(e || '').trim()); if (!m) return String(e || '').trim();
+    const d = m[2].toLowerCase(); return TYPO[d] ? m[1] + '@' + TYPO[d] : m[0];
+  }
+
+  /* ---------- licor y medicamentos con fórmula ---------- */
+  let RE_LIC = null, RE_RX = null;
+  function reglaGlobal() { RE_LIC = reDe(palabras(WK.cfg.PALABRAS_LICOR)); RE_RX = reDe(palabras(WK.cfg.PALABRAS_FORMULA)); }
+  function setReglas(tid, r) { if (!tid || !r) return; WK.reglas[tid] = { vende_licor: !!r.vende_licor, lic: reDe(palabras(r.palabras_licor)), rx: reDe(palabras(r.palabras_formula)) }; }
+  const prueba = (re, n) => !!(re && re.test(n));
+  function esLicor(nombre, tid) { const n = ' ' + norm(nombre) + ' '; const r = WK.reglas[tid]; return prueba(RE_LIC, n) || !!(r && prueba(r.lic, n)); }
+  function esFormula(nombre, tid) { const n = ' ' + norm(nombre) + ' '; const r = WK.reglas[tid]; return prueba(RE_RX, n) || !!(r && prueba(r.rx, n)); }
+  reglaGlobal();
+
+  /* ---------- datos de demostración ---------- */
+  const DEMO = /\(\s*demo\s*\)/i;
+  const ocultarDemo = () => !staffish() && String(WK.cfg.MOSTRAR_DEMO || 'NO').toUpperCase() !== 'SI';
+  const filaDemo = row => Array.isArray(row) && row.some(c => typeof c === 'string' && DEMO.test(c));
+  function limpia(t) {
+    if (t && Array.isArray(t.r) && Array.isArray(t.c)) { const antes = t.r.length; t.r = t.r.filter(r => !filaDemo(r)); if (typeof t.t === 'number') t.t = Math.max(0, t.t - (antes - t.r.length)); }
+    return t;
+  }
+  function sinDemo(action, d) {
+    if (!d || typeof d !== 'object') return d;
+    if (action === 'get') { if (['nombre', 'tienda_nombre', 'tienda_id__n'].some(k => typeof d[k] === 'string' && DEMO.test(d[k]))) throw new Error('Este contenido no está disponible.'); return d; }
+    if (action === 'list') return limpia(d);
+    Object.keys(d).forEach(k => { if (d[k] && typeof d[k] === 'object' && !Array.isArray(d[k])) limpia(d[k]); });
+    return d;
+  }
+
+  /* ---------- envoltura de la comunicación con el servidor ---------- */
+  const _call = call;
+  call = function (action, payload) {
+    let ck = null;
+    if (action === 'registro' && payload) {
+      ck = { ok: payload.wk_acepto === '1', mayor: payload.wk_mayor === '1' };
+      payload = Object.assign({}, payload); delete payload.wk_acepto; delete payload.wk_mayor;
+    }
+    if (action === 'checkout' && payload && WK.coNota) {
+      const base = String(payload.nota || '').slice(0, Math.max(0, 196 - WK.coNota.length));
+      payload = Object.assign({}, payload, { nota: (base ? base + ' ' : '') + WK.coNota });
+    }
+    const pr = _call(action, payload);
+    if (action === 'registro') pr.then(r => { if (r && r.tok && ck && ck.ok) wkRaw('wk.consent', ckPayload('registro', ck.mayor), r.tok).then(() => { WK.consent = { vigente: true }; }).catch(() => { }); }).catch(() => { });
+    if (action === 'registroDomi') { const ok = ckMarcado($('#drF')); pr.then(() => { if (ok) wkRaw('wk.consentPublico', Object.assign(ckPayload('registro_domiciliario', true), { rol: 'repartidor', nombre: payload.nombre, email: payload.email, telefono: payload.telefono }), '').catch(() => { }); }).catch(() => { }); }
+    if (action === 'solicitarTienda' && S.tok) pr.then(() => { _call('wk.consent', ckPayload('solicitud_tienda', true)).catch(() => { }); }).catch(() => { });
+    if (action === 'checkout') pr.then(() => { WK.coNota = ''; }).catch(() => { });
+    if ((action === 'list' || action === 'boot' || action === 'get') && ocultarDemo()) return pr.then(d => sinDemo(action, d));
+    return pr;
+  };
+
+  /* ---------- carga del módulo al iniciar ---------- */
+  let cargando = null;
+  function wkCargar() {
+    cargando = _call('wk.boot', {}).then(d => {
+      WK.on = true; Object.assign(WK.cfg, (d && d.cfg) || {}); WK.consent = d && d.consent; WK.yo = d && d.yo;
+      Object.keys(DEF).forEach(k => { if (!WK.cfg[k] && /^PALABRAS|LEGAL_VERSION|PQR_PLAZO/.test(k)) WK.cfg[k] = DEF[k]; });
+      reglaGlobal();
+      if ($('#foot')) $('#foot').innerHTML = footerHtml();
+      setTimeout(pedirConsent, 1200);
+    }).catch(e => { WK.on = false; WK.err = e.message; });
+    return cargando;
+  }
+  const _applyBoot = applyBoot;
+  applyBoot = function (d) {
+    _applyBoot(d);
+    WK.correoOriginal = S.cfg.EMAIL_SOPORTE || '';
+    if (S.cfg.EMAIL_SOPORTE) S.cfg.EMAIL_SOPORTE = corrigeCorreo(S.cfg.EMAIL_SOPORTE);
+    wkCargar();
+  };
+
+  /* ---------- pie de página: operador, documentos legales, PQR y SIC ---------- */
+  const _footerHtml = footerHtml;
+  footerHtml = function () {
+    const c = WK.cfg;
+    const op = [c.OPERADOR_RAZON_SOCIAL ? esc(c.OPERADOR_RAZON_SOCIAL) : 'Operador en constitución', c.OPERADOR_NIT ? 'NIT ' + esc(c.OPERADOR_NIT) : '',
+      [c.OPERADOR_DIRECCION, c.OPERADOR_MUNICIPIO].filter(Boolean).map(esc).join(', '), c.OPERADOR_TELEFONO ? 'Tel. ' + esc(c.OPERADOR_TELEFONO) : '',
+      c.OPERADOR_CORREO ? `<a class="inl" href="mailto:${esc(corrigeCorreo(c.OPERADOR_CORREO))}">${esc(corrigeCorreo(c.OPERADOR_CORREO))}</a>` : ''].filter(Boolean).join(' · ');
+    const bloque = `<div class="wrapw wk-foot"><p><b>Operador:</b> ${op}</p>
+      <p class="wk-links"><a href="#/legal/terminos">Términos y condiciones</a><a href="#/legal/privacidad">Política de datos personales</a><a href="#/legal/aliados">Términos para negocios y domiciliarios</a><a href="#/pqr">PQR: radica o consulta</a><a href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio</a></p></div>`;
+    return _footerHtml().replace('<div class="wrapw foot-b">', bloque + '<div class="wrapw foot-b">');
+  };
+
+  /* ---------- menú lateral ---------- */
+  const _navItems = navItems;
+  navItems = function () {
+    const items = _navItems(); const r = role(); let extra = [];
+    if (r === 'vendedor') extra = [['wk-caja', 'dollar', 'Caja del día'], ['wk-fiado', 'users', 'Fiado'], ['wk-pqr', 'inbox', 'PQR']].concat(jefe() ? [['wk-legal', 'shield', 'Datos legales']] : []);
+    else if (r === 'admin' || r === 'gestor') extra = [['wk-pqr', 'inbox', 'PQR'], ['wk-operador', 'shield', 'Operador y legal']];
+    else if (r === 'soporte') extra = [['wk-pqr', 'inbox', 'PQR']];
+    else if (r === 'cliente') extra = [['pqr', 'inbox', 'PQR']];
+    if (!extra.length) return items;
+    const i = items.findIndex(x => x[0] === '-'); const at = i < 0 ? items.length : i;
+    return items.slice(0, at).concat(extra, items.slice(at));
+  };
+
+  /* ---------- autorización de datos en los formularios ---------- */
+  function ckHtml({ mayor = true, aliados = false, ubic = false } = {}) {
+    return `<div class="wk-ck" data-wk-ck>
+      <label class="wk-ckl"><input type="checkbox" name="wk_acepto" value="1"><span>Acepto los <a href="#" data-wk-legal="terminos">términos y condiciones</a>${aliados ? ', los <a href="#" data-wk-legal="aliados">términos para negocios y domiciliarios</a>' : ''} y autorizo el tratamiento de mis datos personales según la <a href="#" data-wk-legal="privacidad">política de datos</a>. <span class="req">*</span></span></label>
+      ${mayor ? '<label class="wk-ckl"><input type="checkbox" name="wk_mayor" value="1"><span>Soy mayor de 18 años. <span class="req">*</span></span></label>' : ''}
+      ${ubic ? '<small class="hint">Si marcas tu casa en el mapa o usas el GPS, esa ubicación se usa solo para entregarte los pedidos.</small>' : ''}
+      <small class="wk-ck-err hide" role="alert"></small></div>`;
+  }
+  const ckMarcado = root => { const b = root && root.querySelector('[data-wk-ck]'); return !!b && [...b.querySelectorAll('input[type=checkbox]')].every(x => x.checked); };
+  const ckPayload = (canal, mayor) => ({ canal, version: WK.cfg.LEGAL_VERSION, acepta_terminos: true, acepta_datos: true, mayor_edad: !!mayor, acepta_ubicacion: true, navegador: navigator.userAgent.slice(0, 180) });
+
+  const _authHtml = authHtml;
+  authHtml = function (mode) {
+    const h = _authHtml(mode);
+    if (mode !== 'register') return h;
+    return h.replace(/(data-auth="register"[\s\S]*?)(<div class="form-err hide"><\/div>)/, (m, a, b) => a + ckHtml({ mayor: true, ubic: true }) + b);
+  };
+
+  const GATED = 'form[data-auth="register"], #drF, #stForm form';
+  function frenar(ev, f) {
+    const box = f.querySelector('[data-wk-ck]'); if (!box || ckMarcado(f)) return false;
+    ev.preventDefault(); ev.stopImmediatePropagation();
+    const m = 'Para continuar acepta los términos y la política de datos' + (box.querySelector('[name=wk_mayor]') ? ' y confirma que eres mayor de edad' : '') + '.';
+    const er = box.querySelector('.wk-ck-err'); er.textContent = m; er.classList.remove('hide'); toast(m, 'err');
+    return true;
+  }
+  document.addEventListener('submit', ev => { const f = ev.target; if (f && f.matches && f.matches(GATED)) frenar(ev, f); }, true);
+  document.addEventListener('click', ev => {
+    const b = ev.target.closest && ev.target.closest('button[type=submit]'); const f = b && b.form;
+    if (f && f.matches(GATED)) frenar(ev, f);
+    const lg = ev.target.closest && ev.target.closest('[data-wk-legal]');
+    if (lg) { ev.preventDefault(); verLegal(lg.dataset.wkLegal); }
+  }, true);
+
+  document.addEventListener('change', ev => {
+    const box = ev.target.closest && ev.target.closest('[data-wk-ck]');
+    if (box && [...box.querySelectorAll('input[type=checkbox]')].every(x => x.checked)) box.querySelector('.wk-ck-err').classList.add('hide');
+  });
+
+  /** Inserta la autorización en los formularios de domiciliario y de solicitud de tienda, y decora el pago. */
+  let pend = false;
+  new MutationObserver(() => { if (pend) return; pend = true; requestAnimationFrame(() => { pend = false; inyectar(); decorarCheckout(); }); }).observe(document.body, { childList: true, subtree: true });
+  function inyectar() {
+    const dr = $('#drF');
+    if (dr && !dr.querySelector('[data-wk-ck]')) { const fe = dr.querySelector('.form-err'); if (fe) fe.insertAdjacentHTML('beforebegin', ckHtml({ mayor: true, aliados: true })); }
+    const st = $('#stForm form');
+    if (st && !st.querySelector('[data-wk-ck]')) { const ff = st.querySelector('.ffoot') || st.lastElementChild; if (ff) ff.insertAdjacentHTML('beforebegin', ckHtml({ mayor: true, aliados: true })); }
+  }
+
+  /** Ventana con el texto legal, encima de cualquier formulario abierto (no lo cierra). */
+  function verLegal(cual) {
+    const fn = WK_LEGAL[cual]; if (!fn) return;
+    const ov = document.createElement('div'); ov.className = 'wk-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
+    ov.innerHTML = `<div class="wk-ov-box"><div class="mh">${ic('shield')}<h3>Documento legal</h3><button class="icon-btn" data-wk-x aria-label="Cerrar">${ic('x')}</button></div><article class="mb wk-legal-txt">${fn()}</article><div class="wk-ov-f"><button class="btn pri" data-wk-x>Entendido</button></div></div>`;
+    ov.addEventListener('click', e => { if (e.target === ov || e.target.closest('[data-wk-x]')) ov.remove(); });
+    document.body.appendChild(ov); const b = ov.querySelector('[data-wk-x]'); if (b) b.focus();
+  }
+
+  /** Usuarios que ya tenían cuenta: piden aceptar la versión vigente de los documentos. */
+  function pedirConsent() {
+    if (!S.user || !WK.on || !WK.consent || WK.consent.vigente) return;
+    let ya = null; try { ya = sessionStorage.getItem('wk_ck_luego'); } catch (e) { /* sin almacenamiento */ }
+    if (ya === WK.cfg.LEGAL_VERSION) return;
+    if (MODAL) { setTimeout(pedirConsent, 5000); return; }
+    const aliados = staffish();
+    const box = openModal(mHead('Actualizamos nuestros documentos', 'shield') + `<div class="mb stack">
+      <p>Para seguir usando ${esc(appName())} necesitamos que leas y aceptes los documentos vigentes (versión ${esc(WK.cfg.LEGAL_VERSION)}). Explican quién opera la app, cómo usamos tus datos y cómo presentar quejas.</p>
+      ${ckHtml({ mayor: true, aliados })}
+      <div class="ffoot"><button class="btn ghost" data-close>Ahora no</button><button class="btn pri" id="wkCkOk">${ic('check')} Aceptar</button></div></div>`,
+      { onClose: () => { try { sessionStorage.setItem('wk_ck_luego', WK.cfg.LEGAL_VERSION); } catch (e) { /* nada */ } } });
+    $('#wkCkOk', box).onclick = e => {
+      if (!ckMarcado(box)) { const er = box.querySelector('.wk-ck-err'); er.textContent = 'Marca las casillas para continuar.'; er.classList.remove('hide'); return; }
+      busy(e.currentTarget, 'Guardando…', async () => {
+        try { await _call('wk.consent', ckPayload('actualizacion', true)); WK.consent = { vigente: true }; closeModal(); toast('Gracias. Quedó registrada tu autorización.'); }
+        catch (er) { toast(er.message, 'err'); }
+      });
+    };
+  }
+
+  /* ---------- tarjetas de producto: +18 y fórmula médica ---------- */
+  const _prodCard = prodCard;
+  prodCard = function (p) {
+    const h = _prodCard(p);
+    let t = '';
+    if (esLicor(p.nombre, p.tienda_id)) t += '<span class="wk-tag wk-18" title="Prohibido el expendio de bebidas embriagantes a menores de edad (Ley 124 de 1994)">+18</span>';
+    if (esFormula(p.nombre, p.tienda_id)) t += '<span class="wk-tag wk-rx" title="Medicamento de venta con fórmula médica">Con fórmula</span>';
+    return t ? h.replace('<div class="pc-media">', '<div class="pc-media"><span class="wk-tags">' + t + '</span>') : h;
+  };
+
+  /* ---------- página de la tienda: datos del vendedor (Ley 1480, art. 53) ---------- */
+  const _vTienda = vTienda;
+  const vTienda2 = async (main, id) => { await _vTienda(main, id); if (location.hash === '#/t/' + id) fichaTienda(main, id); };
+  vTienda = vTienda2;
+  ROUTES.forEach(r => { if (r[1] === _vTienda) r[1] = vTienda2; });
+  async function fichaTienda(main, id, o = {}) {
+    let f; try { f = await _call('wk.tienda.info', { tienda_id: id }); } catch (e) { return; }
+    if (location.hash !== '#/t/' + id) return;
+    setReglas(id, f);
+    const nombre = o.nombre || ($('.store-hero h1', main) || {}).textContent || '';
+    if (f.vende_licor) { const hero = o.banner || $('.store-band', main) || main.firstElementChild; if (hero) hero.insertAdjacentHTML('afterend', `<div class="banner b-warn wk-ban">${ic('alert')}<div><b>+18.</b> Prohibido el expendio de bebidas embriagantes a menores de edad (Ley 124 de 1994). El domiciliario puede pedir tu documento.</div></div>`); }
+    const filas = f.completa ? [['Nombre o razón social', f.nombre_legal], [f.tipo_doc === 'NIT' ? 'NIT' : 'Documento', f.documento], ['Dirección', f.direccion], ['Teléfono', f.telefono], ['Correo', f.correo], ['Autorización sanitaria', f.autorizacion_sanitaria]].filter(x => x[1]) : [];
+    (o.host || main).insertAdjacentHTML('beforeend', `<section class="card pad wk-vend"><h3>${ic('shield', 'sm')} Datos del vendedor</h3>
+      ${filas.length ? `<dl>${filas.map(x => `<dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>` : '<p class="mut">Este negocio todavía no ha completado su ficha legal. Si necesitas sus datos para un reclamo, radica una PQR y te los entregamos.</p>'}
+      <p class="mut">Cada negocio vende directamente y responde por sus productos, su garantía y su factura. ${esc(appName())} es un portal de contacto.</p>
+      <a class="btn sm" href="#/pqr" data-wk-pqr-t="${esc(id)}" data-wk-pqr-n="${esc(nombre)}">${ic('inbox', 'sm')} ¿Un problema con esta tienda? Radica una PQR</a></section>`);
+    const b = $('[data-wk-pqr-t]', main); if (b) b.addEventListener('click', () => { WK.pqrTienda = { id, nombre }; });
+  }
+
+  /* ---------- pago: confirmaciones de licor y fórmula ---------- */
+  function decorarCheckout() {
+    const btn = $('#coBtn'); if (!btn || btn.dataset.wk) return; btn.dataset.wk = '1';
+    const items = Object.values(S.cart || {}); const tiendas = [...new Set(items.map(i => i.t).filter(Boolean))];
+    const pintar = () => {
+      if (!btn.isConnected) return;
+      const lic = items.filter(i => esLicor(i.n, i.t)); const rx = items.filter(i => esFormula(i.n, i.t));
+      WK.coNota = [lic.length ? '[+18 confirmado]' : '', rx.length ? '[Fórmula médica al recibir]' : ''].filter(Boolean).join(' ');
+      const old = $('[data-wk-co]'); if (old) old.remove();
+      btn.insertAdjacentHTML('beforebegin', `<div class="wk-co" data-wk-co>
+        ${lic.length ? '<label class="wk-ckl"><input type="checkbox" data-req><span><b>Soy mayor de 18 años.</b> No se venden bebidas alcohólicas a menores (Ley 124 de 1994) y el domiciliario puede pedirme el documento.</span></label>' : ''}
+        ${rx.length ? `<label class="wk-ckl"><input type="checkbox" data-req><span><b>Presentaré la fórmula médica al recibir</b> ${esc(rx.map(i => i.n).join(', '))}. Sin fórmula, la droguería no los entrega.</span></label>` : ''}
+        <small class="mut">Los precios los fija cada tienda e incluyen impuestos. Al confirmar aceptas los <a href="#" data-wk-legal="terminos">términos y condiciones</a>. ¿Algo salió mal? <a href="#/pqr">Radica una PQR</a>.</small></div>`);
+    };
+    pintar();
+    const faltan = tiendas.filter(t => !WK.reglas[t]);
+    if (faltan.length) _call('wk.reglas.multi', { ids: faltan }).then(m => { Object.keys(m || {}).forEach(k => setReglas(k, m[k])); pintar(); }).catch(() => { });
+  }
+  document.addEventListener('click', ev => {
+    const b = ev.target.closest && ev.target.closest('#coBtn'); if (!b) return;
+    const box = $('[data-wk-co]'); if (!box) return;
+    if ([...box.querySelectorAll('input[data-req]')].some(x => !x.checked)) {
+      ev.preventDefault(); ev.stopImmediatePropagation();
+      toast('Marca las confirmaciones que aparecen encima de "Confirmar pedido".', 'err');
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, true);
+
+  /* =====================================================================
+   * PÁGINAS NUEVAS
+   * ===================================================================== */
+
+  /* ---------- documentos legales ---------- */
+  function vLegal(main, cual) {
+    const fn = WK_LEGAL[cual] || WK_LEGAL.terminos;
+    const c = WK.cfg; const faltan = ['OPERADOR_RAZON_SOCIAL', 'OPERADOR_NIT', 'OPERADOR_DIRECCION', 'OPERADOR_TELEFONO'].filter(k => !c[k]);
+    main.innerHTML = `<div class="wk-doc">
+      ${esAdm() && faltan.length ? `<a class="banner b-warn" href="#/wk-operador" style="text-decoration:none">${ic('alert')}<div>Faltan datos del operador. Complétalos en <u>Operador y legal</u> y se llenan solos en los documentos.</div></a>` : ''}
+      <div class="chips wk-doc-bar"><a class="chip ${cual === 'terminos' ? 'on' : ''}" href="#/legal/terminos">Compradores</a><a class="chip ${cual === 'aliados' ? 'on' : ''}" href="#/legal/aliados">Negocios y domiciliarios</a><a class="chip ${cual === 'privacidad' ? 'on' : ''}" href="#/legal/privacidad">Datos personales</a><span class="grow"></span><button class="btn sm" data-wk-print>${ic('download', 'sm')} Imprimir o guardar PDF</button></div>
+      <article class="card pad wk-legal-txt">${fn()}</article></div>`;
+    $('[data-wk-print]', main).onclick = () => window.print();
+    if (!WK.on && cargando && !main.dataset.wkRe) { main.dataset.wkRe = '1'; cargando.then(() => { if (location.hash === '#/legal/' + cual) vLegal(main, cual); }); }
+  }
+
+  /* ---------- PQR: radicar y consultar ---------- */
+  const TIPOS_PQR = [['peticion', 'Petición'], ['queja', 'Queja'], ['reclamo', 'Reclamo (garantía, devolución, cobro)'], ['sugerencia', 'Sugerencia'], ['datos', 'Datos personales (consultar, corregir o borrar)']];
+  const tipoL = k => ((TIPOS_PQR.find(t => t[0] === k) || [k, k])[1]).replace(/ \(.*\)/, '');
+  const ESTADOS_PQR = { recibida: ['Recibida', 'b-info'], en_tramite: ['En trámite', 'b-warn'], respondida: ['Respondida', 'b-ok'], cerrada: ['Cerrada', ''] };
+  const estPqr = k => { const e = ESTADOS_PQR[k] || [k, '']; return `<span class="badge ${e[1]}">${esc(e[0])}</span>`; };
+
+  function vPqr(main) {
+    const u = S.user || {}; const t = WK.pqrTienda || null;
+    main.innerHTML = `<div class="page-h"><h1>${ic('inbox')} Peticiones, quejas y reclamos</h1></div>
+      <p class="mut wk-narrow">Cada solicitud recibe un número de radicado con fecha y hora. Respondemos en máximo ${esc(WK.cfg.PQR_PLAZO_DIAS || '15')} días hábiles. Si no quedas conforme, puedes acudir a la <a class="inl" href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio</a>.</p>
+      <div class="chips" style="margin:12px 0"><button class="chip on" data-wk-tab="rad">Radicar</button><button class="chip" data-wk-tab="con">Consultar un radicado</button>${S.user ? '<button class="chip" data-wk-tab="mis">Mis radicados</button>' : ''}</div>
+      <div id="wkPqrBox"></div>`;
+    const box = $('#wkPqrBox');
+    const tabs = {
+      rad: () => {
+        box.innerHTML = `<form class="card pad wk-form" id="wkPqrF" novalidate>
+          <div class="fld"><label for="wpT">Tipo de solicitud <span class="req">*</span></label><select id="wpT" name="tipo">${TIPOS_PQR.map(x => `<option value="${x[0]}">${esc(x[1])}</option>`).join('')}</select></div>
+          <div class="fld"><label for="wpN">Nombre completo <span class="req">*</span></label><input id="wpN" name="nombre" maxlength="80" value="${esc(u.nombre || '')}"></div>
+          <div class="fld"><label for="wpE">Correo</label><input id="wpE" name="email" type="email" maxlength="120" value="${esc(u.email || '')}"></div>
+          <div class="fld"><label for="wpC">Celular</label><input id="wpC" name="telefono" type="tel" maxlength="20" value="${esc(u.telefono || '')}"><small class="hint">Deja correo o celular para responderte.</small></div>
+          <div class="fld"><label for="wpTi">Negocio relacionado</label><input id="wpTi" name="tienda" maxlength="80" value="${esc(t ? t.nombre : '')}" placeholder="Opcional"></div>
+          <div class="fld"><label for="wpP">Código del pedido</label><input id="wpP" name="pedido" maxlength="40" placeholder="Opcional"></div>
+          <div class="fld full"><label for="wpA">Asunto</label><input id="wpA" name="asunto" maxlength="120"></div>
+          <div class="fld full"><label for="wpD">Cuéntanos qué pasó y qué solución esperas <span class="req">*</span></label><textarea id="wpD" name="descripcion" rows="5" maxlength="3000"></textarea></div>
+          <label class="wk-ckl full"><input type="checkbox" id="wpOk"><span>Autorizo el uso de estos datos para tramitar y responder mi solicitud, según la <a href="#" data-wk-legal="privacidad">política de datos</a>. <span class="req">*</span></span></label>
+          <div class="ffoot"><button class="btn pri" type="submit">${ic('check')} Radicar</button></div></form>`;
+        $('#wkPqrF').onsubmit = ev => {
+          ev.preventDefault(); const f = ev.target; const o = Object.fromEntries(new FormData(f).entries());
+          if (!$('#wpOk').checked) return toast('Marca la autorización para tramitar tu solicitud.', 'err');
+          o.descripcion = [o.tienda ? 'Negocio: ' + o.tienda : '', o.descripcion].filter(Boolean).join('\n');
+          o.tienda_id = t && o.tienda === t.nombre ? t.id : '';
+          busy($('[type=submit]', f), 'Radicando…', async () => {
+            try {
+              const r = await _call('wk.pqr.crear', o); WK.pqrTienda = null;
+              box.innerHTML = `<div class="card pad wk-narrow wk-rad"><span class="badge b-ok">${ic('okcircle', 'sm')} Solicitud radicada</span>
+                <p class="mut">Tu número de radicado es</p><p class="wk-radnum">${esc(r.radicado)}</p>
+                <p>Guárdalo para consultar el estado. Te responderemos a más tardar el <b>${esc(fdate(r.vence))}</b> (días hábiles).</p>
+                <div class="row wrap"><button class="btn" data-wk-copy="${esc(r.radicado)}">${ic('file', 'sm')} Copiar radicado</button><a class="btn ghost" href="#/">Volver a la tienda</a></div></div>`;
+              const cp = $('[data-wk-copy]', box); cp.onclick = () => { try { navigator.clipboard.writeText(cp.dataset.wkCopy); toast('Radicado copiado'); } catch (e) { /* sin portapapeles */ } };
+            } catch (e) { toast(e.message, 'err'); }
+          });
+        };
+      },
+      con: () => {
+        box.innerHTML = `<form class="card pad wk-form" id="wkPqrC" novalidate>
+          <div class="fld"><label for="wcR">Radicado</label><input id="wcR" name="radicado" placeholder="WK-2026-000001" style="text-transform:uppercase"></div>
+          <div class="fld"><label for="wcC">Correo o celular con que lo enviaste</label><input id="wcC" name="contacto"></div>
+          <div class="ffoot"><button class="btn pri" type="submit">${ic('search')} Consultar</button></div></form><div id="wkPqrRes"></div>`;
+        $('#wkPqrC').onsubmit = ev => {
+          ev.preventDefault(); const o = Object.fromEntries(new FormData(ev.target).entries());
+          busy($('[type=submit]', ev.target), 'Buscando…', async () => {
+            try { const r = await _call('wk.pqr.consultar', o); $('#wkPqrRes').innerHTML = pqrDetalle(r); }
+            catch (e) { $('#wkPqrRes').innerHTML = `<p class="mut" style="margin-top:12px">${esc(e.message)}</p>`; }
+          });
+        };
+      },
+      mis: async () => {
+        box.innerHTML = '<div class="skel" style="height:160px"></div>';
+        try { const d = await _call('wk.pqr.lista', {}); box.innerHTML = d.filas.length ? d.filas.map(pqrDetalle).join('') : `<div class="empty">${ic('inbox')}<p>No tienes radicados.</p></div>`; }
+        catch (e) { box.innerHTML = errHtml(e); }
+      }
+    };
+    main.querySelectorAll('[data-wk-tab]').forEach(b => b.onclick = () => { main.querySelectorAll('[data-wk-tab]').forEach(x => x.classList.toggle('on', x === b)); tabs[b.dataset.wkTab](); });
+    tabs.rad();
+  }
+  function pqrDetalle(r) {
+    return `<div class="card pad wk-pqr" style="margin-top:12px"><div class="row wrap"><b>${esc(r.radicado)}</b>${estPqr(r.estado)}<span class="badge">${esc(tipoL(r.tipo))}</span><span class="grow"></span><small class="mut">Radicado ${esc(fechaHora(r.fecha))} · Vence ${esc(fdate(r.vence))}</small></div>
+      ${r.asunto ? `<p><b>${esc(r.asunto)}</b></p>` : ''}${r.descripcion ? `<p class="wk-pre">${esc(r.descripcion)}</p>` : ''}
+      ${r.respuesta ? `<div class="wk-resp"><small class="mut">Respuesta del ${esc(fechaHora(r.fecha_respuesta))}</small><p class="wk-pre">${esc(r.respuesta)}</p></div>` : '<p class="mut">Aún sin respuesta.</p>'}</div>`;
+  }
+
+  /* ---------- bandeja de PQR (administración, soporte y negocios) ---------- */
+  async function vPqrBandeja(main) {
+    if (!guard(['admin', 'soporte', 'vendedor'])) return;
+    main.innerHTML = `<div class="page-h"><h1>${ic('inbox')} PQR</h1><span class="grow"></span><button class="btn sm" data-wk-csv>${ic('download', 'sm')} Descargar</button></div>
+      <p class="mut">${role() === 'vendedor' ? 'Solicitudes de tus clientes sobre tu negocio.' : 'Todas las solicitudes de la plataforma.'} El plazo de respuesta se cuenta en días hábiles. La respuesta queda visible para quien consulte el radicado; envíala también por correo o WhatsApp.</p>
+      <div class="chips" style="margin:12px 0" id="wkPqrTabs">${[['', 'Todas'], ['recibida', 'Recibidas'], ['en_tramite', 'En trámite'], ['respondida', 'Respondidas'], ['cerrada', 'Cerradas']].map((x, i) => `<button class="chip ${i ? '' : 'on'}" data-wk-est="${x[0]}">${x[1]}</button>`).join('')}</div>
+      <div id="wkPqrL"><div class="skel" style="height:200px"></div></div>`;
+    let filas = []; let hoy = '';
+    const pintar = est => {
+      const v = est ? filas.filter(r => r.estado === est) : filas;
+      $('#wkPqrL').innerHTML = v.length ? v.map(r => {
+        const vencida = !['respondida', 'cerrada'].includes(r.estado) && r.vence && String(r.vence) < hoy;
+        const w = wa(r.telefono, `Hola ${r.nombre}, te respondemos el radicado ${r.radicado} de ${appName()}: `);
+        return `<div class="card pad wk-pqr ${vencida ? 'wk-venc' : ''}" style="margin-bottom:10px"><div class="row wrap"><b>${esc(r.radicado)}</b>${estPqr(r.estado)}<span class="badge">${esc(tipoL(r.tipo))}</span>${vencida ? '<span class="badge b-err">Vencida</span>' : ''}<span class="grow"></span><small class="mut">${esc(fechaHora(r.fecha))} · vence ${esc(fdate(r.vence))}</small></div>
+          <p><b>${esc(r.nombre)}</b> · ${r.email ? `<a class="inl" href="mailto:${esc(r.email)}?subject=${encodeURIComponent('Radicado ' + r.radicado)}">${esc(r.email)}</a>` : ''} ${r.telefono ? (w ? `<a class="inl" href="${esc(w)}" target="_blank" rel="noopener">${esc(r.telefono)}</a>` : esc(r.telefono)) : ''}${r.pedido ? ' · Pedido ' + esc(r.pedido) : ''}</p>
+          ${r.asunto ? `<p><b>${esc(r.asunto)}</b></p>` : ''}<p class="wk-pre">${esc(r.descripcion)}</p>
+          ${r.respuesta ? `<div class="wk-resp"><small class="mut">Respondió ${esc(r.respondido_por)} · ${esc(fechaHora(r.fecha_respuesta))}</small><p class="wk-pre">${esc(r.respuesta)}</p></div>` : ''}
+          ${role() !== 'soporte' ? `<div class="row" style="margin-top:8px"><button class="btn sm pri" data-wk-resp="${esc(r.radicado)}">${ic('edit', 'sm')} ${r.respuesta ? 'Actualizar respuesta' : 'Responder'}</button></div>` : ''}</div>`;
+      }).join('') : `<div class="empty">${ic('inbox')}<p>No hay solicitudes aquí.</p></div>`;
+    };
+    const cargar = async () => {
+      try { const d = await _call('wk.pqr.lista', {}); filas = d.filas; hoy = d.hoy; pintar(($('#wkPqrTabs .on') || {}).dataset ? $('#wkPqrTabs .on').dataset.wkEst : ''); }
+      catch (e) { $('#wkPqrL').innerHTML = errHtml(e); }
+    };
+    $('#wkPqrTabs').onclick = e => { const b = e.target.closest('[data-wk-est]'); if (!b) return; $$('#wkPqrTabs .chip').forEach(x => x.classList.toggle('on', x === b)); pintar(b.dataset.wkEst); };
+    $('#wkPqrL').onclick = e => {
+      const b = e.target.closest('[data-wk-resp]'); if (!b) return;
+      const r = filas.find(x => x.radicado === b.dataset.wkResp); if (!r) return;
+      const box = openModal(mHead('Responder ' + r.radicado, 'edit') + `<div class="mb stack">
+        <div class="fld"><label for="wrE">Estado</label><select id="wrE">${[['en_tramite', 'En trámite'], ['respondida', 'Respondida'], ['cerrada', 'Cerrada']].map(x => `<option value="${x[0]}" ${x[0] === (r.estado === 'recibida' ? 'respondida' : r.estado) ? 'selected' : ''}>${x[1]}</option>`).join('')}</select></div>
+        <div class="fld"><label for="wrR">Respuesta</label><textarea id="wrR" rows="6" maxlength="3000">${esc(r.respuesta || '')}</textarea><small class="hint">Responde de fondo: qué se hizo y qué sigue. Si no se puede dar la solución pedida, explica por qué.</small></div>
+        <div class="ffoot"><button class="btn ghost" data-close>Cancelar</button><button class="btn pri" id="wrOk">${ic('check')} Guardar</button></div></div>`);
+      $('#wrOk', box).onclick = ev => busy(ev.currentTarget, 'Guardando…', async () => {
+        try { await _call('wk.pqr.responder', { radicado: r.radicado, estado: $('#wrE', box).value, respuesta: $('#wrR', box).value }); closeModal(); toast('Respuesta guardada'); cargar(); }
+        catch (er) { toast(er.message, 'err'); }
+      });
+    };
+    $('[data-wk-csv]', main).onclick = () => csv('pqr.csv', filas, [['radicado', 'Radicado'], ['fecha', 'Fecha'], ['tipo', 'Tipo'], ['estado', 'Estado'], ['vence', 'Vence'], ['nombre', 'Nombre'], ['email', 'Correo'], ['telefono', 'Teléfono'], ['tienda_id', 'Tienda'], ['pedido', 'Pedido'], ['asunto', 'Asunto'], ['descripcion', 'Descripción'], ['respuesta', 'Respuesta'], ['fecha_respuesta', 'Fecha respuesta'], ['respondido_por', 'Respondió']]);
+    cargar();
+  }
+
+  /* ---------- caja del día ---------- */
+  function vCaja(main) {
+    if (!guard(['vendedor'])) return;
+    main.innerHTML = `<div class="page-h"><h1>${ic('dollar')} Caja del día</h1><span class="grow"></span><button class="btn sm" data-wk-rf>${ic('refresh', 'sm')} Actualizar</button></div><div id="wkCaja"><div class="skel" style="height:300px"></div></div>`;
+    $('[data-wk-rf]', main).onclick = cajaCargar;
+    cajaCargar();
+  }
+  async function cajaCargar() {
+    const box = $('#wkCaja'); if (!box) return;
+    try { WK.caja = await _call('wk.caja.estado', {}); } catch (e) { box.innerHTML = errHtml(e); return; }
+    cajaPintar();
+  }
+  const kpi = (icono, l, v, cls = '') => `<div class="card kpi ${cls}"><div class="l">${ic(icono, 'sm')} ${esc(l)}</div><div class="v">${money(v)}</div></div>`;
+  function cajaPintar() {
+    const box = $('#wkCaja'); const d = WK.caja; if (!box || !d) return;
+    if (!d.caja) {
+      box.innerHTML = `<div class="card pad wk-narrow"><h3>Abrir la caja</h3><p class="mut">Escribe con cuánto efectivo empiezas (la base o el sencillo).</p>
+        <div class="fld"><label for="wkBase">Base en efectivo</label><input id="wkBase" inputmode="numeric" placeholder="0"></div>
+        <button class="btn pri" id="wkAbrir">${ic('check')} Abrir caja</button></div>${histHtml(d.historial)}`;
+      $('#wkAbrir').onclick = e => busy(e.currentTarget, 'Abriendo…', async () => { try { await _call('wk.caja.abrir', { base: numIn($('#wkBase').value) }); toast('Caja abierta'); cajaCargar(); } catch (er) { toast(er.message, 'err'); } });
+      bindHist(d.historial); return;
+    }
+    const r = d.resumen; const movs = (d.movs || []).slice().reverse();
+    box.innerHTML = `<div class="banner b-ok">${ic('clock')}<div>Caja abierta desde ${esc(fechaHora(d.caja.apertura))} por ${esc(d.caja.abierta_por)} · base ${money(d.caja.base)}</div></div>
+      <div class="kpis">${kpi('trend', 'Ventas', r.total_ventas)}${kpi('users', 'Abonos de fiado', r.abonos_fiado)}${kpi('plus', 'Otros ingresos', r.ingresos)}${kpi('minus', 'Gastos y salidas', r.egresos)}${kpi('dollar', 'Efectivo que debe haber', r.efectivo_esperado, 'hot')}</div>
+      <div class="chips" style="margin:12px 0">${Object.keys(r.por_metodo || {}).map(k => `<span class="chip">${esc(metL(k))}: <b>${money(r.por_metodo[k])}</b></span>`).join('') || '<span class="mut">Sin ventas todavía.</span>'}</div>
+      <div class="row wrap" style="gap:8px;margin-bottom:14px">
+        <button class="btn pri" data-wk-mov="venta">${ic('plus', 'sm')} Venta de mostrador</button>
+        <button class="btn" data-wk-traer>${ic('package', 'sm')} Traer pedidos entregados</button>
+        <button class="btn" data-wk-mov="ingreso">${ic('plus', 'sm')} Otro ingreso</button>
+        <button class="btn" data-wk-mov="egreso">${ic('minus', 'sm')} Gasto o salida</button>
+        <span class="grow"></span><button class="btn lime" data-wk-cerrar>${ic('lock', 'sm')} Cerrar caja</button></div>
+      <div class="card pad"><div class="row"><h3>Movimientos de hoy</h3><span class="grow"></span><button class="btn sm ghost" data-wk-csvm>${ic('download', 'sm')} Descargar</button></div>
+        ${movs.length ? `<div class="wk-tbl"><table><thead><tr><th>Hora</th><th>Tipo</th><th>Medio</th><th>Concepto</th><th class="n">Valor</th></tr></thead><tbody>${movs.map(m => `<tr><td>${esc(soloHora(m.fecha))}</td><td>${esc({ venta: 'Venta', ingreso: 'Ingreso', egreso: 'Salida', abono_fiado: 'Abono fiado' }[m.tipo] || m.tipo)}</td><td>${esc(metL(m.metodo))}</td><td>${esc(m.concepto || '')}</td><td class="n ${m.tipo === 'egreso' ? 'wk-neg' : ''}">${m.tipo === 'egreso' ? '−' : ''}${money(m.valor)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="mut">Aún no hay movimientos.</p>'}</div>
+      ${histHtml(d.historial)}`;
+    box.querySelectorAll('[data-wk-mov]').forEach(b => b.onclick = () => movDlg(b.dataset.wkMov));
+    $('[data-wk-traer]', box).onclick = e => traerPedidos(e.currentTarget);
+    $('[data-wk-cerrar]', box).onclick = cerrarDlg;
+    $('[data-wk-csvm]', box).onclick = () => csv('caja-' + String(d.caja.apertura).slice(0, 10) + '.csv', movs, [['fecha', 'Fecha'], ['tipo', 'Tipo'], ['metodo', 'Medio'], ['concepto', 'Concepto'], ['valor', 'Valor'], ['usuario', 'Usuario']]);
+    bindHist(d.historial);
+  }
+  function movDlg(tipo) {
+    const t = { venta: ['Venta de mostrador', '¿Qué vendiste? (opcional)'], ingreso: ['Otro ingreso', 'Concepto (ej: préstamo, sencillo)'], egreso: ['Gasto o salida', 'Concepto (ej: pago a proveedor, transporte)'] }[tipo];
+    const box = openModal(mHead(t[0], 'dollar') + `<div class="mb stack">
+      <div class="fld"><label for="wmV">Valor <span class="req">*</span></label><input id="wmV" inputmode="numeric" placeholder="0"></div>
+      <div class="fld"><label for="wmM">Medio</label><select id="wmM">${metOpts()}</select></div>
+      <div class="fld"><label for="wmC">${esc(t[1])}</label><input id="wmC" maxlength="140"></div>
+      <div class="ffoot"><button class="btn ghost" data-close>Cancelar</button><button class="btn pri" id="wmOk">${ic('check')} Guardar</button></div></div>`);
+    $('#wmOk', box).onclick = e => busy(e.currentTarget, 'Guardando…', async () => {
+      try { await _call('wk.caja.mov', { tipo, valor: numIn($('#wmV', box).value), metodo: $('#wmM', box).value, concepto: $('#wmC', box).value }); closeModal(); toast('Movimiento guardado'); cajaCargar(); }
+      catch (er) { toast(er.message, 'err'); }
+    });
+  }
+  async function traerPedidos(btn) {
+    busy(btn, 'Buscando…', async () => {
+      try {
+        const d = toObjs(await call('list', { e: 'Pedidos', g: 0, f: { estado__in: 'entregado' }, q: '', s: '', d: -1, n: 0, p: 1 }));
+        const desde = new Date(String(WK.caja.caja.apertura).slice(0, 10) + 'T00:00:00'); const tid = S.user.tienda_id || (S.tienda && S.tienda.id);
+        const lista = d.recs.filter(o => (!tid || !o.tienda_id || o.tienda_id === tid) && (isNaN(desde) || (toDate(o.creado) && toDate(o.creado) >= desde)))
+          .map(o => ({ id: o.id, codigo: o.codigo, total: Number(o.subtotal) ? Number(o.subtotal) - (Number(o.descuento) || 0) : Number(o.total) || 0, metodo: o.metodo_pago }));
+        if (!lista.length) return toast('No hay pedidos entregados desde que abriste la caja.', 'info');
+        const suma = lista.reduce((a, o) => a + o.total, 0);
+        const ok = await confirmDlg({ title: 'Traer pedidos a la caja', msg: `${lista.length} pedido(s) entregado(s) por ${money(suma)} en productos. El domicilio no se suma. Los que ya estén en la caja no se repiten.`, ok: 'Agregar' });
+        if (!ok) return;
+        const r = await _call('wk.caja.importar', { pedidos: lista });
+        toast(r.agregados ? `Se agregaron ${r.agregados} pedido(s) por ${money(r.total)}` : 'Esos pedidos ya estaban en la caja.', r.agregados ? 'ok' : 'info');
+        cajaCargar();
+      } catch (e) { toast(e.message, 'err'); }
+    });
+  }
+  function cerrarDlg() {
+    const r = WK.caja.resumen;
+    const box = openModal(mHead('Cerrar la caja', 'lock') + `<div class="mb stack">
+      <p>Cuenta el efectivo que hay en la caja y escríbelo. La app lo compara con lo que debería haber.</p>
+      <div class="card pad"><div class="row"><span>Efectivo que debe haber</span><span class="grow"></span><b>${money(r.efectivo_esperado)}</b></div><small class="mut">Base ${money(r.base)} + ventas y abonos en efectivo + ingresos − salidas.</small></div>
+      <div class="fld"><label for="wcK">Efectivo contado <span class="req">*</span></label><input id="wcK" inputmode="numeric" placeholder="0"></div>
+      <p id="wcD" class="wk-dif"></p>
+      <div class="fld"><label for="wcN">Nota</label><input id="wcN" maxlength="300" placeholder="Opcional: explica si hay diferencia"></div>
+      <div class="ffoot"><button class="btn ghost" data-close>Cancelar</button><button class="btn pri" id="wcOk">${ic('lock')} Cerrar caja</button></div></div>`);
+    const inp = $('#wcK', box); const dif = $('#wcD', box);
+    inp.oninput = () => { if (!inp.value.trim()) { dif.textContent = ''; return; } const x = numIn(inp.value) - r.efectivo_esperado; dif.className = 'wk-dif ' + (x === 0 ? 'ok' : x > 0 ? 'mas' : 'menos'); dif.textContent = x === 0 ? 'Cuadra exacto.' : x > 0 ? 'Sobran ' + money(x) : 'Faltan ' + money(-x); };
+    $('#wcOk', box).onclick = e => {
+      if (!inp.value.trim()) return toast('Escribe cuánto efectivo contaste.', 'err');
+      busy(e.currentTarget, 'Cerrando…', async () => {
+        try { const res = await _call('wk.caja.cerrar', { contado: numIn(inp.value), nota: $('#wcN', box).value }); closeModal(); const x = res.caja.diferencia; toast(x === 0 ? 'Caja cerrada. Cuadró exacto.' : 'Caja cerrada. ' + (x > 0 ? 'Sobraron ' : 'Faltaron ') + money(Math.abs(x)), x === 0 ? 'ok' : 'info'); cajaCargar(); }
+        catch (er) { toast(er.message, 'err'); }
+      });
+    };
+  }
+  function histHtml(h) {
+    if (!h || !h.length) return '';
+    return `<div class="card pad" style="margin-top:14px"><div class="row"><h3>Cierres anteriores</h3><span class="grow"></span><button class="btn sm ghost" data-wk-csvh>${ic('download', 'sm')} Descargar</button></div>
+      <div class="wk-tbl"><table><thead><tr><th>Apertura</th><th>Cierre</th><th class="n">Ventas</th><th class="n">Debía haber</th><th class="n">Contado</th><th class="n">Diferencia</th></tr></thead><tbody>
+      ${h.map(c => `<tr><td>${esc(fechaHora(c.apertura))}</td><td>${esc(fechaHora(c.cierre))}</td><td class="n">${money(c.total_ventas)}</td><td class="n">${money(c.efectivo_esperado)}</td><td class="n">${money(c.efectivo_contado)}</td><td class="n ${Number(c.diferencia) < 0 ? 'wk-neg' : Number(c.diferencia) > 0 ? 'wk-pos' : ''}">${money(c.diferencia)}</td></tr>`).join('')}</tbody></table></div></div>`;
+  }
+  function bindHist(h) {
+    const b = $('[data-wk-csvh]'); if (b) b.onclick = () => csv('cierres-de-caja.csv', h, [['apertura', 'Apertura'], ['abierta_por', 'Abrió'], ['base', 'Base'], ['cierre', 'Cierre'], ['cerrada_por', 'Cerró'], ['total_ventas', 'Ventas'], ['efectivo_esperado', 'Debía haber'], ['efectivo_contado', 'Contado'], ['diferencia', 'Diferencia'], ['nota', 'Nota']]);
+  }
+
+  /* ---------- fiado ---------- */
+  /** Horario permitido para recordar deudas (Ley 2300 de 2023, art. 3): lunes a viernes 7 a. m.–7 p. m.; sábados 8 a. m.–3 p. m. */
+  const horaCobro = () => { const d = new Date(); const w = d.getDay(); const h = d.getHours() + d.getMinutes() / 60; return (w >= 1 && w <= 5 && h >= 7 && h < 19) || (w === 6 && h >= 8 && h < 15); };
+  function vFiado(main) {
+    if (!guard(['vendedor'])) return;
+    main.innerHTML = `<div class="page-h"><h1>${ic('users')} Fiado</h1><span class="grow"></span>
+        <label class="search" style="margin:0;max-width:260px;background:var(--sur);border-color:var(--line)">${ic('search', 'sm')}<input id="wfQ" type="search" placeholder="Buscar cliente"></label>
+        <button class="btn pri" data-wk-nuevo>${ic('plus', 'sm')} Nuevo cliente</button></div>
+      <div id="wkFiado"><div class="skel" style="height:260px"></div></div>`;
+    $('[data-wk-nuevo]', main).onclick = () => clienteDlg();
+    $('#wfQ').oninput = debounce(() => fiadoPintar(), 200);
+    fiadoCargar();
+  }
+  async function fiadoCargar() {
+    const box = $('#wkFiado'); if (!box) return;
+    try { WK.fiado = await _call('wk.fiado.lista', {}); } catch (e) { box.innerHTML = errHtml(e); return; }
+    fiadoPintar();
+  }
+  function fiadoPintar() {
+    const box = $('#wkFiado'); const d = WK.fiado; if (!box || !d) return;
+    const q = norm(($('#wfQ') || {}).value || ''); const v = d.clientes.filter(c => !q || norm(c.nombre + ' ' + c.telefono).includes(q));
+    box.innerHTML = `<div class="kpis">${kpi('dollar', 'Total por cobrar', d.total, 'hot')}<div class="card kpi"><div class="l">${ic('users', 'sm')} Clientes con saldo</div><div class="v">${num(d.clientes.filter(c => c.saldo > 0).length)}</div></div></div>
+      ${v.length ? `<div class="card wk-tbl" style="margin-top:14px"><table><thead><tr><th>Cliente</th><th>Celular</th><th class="n">Debe</th><th class="n">Cupo</th><th>Último movimiento</th></tr></thead><tbody>
+      ${v.map(c => `<tr class="wk-click" data-wk-cli="${esc(c.id)}"><td><b>${esc(c.nombre)}</b>${c.activo ? '' : ' <span class="badge b-err">Suspendido</span>'}</td><td>${esc(c.telefono || '')}</td><td class="n ${c.saldo > 0 ? 'wk-neg' : ''}"><b>${money(c.saldo)}</b></td><td class="n">${c.cupo ? money(c.cupo) : 'Sin límite'}</td><td>${esc(ago(c.ultimo) || '')}</td></tr>`).join('')}</tbody></table></div>`
+        : `<div class="empty">${ic('users')}<p>${d.clientes.length ? 'Ningún cliente coincide.' : 'Aún no tienes clientes de fiado. Agrega el primero.'}</p></div>`}
+      <p class="mut" style="margin-top:10px">Los datos de tus clientes de fiado son tuyos: úsalos solo para cobrar lo que te deben. Los recordatorios por WhatsApp solo se ofrecen en el horario que permite la Ley 2300 de 2023.</p>`;
+    box.querySelectorAll('[data-wk-cli]').forEach(tr => tr.onclick = () => clienteDetalle(tr.dataset.wkCli));
+  }
+  function clienteDlg(c) {
+    const box = openModal(mHead(c ? 'Editar cliente' : 'Nuevo cliente de fiado', 'users') + `<div class="mb stack">
+      <div class="fld"><label for="wfN">Nombre <span class="req">*</span></label><input id="wfN" maxlength="80" value="${esc(c ? c.nombre : '')}"></div>
+      <div class="fld"><label for="wfT">Celular</label><input id="wfT" type="tel" maxlength="20" value="${esc(c ? c.telefono : '')}"></div>
+      <div class="fld"><label for="wfC">Cupo máximo</label><input id="wfC" inputmode="numeric" value="${c && c.cupo ? c.cupo : ''}" placeholder="Vacío = sin límite" ${c && !jefe() ? 'disabled' : ''}><small class="hint">Lo máximo que le fías. Solo el dueño o el administrador lo cambia.</small></div>
+      <div class="fld"><label for="wfX">Nota</label><input id="wfX" maxlength="200" value="${esc(c ? c.nota : '')}"></div>
+      ${c ? `<label class="wk-ckl"><input type="checkbox" id="wfA" ${c.activo ? 'checked' : ''}><span>Fiado activo (desmarca para suspenderlo)</span></label>` : ''}
+      <small class="mut">Pídele permiso al cliente antes de guardar su celular y úsalo solo para el fiado.</small>
+      <div class="ffoot"><button class="btn ghost" data-close>Cancelar</button><button class="btn pri" id="wfOk">${ic('check')} Guardar</button></div></div>`);
+    $('#wfOk', box).onclick = e => busy(e.currentTarget, 'Guardando…', async () => {
+      try {
+        await _call('wk.fiado.cliente', { id: c ? c.id : '', nombre: $('#wfN', box).value, telefono: $('#wfT', box).value, cupo: numIn($('#wfC', box).value), nota: $('#wfX', box).value, activo: c ? $('#wfA', box).checked : true });
+        closeModal(); toast('Cliente guardado'); fiadoCargar();
+      } catch (er) { toast(er.message, 'err'); }
+    });
+  }
+  async function clienteDetalle(id) {
+    const box = openModal(mHead('Fiado', 'users') + '<div class="mb"><div class="skel" style="height:220px"></div></div>', { wide: true });
+    let d; try { d = await _call('wk.fiado.detalle', { cliente_id: id }); } catch (e) { $('.mb', box).innerHTML = errHtml(e); return; }
+    const c = d.cliente; const tienda = (S.tienda && S.tienda.nombre) || appName();
+    const msg = `Hola ${c.nombre}, te saluda ${tienda}. Te recordamos que tienes un saldo de ${money(d.saldo)} en tu cuenta de fiado. Puedes abonar cuando te quede bien. ¡Gracias por tu confianza!`;
+    const w = c.telefono && d.saldo > 0 ? wa(c.telefono, msg) : '';
+    $('.mh h3', box).textContent = c.nombre;
+    $('.mb', box).innerHTML = `<div class="row wrap" style="gap:10px;margin-bottom:12px"><div><small class="mut">Debe</small><div class="wk-big ${d.saldo > 0 ? 'wk-neg' : ''}">${money(d.saldo)}</div></div><div><small class="mut">Cupo</small><div>${Number(c.cupo) ? money(c.cupo) : 'Sin límite'}</div></div><span class="grow"></span>
+        <button class="btn pri" data-wk-f="cargo">${ic('plus', 'sm')} Fiar</button><button class="btn lime" data-wk-f="abono">${ic('dollar', 'sm')} Abono</button>
+        ${w ? (horaCobro() ? `<a class="btn" href="${esc(w)}" target="_blank" rel="noopener">${ic('chat', 'sm')} Recordar por WhatsApp</a>` : '<span class="mut" title="Ley 2300 de 2023">Recordatorios: lun–vie 7 a. m.–7 p. m., sáb 8 a. m.–3 p. m.</span>') : ''}
+        <button class="btn ghost" data-wk-edit>${ic('edit', 'sm')} Editar</button></div>
+      ${d.movs.length ? `<div class="wk-tbl"><table><thead><tr><th>Fecha</th><th>Movimiento</th><th>Detalle</th><th class="n">Valor</th></tr></thead><tbody>${d.movs.map(m => `<tr><td>${esc(fechaHora(m.fecha))}</td><td>${m.tipo === 'abono' ? '<span class="badge b-ok">Abono</span>' : '<span class="badge b-warn">Fiado</span>'}</td><td>${esc(m.concepto || '')}${m.metodo ? ' · ' + esc(metL(m.metodo)) : ''}</td><td class="n">${m.tipo === 'abono' ? '−' : ''}${money(m.valor)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="mut">Sin movimientos.</p>'}`;
+    box.querySelectorAll('[data-wk-f]').forEach(b => b.onclick = () => fiadoMovDlg(c, b.dataset.wkF, d.saldo));
+    $('[data-wk-edit]', box).onclick = () => { closeModal(); clienteDlg({ id: c.id, nombre: c.nombre, telefono: c.telefono, cupo: Number(c.cupo) || 0, nota: c.nota, activo: String(c.activo) !== 'NO' }); };
+  }
+  function fiadoMovDlg(c, tipo, saldo) {
+    const ab = tipo === 'abono';
+    const box = openModal(mHead((ab ? 'Abono de ' : 'Fiar a ') + c.nombre, ab ? 'dollar' : 'plus') + `<div class="mb stack">
+      ${ab ? `<p class="mut">Debe ${money(saldo)}.</p>` : ''}
+      <div class="fld"><label for="wfV">Valor <span class="req">*</span></label><input id="wfV" inputmode="numeric" placeholder="0"></div>
+      <div class="fld"><label for="wfD">${ab ? 'Nota' : '¿Qué se llevó?'}</label><input id="wfD" maxlength="140"></div>
+      ${ab ? `<div class="fld"><label for="wfM">Medio</label><select id="wfM">${metOpts()}</select></div><label class="wk-ckl"><input type="checkbox" id="wfK" checked><span>Sumar este abono a la caja abierta</span></label>` : ''}
+      <div class="ffoot"><button class="btn ghost" data-close>Cancelar</button><button class="btn pri" id="wfGo">${ic('check')} Guardar</button></div></div>`);
+    const enviar = async (forzar) => _call('wk.fiado.mov', { cliente_id: c.id, tipo, valor: numIn($('#wfV', box).value), concepto: $('#wfD', box).value, metodo: ab ? $('#wfM', box).value : '', a_caja: ab ? $('#wfK', box).checked : false, forzar: !!forzar });
+    $('#wfGo', box).onclick = e => busy(e.currentTarget, 'Guardando…', async () => {
+      try { const r = await enviar(false); closeModal(); toast(ab ? 'Abono guardado' + (r.en_caja ? ' y sumado a la caja' : '') : 'Fiado guardado'); fiadoCargar(); }
+      catch (er) {
+        if (er.code === 'CUPO' && jefe()) { const ok = await confirmDlg({ title: 'Supera el cupo', msg: er.message + ' ¿Fiar de todas formas?', ok: 'Fiar igual' }); if (ok) { try { await enviar(true); closeModal(); toast('Fiado guardado'); fiadoCargar(); } catch (e2) { toast(e2.message, 'err'); } } }
+        else toast(er.message, 'err');
+      }
+    });
+  }
+
+  /* ---------- datos legales del negocio y reglas ---------- */
+  async function vLegalTienda(main) {
+    if (!guard(['vendedor'])) return;
+    if (!jefe()) { toast('Solo el dueño o el administrador del negocio.', 'err'); location.hash = '#/panel'; return; }
+    main.innerHTML = `<div class="page-h"><h1>${ic('shield')} Datos legales del negocio</h1></div><div id="wkLt"><div class="skel" style="height:300px"></div></div>`;
+    let r; try { r = await _call('wk.tienda.propia', {}); } catch (e) { $('#wkLt').innerHTML = errHtml(e); return; }
+    const f = (id, k, l, extra = '', hint = '') => `<div class="fld"><label for="${id}">${l}</label><input id="${id}" name="${k}" value="${esc(r[k] || '')}" ${extra}>${hint ? `<small class="hint">${hint}</small>` : ''}</div>`;
+    $('#wkLt').innerHTML = `<p class="mut wk-narrow">La ley pide que los compradores puedan conocer quién les vende para presentar un reclamo (Ley 1480 de 2011, art. 53). Estos datos se muestran en la página de tu tienda. Si usas cédula, solo se ven los últimos 4 dígitos.</p>
+      <form class="card pad wk-form" id="wkLtF" novalidate>
+        ${f('ltN', 'nombre_legal', 'Nombre o razón social *', 'maxlength="120"')}
+        <div class="fld"><label for="ltT">Tipo de documento *</label><select id="ltT" name="tipo_doc">${['CC', 'NIT', 'CE', 'PPT'].map(x => `<option ${x === (r.tipo_doc || 'CC') ? 'selected' : ''}>${x}</option>`).join('')}</select></div>
+        ${f('ltD', 'documento', 'Número de documento *', 'maxlength="20"')}
+        ${f('ltA', 'direccion', 'Dirección para notificaciones *', 'maxlength="160"')}
+        ${f('ltP', 'telefono', 'Teléfono *', 'type="tel" maxlength="20"')}
+        ${f('ltC', 'correo', 'Correo', 'type="email" maxlength="120"')}
+        ${f('ltS', 'autorizacion_sanitaria', 'Autorización sanitaria', 'maxlength="120"', 'Solo droguerías y negocios de alimentos que la tengan.')}
+        ${f('ltR', 'director_tecnico', 'Director técnico o regente de farmacia', 'maxlength="120"', 'Solo droguerías.')}
+        <h3 class="full" style="margin-top:6px">Reglas de venta</h3>
+        <label class="wk-ckl full"><input type="checkbox" name="vende_licor" ${String(r.vende_licor) === 'SI' ? 'checked' : ''}><span>Mi negocio vende bebidas alcohólicas. Se mostrará el aviso de prohibición de venta a menores (Ley 124 de 1994).</span></label>
+        <div class="fld full"><label for="ltL">Otros nombres de licores que vendo</label><textarea id="ltL" name="palabras_licor" rows="2" maxlength="1500" placeholder="Separados por comas">${esc(r.palabras_licor || '')}</textarea><small class="hint">La app ya reconoce las marcas comunes. Agrega aquí las que falten.</small></div>
+        <div class="fld full"><label for="ltF">Medicamentos que exigen fórmula médica</label><textarea id="ltF" name="palabras_formula" rows="2" maxlength="1500" placeholder="Separados por comas">${esc(r.palabras_formula || '')}</textarea><small class="hint">La app ya reconoce antibióticos y medicamentos de control comunes. Agrega los que falten.</small></div>
+        <div class="ffoot"><button class="btn pri" type="submit">${ic('check')} Guardar</button></div></form>`;
+    $('#wkLtF').onsubmit = ev => {
+      ev.preventDefault(); const fm = ev.target; const o = Object.fromEntries(new FormData(fm).entries()); o.vende_licor = !!fm.vende_licor.checked;
+      busy($('[type=submit]', fm), 'Guardando…', async () => { try { const x = await _call('wk.tienda.legal.set', o); delete WK.reglas[x.tienda_id]; toast('Datos guardados'); } catch (e) { toast(e.message, 'err'); } });
+    };
+  }
+
+  /* ---------- operador y legal (administración) ---------- */
+  async function vOperador(main) {
+    if (!guard(['admin'])) return;
+    const c = WK.cfg;
+    const campos = [['OPERADOR_RAZON_SOCIAL', 'Razón social o nombre del operador', 'Quien firma contratos, factura la tarifa y responde ante la SIC.'], ['OPERADOR_NIT', 'NIT', ''], ['OPERADOR_REPRESENTANTE', 'Representante legal', ''], ['OPERADOR_DIRECCION', 'Dirección de notificaciones', ''], ['OPERADOR_MUNICIPIO', 'Municipio y departamento', ''], ['OPERADOR_TELEFONO', 'Teléfono', ''], ['OPERADOR_CORREO', 'Correo de contacto', ''], ['OPERADOR_CORREO_DATOS', 'Correo para datos personales', 'Donde llegan las consultas y reclamos de habeas data.'], ['TARIFA_MENSUAL', 'Tarifa para negocios (texto)', 'Ej: $80.000 mensuales IVA incluido, sin permanencia.'], ['PQR_PLAZO_DIAS', 'Plazo de respuesta de PQR (días hábiles)', 'Máximo 15.'], ['LEGAL_VERSION', 'Versión de los documentos legales (fecha)', 'Cámbiala solo cuando cambies los textos: todos los usuarios deberán aceptarlos de nuevo.']];
+    const malCorreo = WK.correoOriginal && corrigeCorreo(WK.correoOriginal) !== WK.correoOriginal;
+    const chk = [
+      [WK.on, 'Módulo V2 conectado al servidor', WK.on ? '' : 'Instala servidor/WuakaV2.gs y agrega la línea de conexión en api().'],
+      [['OPERADOR_RAZON_SOCIAL', 'OPERADOR_NIT', 'OPERADOR_DIRECCION', 'OPERADOR_TELEFONO'].every(k => c[k]), 'Datos del operador completos', 'Llénalos abajo cuando el operador esté constituido.'],
+      [!malCorreo, 'Correo de soporte bien escrito', malCorreo ? `En Configuración → EMAIL_SOPORTE dice "${WK.correoOriginal}". La app ya muestra "${corrigeCorreo(WK.correoOriginal)}", pero corrígelo allá también.` : ''],
+      [String(c.MOSTRAR_DEMO || 'NO').toUpperCase() !== 'SI', 'Tiendas de demostración ocultas al público', 'Antes del piloto, borra las tiendas "(Demo)" o deja MOSTRAR_DEMO en NO.'],
+      [true, 'Documentos legales publicados', 'Pídele a un abogado que los revise antes del lanzamiento.']
+    ];
+    main.innerHTML = `<div class="page-h"><h1>${ic('shield')} Operador y legal</h1></div>
+      <div class="card pad"><h3>Estado de cumplimiento</h3><ul class="wk-chk">${chk.map(x => `<li class="${x[0] ? 'ok' : 'no'}">${ic(x[0] ? 'okcircle' : 'alert', 'sm')}<div><b>${esc(x[1])}</b>${x[2] ? `<small>${esc(x[2])}</small>` : ''}</div></li>`).join('')}</ul>
+        <div class="row wrap" style="gap:8px"><a class="btn sm" href="#/legal/terminos">Ver términos</a><a class="btn sm" href="#/legal/privacidad">Ver política de datos</a><a class="btn sm" href="#/legal/aliados">Ver términos para aliados</a><button class="btn sm ghost" data-wk-ckcsv>${ic('download', 'sm')} Autorizaciones registradas</button></div></div>
+      <form class="card pad wk-form" id="wkOpF" style="margin-top:14px" novalidate><h3 class="full">Datos del operador</h3>
+        ${campos.map(x => `<div class="fld"><label for="op_${x[0]}">${esc(x[1])}</label><input id="op_${x[0]}" name="${x[0]}" value="${esc(c[x[0]] || '')}" maxlength="300">${x[2] ? `<small class="hint">${esc(x[2])}</small>` : ''}</div>`).join('')}
+        <div class="fld"><label for="op_MOSTRAR_DEMO">Mostrar tiendas de demostración al público</label><select id="op_MOSTRAR_DEMO" name="MOSTRAR_DEMO"><option ${String(c.MOSTRAR_DEMO).toUpperCase() !== 'SI' ? 'selected' : ''}>NO</option><option ${String(c.MOSTRAR_DEMO).toUpperCase() === 'SI' ? 'selected' : ''}>SI</option></select></div>
+        <div class="fld full"><label for="op_PALABRAS_LICOR">Palabras que identifican licor</label><textarea id="op_PALABRAS_LICOR" name="PALABRAS_LICOR" rows="3">${esc(c.PALABRAS_LICOR || '')}</textarea></div>
+        <div class="fld full"><label for="op_PALABRAS_FORMULA">Medicamentos que exigen fórmula médica</label><textarea id="op_PALABRAS_FORMULA" name="PALABRAS_FORMULA" rows="3">${esc(c.PALABRAS_FORMULA || '')}</textarea></div>
+        <div class="ffoot"><button class="btn pri" type="submit">${ic('check')} Guardar</button></div></form>`;
+    $('#wkOpF').onsubmit = ev => {
+      ev.preventDefault(); const cambios = Object.fromEntries(new FormData(ev.target).entries());
+      if (cambios.PQR_PLAZO_DIAS && (numIn(cambios.PQR_PLAZO_DIAS) < 1 || numIn(cambios.PQR_PLAZO_DIAS) > 15)) return toast('El plazo de PQR debe estar entre 1 y 15 días hábiles.', 'err');
+      busy($('[type=submit]', ev.target), 'Guardando…', async () => { try { await _call('wk.cfg.set', { cambios }); Object.assign(WK.cfg, cambios); reglaGlobal(); renderShell(); toast('Datos guardados'); vOperador(main); } catch (e) { toast(e.message, 'err'); } });
+    };
+    $('[data-wk-ckcsv]', main).onclick = async () => { try { const d = await _call('wk.consent.lista', {}); csv('autorizaciones.csv', d.filas, [['fecha', 'Fecha'], ['canal', 'Canal'], ['version', 'Versión'], ['usuario_id', 'Usuario'], ['rol', 'Rol'], ['nombre', 'Nombre'], ['email', 'Correo'], ['telefono', 'Teléfono'], ['mayor_edad', 'Mayor de edad'], ['acepta_ubicacion', 'Ubicación']]); } catch (e) { toast(e.message, 'err'); } };
+  }
+
+  /* ---------- rutas nuevas ---------- */
+  ROUTES.push(
+    [/^legal\/(terminos|privacidad|aliados)$/, vLegal], [/^pqr$/, vPqr], [/^wk-pqr$/, vPqrBandeja], [/^wk-caja$/, vCaja],
+    [/^wk-fiado$/, vFiado], [/^wk-legal$/, vLegalTienda], [/^wk-operador$/, vOperador]
+  );
+  window.WK_V2 = { esLicor, esFormula, corrigeCorreo, sinDemo, fichaTienda, version: '2.1.0' };
+})();
+
+/* =====================================================================
+ * LA WUAKA · MÓDULO V3 · VITRINA (app)
+ * - Slider de pautas con texto animado sobre la foto (estilo Servus):
+ *   etiqueta, título, texto, precio, precio antes, sello de descuento y botón.
+ * - Pautas de la casa con fotos de referencia mientras no haya pautas reales.
+ * - Tipos de negocio en cuadritos con foto (incluye Billares).
+ * - Categorías con foto y bloque por categoría con las tiendas en círculo.
+ * - Página de tienda nueva: portada, pestañas, dueño, cupones, promoción,
+ *   "Lo más pedido", todos los productos y datos del vendedor.
+ * - Panel: "Vitrina de mi tienda" (dueño) y "Tipos de negocio" (administración).
+ * Se apoya en la app (S, call, openModal…), en el módulo V2 y en las acciones
+ * "wk." de servidor/WuakaV3.gs.
+ * Powered by AXERVUS CTeI
+ * ===================================================================== */
+(() => {
+  'use strict';
+  const V3 = S.v3 = S.v3 || {};
+  const LS = 'wk3_vitrina';
+  const appName = () => S.cfg.APP_NOMBRE || 'La Wuaka';
+  const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const numIn = v => Number(String(v == null ? '' : v).replace(/[^\d]/g, '')) || 0;
+  const pct = (p, a) => (a > p && p > 0) ? Math.round((1 - p / a) * 100) : 0;
+
+  /* ---------- fotos de referencia (provisionales) ---------- */
+  const BASE_MUESTRAS = 'https://adsxervus-ctei.github.io/shop/muaka/muestras/';
+  const muestra = n => (IN_GAS ? BASE_MUESTRAS + n : new URL('muestras/' + n, location.href.split('#')[0]).href);
+  const conMuestras = () => String(((V3.vit || {}).cfg || {}).FOTOS_MUESTRA || 'SI').toUpperCase() !== 'NO';
+  const TIPOS_DEF = ['Comercio', 'Gastronomía', 'Cantinas', 'Discotecas', 'Billares', 'Almacén', 'Ferretería', 'Hoteles', 'Carnicería', 'Farmacia', 'Depósitos', 'Gastro bar'];
+  const FOTO_TIPO = { comercio: 'mandarina.jpg', gastronomia: 'hamburguesa.jpg', cantinas: 'bebida.jpg', discotecas: 'musica-dj.jpg', billares: 'billar.svg', almacen: 'tienda-ropa.jpg', ferreteria: 'bombillo.jpg', hoteles: 'muelle.jpg', carniceria: 'fogon.jpg', farmacia: 'planta.jpg', depositos: 'camioneta.jpg', 'gastro bar': 'jugo.jpg' };
+  const FOTO_CAT = [[/comida|restaur|almuerzo|rapida|asad|pollo|hambur|pizza|frit/, 'hamburguesa.jpg'], [/bebida|licor|cerveza|trago|gaseosa/, 'bebida.jpg'], [/jugo|batido|cocte/, 'jugo.jpg'],
+    [/fruta|verdura|mercado|granero|viver|abarrot|despensa|aliment/, 'mandarina.jpg'], [/carne|carnic|pescad|embutid/, 'fogon.jpg'], [/huevo|granja|agro|campo|avicol/, 'gallinas.jpg'],
+    [/calzado|zapat|teni/, 'tenis.jpg'], [/ropa|moda|vestu|prenda|almacen/, 'tienda-ropa.jpg'], [/ferret|construc|herramient|electric/, 'bombillo.jpg'], [/drogu|farma|salud|medic/, 'planta.jpg'],
+    [/celular|tecno|electron|accesor/, 'celular.jpg'], [/panader|postre|dulce|reposter|desayun/, 'panqueques.jpg'], [/cafe|cafeter/, 'cafe-grano.jpg'], [/helad/, 'helado.jpg'],
+    [/mascota|veterin|perro/, 'perro.jpg'], [/belleza|cosmet|gafas|accesorio/, 'gafas.jpg'], [/papeler|libro|escolar|cuaderno/, 'cuaderno.jpg'], [/hogar|aseo|limpieza|vela|decor/, 'velas.jpg']];
+  const fotoTipo = t => (t && t.foto) || (conMuestras() ? muestra(FOTO_TIPO[norm(t && t.nombre)] || 'mandarina.jpg') : '');
+  function fotoCat(c) { if (!c || !conMuestras()) return ''; const n = norm(c.nombre); const m = FOTO_CAT.find(x => x[0].test(n)); return m ? muestra(m[1]) : ''; }
+
+  /* ---------- datos de la vitrina (con copia local para pintar rápido) ---------- */
+  try { V3.vit = JSON.parse(localStorage.getItem(LS) || 'null'); } catch (e) { V3.vit = null; }
+  const tipos = () => { const t = (V3.vit && V3.vit.tipos) || TIPOS_DEF.map((n, i) => ({ nombre: n, foto: '', orden: i + 1, activo: true })); return t.filter(x => x.activo !== false); };
+  const extra = k => (V3.vit && V3.vit.pautas && V3.vit.pautas[k]) || {};
+  function cargarVitrina() {
+    return call('wk.vitrina', {}).then(d => {
+      const antes = JSON.stringify(V3.vit); V3.vit = d || null; V3.on = true;
+      try { localStorage.setItem(LS, JSON.stringify(d)); } catch (e) { /* sin espacio */ }
+      completarRubros();
+      if (JSON.stringify(d) !== antes && $('#band')) { repintarBanda(); pintarTipos(); }
+    }).catch(e => { V3.on = false; V3.err = e.message; });
+  }
+  /** Agrega a la lista de rubros los tipos nuevos (p. ej. Billares) para que salgan en los formularios y filtros. */
+  function completarRubros() {
+    const nombres = tipos().map(t => t.nombre);
+    const f = S.meta && S.meta.Tiendas && (S.meta.Tiendas.fields || []).find(x => x.k === 'rubro');
+    if (f && Array.isArray(f.opts)) nombres.forEach(n => { if (!f.opts.includes(n)) f.opts.push(n); });
+    const r = String(S.cfg.RUBROS || '').split(',').map(s => s.trim()).filter(Boolean);
+    nombres.forEach(n => { if (!r.includes(n)) r.push(n); }); S.cfg.RUBROS = r.join(',');
+  }
+  const _applyBoot = applyBoot;
+  applyBoot = function (d) { _applyBoot(d); completarRubros(); cargarVitrina(); };
+
+  /* =====================================================================
+   * 1. SLIDER DE PAUTAS CON TEXTO ANIMADO
+   * ===================================================================== */
+  function casa() {
+    const n = appName();
+    return [
+      { k: 'CASA_1', t: 'Los negocios de tu pueblo, en tu celular', s: 'Pide a las tiendas, restaurantes y droguerías del ZODE de Loba y recibe en casa.', cta: 'Explorar tiendas', href: '#/tiendas', img: muestra('puesto-comida.jpg'), color: '#0d3b40', casa: true, ref: true, et: n },
+      { k: 'CASA_2', t: 'Domicilio a tu puerta', s: 'Domiciliarios de tu zona llevan el pedido. Pagas al recibir.', cta: 'Ver negocios', href: '#/tiendas', img: muestra('carretera.jpg'), color: '#1c3d2a', casa: true, ref: true, et: 'Pagas al recibir' },
+      { k: 'CASA_3', t: '¿Tienes un negocio? Véndele a todo el pueblo', s: 'Recibe pedidos, maneja tu caja y tu inventario desde el celular.', cta: 'Registrar mi negocio', href: '#/vender', img: muestra('cafeteria.jpg'), color: '#2a2320', casa: true, ref: true, et: 'Para negocios' }
+    ].map(b => Object.assign({ vid: '', audio: false, solo: false }, b));
+  }
+  const _banners = banners;
+  banners = function () {
+    const out = [];
+    for (let i = 1; i <= 5; i++) { const b = parseBanner(S.cfg['BANNER_' + i]); if (b) { b.k = 'BANNER_' + i; out.push(b); } }
+    // Sin el servidor V3 todavía, no se esconde ninguna pauta pagada.
+    const mostrarSolo = !V3.vit || String((V3.vit.cfg || {}).PAUTAS_SOLO_IMAGEN || 'OCULTAR').toUpperCase() === 'MOSTRAR';
+    const vis = mostrarSolo ? out : out.filter(b => !b.solo);
+    if (!conMuestras()) return vis.length ? vis : _banners();
+    return vis.concat(casa().slice(0, Math.max(0, 3 - vis.length)));
+  };
+  const _promos = promos;
+  promos = function () {
+    const ps = _promos(); ps.forEach((p, i) => { p.k = 'PROMO_' + (i + 1); });
+    if (conMuestras() && ps[0] && !ps[0].img && !ps[0].vid && !S.cfg.PROMO_1) { ps[0].img = muestra('fresas.jpg'); ps[0].ref = true; }
+    return ps;
+  };
+  const _slideHtml = slideHtml;
+  slideHtml = function (b, i, n) {
+    if (b.vid || b.solo) return _slideHtml(b, i, n);
+    const x = extra(b.k); const col = b.color || SLIDE_COLORS[i % SLIDE_COLORS.length];
+    const p = Number(x.precio) || 0; const a = Number(x.precio_antes) || 0; const off = pct(p, a);
+    const et = x.etiqueta || b.et || (x.tienda_id ? '' : appName());
+    const ref = b.ref || x.referencial;
+    return `<div class="slide w3-s ${b.img ? 'has-img' : ''} ${i ? '' : 'on'}" data-color="${esc(col)}" style="--sc:${esc(col)}" role="group" aria-roledescription="diapositiva" aria-label="${i + 1} de ${n}" ${i ? 'aria-hidden="true"' : ''}>
+      ${b.img ? `<img class="sl-bg" src="${esc(b.img)}" alt="" ${i ? 'loading="lazy"' : ''} referrerpolicy="no-referrer">` : `<span class="sl-deco" aria-hidden="true">${ic(['bag', 'tag', 'moto', 'store', 'heart'][i % 5])}</span>`}
+      ${off ? `<span class="w3-sello" aria-label="${off}% de descuento"><b>-${off}%</b><small>dcto.</small></span>` : ''}
+      <div class="sl-tx"><div class="w3-kick">${x.tienda_id ? '<span class="w3-pat">Patrocinado</span>' : ''}${et ? `<span class="sl-k">${esc(et)}</span>` : ''}</div><h2>${esc(b.t)}</h2>${b.s ? `<p>${esc(b.s)}</p>` : '<p class="w3-vacio"></p>'}
+        ${p ? `<div class="w3-precio"><b>${money(p)}</b>${a > p ? `<s>${money(a)}</s>` : ''}</div>` : '<div class="w3-vacio"></div>'}
+        ${b.cta && b.href ? `<button class="btn lime" data-act="cta" data-href="${esc(b.href)}" ${i ? 'tabindex="-1"' : ''}>${esc(b.cta)} ${ic('chevr', 'sm')}</button>` : ''}</div>
+      ${ref ? '<span class="w3-ref">Imagen de referencia</span>' : ''}</div>`;
+  };
+  function bandaHtml() {
+    const bs = banners(); const ps = promos();
+    return `<div class="difu" aria-hidden="true">${bs.map((b, i) => b.img ? `<img src="${esc(b.img)}" alt="" data-i="${i}" class="${i ? '' : 'on'}" referrerpolicy="no-referrer">` : '').join('')}</div>
+    <div class="wrapw band-in">
+      <div class="slider" id="slider" role="region" aria-roledescription="carrusel" aria-label="Promociones">
+        ${bs.map((b, i) => slideHtml(b, i, bs.length)).join('')}
+        ${bs.length > 1 ? `<button type="button" class="sl-arr l" data-act="sl" data-d="prev" aria-label="Promoción anterior">${ic('left')}</button><button type="button" class="sl-arr r" data-act="sl" data-d="next" aria-label="Promoción siguiente">${ic('chevr')}</button>
+        <div class="dots">${bs.map((b, i) => `<button type="button" data-act="sl" data-d="${i}" class="${i ? '' : 'on'}" aria-label="Ver promoción ${i + 1}"></button>`).join('')}</div>` : ''}
+      </div>
+      <div class="side-promos">${ps.map(promoHtml).join('')}</div>
+    </div>`;
+  }
+  function repintarBanda() {
+    const band = $('#band'); if (!band) return;
+    band.innerHTML = bandaHtml();
+    const b0 = banners()[0]; band.style.setProperty('--band', (b0 && b0.color) || SLIDE_COLORS[0]);
+    startSlider();
+  }
+  const _promoHtml = promoHtml;
+  promoHtml = function (p) {
+    const h = _promoHtml(p);
+    return p.ref ? h.replace(/<\/button>\s*$/, '<span class="w3-ref">Imagen de referencia</span></button>') : h;
+  };
+
+  /* =====================================================================
+   * 2. TIPOS DE NEGOCIO EN CUADRITOS CON FOTO
+   * ===================================================================== */
+  function tiposHtml(cls) {
+    return tipos().map(t => { const f = fotoTipo(t);
+      return `<button type="button" class="w3-tipo ${cls || ''}" data-act="w3-tipo" data-v="${esc(t.nombre)}"><span class="w3-tf">${f ? `<img src="${esc(f)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<b>${esc(initials(t.nombre))}</b>`}</span><span class="w3-tn">${esc(t.nombre)}</span></button>`; }).join('');
+  }
+  function pintarTipos() {
+    const host = $('#w3Tipos'); if (!host) return;
+    host.innerHTML = `<div class="w3-sech"><h2>Negocios por tipo</h2><a class="btn sm ghost" href="#/tiendas">Ver todas las tiendas ${ic('chevr', 'sm')}</a></div><div class="w3-tipos">${tiposHtml()}</div>`;
+  }
+  const _vHome = vHome;
+  const vHome3 = function (main) {
+    _vHome(main);
+    const atj = $('.atajos', main); const w = atj && atj.closest('.wrapw');
+    if (w) w.insertAdjacentHTML('afterend', '<div class="wrapw"><section class="w3-tiposb" id="w3Tipos" aria-label="Negocios por tipo"></section></div>');
+    pintarTipos();
+  };
+  vHome = vHome3;
+  ROUTES.forEach(r => { if (r[1] === _vHome) r[1] = vHome3; });
+
+  const _vTiendas = vTiendas;
+  const vTiendas3 = function (main) {
+    _vTiendas(main);
+    const chips = $('.chips', main);
+    if (chips) { chips.className = 'w3-tipos w3-tchips'; chips.innerHTML = `<button type="button" class="w3-tipo on" data-act="w3-rubro" data-v=""><span class="w3-tf w3-todas">${ic('store')}</span><span class="w3-tn">Todas</span></button>` + tiposHtml().replace(/data-act="w3-tipo"/g, 'data-act="w3-rubro"'); }
+    if (V3.rubro) { const v = V3.rubro; V3.rubro = ''; const b = $$('[data-act="w3-rubro"]', main).find(x => x.dataset.v === v); if (b) ACTS['w3-rubro'](b); }
+  };
+  vTiendas = vTiendas3;
+  ROUTES.forEach(r => { if (r[1] === _vTiendas) r[1] = vTiendas3; });
+
+  /* =====================================================================
+   * 3. CATEGORÍAS CON FOTO Y TIENDAS EN CÍRCULO EN EL BLOQUE
+   * ===================================================================== */
+  const _catIcono = catIcono;
+  catIcono = function (c, cls) {
+    if (c && safeUrl(c.imagen)) return _catIcono(c, cls);
+    const f = fotoCat(c);
+    return f ? `<span class="cat-ic w3-catf ${cls || ''}"><img src="${esc(f)}" alt="" loading="lazy" referrerpolicy="no-referrer"></span>` : _catIcono(c, cls);
+  };
+  const _duPintar = duPintar;
+  duPintar = async function (catId, pre) {
+    await _duPintar(catId, pre);
+    const links = $('#duLinks'); const grid = $('#duGrid'); if (!links || !grid) return;
+    const vistas = {}; const tds = [];
+    $$('[data-id]', grid).forEach(el => { const r = LOOSE.get('Productos:' + el.dataset.id); if (r && r.tienda_id && !vistas[r.tienda_id]) { vistas[r.tienda_id] = 1; tds.push(r); } });
+    const old = $('.w3-dust', links); if (old) old.remove();
+    if (!tds.length) return;
+    const all = $('.dep-all', links);
+    const html = `<div class="w3-dust"><small>Tiendas</small>${tds.slice(0, 5).map(r => `<a class="w3-dst" href="#/t/${esc(r.tienda_id)}">${miniLogo(r.tienda_logo, r.tienda_id__n)}<span>${esc(r.tienda_id__n || '')}</span></a>`).join('')}</div>`;
+    if (all) all.insertAdjacentHTML('beforebegin', html); else links.insertAdjacentHTML('beforeend', html);
+  };
+
+  /* =====================================================================
+   * 4. PÁGINA DE LA TIENDA
+   * ===================================================================== */
+  const metodosDe = t => String(t.metodos_pago || S.cfg.METODOS_PAGO || '').split(',').map(s => s.trim()).filter(Boolean);
+  async function vTienda3(main, id) {
+    main.innerHTML = '<div class="skel" style="height:230px;border-radius:0"></div>';
+    let t, pf = {};
+    try { [t, pf] = await Promise.all([call('get', { e: 'Tiendas', id }), call('wk.tienda.perfil', { tienda_id: id }).catch(() => ({}))]); }
+    catch (e) { main.innerHTML = `<div class="empty">${ic('store')}<p>${esc(e.message)}</p><a class="btn" href="#/tiendas">Ver tiendas</a></div>`; return; }
+    if (location.hash !== '#/t/' + id) return;
+    pf = pf || {};
+    const cover = safeUrl(t.portada); const w = wa(t.whatsapp, 'Hola, te escribo desde ' + appName());
+    const abierta = t.abierta === true; const rating = Number(t.rating_n) ? `<span class="w3-chip"><span class="stars">★</span> ${Number(t.rating).toFixed(1).replace('.', ',')} · ${num(t.rating_n)} ${Number(t.rating_n) === 1 ? 'reseña' : 'reseñas'}</span>` : '';
+    const meta = [t.rubro, t.direccion, t.horario].filter(Boolean).map(esc).join(' · ');
+    const due = pf.dueno_nombre ? `<section class="card w3-due">${safeUrl(pf.dueno_foto) ? `<img class="w3-duef" src="${esc(pf.dueno_foto)}" alt="" referrerpolicy="no-referrer">` : `<span class="w3-duef w3-ini">${esc(initials(pf.dueno_nombre))}</span>`}
+        <b>${esc(pf.dueno_nombre)}</b>${pf.dueno_rol ? `<small>${esc(pf.dueno_rol)}</small>` : ''}${pf.dueno_frase ? `<blockquote>“${esc(pf.dueno_frase)}”</blockquote>` : ''}
+        <div class="w3-dstat">${pf.desde ? `<span><b>${esc(pf.desde)}</b><small>en el oficio desde</small></span>` : ''}${Number(t.tiempo_prep) ? `<span><b>${num(t.tiempo_prep)} min</b><small>en alistar</small></span>` : ''}${abierta ? '<span><b>Abierta</b><small>ahora</small></span>' : '<span><b>Cerrada</b><small>ahora</small></span>'}</div></section>` : '';
+    const cup = (pf.cupones || []).length ? `<section class="card pad w3-cups"><h3>Cupones del negocio</h3>${pf.cupones.map(c => `<div class="w3-cup"><div><b>${esc(c.titulo)}</b>${c.condicion ? `<small>${esc(c.condicion)}</small>` : ''}${c.vence ? `<small class="mut">${esc(c.vence)}</small>` : ''}</div><button type="button" class="w3-tomar" data-act="w3-cupon" data-code="${esc(c.codigo)}">Tomar</button></div>`).join('')}<small class="mut">El descuento lo valida la tienda al pagar.</small></section>` : '';
+    const mp = metodosDe(t);
+    const ent = `<section class="card pad w3-ent"><h3>Así entregamos</h3><ul>
+        ${Number(t.tiempo_prep) ? `<li>${ic('clock', 'sm')}<span>Listo en unos ${num(t.tiempo_prep)} min</span></li>` : ''}
+        <li>${ic('moto', 'sm')}<span>Domicilio o recoger en la tienda. El valor del domicilio sale al pagar, según tu zona.</span></li>
+        ${Number(t.pedido_minimo) ? `<li>${ic('bag', 'sm')}<span>Pedido mínimo ${money(t.pedido_minimo)}</span></li>` : ''}
+        ${mp.length ? `<li>${ic('card', 'sm')}<span>Pagas al recibir: ${esc(mp.join(', '))}</span></li>` : ''}</ul></section>`;
+    const promo = pf.promo_titulo ? `<section class="w3-promo ${safeUrl(pf.promo_foto) ? 'has-img' : ''}">${safeUrl(pf.promo_foto) ? `<img src="${esc(pf.promo_foto)}" alt="" referrerpolicy="no-referrer">` : ''}<div><h2>${esc(pf.promo_titulo)}</h2>${pf.promo_texto ? `<p>${esc(pf.promo_texto)}</p>` : ''}</div></section>` : '';
+    main.innerHTML = `<section class="w3-sh ${cover ? 'has-img' : ''}">${cover ? `<img class="w3-shbg" src="${esc(cover)}" alt="" referrerpolicy="no-referrer">` : ''}
+      <div class="w3-shin"><div class="w3-logo">${safeUrl(t.logo) ? imgTag(t.logo, t.nombre) : `<b>${esc(initials(t.nombre))}</b>`}</div>
+        <div class="w3-shtx"><h1>${esc(t.nombre)}</h1>${meta ? `<p>${meta}</p>` : ''}
+          <div class="w3-chips"><span class="w3-chip ${abierta ? 'ok' : 'off'}">${abierta ? 'Abierta' : 'Cerrada'}</span>${pf.identificado ? `<span class="w3-chip id" title="La tienda publicó su identificación legal (Ley 1480, art. 50)">${ic('check', 'sm')} Vendedor identificado</span>` : ''}${rating}${Number(t.tiempo_prep) ? `<span class="w3-chip">${ic('clock', 'sm')} ~${num(t.tiempo_prep)} min</span>` : ''}</div></div>
+        <div class="w3-shac"><button type="button" class="btn w3-btw" data-act="w3-share" data-n="${esc(t.nombre)}">${ic('nav', 'sm')} Compartir</button>${w ? `<a class="btn w3-btr" href="${esc(w)}" target="_blank" rel="noopener">${ic('chat', 'sm')} Escribir al negocio</a>` : ''}</div></div></section>
+      <nav class="w3-tabs" aria-label="Secciones de la tienda"><div><button type="button" class="on" data-act="w3-tab" data-v="inicio">Inicio</button><button type="button" data-act="w3-tab" data-v="productos">Productos <span id="w3N"></span></button><button type="button" data-act="w3-tab" data-v="sobre">Sobre el negocio</button></div></nav>
+      <div class="w3-cols" data-tab="inicio">
+        <aside class="w3-l">${due}${cup}${ent}<div id="w3Vend"></div></aside>
+        <div class="w3-r">${promo}<div id="w3Ban"></div>
+          <section class="w3-top hide" id="w3TopS"><div class="w3-sech"><h2>Lo más pedido</h2></div><div class="grid" id="w3Top"></div></section>
+          <section><div class="w3-sech" id="w3All"><h2>Todos los productos</h2></div><div class="grid" id="tProds"></div></section>
+          <section class="card pad w3-sobre"><h2>Sobre ${esc(t.nombre)}</h2>${t.descripcion ? `<p>${esc(t.descripcion)}</p>` : '<p class="mut">La tienda todavía no ha escrito su descripción.</p>'}
+            <dl>${t.rubro ? `<dt>Tipo de negocio</dt><dd>${esc(t.rubro)}</dd>` : ''}${t.horario ? `<dt>Horario</dt><dd>${esc(t.horario)}</dd>` : ''}${t.direccion ? `<dt>Dirección</dt><dd>${esc(t.direccion)}</dd>` : ''}${mp.length ? `<dt>Medios de pago</dt><dd>${esc(mp.join(', '))}</dd>` : ''}</dl></section>
+        </div></div>`;
+    call('list', { e: 'Productos', g: 0, f: { tienda_id: id }, q: '', s: 'vendidos', d: -1, n: 4, p: 1 }).then(d => {
+      const recs = toObjs(d).recs.filter(r => Number(r.vendidos) > 0); const box = $('#w3Top'); if (!box || recs.length < 2) return;
+      $('#w3TopS').classList.remove('hide'); renderStatic(box, 'Productos', recs.slice(0, 4), prodCard);
+    }).catch(() => { });
+    S.tiendaList = new List($('#tProds'), { e: 'Productos', f: { tienda_id: id }, s: '', render: prodCard, empty: 'Esta tienda aún no tiene productos publicados.', onData: l => { const n = $('#w3N'); if (n) n.textContent = l.total ? '(' + num(l.total) + ')' : ''; } });
+    S.tiendaList.load();
+    if (window.WK_V2 && WK_V2.fichaTienda) WK_V2.fichaTienda(main, id, { host: $('#w3Vend'), banner: $('#w3Ban'), nombre: t.nombre });
+  }
+  ROUTES.forEach(r => { if (r[0] && r[0].test && r[0].test('t/abc123')) r[1] = vTienda3; });
+
+  /* ---------- cupón tomado: se pone solo en el pago ---------- */
+  new MutationObserver(() => { const c = $('#coCup'); if (c && !c.dataset.w3 && V3.cupon) { c.dataset.w3 = '1'; if (!c.value) c.value = V3.cupon; } }).observe(document.body, { childList: true, subtree: true });
+
+  /* =====================================================================
+   * 5. PANEL: VITRINA DE MI TIENDA (dueño) Y TIPOS DE NEGOCIO (administración)
+   * ===================================================================== */
+  const errHtml = e => `<div class="empty">${ic('alert')}<p>${esc(e.message || e)}</p>${/wk\.|disponible|Acción/i.test(e.message || '') ? '<p class="mut">El servidor todavía no tiene el módulo V3. Sigue la guía de actualización.</p>' : ''}</div>`;
+  async function subirFoto(input, prev, max) {
+    const f = input.files[0]; if (!f) return '';
+    prev.innerHTML = '<span class="spin"></span> Subiendo foto…';
+    const d = await compressImage(f, max || 900, 0.8); const r = await call('upload', { data: d });
+    prev.innerHTML = `<img src="${esc(d)}" alt="">`; return r.url;
+  }
+  async function vVitrina(main) {
+    if (!guard(['vendedor', 'admin', 'gestor'])) return;
+    if (role() === 'vendedor' && !jefe()) { main.innerHTML = `<div class="empty">${ic('lock')}<p>Solo el dueño o el administrador del negocio edita la vitrina.</p></div>`; return; }
+    const tid = esAdm() ? (V3.vitTienda || (S.tienda && S.tienda.id) || '') : (S.user.tienda_id || (S.tienda && S.tienda.id));
+    main.innerHTML = pageH('image', 'Vitrina de mi tienda', tid ? `<a class="btn" href="#/t/${esc(tid)}">${ic('eye', 'sm')} Ver mi tienda</a>` : '') + '<div class="skel" style="height:420px"></div>';
+    if (!tid) { $('.skel', main).outerHTML = `<div class="empty">${ic('store')}<p>Abre esta sección desde la cuenta del negocio.</p></div>`; return; }
+    let p; try { p = await call('wk.tienda.perfil', { tienda_id: tid }); } catch (e) { $('.skel', main).outerHTML = errHtml(e); return; }
+    const st = { foto: p.dueno_foto || '', promo: p.promo_foto || '' };
+    const c = (p.cupones || []).concat([{}, {}, {}]).slice(0, 3);
+    $('.skel', main).outerHTML = `<p class="mut" style="margin-top:-6px">Esto es lo que ve el cliente al entrar a tu tienda. Todo es opcional: lo que dejes vacío no se muestra.</p>
+      <form class="card pad wk-form" id="w3Vf" novalidate>
+        <h3 class="full">${ic('user', 'sm')} Quién atiende</h3>
+        <div class="fld full"><label>Foto del dueño o de quien atiende</label><div class="row wrap" style="gap:8px;align-items:center"><label class="btn">${ic('upload', 'sm')} Subir foto<input type="file" accept="image/png,image/jpeg,image/webp" class="hide" id="w3Df"></label><button type="button" class="btn ghost" id="w3DfX">${ic('trash', 'sm')} Quitar</button></div><div class="w3-prev" id="w3DfP">${st.foto ? `<img src="${esc(st.foto)}" alt="">` : ''}</div><small class="hint">Con su permiso. Una foto real genera confianza.</small></div>
+        <div class="fld"><label for="w3Dn">Nombre</label><input id="w3Dn" maxlength="60" value="${esc(p.dueno_nombre || '')}" placeholder="Ej: Don Efraín"></div>
+        <div class="fld"><label for="w3Dr">Qué hace</label><input id="w3Dr" maxlength="80" value="${esc(p.dueno_rol || '')}" placeholder="Ej: Dueño y asador"></div>
+        <div class="fld"><label for="w3Dd">En el oficio desde (año)</label><input id="w3Dd" inputmode="numeric" maxlength="4" value="${esc(p.desde || '')}" placeholder="Ej: 2008"></div>
+        <div class="fld full"><label for="w3Dq">Una frase para los clientes</label><input id="w3Dq" maxlength="220" value="${esc(p.dueno_frase || '')}" placeholder="Ej: Asamos con leña de la región, como lo hacía mi papá."></div>
+        <h3 class="full">${ic('tag', 'sm')} Promoción de la semana</h3>
+        <div class="fld"><label for="w3Pt">Título</label><input id="w3Pt" maxlength="50" value="${esc(p.promo_titulo || '')}" placeholder="Ej: Viernes de asado"></div>
+        <div class="fld"><label for="w3Px">Texto</label><input id="w3Px" maxlength="120" value="${esc(p.promo_texto || '')}" placeholder="Ej: Asado especial con yuca y bollo a $20.000"></div>
+        <div class="fld full"><label>Foto de la promoción (sin texto encima)</label><div class="row wrap" style="gap:8px;align-items:center"><label class="btn">${ic('upload', 'sm')} Subir foto<input type="file" accept="image/png,image/jpeg,image/webp" class="hide" id="w3Pf"></label><button type="button" class="btn ghost" id="w3PfX">${ic('trash', 'sm')} Quitar</button></div><div class="w3-prev wide" id="w3PfP">${st.promo ? `<img src="${esc(st.promo)}" alt="">` : ''}</div></div>
+        <h3 class="full">${ic('percent', 'sm')} Cupones visibles (hasta 3)</h3>
+        <p class="mut full" style="margin:-6px 0 0">Primero crea el cupón en <a href="#/g/Cupones">Cupones</a>; aquí solo eliges cuáles se muestran y cómo se anuncian. Lo que anuncies debe ser igual a lo que da el cupón.</p>
+        ${c.map((x, i) => `<div class="w3-cupf full"><input data-c="codigo" data-i="${i}" maxlength="20" value="${esc(x.codigo || '')}" placeholder="Código" style="text-transform:uppercase"><input data-c="titulo" data-i="${i}" maxlength="30" value="${esc(x.titulo || '')}" placeholder="Ej: 10% de descuento"><input data-c="condicion" data-i="${i}" maxlength="60" value="${esc(x.condicion || '')}" placeholder="Ej: Desde $15.000"><input data-c="vence" data-i="${i}" maxlength="40" value="${esc(x.vence || '')}" placeholder="Ej: Válido hasta el domingo"></div>`).join('')}
+        <div class="form-err hide full"></div>
+        <div class="ffoot full"><button class="btn pri" type="submit">${ic('check')} Guardar vitrina</button></div></form>`;
+    let up = Promise.resolve();
+    $('#w3Df').onchange = e => { up = subirFoto(e.target, $('#w3DfP'), 600).then(u => { if (u) st.foto = u; }).catch(err => { $('#w3DfP').innerHTML = ''; toast(err.message, 'err'); }); };
+    $('#w3Pf').onchange = e => { up = subirFoto(e.target, $('#w3PfP'), 1400).then(u => { if (u) st.promo = u; }).catch(err => { $('#w3PfP').innerHTML = ''; toast(err.message, 'err'); }); };
+    $('#w3DfX').onclick = () => { st.foto = ''; $('#w3DfP').innerHTML = ''; };
+    $('#w3PfX').onclick = () => { st.promo = ''; $('#w3PfP').innerHTML = ''; };
+    $('#w3Vf').onsubmit = e => { e.preventDefault(); const f = e.target; busy($('[type=submit]', f), 'Guardando…', async () => {
+      await up;
+      const cups = [0, 1, 2].map(i => { const o = {}; $$(`[data-i="${i}"]`, f).forEach(x => { o[x.dataset.c] = x.value.trim(); }); return o; }).filter(o => o.codigo || o.titulo);
+      if (cups.some(o => !o.codigo || !o.titulo)) { const fe = $('.form-err', f); fe.textContent = 'Cada cupón visible necesita código y título.'; fe.classList.remove('hide'); return; }
+      try {
+        await call('wk.tienda.perfil.set', { tienda_id: tid, dueno_nombre: $('#w3Dn').value.trim(), dueno_rol: $('#w3Dr').value.trim(), desde: $('#w3Dd').value.trim(), dueno_frase: $('#w3Dq').value.trim(), dueno_foto: st.foto, promo_titulo: $('#w3Pt').value.trim(), promo_texto: $('#w3Px').value.trim(), promo_foto: st.promo, cupones: cups });
+        toast('Vitrina guardada. Los clientes la verán en máximo 5 minutos.', 'ok'); $('.form-err', f).classList.add('hide');
+      } catch (err) { const fe = $('.form-err', f); fe.textContent = err.message; fe.classList.remove('hide'); }
+    }); };
+  }
+
+  async function vTiposAdm(main) {
+    if (!guard(['admin', 'gestor'])) return;
+    main.innerHTML = pageH('layers', 'Tipos de negocio y vitrina') + '<div class="skel" style="height:420px"></div>';
+    let v; try { v = await call('wk.vitrina', {}); } catch (e) { $('.skel', main).outerHTML = errHtml(e); return; }
+    V3.vit = v; const lista = (v.tipos || []).map(x => Object.assign({}, x));
+    const cfg = v.cfg || {};
+    const pintar = () => {
+      $('#w3Tl').innerHTML = lista.map((t, i) => `<div class="w3-trow ${t.activo === false ? 'off' : ''}" data-i="${i}"><span class="w3-tf sm">${fotoTipo(t) ? `<img src="${esc(fotoTipo(t))}" alt="">` : `<b>${esc(initials(t.nombre))}</b>`}</span>
+        <input data-k="nombre" maxlength="40" value="${esc(t.nombre)}" aria-label="Nombre del tipo">
+        <label class="btn sm">${ic('upload', 'sm')} Foto<input type="file" accept="image/png,image/jpeg,image/webp" class="hide" data-k="foto"></label>
+        ${t.foto ? `<button type="button" class="btn sm ghost" data-k="sinfoto" title="Volver a la foto de referencia">${ic('trash', 'sm')}</button>` : '<small class="mut">Foto de referencia</small>'}
+        <label class="sw sm"><input type="checkbox" data-k="activo" ${t.activo === false ? '' : 'checked'}><span></span><em>Visible</em></label>
+        <span class="row" style="gap:4px"><button type="button" class="icon-btn" data-k="up" aria-label="Subir">${ic('up')}</button><button type="button" class="icon-btn" data-k="del" aria-label="Quitar">${ic('trash')}</button></span></div>`).join('');
+    };
+    $('.skel', main).outerHTML = `<section class="card pad stack"><h3 style="margin:0">${ic('image', 'sm')} Vitrina de la portada</h3>
+        <label class="sw"><input type="checkbox" id="w3Os" ${String(cfg.PAUTAS_SOLO_IMAGEN).toUpperCase() === 'MOSTRAR' ? '' : 'checked'}><span></span><em>Ocultar las pautas que son solo una imagen con el texto pegado (sale el slider animado)</em></label>
+        <label class="sw"><input type="checkbox" id="w3Om" ${String(cfg.FOTOS_MUESTRA).toUpperCase() === 'NO' ? '' : 'checked'}><span></span><em>Usar fotos de referencia mientras no haya fotos reales (se marcan como "Imagen de referencia")</em></label>
+        <div><button class="btn sm pri" id="w3Og">${ic('check', 'sm')} Guardar opciones</button></div></section>
+      <section class="card pad" style="margin-top:14px"><div class="row between"><h3 style="margin:0">${ic('layers', 'sm')} Tipos de negocio</h3><button class="btn sm" id="w3Ta">${ic('plus', 'sm')} Agregar tipo</button></div>
+        <p class="mut">Salen en cuadritos con foto en la portada y en "Tiendas". El nombre debe ser igual al rubro de las tiendas. Foto cuadrada, 600 × 600 px.</p>
+        <div id="w3Tl" class="w3-tlist"></div><div class="form-err hide"></div><div class="ffoot"><button class="btn pri" id="w3Tg">${ic('check')} Guardar tipos</button></div></section>`;
+    pintar();
+    const box = $('#w3Tl');
+    box.addEventListener('input', e => { const r = e.target.closest('[data-i]'); if (r && e.target.dataset.k === 'nombre') lista[r.dataset.i].nombre = e.target.value; });
+    box.addEventListener('change', async e => { const r = e.target.closest('[data-i]'); if (!r) return; const t = lista[r.dataset.i]; const k = e.target.dataset.k;
+      if (k === 'activo') { t.activo = e.target.checked; r.classList.toggle('off', !t.activo); }
+      if (k === 'foto') { const tmp = document.createElement('div'); try { t.foto = await subirFoto(e.target, tmp, 600); toast('Foto lista. Recuerda guardar.', 'ok'); pintar(); } catch (err) { toast(err.message, 'err'); } } });
+    box.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (!b) return; const i = Number(b.closest('[data-i]').dataset.i);
+      if (b.dataset.k === 'up' && i > 0) { const x = lista.splice(i, 1)[0]; lista.splice(i - 1, 0, x); }
+      if (b.dataset.k === 'del') lista.splice(i, 1);
+      if (b.dataset.k === 'sinfoto') lista[i].foto = '';
+      pintar(); });
+    $('#w3Ta').onclick = () => { lista.push({ nombre: 'Nuevo tipo', foto: '', activo: true }); pintar(); };
+    $('#w3Tg').onclick = e => busy(e.currentTarget, 'Guardando…', async () => {
+      try { const r = await call('wk.tipos.set', { tipos: lista.map(t => ({ nombre: String(t.nombre || '').trim(), foto: t.foto || '', activo: t.activo !== false })) }); V3.vit.tipos = r.tipos; completarRubros(); toast('Tipos de negocio guardados.', 'ok'); $('.form-err', main).classList.add('hide'); }
+      catch (err) { const fe = $('.form-err', main); fe.textContent = err.message; fe.classList.remove('hide'); } });
+    $('#w3Og').onclick = e => busy(e.currentTarget, 'Guardando…', async () => {
+      try { await call('wk.vitrina.cfg', { PAUTAS_SOLO_IMAGEN: $('#w3Os').checked ? 'OCULTAR' : 'MOSTRAR', FOTOS_MUESTRA: $('#w3Om').checked ? 'SI' : 'NO' }); toast('Opciones guardadas.', 'ok'); cargarVitrina(); }
+      catch (err) { toast(err.message, 'err'); } });
+  }
+
+  /* ---------- pautas: etiqueta, precio y precio antes ---------- */
+  const _pautaCard = pautaCard;
+  pautaCard = function (p, v) {
+    const h = _pautaCard(p, v); const b = pautaParts(v); const x = extra(p[0]);
+    const solo = !b[0] && !!(safeUrl(b[4]) || b[6]);
+    const nota = solo && /^BANNER/.test(p[0]) ? `<div class="banner b-warn w3-pnota">${ic('alert', 'sm')}<span>Es solo una imagen con el texto pegado: no sale en el slider animado. Ponle título y una foto sin texto.</span></div>` : '';
+    const info = (x.etiqueta || x.precio) ? `<small class="mut">${x.etiqueta ? esc(x.etiqueta) + ' · ' : ''}${x.precio ? money(x.precio) : ''}${x.precio_antes ? ' antes ' + money(x.precio_antes) : ''}</small>` : '';
+    return h.replace('<div class="pau-b">', '<div class="pau-b">' + nota + info);
+  };
+  const _pautaForm = pautaForm;
+  pautaForm = function (k) {
+    _pautaForm(k);
+    const f = $('#pauF'); if (!f || f.dataset.w3) return; f.dataset.w3 = '1';
+    const x = extra(k); const grande = /^BANNER/.test(k);
+    const anc = $('#pfC', f) && $('#pfC', f).closest('.fld');
+    if (!anc) return;
+    anc.insertAdjacentHTML('beforebegin', `<div class="fld"><label for="w3Pe">Etiqueta</label><input id="w3Pe" maxlength="30" value="${esc(x.etiqueta || '')}" placeholder="Ej: Combo del día"></div>
+      ${grande ? `<div class="fld"><label for="w3Pp">Precio de ahora</label><input id="w3Pp" inputmode="numeric" value="${x.precio ? esc(x.precio) : ''}" placeholder="Ej: 18000"></div>
+      <div class="fld"><label for="w3Pa">Precio antes (opcional)</label><input id="w3Pa" inputmode="numeric" value="${x.precio_antes ? esc(x.precio_antes) : ''}" placeholder="Ej: 22500"></div>
+      <div class="fld"><label for="w3Pti">Tienda que paga la pauta</label><select id="w3Pti"><option value="">Ninguna (pauta de ${esc(appName())})</option></select><small class="hint">Si la paga una tienda, sale la etiqueta "Patrocinado".</small></div>` : ''}
+      <div class="fld fld-sw full"><label class="sw" style="margin:0"><input type="checkbox" id="w3Pr" ${x.referencial ? 'checked' : ''}><span></span><em>La foto no es del producto real: mostrar "Imagen de referencia"</em></label></div>`);
+    const t = $('#pfT', f); if (t) t.placeholder = 'Ej: Hamburguesa con papas';
+    const hint = $('.banner.b-info'); if (hint) hint.innerHTML = `${ic('alert')}<div><b>Para que salga animada:</b> sube la foto <b>sin texto encima</b> y escribe el título, el precio y el botón aquí. La app pone el texto con animación.</div>`;
+    if (grande) call('list', { e: 'Tiendas', g: 0, f: {}, q: '', s: 'nombre', d: 1, n: 200, p: 1 }).then(d => { const sel = $('#w3Pti'); if (!sel) return; toObjs(d).recs.forEach(r => sel.insertAdjacentHTML('beforeend', `<option value="${esc(r.id)}" ${r.id === x.tienda_id ? 'selected' : ''}>${esc(r.nombre)}</option>`)); }).catch(() => { });
+    f.addEventListener('submit', e => {
+      const p = numIn(($('#w3Pp', f) || {}).value); const a = numIn(($('#w3Pa', f) || {}).value);
+      const err = a && !p ? 'Si pones precio antes, pon también el precio de ahora.' : (a && a <= p ? 'El precio antes debe ser mayor que el de ahora.' : '');
+      const fe = $('.form-err', f);
+      if (err) { e.preventDefault(); e.stopImmediatePropagation(); fe.textContent = err; fe.classList.remove('hide'); return; }
+      fe.classList.add('hide');
+      const o = { clave: k, etiqueta: ($('#w3Pe', f) || {}).value || '', precio: p, precio_antes: a, tienda_id: ($('#w3Pti', f) || {}).value || '', referencial: !!($('#w3Pr', f) || {}).checked };
+      call('wk.pauta.extra', o).then(() => { V3.vit = V3.vit || { pautas: {} }; V3.vit.pautas = V3.vit.pautas || {}; V3.vit.pautas[k] = o; try { localStorage.setItem(LS, JSON.stringify(V3.vit)); } catch (er) { /* sin espacio */ } }).catch(er => toast('La pauta se publicó, pero no se guardaron la etiqueta y el precio: ' + er.message, 'err'));
+    }, true);
+  };
+
+  /* ---------- menú y rutas ---------- */
+  const _navItems = navItems;
+  navItems = function () {
+    const items = _navItems(); const r = role(); let extra2 = [];
+    if (r === 'vendedor' && jefe()) extra2 = [['wk-vitrina', 'image', 'Vitrina de mi tienda']];
+    else if (r === 'admin' || r === 'gestor') extra2 = [['wk-tipos', 'layers', 'Tipos de negocio']];
+    if (!extra2.length) return items;
+    const i = items.findIndex(x => x[0] === '-'); const at = i < 0 ? items.length : i;
+    return items.slice(0, at).concat(extra2, items.slice(at));
+  };
+  ROUTES.push([/^wk-vitrina$/, vVitrina], [/^wk-tipos$/, vTiposAdm]);
+
+  Object.assign(ACTS, {
+    'w3-tipo': el => { V3.rubro = el.dataset.v; if (location.hash === '#/tiendas') vTiendas3($('#main')); else location.hash = '#/tiendas'; },
+    'w3-rubro': el => { $$('[data-act="w3-rubro"]', el.parentNode).forEach(c => c.classList.toggle('on', c === el)); if (S.storeList) S.storeList.set({ f: { rubro: el.dataset.v } }); },
+    'w3-tab': el => {
+      const v = el.dataset.v; const cols = $('.w3-cols'); if (!cols) return;
+      $$('.w3-tabs button').forEach(b => b.classList.toggle('on', b === el)); cols.dataset.tab = v;
+      const go = v === 'productos' ? $('#w3All') : v === 'sobre' ? $('.w3-sobre') : null;
+      (go || $('.w3-tabs')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    'w3-cupon': el => {
+      const c = el.dataset.code; V3.cupon = c;
+      const ok = () => toast(`Cupón ${c} guardado. Se pone solo al pagar.`, 'ok');
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(c).then(ok, ok); else ok();
+      el.textContent = 'Tomado'; el.disabled = true;
+    },
+    'w3-share': el => {
+      const url = location.href; const t = el.dataset.n + ' en ' + appName();
+      if (navigator.share) navigator.share({ title: t, url }).catch(() => { });
+      else if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(() => toast('Enlace copiado.', 'ok'), () => { });
+      else toast(url);
+    }
+  });
+
+  window.WK_V3 = { banners, tipos, fotoTipo, cargarVitrina, version: '3.0.0' };
+})();
+
 </script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+Fotos de referencia (provisionales) de La Wuaka
+------------------------------------------------
+Son las mismas fotos libres de la biblioteca de Servus 3.0 (licencia libre de uso,
+también comercial). No son de los negocios reales: la app las marca como
+"Imagen de referencia" y deja de usarlas cuando cada pauta, tipo de negocio o
+categoría tenga su foto real (o cuando el administrador apague "Fotos de muestra").
+billar.svg es un dibujo hecho para La Wuaka.
