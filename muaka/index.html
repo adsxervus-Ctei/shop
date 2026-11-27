@@ -1829,6 +1829,266 @@ label.rcard:has(input:checked){border-color:var(--pri);box-shadow:0 0 0 2px var(
 .w3-trow input[data-k="nombre"]{flex:1;min-width:140px}
 .w3-pnota{font-size:13px;margin:0 0 8px;padding:8px 10px;gap:8px}
 @media (max-width:700px){.w3-cupf{grid-template-columns:1fr 1fr}}
+
+/* ===== 3.1 · ajustes pedidos por Jorge (27-nov-2026) ===== */
+/* Cabecera de la tienda: el nombre, la dirección y el horario se leen sobre cualquier foto */
+.w3-sh.has-img .w3-shbg{filter:blur(3px) saturate(1.05);transform:scale(1.06)}
+.w3-sh.has-img::before{background:linear-gradient(90deg,rgba(0,0,0,.86),rgba(0,0,0,.6) 55%,rgba(0,0,0,.42)),linear-gradient(0deg,rgba(0,0,0,.55),transparent 60%)}
+.w3-shtx h1{text-shadow:0 2px 14px rgba(0,0,0,.6),0 1px 2px rgba(0,0,0,.5)}
+.w3-shtx p{font-weight:650;opacity:1;text-shadow:0 1px 3px rgba(0,0,0,.75),0 0 12px rgba(0,0,0,.45)}
+@media (max-width:900px){.w3-sh.has-img::before{background:linear-gradient(0deg,rgba(0,0,0,.88),rgba(0,0,0,.62) 55%,rgba(0,0,0,.4))}.w3-shtx p{font-size:15.5px;line-height:1.4}}
+
+/* Botón de PQR dentro de "Datos del vendedor": no se sale de la tarjeta */
+.wk-vend .btn{white-space:normal;height:auto;min-height:40px;line-height:1.3;padding:9px 12px;text-align:left;justify-content:flex-start;max-width:100%;width:100%}
+.wk-vend .btn .ic{flex:none}
+/* "¿Necesitas ayuda?" en el perfil: el título no queda montado en los botones */
+.card.pad.row.wrap>b.grow:first-child{min-width:min(100%,220px)}
+@media (max-width:600px){.card.pad.row.wrap>b.grow:first-child{flex:1 1 100%}}
+
+/* Estados: círculos más pequeños para que el slider se vea de una en el celular */
+.rail.stories{grid-auto-columns:78px;gap:10px}
+.st-ring{width:66px;height:66px}
+.story{gap:5px;font-size:12.5px}
+.stories .r-arr{top:20px}
+.stories-top{padding-top:8px;padding-bottom:0}
+@media (max-width:860px){.rail.stories{grid-auto-columns:62px;gap:8px}.st-ring{width:54px;height:54px;padding:2px}.story{font-size:11.5px;gap:4px}.stories .r-arr{top:14px}.stories-top{padding-top:6px}}
+
+/* Categorías como los cuadritos con foto de los tipos de negocio */
+.du-t .cat-ic{border-radius:10px}
+@media (min-width:861px){.du-t>.cat-ic{width:44px;height:44px;flex:0 0 44px;border-radius:11px}.du-t span.cat-ic.w3-catf{width:44px;height:44px;flex-basis:44px;border-radius:11px}}
+@media (max-width:860px){
+  .du-l .du-tabs{display:flex;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:12px;padding:2px 2px 10px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0}
+  .du-l .du-tabs::-webkit-scrollbar{display:none}
+  .du-l .du-t{flex:0 0 96px;aspect-ratio:auto;max-height:none;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:8px;border:0;border-radius:0;padding:0;background:none;color:var(--ink);font-size:13.5px;font-weight:700;line-height:1.2;text-align:center;scroll-snap-align:start}
+  .du-l .du-t>.cat-ic,.du-l .du-t span.cat-ic.w3-catf{width:96px;height:96px;flex:0 0 96px;border-radius:14px;font-size:inherit;box-shadow:0 1px 0 var(--line),0 6px 16px rgba(16,24,40,.08)}
+  .du-l .du-t>.cat-ic svg{width:46%;height:46%}
+  .du-l .du-t.on{background:none;color:var(--pri)}
+  .du-l .du-t.on>.cat-ic{outline:3px solid var(--pri);outline-offset:2px}
+  .du-l .du-t.du-empty{opacity:.55}
+  .du-l .du-t small{display:none}
+}
+
+/* Videos de Google Drive en los estados, con su sonido */
+.wk-drv{border:0;width:100%;display:block;background:#000}
+.sv-media .wk-drv{height:100%;min-height:300px}
+.wk-drv.big{width:min(420px,80vw);aspect-ratio:9/16;max-height:70vh}
+.wk-verr{display:flex;flex-direction:column;align-items:center;gap:10px;padding:28px 18px;color:#fff;text-align:center}
+.wk-verr .ic{width:34px;height:34px;color:var(--acc)}
+.wk-verr p{margin:0}
+
+/* ===== La Wuaka · módulo V4 · chat y tableros ===== */
+#w3Tab:empty{display:none}
+#w3Tab{display:flex;flex-direction:column;gap:16px}
+#w3Tab>section{margin:0}
+.wk4-nb{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--w3-rojo,#e23b3b);color:#fff;font-size:11.5px;font-weight:800;margin-left:auto;line-height:1}
+.wk4-nb.hide{display:none}
+#btnChat{position:relative}
+#bnMas{position:relative}
+.wk4-nbm{position:absolute;top:4px;left:calc(50% + 6px);margin:0}
+@media (max-width:480px){#btnChat{display:none!important}}
+
+/* ---------- chat ---------- */
+.wk4-chat{display:flex;flex-direction:column;height:calc(100vh - 190px);min-height:460px;max-width:820px;margin:0 auto;overflow:hidden;padding:0}
+.wk4-ch{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.wk4-ch small{display:block;color:var(--mut);font-size:12.5px}
+.wk4-av{flex:0 0 40px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--pri) 14%,#fff);color:var(--pri);font-weight:800;font-size:14px}
+.wk4-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--sur-2)}
+.wk4-aviso{align-self:center;max-width:520px;text-align:center;font-size:12px;color:var(--mut);background:#fff;border-radius:10px;padding:6px 12px;margin:0 0 6px}
+.wk4-m{max-width:78%;align-self:flex-start;background:#fff;border-radius:14px 14px 14px 4px;padding:8px 12px;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.wk4-m.mio{align-self:flex-end;background:var(--pri);color:#fff;border-radius:14px 14px 4px 14px}
+.wk4-m p{margin:0;white-space:normal;word-wrap:break-word;font-size:15px;line-height:1.4}
+.wk4-de{display:block;font-weight:700;font-size:12px;color:var(--pri);margin-bottom:2px}
+.wk4-m time{display:block;text-align:right;font-size:11px;opacity:.7;margin-top:3px}
+.wk4-rep{border:0;background:none;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+.wk4-rap{display:flex;gap:6px;overflow-x:auto;padding:8px 12px 0;scrollbar-width:none}
+.wk4-rap .chip{flex:none}
+.wk4-in{display:flex;gap:8px;padding:10px 12px 12px;align-items:flex-end}
+.wk4-in textarea{flex:1;resize:none;min-height:44px;max-height:120px;border-radius:22px;padding:11px 16px;line-height:1.35}
+.wk4-in .btn{width:46px;height:46px;border-radius:50%;padding:0;justify-content:center;flex:none}
+.wk4-lista{padding:0;overflow:hidden}
+.wk4-conv{display:flex;align-items:center;gap:12px;padding:12px 14px;border:0;border-bottom:1px solid var(--line);background:#fff;width:100%;text-align:left;font:inherit;color:inherit;text-decoration:none;cursor:pointer}
+.wk4-conv:last-child{border-bottom:0}
+.wk4-conv:hover{background:var(--sur-2)}
+.wk4-conv .grow{min-width:0;display:flex;flex-direction:column}
+.wk4-conv small{color:var(--mut);font-size:12.5px}
+.wk4-ult{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;color:var(--mut)}
+.wk4-conv.nueva .wk4-ult{color:var(--ink);font-weight:700}
+.wk4-cr{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}
+.wk4-cr time{font-size:12px;color:var(--mut)}
+.wk4-pbtn{display:flex;flex-wrap:wrap;gap:8px}
+.wk4-pbtn .btn{gap:6px}
+@media (max-width:860px){.wk4-chat{height:calc(100vh - 150px);border-radius:0;margin:-14px -12px 0}.wk4-m{max-width:86%}}
+
+/* ---------- estados ---------- */
+.wk4-est{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--sur-2);color:var(--mut)}
+.wk4-est.ok{background:#e3f5ea;color:#17703a}.wk4-est.warn{background:#fff3d6;color:#8a5a00}.wk4-est.err{background:#fde7e7;color:#b42318}
+
+/* ---------- página de la tienda ---------- */
+.wk4-paso{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#14181b;color:#fff;border-radius:16px;padding:20px 22px}
+.wk4-paso h3{margin:0;color:var(--acc);font-size:21px}.wk4-paso p{margin:4px 0 0;font-size:14px;opacity:.9}
+.wk4-paso .btn{flex:none}
+.wk4-libres{font-size:15px;color:#1e8a45;font-weight:800;margin-left:6px}
+.wk4-pubgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.wk4-pubgrid.habitacion{grid-template-columns:repeat(3,minmax(0,1fr))}
+.wk4-pr{background:var(--sur-2);border-radius:12px;padding:10px;text-align:center;display:flex;flex-direction:column;gap:6px;align-items:center}
+.wk4-pr.libre{background:#e9f5ee}
+.wk4-pr svg{width:100%;max-width:190px;height:auto}.wk4-pr>.ic{width:38px;height:38px;color:var(--pri);margin:8px 0}
+.wk4-pr small{font-size:12.5px}.wk4-pr.libre b{color:#17703a}
+.wk4-tar{list-style:none;margin:14px 0 0;padding:0}
+.wk4-tar li{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.wk4-cover .wk4-big,.wk4-cvc .wk4-big{display:block;font-size:40px;font-weight:900;letter-spacing:-.02em;color:var(--pri);line-height:1.1}
+.wk4-cover h3{margin:0 0 6px}
+.wk4-sols p{margin:0 0 10px}
+@media (max-width:860px){.wk4-pubgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.wk4-pubgrid.habitacion{grid-template-columns:1fr 1fr}.wk4-paso{flex-direction:column;align-items:flex-start}}
+
+/* ---------- paso a paso ---------- */
+.wk4-pasos{display:flex;gap:6px;list-style:none;margin:0 0 14px;padding:0;overflow-x:auto;scrollbar-width:none}
+.wk4-pasos li{flex:none;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--sur-2);color:var(--mut)}
+.wk4-pasos li.on{background:var(--pri);color:#fff}.wk4-pasos li.ok{background:#e3f5ea;color:#17703a}
+.wk4-plist{display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow:auto}
+.wk4-pi{display:flex;align-items:center;gap:12px;padding:8px;border:1px solid var(--line);border-radius:12px}
+.wk4-pi img,.wk4-pim{width:58px;height:58px;border-radius:10px;object-fit:cover;flex:none;display:grid;place-items:center;background:var(--sur-2)}
+.wk4-pi .grow{display:flex;flex-direction:column;min-width:0}.wk4-pi .grow span{color:var(--pri);font-weight:800}
+.qty{display:inline-flex;align-items:center;gap:8px}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer}
+.qty b{min-width:18px;text-align:center}
+.wk4-fact table{width:100%;border-collapse:collapse;font-size:14.5px}
+.wk4-fact th,.wk4-fact td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
+.wk4-fact th:last-child,.wk4-fact td:last-child{text-align:right}
+.wk4-fact tfoot td{font-weight:800;border-bottom:0;font-size:16px}
+
+/* ---------- tablero ---------- */
+.wk4-tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;scrollbar-width:none}
+.wk4-tabs button{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;font:inherit;font-size:14px;font-weight:650;cursor:pointer;color:var(--ink)}
+.wk4-tabs button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.wk4-resumen{font-size:15px}
+.wk4-rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.wk4-rgrid.habitacion{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.wk4-rc{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px;border:2px solid transparent;border-radius:14px;background:#fff;box-shadow:0 1px 0 var(--line),0 6px 16px rgba(16,24,40,.06);cursor:pointer;font:inherit;color:inherit;text-align:center}
+.wk4-rc:hover{transform:translateY(-2px)}
+.wk4-rc.libre{border-color:#bfe6cd;background:#f4fbf6}
+.wk4-rc.ocupada{border-color:color-mix(in srgb,var(--pri) 40%,#fff)}
+.wk4-rc.reservada{border-color:#f5d07a;background:#fffaf0}.wk4-rc.aseo{border-color:#cfd6dc;background:#f6f8f9}
+.wk4-rcd{width:100%;display:grid;place-items:center;min-height:60px}.wk4-rcd svg{width:100%;max-width:160px;height:auto}.wk4-rcd>.ic{width:40px;height:40px;color:var(--pri)}
+.wk4-rc b{font-size:16px}.wk4-rc small{font-size:12.5px;color:var(--mut)}
+.wk4-rct{display:inline-flex;align-items:center;gap:5px;font-size:13.5px;background:var(--sur-2);border-radius:8px;padding:3px 8px}
+.wk4-rcc{font-size:12.5px;color:var(--pri);font-weight:700}
+.wk4-pend{font-size:11.5px;font-weight:800;color:#8a5a00;background:#fff3d6;border-radius:999px;padding:2px 8px}
+.wk4-tiempo{display:flex;align-items:center;gap:12px;background:var(--sur-2);border-radius:12px;padding:12px 14px}
+.wk4-tiempo>div{flex:1}.wk4-tiempo small{display:block;color:var(--mut);font-size:12.5px}.wk4-tiempo>b{font-size:20px}
+.wk4-add{display:flex;gap:8px;flex-wrap:wrap}.wk4-add input{flex:1;min-width:200px}
+.wk4-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.wk4-items li{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.wk4-items li .grow{display:flex;flex-direction:column;min-width:140px}.wk4-items small{color:var(--mut);font-size:12.5px}
+.wk4-iv{min-width:86px;text-align:right}
+.wk4-ip{width:110px;padding:6px 8px;margin-top:4px}
+.wk4-ie{border:0;border-radius:999px;padding:5px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer;background:#fff3d6;color:#8a5a00}
+.wk4-ie.listo{background:#e0efff;color:#1d4fa8}.wk4-ie.servido{background:#e3f5ea;color:#17703a}
+.wk4-tot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 0 0;font-size:15px}
+.wk4-tot b{font-size:24px;font-weight:900;color:var(--ink)}
+.ffoot.wrap{flex-wrap:wrap}.ffoot select{width:auto;min-width:140px}
+.wk4-cvg{display:grid;grid-template-columns:280px 1fr;gap:14px}
+.wk4-cvc{text-align:center;display:flex;flex-direction:column;justify-content:center;gap:4px}.wk4-cvc .wk4-big{font-size:64px}
+.btn.lg{min-width:70px;height:56px;font-size:20px;font-weight:800}
+.wk4-reg{list-style:none;margin:0;padding:0}
+.wk4-reg li{display:grid;grid-template-columns:60px 1fr auto;gap:2px 10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.wk4-reg li small{grid-column:2/4;color:var(--mut);font-size:12px}
+.wk4-ap{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border-radius:12px;margin-bottom:10px;box-shadow:0 1px 0 var(--line)}
+.wk4-ap .grow{display:flex;flex-direction:column;gap:3px;min-width:0}.wk4-ap small{color:var(--mut);font-size:13px}
+.wk4-ap.entregado,.wk4-ap.cancelado{opacity:.7}
+.wk4-bar{height:8px;border-radius:999px;background:var(--sur-2);overflow:hidden;margin:4px 0;max-width:340px}
+.wk4-bar span{display:block;height:100%;background:#1e8a45;border-radius:inherit}
+.wk4-sol{display:flex;gap:12px;padding:14px;border-bottom:1px solid var(--line)}
+.wk4-sol:last-child{border-bottom:0}
+.wk4-sol .grow{display:flex;flex-direction:column;gap:3px;min-width:0}.wk4-sol p{margin:4px 0}.wk4-sol small{color:var(--mut);font-size:13px}
+.wk4-peso{max-width:680px}
+.wk4-peso #w4Pt{font-size:34px}
+.wk4-rlist{display:flex;flex-direction:column;margin-top:10px}
+.wk4-rrow{display:grid;grid-template-columns:1fr 1.2fr auto auto auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.wk4-info{display:flex;gap:14px;align-items:flex-start}.wk4-info>.ic{width:32px;height:32px;color:var(--pri);flex:none}.wk4-info p{margin:4px 0 0}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;min-width:110px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;padding:10px;border:1px solid var(--line);border-radius:10px;font-weight:700;cursor:pointer}
+.seg input:checked+span{background:var(--pri);border-color:var(--pri);color:#fff}
+.seg input:focus-visible+span{outline:3px solid var(--pri);outline-offset:2px}
+@media (max-width:860px){
+  .wk4-cvg{grid-template-columns:1fr}
+  .wk4-rgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wk4-rrow{grid-template-columns:1fr auto auto auto}.wk4-rrow .mut{display:none}
+  .wk4-ap,.wk4-sol{flex-direction:column;align-items:stretch}.wk4-cr{align-items:flex-start}
+}
+
+/* ===== La Wuaka · módulo V5 · punto de venta e inventario ===== */
+.wk5-pos{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:14px;align-items:start}
+.wk5-izq{display:flex;flex-direction:column;gap:10px;min-height:340px}
+.wk5-buscar{display:flex;align-items:center;gap:8px;border:2px solid var(--pri);border-radius:14px;padding:4px 4px 4px 12px;background:#fff}
+.wk5-buscar>.ic{color:var(--pri);flex:none}
+.wk5-buscar input{flex:1;min-width:0;border:0;outline:0;font-size:17px;padding:10px 4px;background:none}
+.wk5-buscar .btn{flex:none}
+.wk5-tip{font-size:13px;margin:0;display:flex;gap:6px;align-items:center}
+.wk5-cart{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.wk5-cart li{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.wk5-cart li .grow{display:flex;flex-direction:column;min-width:0}
+.wk5-cart small{color:var(--mut);font-size:12.5px}
+.wk5-vacio{flex-direction:column;justify-content:center;color:var(--mut);border:0!important;padding:40px 0!important;text-align:center}
+.wk5-vacio .ic{width:38px;height:38px;opacity:.5}
+.wk5-rx{display:inline-block;font-size:11px;font-weight:800;color:#8a1f11;background:#fde7e2;border-radius:6px;padding:1px 6px}
+.wk5-var{font-size:12px;font-weight:700;color:var(--pri);background:color-mix(in srgb,var(--pri) 12%,#fff);border-radius:6px;padding:1px 6px}
+.wk5-der{position:sticky;top:80px;display:flex;flex-direction:column;gap:10px}
+.wk5-total{font-size:40px;font-weight:900;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.wk5-bill{display:flex;flex-wrap:wrap;gap:6px}
+.wk5-cambio{display:flex;justify-content:space-between;align-items:baseline;background:#e9f5ee;border-radius:12px;padding:10px 12px;color:#17703a}
+.wk5-cambio b{font-size:24px}
+.wk5-cambio.falta{background:#fde7e7;color:#b42318}
+.wk5-cobrar{height:58px;font-size:18px;justify-content:center}
+.wk5-der select{width:100%}
+.wk5-hoy{margin-top:14px}
+.wk5-ventas{list-style:none;margin:10px 0 0;padding:0}
+.wk5-ventas li{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.wk5-ventas li.anulada{opacity:.6}.wk5-ventas li.anulada>b{text-decoration:line-through}
+.wk5-vn{font-weight:800;font-variant-numeric:tabular-nums;color:var(--pri)}
+.wk5-ventas .grow{min-width:160px;font-size:14px}
+.wk5-alertas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.wk5-al{display:flex;flex-direction:column;align-items:flex-start;gap:2px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 14px;cursor:pointer;font:inherit;color:inherit;text-align:left}
+.wk5-al b{font-size:26px;line-height:1}.wk5-al span{font-size:13px;color:var(--mut)}
+.wk5-al.warn b{color:#8a5a00}.wk5-al.err b{color:#b42318}
+.wk5-al.on{border-color:var(--pri);box-shadow:inset 0 0 0 1px var(--pri)}
+.wk5-tools{gap:8px;margin-bottom:12px}
+.wk5-tools .wk5-buscar{border-width:1px;border-color:var(--line);min-width:220px}
+.wk5-tools .wk5-buscar input{font-size:15px;padding:8px 4px}
+.wk5-inv{padding:0;overflow:hidden}
+.wk5-ir{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.wk5-ir:last-child{border-bottom:0}
+.wk5-ir img,.wk5-im{width:48px;height:48px;border-radius:10px;object-fit:cover;flex:none;display:grid;place-items:center;background:var(--sur-2);color:var(--mut)}
+.wk5-ir .grow{display:flex;flex-direction:column;gap:2px;min-width:0}
+.wk5-ir small{color:var(--mut);font-size:12.5px}
+.wk5-ir.porv{background:#fffaf0}.wk5-ir.vencido{background:#fff5f5}
+.wk5-st{display:flex;flex-direction:column;align-items:center;min-width:62px;flex:none}
+.wk5-st b{font-size:22px;line-height:1}.wk5-st small{font-size:11.5px;color:var(--mut)}
+.wk5-st.bajo b{color:#8a5a00}.wk5-st.cero b{color:#b42318}
+.wk5-acc{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;flex:none}
+.wk5-err{color:#b42318}.wk5-ok{color:#17703a}
+.wk5-chk{display:flex;gap:10px;align-items:flex-start;font-weight:600;cursor:pointer}
+.wk5-chk input{width:20px;height:20px;flex:none;margin-top:1px}
+.wk5-hist li{grid-template-columns:96px 1fr auto}
+.wk5-lbls{max-height:55vh;overflow:auto;padding:2px}
+.wk5-print{position:fixed;width:0;height:0;border:0;left:-9999px;top:0}
+.wk5-vars{display:flex;flex-direction:column;gap:6px}
+.wk5-vars>small:first-child{font-weight:700;color:var(--ink)}
+.wk5-vars div{display:flex;flex-wrap:wrap;gap:6px}
+.wk5-frame{aspect-ratio:16/9!important;width:min(84vw,420px)!important}
+@media (max-width:860px){
+  .wk5-pos{grid-template-columns:minmax(0,1fr)}
+  .wk5-izq,.wk5-der{min-width:0}
+  .wk5-buscar input{font-size:16px}
+  .wk5-der{position:static}
+  .wk5-alertas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wk5-ir{flex-wrap:wrap}
+  .wk5-ir .grow{flex:1 1 calc(100% - 140px)}
+  .wk5-acc{width:100%;justify-content:flex-start}
+  .wk5-buscar .btn{padding:0 10px}
+}
 </style>
 </head>
 <body>
@@ -4802,12 +5062,12 @@ function openStories(tid) {
     const ctaL = e.cta === 'comprar' ? 'Comprar ya' : e.cta === 'oferta' ? 'Ver oferta' : '';
     ov.innerHTML = `<div class="sv-box"><div class="sv-bars">${t._est.map((x, i) => `<i class="${i < ei ? 'done' : ''}"><b></b></i>`).join('')}</div>
       <div class="sv-h">${miniLogo(t.logo, t.nombre)}<div><b>${esc(t.nombre)}</b><small>${esc(ago(e.aprobado || e.creado))}</small></div><a class="icon-btn" href="#/t/${esc(t.id)}" aria-label="Ver tienda" data-svclose>${ic('store')}</a><button class="icon-btn" data-svclose aria-label="Cerrar">${ic('x')}</button></div>
-      <div class="sv-media">${e.tipo === 'video' ? `<video playsinline muted autoplay preload="auto" poster="${esc(safeUrl(e.portada))}" src="${esc(safeUrl(e.media) || '')}"></video>` : `<img src="${esc(safeUrl(e.media))}" alt="" referrerpolicy="no-referrer">`}</div>
+      <div class="sv-media">${e.tipo === 'video' ? (window.WK_V3 && WK_V3.videoHtml(safeUrl(e.media), 'sv')) || `<video playsinline muted autoplay preload="auto" poster="${esc(safeUrl(e.portada))}" src="${esc(safeUrl(e.media) || '')}"></video>` : `<img src="${esc(safeUrl(e.media))}" alt="" referrerpolicy="no-referrer">`}</div>
       <button class="sv-tap l" data-svgo="-1" aria-label="Anterior"></button><button class="sv-tap r" data-svgo="1" aria-label="Siguiente"></button>
       <div class="sv-f">${e.descripcion ? `<p>${esc(e.descripcion)}</p>` : ''}<div id="svPr"></div>${ctaL ? `<button class="btn lime" data-svcta="${esc(e.cta)}">${ic(e.cta === 'comprar' ? 'cart' : 'tag')} ${esc(ctaL)}</button>` : ''}</div></div>`;
     const paintPr = p => { const b = $('#svPr', ov); if (b && p) b.innerHTML = `<div class="sv-pr">${safeUrl(p.imagen) ? `<img src="${esc(p.imagen)}" alt="" referrerpolicy="no-referrer">` : ''}<div><b>${esc(p.nombre)}</b><span>${money(p.precio)}</span>${pctOff(p) ? `<s>${money(p.precio_antes)}</s>` : ''}</div></div>`; };
     if (pr) paintPr(pr); else if (e.producto_id) call('get', { e: 'Productos', id: e.producto_id }).then(p => { LOOSE.set('Productos:' + p.id, p); if (ov.isConnected && list[ti]._est[ei] === e) paintPr(p); }).catch(() => { });
-    t0 = performance.now(); dur = 5500; paused = false;
+    t0 = performance.now(); dur = e.tipo === 'video' && window.WK_V3 && WK_V3.esDrive(e.media) ? ((Number(S.cfg.VIDEO_MAX_SEG) || 15) + 12) * 1000 : 5500; paused = false;
     vid = $('video', ov);
     if (vid) { vid.muted = true; vid.addEventListener('error', () => { vid = null; t0 = performance.now(); }, { once: true }); const pp = vid.play(); if (pp && pp.catch) pp.catch(() => { }); vid.addEventListener('loadedmetadata', () => { vid.muted = false; }, { once: true }); }
     raf = requestAnimationFrame(prog);
@@ -5362,7 +5622,7 @@ function estNuevo() {
   });
 }
 function estVer(e) {
-  const box = openModal(mHead(e.descripcion || 'Estado', 'film') + `<div class="mb" style="display:flex;justify-content:center;background:#000;border-radius:12px">${e.tipo === 'video' ? `<video controls playsinline autoplay src="${esc(safeUrl(e.media))}" poster="${esc(safeUrl(e.portada))}" style="max-height:70vh;max-width:100%"></video>` : `<img src="${esc(safeUrl(e.media))}" alt="" style="max-height:70vh;max-width:100%" referrerpolicy="no-referrer">`}</div>`, { wide: true });
+  const box = openModal(mHead(e.descripcion || 'Estado', 'film') + `<div class="mb" style="display:flex;justify-content:center;background:#000;border-radius:12px">${e.tipo === 'video' ? (window.WK_V3 && WK_V3.videoHtml(safeUrl(e.media), 'big')) || `<video controls playsinline autoplay src="${esc(safeUrl(e.media))}" poster="${esc(safeUrl(e.portada))}" style="max-height:70vh;max-width:100%"></video>` : `<img src="${esc(safeUrl(e.media))}" alt="" style="max-height:70vh;max-width:100%" referrerpolicy="no-referrer">`}</div>`, { wide: true });
 }
 
 /* ---------- viajes del domiciliario ---------- */
@@ -5515,7 +5775,7 @@ function splashHtml() {
         <p class="sp-lead">Los negocios de tu pueblo, en tu celular.</p>
         <div class="sp-feat"><div><span>${ic('store')}</span>Tiendas de<br>tu pueblo</div><div><span>${ic('moto')}</span>Domicilio a<br>tu puerta</div><div><span>${ic('dollar')}</span>Pagas al<br>recibir</div></div>
         <div class="sp-btns">
-          <button type="button" class="sp-go" data-act="sp-go"><span>Explorar tiendas</span><i>${ic('chevr')}</i></button>
+          <button type="button" class="sp-go" data-act="sp-go"><span data-wk-inicio>Entra a la vitrina del pueblo</span><i>${ic('chevr')}</i></button>
           <button type="button" class="sp-login" data-act="sp-login"><span>${ic('user', 'sm')} Iniciar sesión</span>${ic('chevr', 'sm')}</button>
           ${!IN_GAS && !isStandalone() ? `<button type="button" class="sp-inst" data-act="sp-inst">${ic('download', 'sm')} Instalar la aplicación</button>` : ''}
         </div>
@@ -6722,7 +6982,8 @@ const WK_LEGAL = (() => {
 <h2>3. Para qué los usamos</h2>
 <ul>
 <li>Crear y administrar tu cuenta y verificar tu identidad.</li>
-<li>Tramitar pedidos, entregas, pagos contra entrega, cupones y calificaciones.</li>
+<li>Tramitar pedidos, entregas, pagos contra entrega, cupones y calificaciones, y las reservas, cotizaciones y apartados que pidas a un negocio.</li>
+<li>Permitir el chat dentro de la app entre comprador, negocio y domiciliario sobre un pedido o una solicitud. Solo ven los mensajes quienes participan en esa conversación; la administración solo ve los mensajes que alguien reporte. Los mensajes se guardan hasta 180 días, o más si hacen parte de una PQR o de un reporte.</li>
 <li>Entregar los pedidos: la ubicación se usa solo para eso y no guardamos un historial de tus movimientos.</li>
 <li>Enviar avisos sobre tus pedidos y, solo si lo autorizas, novedades y ofertas.</li>
 <li>Atender peticiones, quejas y reclamos.</li>
@@ -7455,12 +7716,16 @@ const WK_LEGAL = (() => {
   try { V3.vit = JSON.parse(localStorage.getItem(LS) || 'null'); } catch (e) { V3.vit = null; }
   const tipos = () => { const t = (V3.vit && V3.vit.tipos) || TIPOS_DEF.map((n, i) => ({ nombre: n, foto: '', orden: i + 1, activo: true })); return t.filter(x => x.activo !== false); };
   const extra = k => (V3.vit && V3.vit.pautas && V3.vit.pautas[k]) || {};
+  const FRASES = ['Entra a la vitrina del pueblo', 'Descubre tu pueblo', 'Compra en tu pueblo', 'Pide a los de aquí', 'Conéctate con Loba'];
+  const textoInicio = () => { const t = ((V3.vit || {}).cfg || {}).BOTON_INICIO; return t && String(t).trim().length >= 3 ? String(t).trim() : FRASES[0]; };
+  function pintarBotonInicio() { $$('[data-wk-inicio]').forEach(s => { s.textContent = textoInicio(); }); }
+  pintarBotonInicio();
   function cargarVitrina() {
     return call('wk.vitrina', {}).then(d => {
       const antes = JSON.stringify(V3.vit); V3.vit = d || null; V3.on = true;
       try { localStorage.setItem(LS, JSON.stringify(d)); } catch (e) { /* sin espacio */ }
-      completarRubros();
-      if (JSON.stringify(d) !== antes && $('#band')) { repintarBanda(); pintarTipos(); }
+      completarRubros(); pintarBotonInicio();
+      if (JSON.stringify(d) !== antes && $('#band')) repintarBanda();
     }).catch(e => { V3.on = false; V3.err = e.message; });
   }
   /** Agrega a la lista de rubros los tipos nuevos (p. ej. Billares) para que salgan en los formularios y filtros. */
@@ -7547,19 +7812,8 @@ const WK_LEGAL = (() => {
     return tipos().map(t => { const f = fotoTipo(t);
       return `<button type="button" class="w3-tipo ${cls || ''}" data-act="w3-tipo" data-v="${esc(t.nombre)}"><span class="w3-tf">${f ? `<img src="${esc(f)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<b>${esc(initials(t.nombre))}</b>`}</span><span class="w3-tn">${esc(t.nombre)}</span></button>`; }).join('');
   }
-  function pintarTipos() {
-    const host = $('#w3Tipos'); if (!host) return;
-    host.innerHTML = `<div class="w3-sech"><h2>Negocios por tipo</h2><a class="btn sm ghost" href="#/tiendas">Ver todas las tiendas ${ic('chevr', 'sm')}</a></div><div class="w3-tipos">${tiposHtml()}</div>`;
-  }
-  const _vHome = vHome;
-  const vHome3 = function (main) {
-    _vHome(main);
-    const atj = $('.atajos', main); const w = atj && atj.closest('.wrapw');
-    if (w) w.insertAdjacentHTML('afterend', '<div class="wrapw"><section class="w3-tiposb" id="w3Tipos" aria-label="Negocios por tipo"></section></div>');
-    pintarTipos();
-  };
-  vHome = vHome3;
-  ROUTES.forEach(r => { if (r[1] === _vHome) r[1] = vHome3; });
+  /* La portada ya no repite "Negocios por tipo": las categorías salen con foto grande
+     (ver wuaka-v3.css) y los tipos de negocio quedan como filtro en "Tiendas". */
 
   const _vTiendas = vTiendas;
   const vTiendas3 = function (main) {
@@ -7626,7 +7880,7 @@ const WK_LEGAL = (() => {
       <nav class="w3-tabs" aria-label="Secciones de la tienda"><div><button type="button" class="on" data-act="w3-tab" data-v="inicio">Inicio</button><button type="button" data-act="w3-tab" data-v="productos">Productos <span id="w3N"></span></button><button type="button" data-act="w3-tab" data-v="sobre">Sobre el negocio</button></div></nav>
       <div class="w3-cols" data-tab="inicio">
         <aside class="w3-l">${due}${cup}${ent}<div id="w3Vend"></div></aside>
-        <div class="w3-r">${promo}<div id="w3Ban"></div>
+        <div class="w3-r">${promo}<div id="w3Ban"></div><div id="w3Tab"></div>
           <section class="w3-top hide" id="w3TopS"><div class="w3-sech"><h2>Lo más pedido</h2></div><div class="grid" id="w3Top"></div></section>
           <section><div class="w3-sech" id="w3All"><h2>Todos los productos</h2></div><div class="grid" id="tProds"></div></section>
           <section class="card pad w3-sobre"><h2>Sobre ${esc(t.nombre)}</h2>${t.descripcion ? `<p>${esc(t.descripcion)}</p>` : '<p class="mut">La tienda todavía no ha escrito su descripción.</p>'}
@@ -7639,6 +7893,7 @@ const WK_LEGAL = (() => {
     S.tiendaList = new List($('#tProds'), { e: 'Productos', f: { tienda_id: id }, s: '', render: prodCard, empty: 'Esta tienda aún no tiene productos publicados.', onData: l => { const n = $('#w3N'); if (n) n.textContent = l.total ? '(' + num(l.total) + ')' : ''; } });
     S.tiendaList.load();
     if (window.WK_V2 && WK_V2.fichaTienda) WK_V2.fichaTienda(main, id, { host: $('#w3Vend'), banner: $('#w3Ban'), nombre: t.nombre });
+    (window.WK_HOOKS_TIENDA || []).forEach(f => { try { f(main, t, pf); } catch (e) { console.warn(e); } });
   }
   ROUTES.forEach(r => { if (r[0] && r[0].test && r[0].test('t/abc123')) r[1] = vTienda3; });
 
@@ -7714,11 +7969,14 @@ const WK_LEGAL = (() => {
     $('.skel', main).outerHTML = `<section class="card pad stack"><h3 style="margin:0">${ic('image', 'sm')} Vitrina de la portada</h3>
         <label class="sw"><input type="checkbox" id="w3Os" ${String(cfg.PAUTAS_SOLO_IMAGEN).toUpperCase() === 'MOSTRAR' ? '' : 'checked'}><span></span><em>Ocultar las pautas que son solo una imagen con el texto pegado (sale el slider animado)</em></label>
         <label class="sw"><input type="checkbox" id="w3Om" ${String(cfg.FOTOS_MUESTRA).toUpperCase() === 'NO' ? '' : 'checked'}><span></span><em>Usar fotos de referencia mientras no haya fotos reales (se marcan como "Imagen de referencia")</em></label>
+        <div class="fld" style="max-width:520px"><label for="w3Ob">Texto del botón de la bienvenida</label><select id="w3Ob">${FRASES.map(f => `<option ${textoInicio() === f ? 'selected' : ''}>${esc(f)}</option>`).join('')}<option value="_otro" ${FRASES.includes(textoInicio()) ? '' : 'selected'}>Otro texto…</option></select>
+          <input id="w3Obt" maxlength="32" class="${FRASES.includes(textoInicio()) ? 'hide' : ''}" style="margin-top:8px" value="${esc(textoInicio())}" placeholder="De 3 a 32 letras"><small class="hint">Es el botón grande que se ve al abrir la app por primera vez.</small></div>
         <div><button class="btn sm pri" id="w3Og">${ic('check', 'sm')} Guardar opciones</button></div></section>
       <section class="card pad" style="margin-top:14px"><div class="row between"><h3 style="margin:0">${ic('layers', 'sm')} Tipos de negocio</h3><button class="btn sm" id="w3Ta">${ic('plus', 'sm')} Agregar tipo</button></div>
-        <p class="mut">Salen en cuadritos con foto en la portada y en "Tiendas". El nombre debe ser igual al rubro de las tiendas. Foto cuadrada, 600 × 600 px.</p>
+        <p class="mut">Salen en cuadritos con foto en "Tiendas", para filtrar los negocios. El nombre debe ser igual al rubro de las tiendas. Foto cuadrada, 600 × 600 px.</p>
         <div id="w3Tl" class="w3-tlist"></div><div class="form-err hide"></div><div class="ffoot"><button class="btn pri" id="w3Tg">${ic('check')} Guardar tipos</button></div></section>`;
     pintar();
+    $('#w3Ob').onchange = e => { const o = e.target.value === '_otro'; $('#w3Obt').classList.toggle('hide', !o); if (o) $('#w3Obt').focus(); };
     const box = $('#w3Tl');
     box.addEventListener('input', e => { const r = e.target.closest('[data-i]'); if (r && e.target.dataset.k === 'nombre') lista[r.dataset.i].nombre = e.target.value; });
     box.addEventListener('change', async e => { const r = e.target.closest('[data-i]'); if (!r) return; const t = lista[r.dataset.i]; const k = e.target.dataset.k;
@@ -7734,7 +7992,8 @@ const WK_LEGAL = (() => {
       try { const r = await call('wk.tipos.set', { tipos: lista.map(t => ({ nombre: String(t.nombre || '').trim(), foto: t.foto || '', activo: t.activo !== false })) }); V3.vit.tipos = r.tipos; completarRubros(); toast('Tipos de negocio guardados.', 'ok'); $('.form-err', main).classList.add('hide'); }
       catch (err) { const fe = $('.form-err', main); fe.textContent = err.message; fe.classList.remove('hide'); } });
     $('#w3Og').onclick = e => busy(e.currentTarget, 'Guardando…', async () => {
-      try { await call('wk.vitrina.cfg', { PAUTAS_SOLO_IMAGEN: $('#w3Os').checked ? 'OCULTAR' : 'MOSTRAR', FOTOS_MUESTRA: $('#w3Om').checked ? 'SI' : 'NO' }); toast('Opciones guardadas.', 'ok'); cargarVitrina(); }
+      const sb = $('#w3Ob').value; const boton = sb === '_otro' ? $('#w3Obt').value.trim() : sb;
+      try { await call('wk.vitrina.cfg', { PAUTAS_SOLO_IMAGEN: $('#w3Os').checked ? 'OCULTAR' : 'MOSTRAR', FOTOS_MUESTRA: $('#w3Om').checked ? 'SI' : 'NO', BOTON_INICIO: boton }); toast('Opciones guardadas.', 'ok'); cargarVitrina(); }
       catch (err) { toast(err.message, 'err'); } });
   }
 
@@ -7808,7 +8067,890 @@ const WK_LEGAL = (() => {
     }
   });
 
-  window.WK_V3 = { banners, tipos, fotoTipo, cargarVitrina, version: '3.0.0' };
+  /* =====================================================================
+   * VIDEOS DE LOS ESTADOS (con su audio)
+   * Los videos guardados en Google Drive no se reproducen con un reproductor
+   * normal: se muestran con el reproductor de Drive, que trae sonido y pantalla
+   * completa. Si un video no carga, se ofrece abrirlo aparte.
+   * ===================================================================== */
+  const driveId = u => { const x = String(u || ''); if (!/(drive|docs)\.google\.com|googleusercontent\.com/.test(x)) return ''; const m = x.match(/\/d\/([\w-]{20,})/) || x.match(/[?&]id=([\w-]{20,})/); return m ? m[1] : ''; };
+  const esDrive = u => !!driveId(u);
+  function videoHtml(url, modo) {
+    const id = driveId(url); if (!id) return '';
+    return `<iframe class="wk-drv ${modo || ''}" src="https://drive.google.com/file/d/${id}/preview" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen title="Video del estado" referrerpolicy="no-referrer"></iframe>`;
+  }
+  document.addEventListener('error', e => {
+    const v = e.target; if (!v || v.tagName !== 'VIDEO' || !v.closest('.sv-media,.modal') || v.dataset.wkErr) return;
+    v.dataset.wkErr = '1'; const url = safeUrl(v.getAttribute('src'));
+    v.insertAdjacentHTML('afterend', `<div class="wk-verr">${ic('alert')}<p>Este video no se pudo reproducir aquí.</p>${url ? `<a class="btn lime" href="${esc(url)}" target="_blank" rel="noopener">${ic('play', 'sm')} Abrir el video</a>` : ''}</div>`);
+    v.style.display = 'none';
+  }, true);
+
+  window.WK_V3 = { banners, tipos, fotoTipo, cargarVitrina, videoHtml, esDrive, version: '3.1.0' };
+})();
+
+/* =====================================================================
+ * LA WUAKA · MÓDULO V4 · CHAT Y TABLEROS POR TIPO DE NEGOCIO (app)
+ * 1. Chat interno por pedido (cliente ↔ negocio, cliente ↔ domiciliario) y por
+ *    solicitud, con contador, sonido y aviso del navegador.
+ * 2. Tablero del negocio según su tipo: billar, mesas y comandas, cover,
+ *    habitaciones, apartados, cotizaciones, venta por peso, solicitudes.
+ * 3. En la página de la tienda: mesas libres, tarifas, cover, habitaciones,
+ *    "Arma tu pedido paso a paso" y formularios de reserva, cotización y apartado.
+ * Usa las acciones "wk." de servidor/WuakaV4.gs. Powered by AXERVUS CTeI
+ * ===================================================================== */
+(() => {
+  'use strict';
+  const V4 = S.v4 = { pend: { total: 0, conversaciones: [] }, ultTotal: -1, timer: null };
+  const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  const numIn = v => Number(String(v == null ? '' : v).replace(/[^\d]/g, '')) || 0;
+  const METODOS = ['Efectivo', 'Nequi', 'Daviplata', 'Transferencia', 'Datáfono'];
+  const metSel = id => `<select id="${id}">${METODOS.map(m => `<option>${m}</option>`).join('')}</select>`;
+  const hora = ms => new Date(ms).toLocaleTimeString('es-CO', { hour: 'numeric', minute: '2-digit' });
+  const dur = min => min < 60 ? min + ' min' : Math.floor(min / 60) + ' h ' + String(min % 60).padStart(2, '0') + ' min';
+  const errBox = e => `<div class="empty">${ic('alert')}<p>${esc(e.message || e)}</p>${/wk\.|disponible|Acción/i.test(e.message || '') ? '<p class="mut">El servidor todavía no tiene el módulo V4. Sigue la guía de actualización.</p>' : ''}</div>`;
+
+  /* ---------- qué tablero tiene cada tipo de negocio ---------- */
+  const MODS = {
+    billares: ['billar', 'solicitudes'], gastronomia: ['mesas', 'solicitudes'], 'gastro bar': ['mesas', 'solicitudes'], cantinas: ['mesas'],
+    discotecas: ['cover', 'mesas', 'solicitudes'], hoteles: ['habitaciones', 'solicitudes'], almacen: ['apartados', 'solicitudes'],
+    ferreteria: ['cotizaciones', 'solicitudes'], depositos: ['cotizaciones', 'solicitudes'], carniceria: ['peso']
+  };
+  const EXTRA = {};   // pestañas que agregan otros módulos (V5: punto de venta e inventario)
+  const EXTRA_FIN = {};
+  const modsDe = rubro => (EXTRA[norm(rubro)] || []).concat(MODS[norm(rubro)] || [], EXTRA_FIN[norm(rubro)] || []);
+  const PROPIOS = ['billar', 'mesas', 'cover', 'habitaciones', 'apartados', 'cotizaciones', 'solicitudes'];
+  const TABS = {};
+  const TAB_L = { billar: ['Mesas de billar', 'layers'], mesas: ['Mesas y comandas', 'file'], cover: ['Cover de la noche', 'users'], habitaciones: ['Habitaciones', 'home'], apartados: ['Apartados', 'tag'], cotizaciones: ['Cotizaciones', 'file'], peso: ['Venta por peso', 'dollar'], solicitudes: ['Solicitudes', 'inbox'], ajustes: ['Ajustes', 'sliders'] };
+  const TIPO_REC = { billar: 'billar', mesas: 'mesa', habitaciones: 'habitacion' };
+  const SOL_L = { reserva_mesa: 'Reserva de mesa', reserva_habitacion: 'Reserva de habitación', cotizacion: 'Cotización', apartado: 'Apartado' };
+  const SOL_EST = { pendiente: ['Pendiente', 'warn'], confirmada: ['Confirmada', 'ok'], rechazada: ['No se puede', 'err'], cancelada: ['Cancelada', 'mut'], atendida: ['Atendida', 'ok'] };
+  const estBadge = e => { const x = SOL_EST[e] || [e, 'mut']; return `<span class="wk4-est ${x[1]}">${esc(x[0])}</span>`; };
+
+  /* =====================================================================
+   * 1. CHAT
+   * ===================================================================== */
+  const chatUrl = (ref, hilo) => '#/wk-chat/' + encodeURIComponent(ref) + '/' + hilo;
+  function pintarContador() {
+    const n = V4.pend.total || 0;
+    let b = $('#btnChat');
+    if (!b && $('#btnBell')) { $('#btnBell').insertAdjacentHTML('beforebegin', `<a class="icon-btn hide" id="btnChat" href="#/wk-mensajes" aria-label="Mensajes">${ic('chat')}<span class="dot hide" id="chatDot"></span></a>`); b = $('#btnChat'); }
+    if (b) { b.classList.toggle('hide', !S.user); const d = $('#chatDot'); d.textContent = n > 99 ? '99+' : n; d.classList.toggle('hide', !n); b.setAttribute('aria-label', n ? `Mensajes, ${n} sin leer` : 'Mensajes'); }
+    const mas = $('#bnMas'); if (mas) { let s = $('.wk4-nb', mas); if (!s) { mas.insertAdjacentHTML('beforeend', '<span class="wk4-nb wk4-nbm hide"></span>'); s = $('.wk4-nb', mas); } s.textContent = n > 99 ? '99+' : n; s.classList.toggle('hide', !n); }
+    $$('a[href="#/wk-mensajes"]').forEach(a => { if (a.id === 'btnChat' || a.classList.contains('icon-btn')) return; let s = $('.wk4-nb', a); if (!s) { a.insertAdjacentHTML('beforeend', '<span class="wk4-nb hide"></span>'); s = $('.wk4-nb', a); } s.textContent = n; s.classList.toggle('hide', !n); });
+  }
+  async function revisarChat() {
+    if (!S.user || !S.tok) return;
+    try {
+      const d = await call('wk.chat.pendientes', {});
+      const antes = V4.ultTotal; V4.pend = d; V4.ultTotal = d.total; pintarContador();
+      if (antes >= 0 && d.total > antes) {
+        const c = (d.conversaciones || []).find(x => x.sin_leer > 0) || {};
+        const enEsa = location.hash === chatUrl(c.ref, c.hilo);
+        if (!enEsa) {
+          const titulo = 'Mensaje de ' + (c.con || c.de || 'La Wuaka'); const cuerpo = (c.titulo ? c.titulo + ': ' : '') + (c.ultimo || '');
+          if (document.hidden && 'Notification' in window && Notification.permission === 'granted' && navigator.serviceWorker) {
+            navigator.serviceWorker.ready.then(r => r.showNotification(titulo, { body: cuerpo, tag: 'wk-chat-' + c.ref, icon: 'icon-192.png', data: { url: location.href.split('#')[0] + chatUrl(c.ref, c.hilo) } })).catch(() => { });
+          } else popup({ type: 'info', icon: 'chat', sound: 'aviso', stay: 6000, title: titulo, msg: cuerpo, action: { label: 'Responder', fn: () => { location.hash = chatUrl(c.ref, c.hilo); } } });
+        }
+      }
+    } catch (e) { /* sin módulo V4 o sin red: se intenta de nuevo */ }
+  }
+  function cicloChat() {
+    clearTimeout(V4.timer);
+    if (!S.user) { pintarContador(); return; }
+    revisarChat().finally(() => { V4.timer = setTimeout(cicloChat, (document.hidden ? 60 : 20) * 1000); });
+  }
+  const _applyBoot4 = applyBoot;
+  applyBoot = function (d) { _applyBoot4(d); V4.ultTotal = -1; setTimeout(cicloChat, 1500); };
+  document.addEventListener('click', e => { if (e.target.closest('#bnMas')) setTimeout(pintarContador, 60); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && S.user) cicloChat(); });
+
+  const RAPIDAS = { tienda: ['Ya lo estamos alistando.', 'Su pedido ya salió.', '¿Me confirma la dirección?', 'Gracias por su compra.'], domi: ['Voy en camino.', 'Estoy afuera.', '¿Me confirma la dirección?', 'Llego en 5 minutos.'], cliente: ['¿Cuánto falta?', 'Gracias.', 'Estoy en la casa.'] };
+  async function vChat(main, refEnc, hilo) {
+    if (!S.user) { openAuth('login'); location.hash = '#/'; return; }
+    const ref = decodeURIComponent(refEnc);
+    main.innerHTML = '<div class="skel" style="height:420px"></div>';
+    let d; try { d = await call('wk.chat.leer', { ref, hilo, desde: 0 }); } catch (e) { main.innerHTML = errBox(e) + '<p style="text-align:center"><a class="btn" href="#/wk-mensajes">Ver mis mensajes</a></p>'; return; }
+    const st = { ult: 0, ids: new Set() };
+    const inf = d.info;
+    const rap = inf.yo === 'cliente' ? RAPIDAS.cliente : RAPIDAS[inf.hilo === 'domi' ? 'domi' : 'tienda'];
+    main.innerHTML = `<section class="wk4-chat card">
+      <header class="wk4-ch"><a class="icon-btn" href="#/wk-mensajes" aria-label="Volver a mensajes">${ic('left')}</a><span class="wk4-av">${esc(initials(inf.con))}</span><div class="grow"><b>${esc(inf.con)}</b><small>${esc(inf.titulo)} · ${inf.hilo === 'domi' ? 'chat con el domiciliario' : inf.yo === 'cliente' ? 'chat con el negocio' : inf.yo === 'domi' ? 'chat con el cliente' : 'chat con el cliente'}</small></div>
+        ${/^P:/.test(inf.ref) ? `<button class="btn sm ghost" data-act="w4-verped" data-id="${esc(inf.ref.slice(2))}">${ic('package', 'sm')} Ver pedido</button>` : ''}</header>
+      <div class="wk4-msgs" id="w4Msgs" aria-live="polite"><p class="wk4-aviso">${ic('lock', 'sm')} Solo ven estos mensajes quienes participan en ${/^P:/.test(inf.ref) ? 'el pedido' : 'la solicitud'}. No compartas claves ni códigos de pago.</p></div>
+      ${inf.cerrado ? `<div class="banner b-info" style="margin:10px">${ic('lock')} <div>Esta conversación se cerró porque el pedido terminó. Si tienes un problema, <a href="#/pqr">radica una PQR</a>.</div></div>` : `
+      <div class="wk4-rap">${rap.map(t => `<button type="button" class="chip" data-act="w4-rapida">${esc(t)}</button>`).join('')}</div>
+      <form class="wk4-in" id="w4F"><label class="sr" for="w4T">Escribe un mensaje</label><textarea id="w4T" rows="1" maxlength="600" placeholder="Escribe un mensaje…" enterkeyhint="send"></textarea><button class="btn pri" type="submit" aria-label="Enviar">${ic('nav')}</button></form>`}
+    </section>`;
+    const box = $('#w4Msgs');
+    const pintar = lista => {
+      if (!lista.length) return;
+      const abajo = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
+      lista.forEach(m => {
+        if (st.ids.has(m.id)) return; st.ids.add(m.id); st.ult = Math.max(st.ult, m.ms);
+        box.insertAdjacentHTML('beforeend', `<div class="wk4-m ${m.mio ? 'mio' : ''}" data-id="${esc(m.id)}">${!m.mio ? `<small class="wk4-de">${esc(m.de_nombre)}</small>` : ''}<p>${esc(m.texto).replace(/\n/g, '<br>')}</p><time>${esc(hora(m.ms))}${!m.mio ? ` · <button type="button" class="wk4-rep" data-act="w4-reportar" data-id="${esc(m.id)}">Reportar</button>` : ''}</time></div>`);
+      });
+      if (abajo || lista.some(m => m.mio)) box.scrollTop = box.scrollHeight;
+    };
+    pintar(d.mensajes); box.scrollTop = box.scrollHeight;
+    V4.cv = { ref, hilo };
+    const leer = async () => { if (location.hash !== chatUrl(ref, hilo)) return; try { const r = await call('wk.chat.leer', { ref, hilo, desde: st.ult }); pintar(r.mensajes); } catch (e) { /* reintenta */ } };
+    const iv = setInterval(() => { if (!box.isConnected) { clearInterval(iv); return; } if (!document.hidden) leer(); }, 5000);
+    revisarChat();
+    const f = $('#w4F'); if (!f) return;
+    const ta = $('#w4T');
+    ta.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); f.requestSubmit(); } });
+    ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(120, ta.scrollHeight) + 'px'; });
+    f.onsubmit = async e => {
+      e.preventDefault(); const texto = ta.value.trim(); if (!texto) return;
+      const btn = $('[type=submit]', f); btn.disabled = true;
+      try { const r = await call('wk.chat.enviar', { ref, hilo, texto }); ta.value = ''; ta.style.height = 'auto'; pintar([Object.assign({ mio: true }, r.mensaje)]); }
+      catch (err) { toast(err.message, 'err'); }
+      finally { btn.disabled = false; ta.focus(); }
+    };
+  }
+  async function vMensajes(main) {
+    if (!S.user) { openAuth('login'); location.hash = '#/'; return; }
+    main.innerHTML = pageH('chat', 'Mensajes') + '<div class="skel" style="height:300px"></div>';
+    let d; try { d = await call('wk.chat.pendientes', {}); V4.pend = d; V4.ultTotal = d.total; pintarContador(); } catch (e) { $('.skel', main).outerHTML = errBox(e); return; }
+    const l = d.conversaciones || [];
+    $('.skel', main).outerHTML = l.length ? `<div class="card wk4-lista">${l.map(c => `<a class="wk4-conv ${c.sin_leer ? 'nueva' : ''}" href="${chatUrl(c.ref, c.hilo)}"><span class="wk4-av">${esc(initials(c.con || c.titulo))}</span><div class="grow"><b>${esc(c.con || c.titulo)}</b><small>${esc(c.titulo)}${c.hilo === 'domi' ? ' · domiciliario' : ''}</small><span class="wk4-ult">${esc(c.ultimo)}</span></div><div class="wk4-cr"><time>${esc(c.ms ? hora(c.ms) : '')}</time>${c.sin_leer ? `<span class="wk4-nb">${c.sin_leer}</span>` : ''}</div></a>`).join('')}</div>`
+      : `<div class="empty">${ic('chat')}<p>Aún no tienes conversaciones.</p><p class="mut">Desde cada pedido puedes escribirle al negocio o al domiciliario.</p></div>`;
+  }
+
+  /* ---------- botones de chat dentro del pedido ---------- */
+  const _renderPedido = renderPedido;
+  renderPedido = function (box, o) {
+    _renderPedido(box, o);
+    const a = actorOf(o); if (!a || a === 'admin') return;
+    const sinLeer = h => { const c = (V4.pend.conversaciones || []).find(x => x.ref === 'P:' + o.id && x.hilo === h); return c && c.sin_leer ? ` <span class="wk4-nb">${c.sin_leer}</span>` : ''; };
+    const bts = [];
+    if (a === 'cliente') { bts.push(['tienda', 'Escribir a ' + (o.tienda_nombre || 'la tienda')]); if (o.repartidor_id) bts.push(['domi', 'Escribir al domiciliario']); }
+    if (a === 'vendedor') bts.push(['tienda', 'Chat con el cliente']);
+    if (a === 'repartidor') bts.push(['domi', 'Chat con el cliente']);
+    const acts = $('.actions', box); if (!acts || !bts.length) return;
+    acts.insertAdjacentHTML('beforebegin', `<div class="wk4-pbtn">${bts.map(b => `<a class="btn" href="${chatUrl('P:' + o.id, b[0])}" data-close>${ic('chat', 'sm')} ${esc(b[1])}${sinLeer(b[0])}</a>`).join('')}</div>`);
+  };
+
+  /* =====================================================================
+   * 2. PÁGINA DE LA TIENDA: BLOQUE SEGÚN EL TIPO DE NEGOCIO
+   * ===================================================================== */
+  const mesaSvg = (tipo, libre) => tipo === 'billar'
+    ? `<svg viewBox="0 0 120 70" aria-hidden="true"><rect x="3" y="3" width="114" height="64" rx="10" fill="#7a4a26"/><rect x="12" y="12" width="96" height="46" rx="4" fill="${libre ? '#1f8a5c' : '#5b8f78'}"/>${[[13, 13], [60, 11], [107, 13], [13, 57], [60, 59], [107, 57]].map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="#1b1310"/>`).join('')}${libre ? '' : '<circle cx="40" cy="35" r="4" fill="#fff"/><circle cx="76" cy="31" r="4" fill="#f2c23c"/><circle cx="82" cy="39" r="4" fill="#d8352a"/>'}</svg>`
+    : tipo === 'habitacion' ? ic('home') : `<svg viewBox="0 0 120 70" aria-hidden="true"><circle cx="60" cy="35" r="22" fill="${libre ? '#e9f5ee' : '#eef0f2'}" stroke="${libre ? '#1e8a45' : '#9aa3ab'}" stroke-width="3"/>${[[60, 6], [60, 64], [26, 35], [94, 35]].map(p => `<rect x="${p[0] - 7}" y="${p[1] - 5}" width="14" height="10" rx="3" fill="${libre ? '#1e8a45' : '#9aa3ab'}"/>`).join('')}</svg>`;
+  async function bloqueTienda(main, t) {
+    const host = $('#w3Tab', main); const mods = modsDe(t.rubro); if (!host || !mods.length) return;
+    let d; try { d = await call('wk.tablero.pub', { tienda_id: t.id }); } catch (e) { return; }
+    if (!host.isConnected) return;
+    const c = d.cfg || {}; const rec = d.recursos || []; const partes = [];
+    const tipoRec = mods.includes('billar') ? 'billar' : mods.includes('habitaciones') ? 'habitacion' : 'mesa';
+    const recs = rec.filter(r => r.tipo === tipoRec);
+    if (mods.includes('mesas') && c.paso_a_paso && !mods.includes('cover')) partes.push(`<section class="wk4-paso"><div><h3>Arma tu pedido paso a paso</h3><p>Escoge por categorías, mira el resumen tipo factura y escoge cómo pagas.</p></div><button class="btn lime" data-act="w4-paso" data-t="${esc(t.id)}">${ic('bag', 'sm')} Empezar</button></section>`);
+    if (mods.includes('cover') && c.cover_precio) partes.push(`<section class="card pad wk4-cover"><h3>${ic('users', 'sm')} Cover esta noche</h3><b class="wk4-big">${money(c.cover_precio)}</b>${c.cover_nota ? `<p>${esc(c.cover_nota)}</p>` : ''}</section>`);
+    if (recs.length) {
+      const libres = recs.filter(r => r.estado === 'libre').length;
+      const tarifas = {}; recs.forEach(r => { if (r.tarifa) tarifas[(r.detalle || (tipoRec === 'billar' ? 'Mesa' : 'Habitación'))] = r; });
+      partes.push(`<section class="card pad wk4-pubrec"><div class="w3-sech"><h2>${tipoRec === 'habitacion' ? 'Habitaciones libres hoy' : 'Mesas libres ahora'} <span class="wk4-libres">${libres} de ${recs.length}</span></h2></div>
+        <div class="wk4-pubgrid ${tipoRec}">${recs.map(r => `<div class="wk4-pr ${r.estado === 'libre' ? 'libre' : ''}">${mesaSvg(r.tipo, r.estado === 'libre')}<small>${esc(r.nombre)}${r.tipo === 'habitacion' && r.detalle ? ' · ' + esc(r.detalle) : ''} · <b>${r.estado === 'libre' ? 'Libre' : r.estado === 'reservada' ? 'Reservada' : r.estado === 'aseo' ? 'En aseo' : 'Ocupada'}</b></small></div>`).join('')}</div>
+        ${Object.keys(tarifas).length ? `<ul class="wk4-tar">${Object.keys(tarifas).map(k => `<li><span>${esc(k)} · ${tarifas[k].unidad === 'noche' ? 'la noche' : 'la hora'}</span><b>${money(tarifas[k].tarifa)}</b></li>`).join('')}${tipoRec === 'billar' && c.cobro_billar === 'chico' && c.precio_chico ? `<li><span>Por chico</span><b>${money(c.precio_chico)}</b></li>` : ''}</ul>` : ''}
+        ${tipoRec === 'billar' ? '<p class="mut" style="margin:10px 0 0;font-size:13px">El tablero se actualiza solo. Si vas en camino, escríbele al negocio para apartar la mesa.</p>' : ''}</section>`);
+    }
+    const sols = [];
+    if (c.reservas_mesa) sols.push(['reserva_mesa', 'Reservar mesa', 'users']);
+    if (c.reservas_habitacion) sols.push(['reserva_habitacion', 'Solicitar reserva', 'home']);
+    if (c.cotizaciones) sols.push(['cotizacion', 'Pedir cotización con flete', 'file']);
+    if (c.apartados) sols.push(['apartado', 'Pedir un apartado', 'tag']);
+    if (sols.length || c.nota_publica) partes.push(`<section class="card pad wk4-sols">${c.nota_publica ? `<p>${esc(c.nota_publica)}</p>` : ''}${sols.length ? `<div class="row wrap" style="gap:8px">${sols.map(s => `<button class="btn ${s[0] === sols[0][0] ? 'pri' : ''}" data-act="w4-sol" data-tipo="${s[0]}" data-t="${esc(t.id)}" data-n="${esc(t.nombre)}">${ic(s[2], 'sm')} ${esc(s[1])}</button>`).join('')}</div>` : ''}${c.apartados ? '<p class="mut" style="font-size:13px;margin:8px 0 0">Apartas con un abono y terminas de pagar cuando lo recojas.</p>' : ''}</section>`);
+    host.innerHTML = partes.join('');
+  }
+  (window.WK_HOOKS_TIENDA = window.WK_HOOKS_TIENDA || []).push(bloqueTienda);
+
+  function formSolicitud(tipo, tid, tn) {
+    if (!S.user) { toast('Ingresa o crea tu cuenta para enviar la solicitud.', 'info'); openAuth('login'); return; }
+    const res = /^reserva/.test(tipo); const hab = tipo === 'reserva_habitacion';
+    const hoy = new Date(Date.now() - 5 * 3600000).toISOString().slice(0, 10);
+    const box = openModal(mHead(SOL_L[tipo] + ' · ' + tn, res ? 'clock' : 'file') + `<form class="mb wk-form" id="w4Sf" novalidate>
+      ${res ? `<div class="fld"><label for="w4Sd">Fecha</label><input id="w4Sd" type="date" min="${hoy}" value="${hoy}" required></div>
+        ${hab ? '<div class="fld"><label for="w4Sn">Noches</label><input id="w4Sn" type="number" min="1" max="60" value="1"></div>' : '<div class="fld"><label for="w4Sh">Hora</label><input id="w4Sh" type="time" value="20:00"></div>'}
+        <div class="fld"><label for="w4Sp">Personas</label><input id="w4Sp" type="number" min="1" max="500" value="2"></div>` : ''}
+      <div class="fld ${res ? '' : 'full'}"><label for="w4St">Teléfono de contacto</label><input id="w4St" inputmode="tel" maxlength="15" value="${esc(S.user.telefono || '')}" required></div>
+      <div class="fld full"><label for="w4Sx">${tipo === 'cotizacion' ? 'Qué necesitas (productos y cantidades)' : tipo === 'apartado' ? 'Qué quieres apartar (producto, talla, color)' : 'Nota (opcional)'}</label><textarea id="w4Sx" rows="${res ? 2 : 4}" maxlength="500" placeholder="${tipo === 'cotizacion' ? 'Ej: 10 bultos de cemento, 6 varillas de 3/8' : tipo === 'apartado' ? 'Ej: chaqueta de jean talla M' : 'Ej: mesa cerca a la pista'}"></textarea></div>
+      ${tipo === 'cotizacion' ? '<div class="fld full"><label for="w4Sa">Dirección de entrega (para calcular el flete)</label><input id="w4Sa" maxlength="160"></div>' : ''}
+      <p class="mut full" style="font-size:13px;margin:0">El negocio te responde por el chat de la app. ${res ? 'La reserva queda en firme cuando el negocio la confirme.' : 'Precios y disponibilidad los confirma el negocio.'}</p>
+      <div class="form-err hide full"></div><div class="ffoot full"><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Enviar solicitud</button></div></form>`);
+    $('#w4Sf', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', e.target), 'Enviando…', async () => {
+      const v = id => ($('#' + id, box) || {}).value || '';
+      try {
+        const r = await call('wk.sol.crear', { tienda_id: tid, tienda_nombre: tn, tipo, fecha: v('w4Sd'), hora: v('w4Sh'), noches: v('w4Sn'), personas: v('w4Sp'), telefono: v('w4St'), detalle: v('w4Sx').trim(), direccion: v('w4Sa').trim() });
+        closeModal(); toast('Solicitud enviada. El negocio te responde por el chat.', 'ok'); location.hash = chatUrl('S:' + r.solicitud.id, 'tienda');
+      } catch (err) { const fe = $('.form-err', box); fe.textContent = err.message; fe.classList.remove('hide'); }
+    }); };
+  }
+
+  /* ---------- "Arma tu pedido paso a paso" ---------- */
+  async function pasoAPaso(tid) {
+    const box = openModal(mHead('Arma tu pedido paso a paso', 'bag') + '<div class="mb"><div class="skel" style="height:300px"></div></div>', { wide: true });
+    let prods; try { prods = toObjs(await call('list', { e: 'Productos', g: 0, f: { tienda_id: tid }, q: '', s: '', d: 1, n: 200, p: 1 })).recs; } catch (e) { $('.mb', box).innerHTML = errBox(e); return; }
+    prods = prods.filter(p => p.tienda_abierta !== false && !(p.controla_stock === true && Number(p.stock) <= 0));
+    if (!prods.length) { $('.mb', box).innerHTML = `<div class="empty">${ic('bag')}<p>Este negocio aún no tiene productos disponibles.</p></div>`; return; }
+    const catN = id => ((S.cats || []).find(c => c.id === id) || {}).nombre || 'Otros';
+    const grupos = []; prods.forEach(p => { const k = p.categoria_id || ''; let g = grupos.find(x => x.k === k); if (!g) grupos.push(g = { k, n: catN(k), ps: [] }); g.ps.push(p); });
+    const sel = {}; let paso = 0; const total = grupos.length + 1;
+    const sub = () => Object.keys(sel).reduce((a, id) => a + sel[id] * Number(prods.find(p => p.id === id).precio), 0);
+    const pintar = () => {
+      const fin = paso === grupos.length; const g = grupos[paso];
+      $('.mb', box).innerHTML = `<ol class="wk4-pasos">${grupos.map((x, i) => `<li class="${i === paso ? 'on' : i < paso ? 'ok' : ''}">${esc(x.n)}</li>`).join('')}<li class="${fin ? 'on' : ''}">Resumen</li></ol>
+        ${fin ? `<div class="wk4-fact"><h3>Resumen de tu pedido</h3>${Object.keys(sel).length ? `<table><thead><tr><th>Producto</th><th>Cant.</th><th>Valor</th></tr></thead><tbody>${Object.keys(sel).map(id => { const p = prods.find(x => x.id === id); return `<tr><td>${esc(p.nombre)}</td><td>${sel[id]}</td><td>${money(sel[id] * p.precio)}</td></tr>`; }).join('')}</tbody><tfoot><tr><td colspan="2">Subtotal</td><td>${money(sub())}</td></tr></tfoot></table><p class="mut" style="font-size:13px">El domicilio y la forma de pago se escogen en el siguiente paso.</p>` : '<p class="mut">Aún no escogiste productos.</p>'}</div>`
+        : `<h3 style="margin:4px 0 12px">${esc(g.n)}</h3><div class="wk4-plist">${g.ps.map(p => `<div class="wk4-pi">${safeUrl(p.imagen) ? `<img src="${esc(p.imagen)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<span class="wk4-pim">${ic('bag')}</span>`}<div class="grow"><b>${esc(p.nombre)}</b><span>${money(p.precio)}</span></div><div class="qty"><button type="button" data-q="-1" data-id="${esc(p.id)}" aria-label="Quitar uno">${ic('minus', 'sm')}</button><b>${sel[p.id] || 0}</b><button type="button" data-q="1" data-id="${esc(p.id)}" aria-label="Agregar uno">${ic('plus', 'sm')}</button></div></div>`).join('')}</div>`}
+        <div class="ffoot"><span class="grow mut">Paso ${paso + 1} de ${total} · ${money(sub())}</span>${paso ? `<button class="btn ghost" data-nav="-1">${ic('left', 'sm')} Atrás</button>` : ''}${fin ? `<button class="btn pri" data-fin ${Object.keys(sel).length ? '' : 'disabled'}>${ic('cart', 'sm')} Agregar y pagar</button>` : `<button class="btn pri" data-nav="1">Siguiente ${ic('chevr', 'sm')}</button>`}</div>`;
+    };
+    pintar();
+    box.addEventListener('click', e => {
+      const q = e.target.closest('[data-q]'); const nv = e.target.closest('[data-nav]'); const fin = e.target.closest('[data-fin]');
+      if (q) { const id = q.dataset.id; const p = prods.find(x => x.id === id); const max = p.controla_stock === true ? Number(p.stock) : 99; sel[id] = Math.max(0, Math.min(max, (sel[id] || 0) + Number(q.dataset.q))); if (!sel[id]) delete sel[id]; pintar(); }
+      if (nv) { paso = Math.max(0, Math.min(grupos.length, paso + Number(nv.dataset.nav))); pintar(); }
+      if (fin) {
+        Object.keys(sel).forEach(id => { const p = prods.find(x => x.id === id); const cur = S.cart[id] ? S.cart[id].c : 0; S.cart[id] = { id, n: p.nombre, p: Number(p.precio), i: p.imagen || '', t: p.tienda_id, tn: p.tienda_id__n || '', c: cur + sel[id], mx: p.controla_stock === true ? Number(p.stock) : 999 }; });
+        saveCart(); closeModal(); toast('Productos agregados al carrito.', 'ok'); location.hash = '#/checkout';
+      }
+    });
+  }
+
+  /* =====================================================================
+   * 3. TABLERO DEL NEGOCIO
+   * ===================================================================== */
+  const T = { tienda: null, mods: [], tab: '', data: null, prods: null, iv: null };
+  async function vTablero(main) {
+    if (!guard(['vendedor', 'admin', 'gestor'])) return;
+    clearInterval(T.iv);
+    let t = null;
+    if (esAdm()) {
+      main.innerHTML = pageH('layers', 'Tablero del negocio') + '<div class="skel" style="height:80px"></div>';
+      let ts = []; try { ts = toObjs(await call('list', { e: 'Tiendas', g: 0, f: {}, q: '', s: 'nombre', d: 1, n: 300, p: 1 })).recs; } catch (e) { $('.skel', main).outerHTML = errBox(e); return; }
+      const cur = T.adminT || (ts[0] && ts[0].id);
+      t = ts.find(x => x.id === cur) || ts[0];
+      $('.skel', main).outerHTML = `<div class="fld" style="max-width:420px;margin-bottom:12px"><label for="w4Ts">Negocio</label><select id="w4Ts">${ts.map(x => `<option value="${esc(x.id)}" ${t && x.id === t.id ? 'selected' : ''}>${esc(x.nombre)} · ${esc(x.rubro || '')}</option>`).join('')}</select></div><div id="w4Tb"></div>`;
+      $('#w4Ts').onchange = e => { T.adminT = e.target.value; vTablero(main); };
+    } else {
+      t = S.tienda || { id: S.user.tienda_id, rubro: '' };
+      main.innerHTML = pageH('layers', 'Tablero del negocio', '<a class="btn" href="#/wk-caja">' + ic('dollar', 'sm') + ' Caja del día</a>') + '<div id="w4Tb"></div>';
+    }
+    if (!t) { $('#w4Tb').innerHTML = `<div class="empty">${ic('store')}<p>No hay negocios.</p></div>`; return; }
+    T.tienda = t; T.prods = null;
+    T.mods = modsDe(t.rubro).concat((esAdm() || jefe()) && modsDe(t.rubro).some(m => PROPIOS.includes(m)) ? ['ajustes'] : []);
+    const host = $('#w4Tb');
+    if (!modsDe(t.rubro).length) { host.innerHTML = `<div class="card pad wk4-info">${ic('store')}<div><b>${esc(t.rubro || 'Este tipo de negocio')}</b><p>Este tipo de negocio todavía no tiene tablero propio. Revisa que su rubro esté escrito como en la lista de tipos de negocio. Mientras tanto usa <a href="#/wk-caja">Caja del día</a> y <a href="#/wk-mensajes">Mensajes</a>.</p></div></div>`; return; }
+    if (!T.mods.includes(T.tab)) T.tab = T.mods[0];
+    host.innerHTML = `<nav class="wk4-tabs" role="tablist">${T.mods.map(m => `<button type="button" role="tab" data-act="w4-tab" data-v="${m}" class="${m === T.tab ? 'on' : ''}" aria-selected="${m === T.tab}">${ic(TAB_L[m][1], 'sm')} ${TAB_L[m][0]}</button>`).join('')}</nav><div id="w4Body"></div>`;
+    pintarTab();
+    T.iv = setInterval(() => { if (!$('#w4Body')) { clearInterval(T.iv); return; } if (!document.hidden && !MODAL && ['billar', 'mesas', 'habitaciones'].includes(T.tab)) pintarTab(true); }, 15000);
+  }
+  const tid = () => T.tienda.id;
+  const P = o => Object.assign({ tienda_id: tid() }, o || {});
+  async function pintarTab(silencio) {
+    const b = $('#w4Body'); if (!b) return;
+    if (!silencio) b.innerHTML = '<div class="skel" style="height:320px"></div>';
+    try { await (Object.assign({ billar: tabRecursos, mesas: tabRecursos, habitaciones: tabRecursos, cover: tabCover, apartados: tabApartados, cotizaciones: tabCots, peso: tabPeso, solicitudes: tabSols, ajustes: tabAjustes }, TABS))[T.tab](b); }
+    catch (e) { if (!silencio) b.innerHTML = errBox(e); }
+  }
+  async function productos() {
+    if (T.prods) return T.prods;
+    try { T.prods = toObjs(await call('list', { e: 'Productos', g: 0, f: { tienda_id: tid() }, q: '', s: 'nombre', d: 1, n: 300, p: 1 })).recs; } catch (e) { T.prods = []; }
+    return T.prods;
+  }
+
+  /* ---------- mesas, billares y habitaciones ---------- */
+  const valorTiempo = (r, min) => { if (!r || !r.tarifa || min <= 0) return 0; if (r.unidad === 'noche') return r.tarifa * Math.max(1, Math.ceil(min / 1440)); return Math.round(r.tarifa * Math.ceil(min / 15) / 4 / 100) * 100; };
+  const sumItems = it => (it || []).reduce((a, x) => a + x.p * x.c, 0);
+  async function tabRecursos(b) {
+    const d = await call('wk.recursos', P()); T.data = d;
+    const tipo = TIPO_REC[T.tab]; const recs = d.recursos.filter(r => r.tipo === tipo && r.activo !== 'NO');
+    const ahora = Date.now(); const off = ahora - (d.ahora || ahora);
+    const card = r => {
+      const c = r.cuenta; const min = c ? Math.max(0, Math.round((ahora - off - c.apertura_ms) / 60000)) : 0;
+      const tot = c ? valorTiempo(r, min) + sumItems(c.items) : 0; const pend = c ? c.items.filter(x => x.e === 'pedido').length : 0;
+      return `<button type="button" class="wk4-rc ${r.estado}" data-act="w4-rec" data-id="${esc(r.id)}"><span class="wk4-rcd">${mesaSvg(r.tipo, r.estado === 'libre')}</span><b>${esc(r.nombre)}</b><small>${r.detalle ? esc(r.detalle) + ' · ' : ''}${{ libre: 'Libre', ocupada: 'Ocupada', reservada: 'Reservada', aseo: 'En aseo' }[r.estado] || esc(r.estado)}</small>${c ? `<span class="wk4-rct">${ic('clock', 'sm')} ${dur(min)} · <b>${money(tot)}</b></span>${c.cliente ? `<span class="wk4-rcc">${esc(c.cliente)}</span>` : ''}${pend ? `<span class="wk4-pend">${pend} por servir</span>` : ''}` : ''}</button>`;
+    };
+    const sueltas = tipo === 'mesa' ? d.sueltas : [];
+    const libres = recs.filter(r => r.estado === 'libre').length;
+    b.innerHTML = `<div class="row between wrap" style="gap:8px;margin-bottom:12px"><div class="wk4-resumen"><b>${libres}</b> libres de ${recs.length} · <b>${recs.filter(r => r.cuenta).length}</b> con cuenta abierta</div>
+      <div class="row" style="gap:8px">${tipo === 'mesa' ? `<button class="btn" data-act="w4-suelta">${ic('bag', 'sm')} Cuenta para llevar</button>` : ''}<button class="btn ghost" data-act="w4-refrescar">${ic('refresh', 'sm')} Actualizar</button></div></div>
+      ${recs.length ? `<div class="wk4-rgrid ${tipo}">${recs.map(card).join('')}</div>` : `<div class="empty">${ic('layers')}<p>Aún no has creado ${tipo === 'habitacion' ? 'habitaciones' : 'mesas'}.</p>${jefe() || esAdm() ? `<button class="btn pri" data-act="w4-tab" data-v="ajustes">${ic('plus', 'sm')} Crearlas en Ajustes</button>` : '<p class="mut">Pídele al dueño que las cree en Ajustes.</p>'}</div>`}
+      ${sueltas.length ? `<h3 style="margin:22px 0 10px">Cuentas para llevar</h3><div class="wk4-rgrid mesa">${sueltas.map(c => `<button type="button" class="wk4-rc ocupada" data-act="w4-cta" data-id="${esc(c.id)}"><span class="wk4-rcd">${ic('bag')}</span><b>${esc(c.cliente || 'Para llevar')}</b><small>${esc(hora(c.apertura_ms))}</small><span class="wk4-rct"><b>${money(sumItems(c.items))}</b></span></button>`).join('')}</div>` : ''}`;
+  }
+  function abrirCuentaDlg(r) {
+    const box = openModal(mHead((r ? r.nombre : 'Cuenta para llevar') + ' · abrir cuenta', 'plus') + `<form class="mb stack" id="w4Ab"><div class="fld"><label for="w4Ac">Cliente o referencia (opcional)</label><input id="w4Ac" maxlength="60" placeholder="${r && r.tipo === 'habitacion' ? 'Ej: Familia Pérez' : 'Ej: Los del taller'}"></div>
+      ${r && r.tarifa ? `<p class="mut" style="margin:0">${r.unidad === 'noche' ? 'Se cobra por noche' : 'El tiempo empieza a correr al abrir'}: ${money(r.tarifa)} ${r.unidad === 'noche' ? 'la noche' : 'la hora'}.</p>` : ''}
+      <div class="ffoot"><button type="button" class="btn ghost" data-close>Cancelar</button>${r && r.estado !== 'libre' ? `<button type="button" class="btn" data-libre>${ic('check', 'sm')} Marcar libre</button>` : ''}${r && r.estado === 'libre' && r.tipo !== 'habitacion' ? `<button type="button" class="btn" data-reservar>${ic('clock', 'sm')} Reservar</button>` : ''}<button class="btn pri" type="submit">${ic('play', 'sm')} Abrir cuenta</button></div></form>`);
+    const est = (e, s) => busy(e.currentTarget, '…', async () => { try { await call('wk.recurso.estado', P({ id: r.id, estado: s })); closeModal(); pintarTab(true); } catch (err) { toast(err.message, 'err'); } });
+    const lb = $('[data-libre]', box); if (lb) lb.onclick = e => est(e, 'libre');
+    const rs = $('[data-reservar]', box); if (rs) rs.onclick = e => est(e, 'reservada');
+    $('#w4Ab', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', e.target), 'Abriendo…', async () => {
+      try { const c = (await call('wk.cuenta.abrir', P({ recurso_id: r ? r.id : '', cliente: $('#w4Ac').value.trim() }))).cuenta; closeModal(); await pintarTab(true); cuentaDlg(c.id); } catch (err) { toast(err.message, 'err'); }
+    }); };
+  }
+  async function cuentaDlg(id) {
+    const d = T.data || {}; const r = (d.recursos || []).find(x => x.cuenta && x.cuenta.id === id);
+    const c = r ? r.cuenta : (d.sueltas || []).find(x => x.id === id); if (!c) return;
+    const items = (c.items || []).map(x => Object.assign({}, x));
+    const comanda = !r || r.tipo !== 'habitacion';
+    const box = openModal(mHead((r ? r.nombre : 'Para llevar') + (c.cliente ? ' · ' + c.cliente : ''), 'file') + '<div class="mb stack" id="w4Cb"></div>', { wide: true });
+    const prods = await productos();
+    const pintar = () => {
+      const min = Math.max(0, Math.round((Date.now() - c.apertura_ms) / 60000)); const vt = valorTiempo(r, min); const st = sumItems(items);
+      $('#w4Cb', box).innerHTML = `${r && r.tarifa ? `<div class="wk4-tiempo">${ic('clock')} <div><b>${dur(min)}</b> desde las ${esc(hora(c.apertura_ms))}<small>${r.unidad === 'noche' ? 'Por noches' : 'Por hora, en bloques de 15 min'} · ${money(r.tarifa)}</small></div><b>${money(vt)}</b></div>` : ''}
+        <div class="wk4-add"><input id="w4Q" list="w4Pl" placeholder="Agregar producto del catálogo…" autocomplete="off"><datalist id="w4Pl">${prods.map(p => `<option value="${esc(p.nombre)}">${money(p.precio)}</option>`).join('')}</datalist><button type="button" class="btn" data-add>${ic('plus', 'sm')} Agregar</button><button type="button" class="btn ghost" data-otro>Otro…</button></div>
+        <ul class="wk4-items">${items.map((x, i) => `<li><span class="grow"><b>${esc(x.n)}</b><small>${money(x.p)} c/u</small></span>${comanda ? `<button type="button" class="wk4-ie ${x.e}" data-e="${i}" title="Cambiar estado">${{ pedido: 'Por servir', listo: 'Listo', servido: 'Servido' }[x.e] || 'Por servir'}</button>` : ''}<span class="qty"><button type="button" data-q="-1" data-i="${i}" aria-label="Quitar uno">${ic('minus', 'sm')}</button><b>${x.c}</b><button type="button" data-q="1" data-i="${i}" aria-label="Agregar uno">${ic('plus', 'sm')}</button></span><b class="wk4-iv">${money(x.p * x.c)}</b></li>`).join('') || '<li class="mut">Sin consumo todavía.</li>'}</ul>
+        <div class="wk4-tot"><span>${vt ? `Tiempo ${money(vt)} + consumo ${money(st)}` : 'Consumo'}</span><b>${money(vt + st)}</b></div>
+        <div class="ffoot wrap"><button type="button" class="btn ghost" data-guardar>${ic('check', 'sm')} Guardar</button>${jefe() || esAdm() ? `<button type="button" class="btn ghost danger" data-anular>${ic('xcircle', 'sm')} Anular</button>` : ''}<span class="grow"></span>${metSel('w4Met')}<button type="button" class="btn pri" data-cobrar>${ic('dollar', 'sm')} Cobrar ${money(vt + st)}</button></div>`;
+    };
+    pintar();
+    const guardar = () => call('wk.cuenta.items', P({ id: c.id, items }));
+    const agregar = (n, p) => { const i = items.findIndex(x => x.n === n && x.p === p && x.e === 'pedido'); if (i >= 0) items[i].c++; else items.push({ n, p, c: 1, e: 'pedido' }); pintar(); const qi = $('#w4Q', box); if (qi) qi.focus(); guardar().catch(e => toast(e.message, 'err'));  };
+    box.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'w4Q') { e.preventDefault(); const b = $('[data-add]', box); if (b) b.click(); } });
+    box.addEventListener('click', async e => {
+      const q = e.target.closest('[data-q]'), es = e.target.closest('[data-e]');
+      if (q) { const i = Number(q.dataset.i); items[i].c = Math.max(0, items[i].c + Number(q.dataset.q)); if (!items[i].c) items.splice(i, 1); pintar(); guardar().catch(er => toast(er.message, 'err')); }
+      if (es) { const x = items[Number(es.dataset.e)]; x.e = { pedido: 'listo', listo: 'servido', servido: 'pedido' }[x.e] || 'listo'; pintar(); guardar().catch(er => toast(er.message, 'err')); }
+      if (e.target.closest('[data-add]')) { const v = $('#w4Q', box).value.trim(); const p = prods.find(x => x.nombre === v) || prods.find(x => norm(x.nombre).includes(norm(v))); if (!v) return; if (!p) { toast('No está en el catálogo. Usa "Otro…".', 'err'); return; } agregar(p.nombre, Number(p.precio)); }
+      if (e.target.closest('[data-otro]')) { const n = await confirmDlg({ title: 'Producto o servicio', msg: 'Escribe el nombre.', ok: 'Siguiente', input: { label: 'Nombre', req: true } }); if (!n) return; const v = await confirmDlg({ title: n, msg: 'Valor unitario.', ok: 'Agregar', input: { label: 'Valor', req: true } }); if (!numIn(v)) return; agregar(n.trim().slice(0, 80), numIn(v)); }
+      if (e.target.closest('[data-guardar]')) busy(e.target.closest('button'), 'Guardando…', async () => { try { await guardar(); toast('Cuenta guardada.', 'ok'); closeModal(); pintarTab(true); } catch (er) { toast(er.message, 'err'); } });
+      if (e.target.closest('[data-anular]')) { const m = await confirmDlg({ title: 'Anular cuenta', msg: 'No pasa por caja. Queda registrada como anulada.', ok: 'Anular', danger: true, input: { label: 'Motivo', req: true } }); if (!m) return; try { await call('wk.cuenta.cerrar', P({ id: c.id, anular: true, motivo: m })); toast('Cuenta anulada.'); closeModal(); pintarTab(true); } catch (er) { toast(er.message, 'err'); } }
+      if (e.target.closest('[data-cobrar]')) busy(e.target.closest('button'), 'Cobrando…', async () => {
+        try { await guardar(); const r2 = await call('wk.cuenta.cerrar', P({ id: c.id, metodo: $('#w4Met', box).value })); closeModal(); pintarTab(true);
+          popup({ type: 'ok', title: 'Cuenta cobrada · ' + money(r2.cuenta.total), msg: (r2.cuenta.valor_tiempo ? 'Tiempo ' + dur(r2.cuenta.tiempo_min) + ' (' + money(r2.cuenta.valor_tiempo) + ') + consumo ' + money(r2.cuenta.consumo) + '. ' : '') + 'Quedó en la caja del día.', sound: 'exito' });
+        } catch (er) { if (/caja/i.test(er.message)) popup({ type: 'err', title: 'Abre la caja primero', msg: 'Para cobrar, abre la Caja del día. La cuenta sigue abierta.', action: { label: 'Ir a la caja', fn: () => { closeModal(); location.hash = '#/wk-caja'; } } }); else toast(er.message, 'err'); }
+      });
+    });
+  }
+
+  /* ---------- cover ---------- */
+  async function tabCover(b) {
+    const [d, pub] = await Promise.all([call('wk.cover.noche', P()), call('wk.tablero.pub', { tienda_id: tid() })]);
+    const precio = (pub.cfg || {}).cover_precio || 0;
+    b.innerHTML = `<div class="wk4-cvg"><section class="card pad wk4-cvc"><small>Esta noche (${esc(d.noche)})</small><b class="wk4-big">${num(d.entradas)}</b><span>entradas · ${money(d.total)}</span></section>
+      <section class="card pad stack"><h3 style="margin:0">Registrar entradas</h3>${precio ? `<p class="mut" style="margin:0">Cover: <b>${money(precio)}</b> por persona</p>` : `<div class="banner b-warn">${ic('alert')} Define el valor del cover en Ajustes.</div>`}
+        <div class="row wrap" style="gap:8px">${[1, 2, 3, 5].map(n => `<button class="btn lg ${n === 1 ? 'pri' : ''}" data-act="w4-cover" data-n="${n}" ${precio ? '' : 'disabled'}>+${n}</button>`).join('')}</div>
+        <div class="fld" style="max-width:240px"><label for="w4Met">Medio de pago</label>${metSel('w4Met')}</div><small class="mut">Cada entrada queda como venta en la Caja del día.</small></section></div>
+      ${d.registros.length ? `<h3 style="margin:20px 0 8px">Últimos registros</h3><ul class="wk4-reg">${d.registros.map(r => `<li><span>${esc(String(r.fecha).slice(11, 16))}</span><span>${r.cantidad} × · ${esc(r.metodo)}</span><b>${money(r.total)}</b><small>${esc(r.usuario)}</small></li>`).join('')}</ul>` : ''}`;
+  }
+
+  /* ---------- apartados ---------- */
+  async function tabApartados(b) {
+    const l = await call('wk.apartados', P());
+    const act = l.filter(a => a.estado === 'activo'); const otros = l.filter(a => a.estado !== 'activo').slice(0, 20);
+    const fila = a => `<div class="wk4-ap ${a.estado}"><div class="grow"><span><b>${esc(a.cliente)}</b> ${a.telefono ? `<a href="${esc(wa(a.telefono, 'Hola ' + a.cliente + ', te escribo por tu apartado: ' + a.detalle))}" target="_blank" rel="noopener" class="mut">${ic('chat', 'sm')}</a>` : ''}</span><small>${esc(a.detalle)}${a.vence ? ' · vence ' + esc(a.vence) : ''}</small>
+      <div class="wk4-bar"><span style="width:${Math.min(100, Math.round(a.abonado / a.total * 100))}%"></span></div><small>Abonado ${money(a.abonado)} de ${money(a.total)} · <b>saldo ${money(a.total - a.abonado)}</b></small></div>
+      ${a.estado === 'activo' ? `<div class="row wrap" style="gap:6px"><button class="btn sm pri" data-act="w4-abonar" data-id="${esc(a.id)}" ${a.total - a.abonado > 0 ? '' : 'disabled'}>Abonar</button><button class="btn sm" data-act="w4-apest" data-id="${esc(a.id)}" data-v="entregado">Entregar</button><button class="btn sm ghost" data-act="w4-apest" data-id="${esc(a.id)}" data-v="cancelado">Cancelar</button></div>` : `<span class="wk4-est ${a.estado === 'entregado' ? 'ok' : 'mut'}">${a.estado === 'entregado' ? 'Entregado' : 'Cancelado'}</span>`}</div>`;
+    b.innerHTML = `<div class="row between wrap" style="gap:8px;margin-bottom:12px"><div class="wk4-resumen"><b>${act.length}</b> apartados activos · saldo por cobrar <b>${money(act.reduce((s, a) => s + a.total - a.abonado, 0))}</b></div><button class="btn pri" data-act="w4-apnuevo">${ic('plus', 'sm')} Nuevo apartado</button></div>
+      ${act.length ? act.map(fila).join('') : `<div class="empty">${ic('tag')}<p>No hay apartados activos.</p></div>`}${otros.length ? `<h3 style="margin:20px 0 8px">Terminados</h3>${otros.map(fila).join('')}` : ''}`;
+    T.aps = l;
+  }
+  function apartadoNuevo() {
+    const box = openModal(mHead('Nuevo apartado', 'tag') + `<form class="mb wk-form" id="w4Apf" novalidate><div class="fld"><label for="w4Apc">Cliente</label><input id="w4Apc" maxlength="60" required></div><div class="fld"><label for="w4Apt">Teléfono</label><input id="w4Apt" inputmode="tel" maxlength="15"></div>
+      <div class="fld full"><label for="w4Apd">Qué aparta (producto, talla, color)</label><input id="w4Apd" maxlength="200" required></div><div class="fld"><label for="w4Apv">Valor total</label><input id="w4Apv" inputmode="numeric" required></div><div class="fld"><label for="w4Apa">Abono de hoy</label><input id="w4Apa" inputmode="numeric" value="0"></div>
+      <div class="fld"><label for="w4Apx">Vence</label><input id="w4Apx" type="date"></div><div class="fld"><label for="w4Met">Medio de pago del abono</label>${metSel('w4Met')}</div><div class="form-err hide full"></div><div class="ffoot full"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Guardar</button></div></form>`);
+    $('#w4Apf', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', e.target), 'Guardando…', async () => {
+      try { await call('wk.apartado.crear', P({ cliente: $('#w4Apc').value.trim(), telefono: $('#w4Apt').value, detalle: $('#w4Apd').value.trim(), total: numIn($('#w4Apv').value), abono: numIn($('#w4Apa').value), vence: $('#w4Apx').value, metodo: $('#w4Met').value })); closeModal(); toast('Apartado guardado.', 'ok'); pintarTab(); }
+      catch (err) { const fe = $('.form-err', box); fe.textContent = /caja/i.test(err.message) ? 'Para recibir el abono, primero abre la Caja del día.' : err.message; fe.classList.remove('hide'); }
+    }); };
+  }
+
+  /* ---------- cotizaciones ---------- */
+  async function tabCots(b) {
+    const l = await call('wk.cots', P()); T.cots = l;
+    const EST = { borrador: ['Borrador', 'mut'], enviada: ['Enviada', 'warn'], aceptada: ['Aceptada', 'ok'], vendida: ['Vendida', 'ok'] };
+    b.innerHTML = `<div class="row between wrap" style="gap:8px;margin-bottom:12px"><div class="wk4-resumen"><b>${l.filter(c => c.estado !== 'vendida').length}</b> cotizaciones abiertas</div><button class="btn pri" data-act="w4-cot" data-id="">${ic('plus', 'sm')} Nueva cotización</button></div>
+      ${l.length ? `<div class="card wk4-lista">${l.map(c => `<button type="button" class="wk4-conv" data-act="w4-cot" data-id="${esc(c.id)}"><span class="wk4-av">${ic('file', 'sm')}</span><div class="grow"><b>${esc(c.numero)} · ${esc(c.cliente || 'Sin nombre')}</b><small>${c.items.length} productos${c.flete ? ' · flete ' + money(c.flete) : ''} · ${esc(String(c.creado).slice(0, 10))}</small></div><div class="wk4-cr"><b>${money(c.total)}</b><span class="wk4-est ${EST[c.estado][1]}">${EST[c.estado][0]}</span></div></button>`).join('')}</div>` : `<div class="empty">${ic('file')}<p>Aún no hay cotizaciones.</p></div>`}`;
+  }
+  async function cotDlg(id, base) {
+    const c = id ? (T.cots || []).find(x => x.id === id) : Object.assign({ items: [], flete: 0, estado: 'borrador' }, base || {});
+    const items = (c.items || []).map(x => Object.assign({}, x)); const prods = await productos();
+    const vendida = c.estado === 'vendida';
+    const box = openModal(mHead(c.numero ? c.numero : 'Nueva cotización', 'file') + '<div class="mb stack" id="w4Cq"></div>', { wide: true });
+    const leer = () => { const v = (id, k) => { const e = $('#' + id, box); if (e) c[k] = e.value; }; v('w4Kc', 'cliente'); v('w4Kt', 'telefono'); v('w4Kd', 'direccion'); const f = $('#w4Kf', box); if (f) c.flete = numIn(f.value); };
+    const tot = () => sumItems(items) + numIn(c.flete);
+    const pintar = () => {
+      $('#w4Cq', box).innerHTML = `<div class="wk-form" style="padding:0"><div class="fld"><label for="w4Kc">Cliente</label><input id="w4Kc" maxlength="60" value="${esc(c.cliente || '')}" ${vendida ? 'disabled' : ''}></div><div class="fld"><label for="w4Kt">Teléfono</label><input id="w4Kt" inputmode="tel" value="${esc(c.telefono || '')}" ${vendida ? 'disabled' : ''}></div><div class="fld full"><label for="w4Kd">Dirección de entrega</label><input id="w4Kd" maxlength="160" value="${esc(c.direccion || '')}" ${vendida ? 'disabled' : ''}></div></div>
+        ${vendida ? '' : `<div class="wk4-add"><input id="w4Q" list="w4Pl" placeholder="Producto del catálogo…" autocomplete="off"><datalist id="w4Pl">${prods.map(p => `<option value="${esc(p.nombre)}">${money(p.precio)}</option>`).join('')}</datalist><button type="button" class="btn" data-add>${ic('plus', 'sm')} Agregar</button><button type="button" class="btn ghost" data-otro>Otro…</button></div>`}
+        <ul class="wk4-items">${items.map((x, i) => `<li><span class="grow"><b>${esc(x.n)}</b>${vendida ? `<small>${money(x.p)} c/u</small>` : `<input class="wk4-ip" data-p="${i}" inputmode="numeric" value="${x.p}" aria-label="Precio de ${esc(x.n)}">`}</span><span class="qty">${vendida ? '' : `<button type="button" data-q="-1" data-i="${i}" aria-label="Quitar uno">${ic('minus', 'sm')}</button>`}<b>${x.c}</b>${vendida ? '' : `<button type="button" data-q="1" data-i="${i}" aria-label="Agregar uno">${ic('plus', 'sm')}</button>`}</span><b class="wk4-iv" data-iv="${i}">${money(x.p * x.c)}</b></li>`).join('') || '<li class="mut">Agrega productos.</li>'}</ul>
+        <div class="fld" style="max-width:240px"><label for="w4Kf">Flete</label><input id="w4Kf" inputmode="numeric" value="${numIn(c.flete) || ''}" ${vendida ? 'disabled' : ''}></div>
+        <div class="wk4-tot"><span>Total con flete</span><b>${money(tot())}</b></div>
+        <div class="ffoot wrap"><a class="btn ghost ${c.telefono ? '' : 'hide'}" target="_blank" rel="noopener" data-wa>${ic('chat', 'sm')} Enviar por WhatsApp</a><span class="grow"></span>${vendida ? '<span class="wk4-est ok">Vendida</span>' : `<button type="button" class="btn" data-guardar>${ic('check', 'sm')} Guardar</button>${c.id ? `${metSel('w4Met')}<button type="button" class="btn pri" data-vender>${ic('dollar', 'sm')} Vender</button>` : ''}`}</div>`;
+      refrescar();
+    };
+    const refrescar = () => {
+      items.forEach((x, i) => { const e = $(`[data-iv="${i}"]`, box); if (e) e.textContent = money(x.p * x.c); });
+      const tt = $('.wk4-tot b', box); if (tt) tt.textContent = money(tot());
+      const w = $('[data-wa]', box); if (!w) return; w.classList.toggle('hide', !String(c.telefono || '').replace(/\D/g, '')); w.href = wa(c.telefono, `${T.tienda.nombre || ''} · ${c.numero || 'Cotización'}\n${items.map(x => `• ${x.c} × ${x.n}: ${money(x.p * x.c)}`).join('\n')}${numIn(c.flete) ? `\nFlete: ${money(c.flete)}` : ''}\nTotal: ${money(tot())}\nPrecios sujetos a disponibilidad.`);
+    };
+    pintar();
+    box.addEventListener('input', e => { const i = e.target.dataset.p; if (i != null) items[Number(i)].p = numIn(e.target.value); if (i != null || /^w4K/.test(e.target.id)) { leer(); refrescar(); } });
+    const guardar = async est => { leer(); const r = await call('wk.cot.guardar', P({ id: c.id || '', cliente: c.cliente, telefono: c.telefono, direccion: c.direccion, items, flete: c.flete, estado: est || (c.estado === 'aceptada' ? 'aceptada' : 'enviada'), solicitud_id: c.solicitud_id || '' })); Object.assign(c, r.cotizacion); const h = $('.mh h3', box); if (h && c.numero) h.textContent = c.numero + (c.cliente ? ' · ' + c.cliente : ''); return r; };
+    box.addEventListener('click', async e => {
+      const q = e.target.closest('[data-q]');
+      if (q) { leer(); const i = Number(q.dataset.i); items[i].c = Math.max(0, items[i].c + Number(q.dataset.q)); if (!items[i].c) items.splice(i, 1); pintar(); }
+      if (e.target.closest('[data-add]')) { leer(); const v = $('#w4Q', box).value.trim(); const p = prods.find(x => x.nombre === v) || prods.find(x => v && norm(x.nombre).includes(norm(v))); if (!p) { toast('No está en el catálogo. Usa "Otro…".', 'err'); return; } const i = items.findIndex(x => x.n === p.nombre); if (i >= 0) items[i].c++; else items.push({ n: p.nombre, p: Number(p.precio), c: 1 }); pintar(); }
+      if (e.target.closest('[data-otro]')) { leer(); const n = await confirmDlg({ title: 'Producto', msg: 'Nombre del producto.', ok: 'Siguiente', input: { label: 'Nombre', req: true } }); if (!n) return; const v = await confirmDlg({ title: n, msg: 'Valor unitario.', ok: 'Agregar', input: { label: 'Valor', req: true } }); items.push({ n: n.trim().slice(0, 80), p: numIn(v), c: 1 }); pintar(); }
+      if (e.target.closest('[data-guardar]')) busy(e.target.closest('button'), 'Guardando…', async () => { try { await guardar(); toast('Cotización ' + c.numero + ' guardada.', 'ok'); pintar(); pintarTab(true); } catch (er) { toast(er.message, 'err'); } });
+      if (e.target.closest('[data-vender]')) busy(e.target.closest('button'), 'Vendiendo…', async () => { try { await guardar('aceptada'); await call('wk.cot.vender', P({ id: c.id, metodo: $('#w4Met', box).value })); closeModal(); toast('Venta registrada en la caja.', 'ok'); pintarTab(); } catch (er) { toast(/caja/i.test(er.message) ? 'Primero abre la Caja del día.' : er.message, 'err'); } });
+    });
+  }
+
+  /* ---------- venta por peso ---------- */
+  async function tabPeso(b) {
+    const prods = await productos();
+    b.innerHTML = `<section class="card pad wk4-peso"><div class="wk-form" style="padding:0"><div class="fld full"><label for="w4Pp">Producto</label><select id="w4Pp"><option value="">Escribe el precio por kilo abajo</option>${prods.map(p => `<option value="${esc(p.id)}">${esc(p.nombre)} · ${money(p.precio)} el kilo</option>`).join('')}</select><small class="hint">En el catálogo, pon el precio de cada carne por kilo.</small></div>
+      <div class="fld"><label for="w4Pk">Precio por kilo</label><input id="w4Pk" inputmode="numeric" placeholder="Ej: 28000"></div><div class="fld"><label for="w4Pg">Peso en gramos</label><input id="w4Pg" inputmode="numeric" placeholder="Ej: 1250"></div></div>
+      <div class="row wrap" style="gap:8px">${[250, 500, 750, 1000, 1500, 2000].map(g => `<button type="button" class="chip" data-g="${g}">${g < 1000 ? g + ' g' : (g / 1000).toString().replace('.', ',') + ' kg'}</button>`).join('')}</div>
+      <div class="wk4-tot"><span id="w4Pd">—</span><b id="w4Pt">${money(0)}</b></div>
+      <div class="ffoot"><span class="grow"></span>${metSel('w4Met')}<button class="btn pri" id="w4Pc" disabled>${ic('dollar', 'sm')} Cobrar</button></div></section>`;
+    const calc = () => { const k = numIn($('#w4Pk').value); const g = numIn($('#w4Pg').value); const t = Math.round(k * g / 1000 / 50) * 50; $('#w4Pt').textContent = money(t); $('#w4Pd').textContent = g ? (g / 1000).toLocaleString('es-CO', { maximumFractionDigits: 3 }) + ' kg × ' + money(k) : '—'; $('#w4Pc').disabled = !t; return t; };
+    $('#w4Pp').onchange = e => { const p = prods.find(x => x.id === e.target.value); if (p) $('#w4Pk').value = Number(p.precio); calc(); };
+    b.addEventListener('input', calc);
+    b.addEventListener('click', e => { const g = e.target.closest('[data-g]'); if (g) { $('#w4Pg').value = g.dataset.g; calc(); } });
+    $('#w4Pc').onclick = e => busy(e.currentTarget, 'Cobrando…', async () => {
+      const t = calc(); const p = prods.find(x => x.id === $('#w4Pp').value); const g = numIn($('#w4Pg').value);
+      try { await call('wk.caja.mov', P({ tipo: 'venta', metodo: $('#w4Met').value, valor: t, concepto: (p ? p.nombre : 'Venta por peso') + ' · ' + (g / 1000).toLocaleString('es-CO', { maximumFractionDigits: 3 }) + ' kg' })); toast('Venta de ' + money(t) + ' registrada en la caja.', 'ok'); $('#w4Pg').value = ''; calc(); }
+      catch (er) { toast(/caja/i.test(er.message) ? 'Primero abre la Caja del día.' : er.message, 'err'); }
+    });
+  }
+
+  /* ---------- solicitudes del negocio ---------- */
+  async function tabSols(b) {
+    const l = await call('wk.sol.tienda', P()); T.sols = l;
+    const orden = { pendiente: 0, confirmada: 1 }; l.sort((a, c) => (orden[a.estado] ?? 2) - (orden[c.estado] ?? 2));
+    b.innerHTML = l.length ? `<div class="card wk4-lista">${l.map(s => `<div class="wk4-sol"><div class="grow"><b>${esc(SOL_L[s.tipo] || s.tipo)} · ${esc(s.cliente_nombre)}</b><small>${[s.fecha, s.hora, s.personas ? s.personas + ' personas' : '', s.noches ? s.noches + ' noches' : ''].filter(Boolean).map(esc).join(' · ')}</small>${s.detalle ? `<p>${esc(s.detalle)}</p>` : ''}${s.direccion ? `<small>${ic('pin', 'sm')} ${esc(s.direccion)}</small>` : ''}${s.respuesta ? `<small class="mut">Respuesta: ${esc(s.respuesta)}</small>` : ''}</div>
+      <div class="wk4-cr">${estBadge(s.estado)}<div class="row wrap" style="gap:6px;justify-content:flex-end"><a class="btn sm" href="${chatUrl('S:' + s.id, 'tienda')}">${ic('chat', 'sm')} Chat</a>${s.estado === 'pendiente' ? `<button class="btn sm pri" data-act="w4-resp" data-id="${esc(s.id)}">Responder</button>` : ''}${s.tipo === 'cotizacion' && T.mods.includes('cotizaciones') && s.estado === 'pendiente' ? `<button class="btn sm" data-act="w4-sol2cot" data-id="${esc(s.id)}">Armar cotización</button>` : ''}</div></div></div>`).join('')}</div>`
+      : `<div class="empty">${ic('inbox')}<p>No hay solicitudes.</p>${jefe() || esAdm() ? '<p class="mut">Activa en Ajustes las reservas, cotizaciones o apartados por la app.</p>' : ''}</div>`;
+  }
+  function responderDlg(id) {
+    const s = (T.sols || []).find(x => x.id === id); if (!s) return;
+    const box = openModal(mHead('Responder · ' + (SOL_L[s.tipo] || ''), 'inbox') + `<form class="mb stack" id="w4Rf"><div class="seg" role="radiogroup">${[['confirmada', 'Confirmar'], ['rechazada', 'No se puede'], ['atendida', 'Atendida']].map((x, i) => `<label><input type="radio" name="est" value="${x[0]}" ${i ? '' : 'checked'}><span>${x[1]}</span></label>`).join('')}</div>
+      <div class="fld"><label for="w4Rv">Valor (opcional)</label><input id="w4Rv" inputmode="numeric"></div><div class="fld"><label for="w4Rr">Mensaje para el cliente</label><textarea id="w4Rr" rows="3" maxlength="400" placeholder="Ej: Le guardamos la mesa 4 hasta las 9 p. m."></textarea></div>
+      <div class="form-err hide"></div><div class="ffoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Enviar respuesta</button></div></form>`);
+    $('#w4Rf', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', e.target), 'Enviando…', async () => {
+      try { await call('wk.sol.responder', P({ id, estado: $('[name=est]:checked', box).value, valor: numIn($('#w4Rv').value), respuesta: $('#w4Rr').value.trim() })); closeModal(); toast('Respuesta enviada por el chat.', 'ok'); pintarTab(); }
+      catch (err) { const fe = $('.form-err', box); fe.textContent = err.message; fe.classList.remove('hide'); }
+    }); };
+  }
+
+  /* ---------- ajustes del tablero ---------- */
+  async function tabAjustes(b) {
+    const d = await call('wk.recursos', P()); const c = d.cfg || {}; const mods = modsDe(T.tienda.rubro);
+    const tipo = mods.includes('billar') ? 'billar' : mods.includes('habitaciones') ? 'habitacion' : mods.includes('mesas') ? 'mesa' : '';
+    const recs = d.recursos.filter(r => r.activo !== 'NO');
+    const sw = (k, txt, on) => `<label class="sw"><input type="checkbox" data-k="${k}" ${on ? 'checked' : ''}><span></span><em>${txt}</em></label>`;
+    b.innerHTML = `${tipo ? `<section class="card pad"><div class="row between"><h3 style="margin:0">${tipo === 'habitacion' ? 'Habitaciones' : tipo === 'billar' ? 'Mesas de billar' : 'Mesas'}</h3><button class="btn sm pri" data-act="w4-recnuevo" data-tipo="${tipo}">${ic('plus', 'sm')} Agregar</button></div>
+        <div class="wk4-rlist">${recs.map(r => `<div class="wk4-rrow"><b>${esc(r.nombre)}</b><span class="mut">${esc(r.detalle || '')}</span><span>${r.tarifa ? money(r.tarifa) + (r.unidad === 'noche' ? ' / noche' : ' / hora') : '—'}</span><button class="btn sm ghost" data-act="w4-recedit" data-id="${esc(r.id)}">${ic('edit', 'sm')}</button><button class="btn sm ghost" data-act="w4-recdel" data-id="${esc(r.id)}" aria-label="Quitar">${ic('trash', 'sm')}</button></div>`).join('') || '<p class="mut">Aún no hay. Agrégalas con su nombre o número' + (tipo === 'mesa' ? '.' : ' y su tarifa.') + '</p>'}</div></section>` : ''}
+      <section class="card pad stack" style="margin-top:14px" id="w4Cfg"><h3 style="margin:0">Lo que ven los clientes</h3>
+        ${mods.includes('cover') ? `<div class="wk-form" style="padding:0"><div class="fld"><label for="w4Cp">Valor del cover</label><input id="w4Cp" inputmode="numeric" value="${c.cover_precio || ''}"></div><div class="fld"><label for="w4Cn">Nota del cover</label><input id="w4Cn" maxlength="120" value="${esc(c.cover_nota || '')}" placeholder="Ej: Incluye una cerveza"></div></div>` : ''}
+        ${tipo === 'billar' ? `<div class="wk-form" style="padding:0"><div class="fld"><label for="w4Cb">Cómo cobras</label><select id="w4Cb"><option value="hora">Por tiempo (hora)</option><option value="chico" ${c.cobro_billar === 'chico' ? 'selected' : ''}>Por chico</option></select></div><div class="fld"><label for="w4Cc">Valor del chico</label><input id="w4Cc" inputmode="numeric" value="${c.precio_chico || ''}"></div></div>` : ''}
+        ${mods.includes('mesas') && !mods.includes('cover') ? sw('paso_a_paso', 'Mostrar "Arma tu pedido paso a paso"', c.paso_a_paso !== false) : ''}
+        ${tipo === 'mesa' ? sw('mesas_publicas', 'Mostrar a los clientes cuántas mesas hay libres', c.mesas_publicas) : ''}
+        ${mods.includes('solicitudes') && (tipo === 'mesa' || tipo === 'billar') ? sw('reservas_mesa', 'Recibir reservas de mesa por la app', c.reservas_mesa) : ''}
+        ${tipo === 'habitacion' ? sw('reservas_habitacion', 'Recibir solicitudes de reserva por la app', c.reservas_habitacion) : ''}
+        ${mods.includes('cotizaciones') ? sw('cotizaciones', 'Recibir pedidos de cotización con flete por la app', c.cotizaciones) : ''}
+        ${mods.includes('apartados') ? sw('apartados', 'Recibir pedidos de apartado por la app', c.apartados) : ''}
+        <div class="fld"><label for="w4Np">Nota para los clientes (opcional)</label><input id="w4Np" maxlength="160" value="${esc(c.nota_publica || '')}" placeholder="Ej: Mesas niveladas y paños nuevos"></div>
+        <div><button class="btn pri" data-act="w4-cfg">${ic('check', 'sm')} Guardar</button></div></section>`;
+    T.data = d; T.cfg = c;
+  }
+  function recursoDlg(r, tipo) {
+    tipo = r ? r.tipo : tipo;
+    const box = openModal(mHead(r ? 'Editar ' + r.nombre : 'Agregar ' + (tipo === 'habitacion' ? 'habitación' : 'mesa'), 'layers') + `<form class="mb wk-form" id="w4Rc" novalidate><div class="fld"><label for="w4Rn">${tipo === 'habitacion' ? 'Número o nombre' : 'Nombre o número'}</label><input id="w4Rn" maxlength="40" value="${esc(r ? r.nombre : '')}" placeholder="${tipo === 'habitacion' ? 'Ej: 101' : 'Ej: Mesa 1'}" required></div>
+      <div class="fld"><label for="w4Rd">${tipo === 'billar' ? 'Juego' : tipo === 'habitacion' ? 'Tipo de habitación' : 'Detalle (opcional)'}</label><input id="w4Rd" maxlength="60" value="${esc(r ? r.detalle : '')}" placeholder="${tipo === 'billar' ? 'Ej: Pool o Carambola' : tipo === 'habitacion' ? 'Ej: Doble con aire' : 'Ej: Terraza'}"></div>
+      ${tipo !== 'mesa' ? `<div class="fld"><label for="w4Rt">Tarifa ${tipo === 'habitacion' ? 'por noche' : 'por hora'}</label><input id="w4Rt" inputmode="numeric" value="${r && r.tarifa ? r.tarifa : ''}"></div>` : ''}
+      <div class="form-err hide full"></div><div class="ffoot full"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Guardar</button></div></form>`);
+    $('#w4Rc', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', e.target), 'Guardando…', async () => {
+      try { await call('wk.recurso.set', P({ id: r ? r.id : '', tipo, nombre: $('#w4Rn').value.trim(), detalle: $('#w4Rd').value.trim(), tarifa: numIn(($('#w4Rt') || {}).value) })); closeModal(); toast('Guardado.', 'ok'); pintarTab(); }
+      catch (err) { const fe = $('.form-err', box); fe.textContent = err.message; fe.classList.remove('hide'); }
+    }); };
+  }
+
+  /* ---------- mis solicitudes (cliente) ---------- */
+  async function vMisSolicitudes(main) {
+    if (!S.user) { openAuth('login'); location.hash = '#/'; return; }
+    main.innerHTML = pageH('inbox', 'Mis solicitudes') + '<div class="skel" style="height:260px"></div>';
+    let l; try { l = await call('wk.sol.mias', {}); } catch (e) { $('.skel', main).outerHTML = errBox(e); return; }
+    $('.skel', main).outerHTML = l.length ? `<div class="card wk4-lista">${l.map(s => `<div class="wk4-sol"><div class="grow"><b>${esc(SOL_L[s.tipo] || s.tipo)} · <a href="#/t/${esc(s.tienda_id)}">${esc(s.tienda_nombre || 'Negocio')}</a></b><small>${[s.fecha, s.hora, s.personas ? s.personas + ' personas' : '', s.noches ? s.noches + ' noches' : ''].filter(Boolean).map(esc).join(' · ')}</small>${s.detalle ? `<p>${esc(s.detalle)}</p>` : ''}${s.respuesta ? `<small><b>Respuesta:</b> ${esc(s.respuesta)}${s.valor ? ' · ' + money(s.valor) : ''}</small>` : ''}</div>
+      <div class="wk4-cr">${estBadge(s.estado)}<div class="row wrap" style="gap:6px;justify-content:flex-end"><a class="btn sm" href="${chatUrl('S:' + s.id, 'tienda')}">${ic('chat', 'sm')} Chat</a>${['pendiente', 'confirmada'].includes(s.estado) ? `<button class="btn sm ghost" data-act="w4-solcancel" data-id="${esc(s.id)}">Cancelar</button>` : ''}</div></div></div>`).join('')}</div>`
+      : `<div class="empty">${ic('inbox')}<p>Aún no has hecho reservas, cotizaciones ni apartados.</p><a class="btn" href="#/tiendas">Ver negocios</a></div>`;
+  }
+
+  /* ---------- menú, rutas y acciones ---------- */
+  const _navItems4 = navItems;
+  navItems = function () {
+    const items = _navItems4(); const r = role(); if (!S.user) return items;
+    const extra = [['wk-mensajes', 'chat', 'Mensajes']];
+    if (r === 'vendedor' || r === 'admin' || r === 'gestor') extra.unshift(['wk-tablero', 'layers', 'Tablero del negocio']);
+    if (r === 'cliente') extra.push(['wk-solicitudes', 'inbox', 'Mis solicitudes']);
+    const out = items.slice(); const tab = extra[0][0] === 'wk-tablero' ? extra.shift() : null;
+    if (tab) { const p = out.findIndex(x => x[0] === 'pedidos'); out.splice(p < 0 ? 0 : p + 1, 0, tab); }
+    const i = out.findIndex(x => x[0] === '-'); const at = i < 0 ? out.length : i;
+    return out.slice(0, at).concat(extra, out.slice(at));
+  };
+  ROUTES.push([/^wk-mensajes$/, vMensajes], [/^wk-chat\/([^/]+)\/(tienda|domi)$/, vChat], [/^wk-tablero$/, vTablero], [/^wk-solicitudes$/, vMisSolicitudes]);
+  window.addEventListener('hashchange', () => { if (!/^#\/wk-chat\//.test(location.hash)) V4.cv = null; setTimeout(pintarContador, 50); });
+
+  Object.assign(ACTS, {
+    'w4-verped': el => openPedido(el.dataset.id),
+    'w4-rapida': el => { const ta = $('#w4T'); if (ta) { ta.value = el.textContent; ta.focus(); } },
+    'w4-reportar': async el => { const m = await confirmDlg({ title: 'Reportar mensaje', msg: 'La administración revisará este mensaje.', ok: 'Reportar', danger: true, input: { label: 'Motivo', req: true } }); if (!m) return; try { await call('wk.chat.reportar', { id: el.dataset.id, motivo: m }); toast('Mensaje reportado. Gracias.', 'ok'); el.replaceWith('Reportado'); } catch (e) { toast(e.message, 'err'); } },
+    'w4-paso': el => pasoAPaso(el.dataset.t),
+    'w4-sol': el => formSolicitud(el.dataset.tipo, el.dataset.t, el.dataset.n),
+    'w4-solcancel': async el => { if (!(await confirmDlg({ title: 'Cancelar solicitud', msg: 'El negocio verá que la cancelaste.', ok: 'Cancelar solicitud', danger: true }))) return; try { await call('wk.sol.cancelar', { id: el.dataset.id }); toast('Solicitud cancelada.'); vMisSolicitudes($('#main')); } catch (e) { toast(e.message, 'err'); } },
+    'w4-tab': el => { T.tab = el.dataset.v; $$('.wk4-tabs button').forEach(b => { b.classList.toggle('on', b.dataset.v === T.tab); b.setAttribute('aria-selected', b.dataset.v === T.tab); }); pintarTab(); },
+    'w4-refrescar': () => pintarTab(),
+    'w4-rec': el => { const r = (T.data.recursos || []).find(x => x.id === el.dataset.id); if (!r) return; if (r.cuenta) cuentaDlg(r.cuenta.id); else abrirCuentaDlg(r); },
+    'w4-cta': el => cuentaDlg(el.dataset.id),
+    'w4-suelta': () => abrirCuentaDlg(null),
+    'w4-cover': el => busy(el, '…', async () => { try { await call('wk.cover.registrar', P({ cantidad: Number(el.dataset.n), metodo: $('#w4Met').value })); toast('+' + el.dataset.n + ' entrada' + (el.dataset.n === '1' ? '' : 's') + ' registrada' + (el.dataset.n === '1' ? '' : 's') + '.', 'ok'); pintarTab(true); } catch (e) { toast(/caja/i.test(e.message) ? 'Primero abre la Caja del día.' : e.message, 'err'); } }),
+    'w4-apnuevo': () => apartadoNuevo(),
+    'w4-abonar': async el => { const a = (T.aps || []).find(x => x.id === el.dataset.id); const v = await confirmDlg({ title: 'Abono · ' + a.cliente, msg: 'Saldo: ' + money(a.total - a.abonado) + '. Queda en la Caja del día como ingreso en efectivo; si fue por otro medio, regístralo en la caja.', ok: 'Registrar abono', input: { label: 'Valor', req: true } }); if (!v) return; try { const r = await call('wk.apartado.abonar', P({ id: a.id, valor: numIn(v), metodo: 'Efectivo' })); toast('Abono registrado. Saldo ' + money(r.saldo) + '.', 'ok'); pintarTab(true); } catch (e) { toast(/caja/i.test(e.message) ? 'Primero abre la Caja del día.' : e.message, 'err'); } },
+    'w4-apest': async el => { const v = el.dataset.v; if (!(await confirmDlg({ title: v === 'entregado' ? 'Entregar apartado' : 'Cancelar apartado', msg: v === 'entregado' ? 'Confirma que el cliente se lleva el producto.' : 'Lo abonado no se devuelve solo: arréglalo con el cliente y regístralo en la caja.', ok: v === 'entregado' ? 'Entregar' : 'Cancelar apartado', danger: v !== 'entregado' }))) return; try { await call('wk.apartado.estado', P({ id: el.dataset.id, estado: v })); pintarTab(true); } catch (e) { toast(e.message, 'err'); } },
+    'w4-cot': el => cotDlg(el.dataset.id),
+    'w4-resp': el => responderDlg(el.dataset.id),
+    'w4-sol2cot': el => { const s = (T.sols || []).find(x => x.id === el.dataset.id); T.tab = 'cotizaciones'; $$('.wk4-tabs button').forEach(b => b.classList.toggle('on', b.dataset.v === 'cotizaciones')); pintarTab().then(() => cotDlg('', { cliente: s.cliente_nombre, telefono: s.telefono, direccion: s.direccion, solicitud_id: s.id, items: [] })); },
+    'w4-recnuevo': el => recursoDlg(null, el.dataset.tipo),
+    'w4-recedit': el => recursoDlg((T.data.recursos || []).find(x => x.id === el.dataset.id)),
+    'w4-recdel': async el => { if (!(await confirmDlg({ title: 'Quitar', msg: 'Deja de aparecer en el tablero. El historial se conserva.', ok: 'Quitar', danger: true }))) return; try { await call('wk.recurso.borrar', P({ id: el.dataset.id })); pintarTab(); } catch (e) { toast(e.message, 'err'); } },
+    'w4-cfg': el => busy(el, 'Guardando…', async () => {
+      const c = Object.assign({}, T.cfg || {}); $$('#w4Cfg [data-k]').forEach(x => { c[x.dataset.k] = x.checked; });
+      const v = id => ($('#' + id) || {}).value; if ($('#w4Cp')) c.cover_precio = numIn(v('w4Cp')); if ($('#w4Cn')) c.cover_nota = v('w4Cn'); if ($('#w4Cb')) c.cobro_billar = v('w4Cb'); if ($('#w4Cc')) c.precio_chico = numIn(v('w4Cc')); c.nota_publica = v('w4Np') || '';
+      try { await call('wk.tablero.cfg.set', P({ cfg: c })); T.cfg = c; toast('Ajustes guardados. Los clientes los ven en máximo 20 segundos.', 'ok'); } catch (e) { toast(e.message, 'err'); }
+    })
+  });
+
+  window.WK_V4 = {
+    revisarChat, modsDe, chatUrl, version: '4.1.0',
+    /** Otro módulo agrega una pestaña al tablero: clave, nombre, ícono, función que pinta y tipos de negocio. */
+    pestana(clave, nombre, icono, fn, rubros, alFinal) { TAB_L[clave] = [nombre, icono]; TABS[clave] = fn; const D = alFinal ? EXTRA_FIN : EXTRA; rubros.forEach(r => { const k = norm(r); D[k] = (D[k] || []).concat(clave); }); },
+    tablero: () => T, P, productos, metSel, numIn, norm, errBox, pintarTab, hora
+  };
+})();
+
+/* =====================================================================
+ * LA WUAKA · MÓDULO V5 · PUNTO DE VENTA E INVENTARIO (app)
+ * 1. Punto de venta en el Tablero del negocio: lector USB o Bluetooth, cámara
+ *    (código de barras y QR) o búsqueda por nombre; cambio, medio de pago,
+ *    recibo para imprimir y ventas del día.
+ * 2. Inventario: existencias, mínimos, entradas, conteos, historial,
+ *    tallas y colores, lote y vencimiento, fórmula médica y etiquetas QR.
+ * 3. En la ficha del producto: tallas y colores que hay en la tienda.
+ * Usa las acciones "wk." de servidor/WuakaV5.gs. Powered by AXERVUS CTeI
+ * ===================================================================== */
+(() => {
+  'use strict';
+  const W = window.WK_V4; if (!W) return;
+  const { P, metSel, numIn, norm, errBox } = W;
+  const T = () => W.tablero();
+  const POS = { carrito: [], inv: null, cat: null, tid: '', filtro: '' };
+  const esFarma = () => norm(T().tienda.rubro) === 'farmacia';
+  const conTallas = () => norm(T().tienda.rubro) === 'almacen';
+  const conVence = () => ['farmacia', 'comercio'].includes(norm(T().tienda.rubro));
+  const manda = () => esAdm() || jefe();
+  const fechaCorta = f => f ? f.split('-').reverse().join('/') : '';
+
+  async function cargar(forzar) {
+    const tid = T().tienda.id;
+    if (!forzar && POS.inv && POS.tid === tid) return;
+    if (POS.tid !== tid) POS.carrito = [];
+    const [inv, cat] = await Promise.all([call('wk.inv.list', P()), W.productos()]);
+    POS.inv = inv; POS.cat = cat; POS.tid = tid;
+  }
+  const prodDe = id => (POS.cat || []).find(p => p.id === id) || {};
+  const precioDe = x => Number(x.precio) || Number(prodDe(x.producto_id).precio) || 0;
+  const etiqueta = x => x.nombre + (x.variante ? ' · ' + x.variante : '') + (x.lote ? ' · lote ' + x.lote : '');
+  /** Lo que se puede vender: inventario sin vencer + catálogo sin inventario. */
+  function opciones() {
+    const inv = (POS.inv.items || []).filter(x => !x.vencido);
+    const conInv = new Set((POS.inv.items || []).map(x => x.producto_id));
+    const lotes = {}; inv.forEach(x => { if (!x.variante) (lotes[x.producto_id] = lotes[x.producto_id] || []).push(x); });
+    const out = [];
+    Object.keys(lotes).forEach(pid => { const l = lotes[pid]; out.push({ clave: 'p:' + pid, producto_id: pid, n: l[0].nombre, v: '', p: precioDe(l[0]), rx: l.some(x => x.formula), max: l.reduce((s, x) => s + x.stock, 0), codigo: l[0].codigo }); });
+    inv.filter(x => x.variante).forEach(x => out.push({ clave: 'i:' + x.id, inv_id: x.id, producto_id: x.producto_id, n: x.nombre, v: x.variante, p: precioDe(x), rx: x.formula, max: x.stock, codigo: x.codigo }));
+    (POS.cat || []).filter(p => !conInv.has(p.id)).forEach(p => out.push({ clave: 'p:' + p.id, producto_id: p.id, n: p.nombre, v: '', p: Number(p.precio) || 0, rx: false, max: 9999, libre: true }));
+    return out;
+  }
+  const textoOp = o => o.n + (o.v ? ' · ' + o.v : '');
+
+  /* =====================================================================
+   * 1. PUNTO DE VENTA
+   * ===================================================================== */
+  async function tabPos(b) {
+    await cargar();
+    const ops = opciones();
+    b.innerHTML = `<div class="wk5-pos">
+      <section class="card pad wk5-izq">
+        <form class="wk5-buscar" id="w5Bf" autocomplete="off"><label class="sr" for="w5Q">Código o nombre del producto</label>${ic('scan')}<input id="w5Q" list="w5Dl" placeholder="Escanea o escribe el código o el nombre" enterkeyhint="search"><button type="button" class="btn" data-act="w5-cam">${ic('camera', 'sm')} Cámara</button></form>
+        <datalist id="w5Dl">${ops.map(o => `<option value="${esc(textoOp(o))}">${money(o.p)}${o.rx ? ' · con fórmula' : ''}</option>`).join('')}</datalist>
+        <p class="mut wk5-tip">${ic('scan', 'sm')} Con un lector USB o Bluetooth, deja el cursor en esta casilla y escanea: el producto entra solo.</p>
+        <ul class="wk5-cart" id="w5Cart"></ul>
+      </section>
+      <section class="card pad wk5-der" id="w5Pago"></section>
+    </div>
+    <section class="card pad wk5-hoy" id="w5Hoy"><div class="skel" style="height:90px"></div></section>`;
+    pintarCarrito(); hoy();
+    const q = $('#w5Q'); setTimeout(() => q.focus(), 50);
+    $('#w5Bf').onsubmit = e => { e.preventDefault(); const v = q.value.trim(); q.value = ''; if (v) buscarYAgregar(v); };
+    q.addEventListener('change', () => { const o = opciones().find(x => textoOp(x) === q.value); if (o) { q.value = ''; agregar(o); } });
+  }
+  async function buscarYAgregar(v) {
+    const ops = opciones();
+    let o = ops.find(x => textoOp(x) === v) || ops.find(x => x.codigo && x.codigo === v);
+    if (!o) {
+      try {
+        const r = await call('wk.inv.buscar', P({ q: v }));
+        const its = (r.items || []).filter(x => !x.vencido);
+        if (its.length) { const x = its[0]; o = x.variante ? ops.find(y => y.inv_id === x.id) : ops.find(y => y.clave === 'p:' + x.producto_id); }
+        else if ((r.items || []).length) { toast('Ese producto está vencido. No se puede vender.', 'err'); sonar('aviso'); return; }
+      } catch (e) { toast(e.message, 'err'); return; }
+    }
+    if (!o) { const n = norm(v); const m = ops.filter(x => norm(textoOp(x)).includes(n)); if (m.length === 1) o = m[0]; else if (m.length > 1) return elegir(m); }
+    if (!o) {
+      const venc = (POS.inv.items || []).find(x => x.vencido && norm(x.nombre).includes(norm(v)));
+      toast(venc ? `«${venc.nombre}» está vencido. No se puede vender.` : `No encontré «${v}» en el inventario ni en el catálogo.`, 'err'); sonar('aviso'); return;
+    }
+    agregar(o);
+  }
+  function elegir(lista) {
+    const box = openModal(mHead('¿Cuál producto?', 'bag') + `<div class="mb"><div class="wk4-lista card">${lista.slice(0, 20).map((o, i) => `<button type="button" class="wk4-conv" data-i="${i}"><div class="grow"><b>${esc(textoOp(o))}</b><small>${money(o.p)}${o.rx ? ' · con fórmula' : ''}</small></div></button>`).join('')}</div></div>`);
+    box.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; closeModal(); agregar(lista[Number(b.dataset.i)]); });
+  }
+  function agregar(o) {
+    const l = POS.carrito.find(x => x.clave === o.clave);
+    const ya = l ? l.c : 0;
+    if (!o.libre && ya + 1 > o.max) { toast(`Solo hay ${o.max} de «${textoOp(o)}» en el inventario.`, 'err'); sonar('aviso'); return; }
+    if (l) l.c++; else POS.carrito.push(Object.assign({}, o, { c: 1 }));
+    sonar('exito'); if (navigator.vibrate) navigator.vibrate(40);
+    pintarCarrito();
+    const q = $('#w5Q'); if (q) q.focus();
+  }
+  const totalCarrito = () => POS.carrito.reduce((s, x) => s + x.p * x.c, 0);
+  function pintarCarrito() {
+    const ul = $('#w5Cart'); const pago = $('#w5Pago'); if (!ul || !pago) return;
+    ul.innerHTML = POS.carrito.length ? POS.carrito.map((x, i) => `<li><div class="grow"><b>${esc(x.n)}</b><small>${x.v ? esc(x.v) + ' · ' : ''}${money(x.p)} c/u${x.rx ? ' · <span class="wk5-rx">Fórmula</span>' : ''}</small></div><span class="qty"><button type="button" data-cq="-1" data-i="${i}" aria-label="Quitar uno">${ic('minus', 'sm')}</button><b>${x.c}</b><button type="button" data-cq="1" data-i="${i}" aria-label="Agregar uno">${ic('plus', 'sm')}</button></span><b class="wk4-iv">${money(x.p * x.c)}</b></li>`).join('')
+      : `<li class="wk5-vacio">${ic('cart')}<span>Escanea o busca el primer producto.</span></li>`;
+    const tot = totalCarrito(); const ef = !pago.dataset.metodo || pago.dataset.metodo === 'Efectivo';
+    const rec = numIn(pago.dataset.recibido); const n = POS.carrito.reduce((s, x) => s + x.c, 0);
+    pago.innerHTML = `<small class="mut">${n} ${n === 1 ? 'producto' : 'productos'}</small><b class="wk5-total">${money(tot)}</b>
+      <div class="fld"><label for="w5Met">Medio de pago</label>${metSel('w5Met')}</div>
+      ${ef ? `<div class="fld"><label for="w5Rec">Recibido</label><input id="w5Rec" inputmode="numeric" value="${rec || ''}" placeholder="${tot ? money(tot) : ''}"></div>
+      <div class="wk5-bill">${[['Exacto', tot], ...[2000, 5000, 10000, 20000, 50000, 100000].filter(v => v > tot).slice(0, 3).map(v => [money(v), v])].map(x => `<button type="button" class="chip" data-rec="${x[1]}" ${tot ? '' : 'disabled'}>${x[0]}</button>`).join('')}</div>
+      <div class="wk5-cambio ${rec && rec < tot ? 'falta' : ''}"><span>${rec && rec < tot ? 'Falta' : 'Cambio'}</span><b>${money(rec ? Math.abs(rec - tot) : 0)}</b></div>` : ''}
+      <button class="btn pri lg wk5-cobrar" data-act="w5-cobrar" ${tot ? '' : 'disabled'}>${ic('dollar')} Cobrar ${money(tot)}</button>
+      ${POS.carrito.length ? `<button class="btn ghost sm" data-act="w5-vaciar">${ic('trash', 'sm')} Vaciar</button>` : ''}`;
+    const sel = $('#w5Met'); if (pago.dataset.metodo) sel.value = pago.dataset.metodo;
+    sel.onchange = () => { pago.dataset.metodo = sel.value; pago.dataset.recibido = ''; pintarCarrito(); };
+    const r = $('#w5Rec'); if (r) r.oninput = () => { pago.dataset.recibido = r.value; const v = numIn(r.value); const c = $('.wk5-cambio', pago); c.classList.toggle('falta', !!v && v < tot); $('span', c).textContent = v && v < tot ? 'Falta' : 'Cambio'; $('b', c).textContent = money(v ? Math.abs(v - tot) : 0); };
+  }
+  function formulaDlg() {
+    return new Promise(res => {
+      const hoyS = new Date(Date.now() - 5 * 3600000).toISOString().slice(0, 10);
+      const box = openModal(mHead('Venta con fórmula médica', 'file') + `<form class="mb wk-form" id="w5Fx" novalidate>
+        <p class="full mut" style="margin:0">Hay productos que se venden con fórmula. Pide la fórmula original y registra estos datos. No se guardan datos de salud del paciente.</p>
+        <div class="fld"><label for="w5Fn">Número de la fórmula</label><input id="w5Fn" maxlength="30" required></div>
+        <div class="fld"><label for="w5Ff">Fecha de la fórmula</label><input id="w5Ff" type="date" max="${hoyS}" required></div>
+        <div class="fld"><label for="w5Fp">Quién la formuló</label><input id="w5Fp" maxlength="80" placeholder="Ej: Dra. Ana Pérez" required></div>
+        <div class="fld"><label for="w5Fr">Registro profesional (opcional)</label><input id="w5Fr" maxlength="30"></div>
+        <label class="full wk5-chk"><input type="checkbox" id="w5Fv"> Vi la fórmula original y corresponde a lo que se vende.</label>
+        <div class="form-err hide full"></div><div class="ffoot full"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Continuar</button></div></form>`, { onClose: () => res(null) });
+      $('#w5Fx', box).onsubmit = e => {
+        e.preventDefault(); const v = id => $('#' + id, box).value.trim();
+        const f = { numero: v('w5Fn'), fecha: v('w5Ff'), prescriptor: v('w5Fp'), registro: v('w5Fr'), verificada: $('#w5Fv', box).checked };
+        const err = !f.numero || !f.fecha || !f.prescriptor ? 'Completa número, fecha y quién la formuló.' : !f.verificada ? 'Confirma que viste la fórmula original.' : '';
+        if (err) { const fe = $('.form-err', box); fe.textContent = err; fe.classList.remove('hide'); return; }
+        res(f); closeModal();
+      };
+    });
+  }
+  async function cobrar(btn) {
+    const pago = $('#w5Pago'); const tot = totalCarrito(); if (!tot) return;
+    const metodo = $('#w5Met').value; const rec = numIn(($('#w5Rec') || {}).value);
+    if (metodo === 'Efectivo' && rec && rec < tot) { toast('Lo recibido no alcanza.', 'err'); return; }
+    let formula = null;
+    if (POS.carrito.some(x => x.rx)) { formula = await formulaDlg(); if (!formula) return; }
+    busy(btn, 'Cobrando…', async () => {
+      try {
+        const r = await call('wk.pos.vender', P({ items: POS.carrito.map(x => x.inv_id ? { inv_id: x.inv_id, c: x.c } : { producto_id: x.producto_id, c: x.c }), metodo, recibido: rec, formula }));
+        const v = r.venta; POS.carrito = []; pago.dataset.recibido = ''; POS.inv = null; T().prods = null;
+        sonar('exito');
+        popup({ type: 'ok', stay: 9000, title: `Venta ${v.numero} · ${money(v.total)}`, msg: (v.metodo === 'efectivo' && v.cambio ? `Cambio: ${money(v.cambio)}. ` : '') + 'Quedó en la Caja del día.' + (v.stock_web === 'no' ? ' Las existencias del catálogo de la app no se pudieron actualizar: revísalas en Productos.' : ''), action: { label: 'Imprimir recibo', fn: () => recibo(v) } });
+        await cargar(true); W.pintarTab(true);
+      } catch (e) {
+        if (e.code === 'CAJA' || /caja/i.test(e.message)) popup({ type: 'err', title: 'Abre la caja primero', msg: 'Para vender, abre la Caja del día. Lo que tienes en la venta no se pierde.', action: { label: 'Ir a la caja', fn: () => { location.hash = '#/wk-caja'; } } });
+        else { toast(e.message, 'err'); sonar('aviso'); }
+      }
+    });
+  }
+  function recibo(v) {
+    const t = T().tienda; const css = 'body{font:13px/1.35 system-ui,sans-serif;width:72mm;margin:0 auto;padding:6px;color:#000}h1{font-size:16px;margin:0}table{width:100%;border-collapse:collapse}td{padding:2px 0;vertical-align:top}td:last-child{text-align:right}.t{border-top:1px dashed #000;margin-top:6px;padding-top:6px;font-weight:700;font-size:15px}small{color:#333}';
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(v.numero)}</title><style>${css}</style></head><body><h1>${esc(t.nombre || '')}</h1><small>${esc(v.fecha.replace('T', ' ').slice(0, 16))} · ${esc(v.numero)}<br>Atendió: ${esc(v.usuario)}</small>
+      <table>${v.items.map(x => `<tr><td>${x.c} × ${esc(x.n)}${x.v ? ' (' + esc(x.v) + ')' : ''}${x.lote ? '<br><small>Lote ' + esc(x.lote) + (x.vence ? ' · vence ' + esc(fechaCorta(x.vence)) : '') + '</small>' : ''}</td><td>${money(x.p * x.c)}</td></tr>`).join('')}</table>
+      <div class="t">Total ${money(v.total)}</div><small>Pago: ${esc(v.metodo)}${v.cambio ? ' · recibido ' + money(v.recibido) + ' · cambio ' + money(v.cambio) : ''}</small><p><small>Este recibo no es factura electrónica.<br>${esc(appName())}</small></p></body></html>`;
+    const f = document.createElement('iframe'); f.className = 'wk5-print'; f.setAttribute('aria-hidden', 'true'); document.body.appendChild(f);
+    f.srcdoc = html; f.onload = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) { /* noop */ } setTimeout(() => f.remove(), 60000); };
+  }
+  async function hoy() {
+    const box = $('#w5Hoy'); if (!box) return;
+    let d; try { d = await call('wk.pos.ventas', P()); } catch (e) { box.innerHTML = errBox(e); return; }
+    const r = d.resumen; POS.ventas = d.ventas;
+    box.innerHTML = `<div class="row between wrap" style="gap:8px"><h3 style="margin:0">Ventas de hoy</h3><div class="wk4-resumen"><b>${r.cantidad}</b> ventas · <b>${money(r.total)}</b>${Object.keys(r.por_metodo).map(k => ` · ${esc(k)} ${money(r.por_metodo[k])}`).join('')}</div></div>
+      ${d.ventas.length ? `<ul class="wk5-ventas">${d.ventas.slice(0, 30).map(v => `<li class="${v.estado}"><span class="wk5-vn">${esc(v.numero)}</span><span class="grow">${esc(v.fecha.slice(11, 16))} · ${v.items.reduce((s, x) => s + x.c, 0)} productos · ${esc(v.metodo)}${v.formula ? ' · con fórmula' : ''}${v.estado === 'anulada' ? ` · <b>Anulada:</b> ${esc(v.motivo)}` : ''}</span><b>${money(v.total)}</b><button type="button" class="btn sm ghost" data-act="w5-recibo" data-id="${esc(v.id)}" aria-label="Imprimir recibo ${esc(v.numero)}">${ic('file', 'sm')}</button>${manda() && v.estado === 'vigente' ? `<button type="button" class="btn sm ghost danger" data-act="w5-anular" data-id="${esc(v.id)}">Anular</button>` : ''}</li>`).join('')}</ul>` : '<p class="mut" style="margin:10px 0 0">Todavía no hay ventas en el punto de venta hoy.</p>'}`;
+  }
+
+  /* ---------- lector con la cámara ---------- */
+  async function escanear(titulo, alLeer) {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return popup({ type: 'err', title: 'Cámara', msg: 'Este navegador no permite usar la cámara. Usa Chrome, un lector USB o escribe el código.' });
+    const ov = document.createElement('div'); ov.className = 'scan';
+    ov.innerHTML = `<div class="scan-h">${ic('scan')}<div class="grow"><b>${esc(titulo)}</b></div><button class="icon-btn" data-x aria-label="Cerrar">${ic('x')}</button></div><div class="scan-v"><video playsinline muted></video><div class="scan-frame wk5-frame"></div></div><div class="scan-f" id="w5Sf">Apunta al código de barras o a la etiqueta QR.</div>`;
+    document.body.appendChild(ov); document.body.style.overflow = 'hidden';
+    let stream = null, vivo = true;
+    const cerrar = () => { vivo = false; if (stream) stream.getTracks().forEach(t => t.stop()); ov.remove(); document.body.style.overflow = ''; const q = $('#w5Q'); if (q) q.focus(); };
+    $('[data-x]', ov).onclick = cerrar;
+    try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment', width: { ideal: 1280 } }, audio: false }); }
+    catch (e) { cerrar(); return popup({ type: 'err', title: 'Cámara', msg: 'No diste permiso para usar la cámara. Actívalo en el candado de la barra de direcciones.' }); }
+    const video = $('video', ov); video.srcObject = stream; await video.play().catch(() => { });
+    let det = null, jq = null;
+    try { if ('BarcodeDetector' in window) { const ok = await BarcodeDetector.getSupportedFormats(); const f = ['ean_13', 'ean_8', 'upc_a', 'upc_e', 'code_128', 'code_39', 'itf', 'qr_code'].filter(x => ok.includes(x)); if (f.length) det = new BarcodeDetector({ formats: f }); } } catch (e) { det = null; }
+    if (!det) { try { jq = await cargarJsQR(); $('#w5Sf', ov).textContent = 'Este celular solo lee etiquetas QR con la cámara. Para códigos de barras usa un lector USB o Bluetooth, o escribe el número.'; } catch (e) { cerrar(); return popup({ type: 'err', title: 'Lector', msg: 'No se pudo cargar el lector. Revisa tu internet.' }); } }
+    const cv = document.createElement('canvas'); const cx = cv.getContext('2d', { willReadFrequently: true });
+    const leer = async () => {
+      if (!video.videoWidth) return '';
+      if (det) { const r = await det.detect(video); return r[0] ? r[0].rawValue : ''; }
+      const w = 480, h = Math.round(video.videoHeight * 480 / video.videoWidth); cv.width = w; cv.height = h; cx.drawImage(video, 0, 0, w, h);
+      const r = jq(cx.getImageData(0, 0, w, h).data, w, h, { inversionAttempts: 'dontInvert' }); return r ? r.data : '';
+    };
+    const loop = async () => { if (!vivo) return; try { const v = await leer(); if (v) { if (navigator.vibrate) navigator.vibrate(80); cerrar(); alLeer(v); return; } } catch (e) { /* sigue */ } setTimeout(loop, 160); };
+    loop();
+  }
+
+  /* =====================================================================
+   * 2. INVENTARIO
+   * ===================================================================== */
+  async function tabInventario(b) { await cargar(true); pintarInv(b); }
+  function pintarInv(b) {
+    const d = POS.inv; const a = d.alertas;
+    const f = POS.filtro; const q = norm(POS.buscar || '');
+    let l = d.items.filter(x => (!f || x[f]) && (!q || norm(etiqueta(x) + ' ' + x.codigo).includes(q)));
+    b.innerHTML = `<div class="wk5-alertas">
+        <button type="button" class="wk5-al ${!f ? 'on' : ''}" data-act="w5-filtro" data-v=""><b>${d.items.length}</b><span>En inventario</span></button>
+        <button type="button" class="wk5-al warn ${f === 'bajo' ? 'on' : ''}" data-act="w5-filtro" data-v="bajo"><b>${a.bajos}</b><span>Por agotarse</span></button>
+        ${conVence() ? `<button type="button" class="wk5-al warn ${f === 'por_vencer' ? 'on' : ''}" data-act="w5-filtro" data-v="por_vencer"><b>${a.por_vencer}</b><span>Vencen en ${d.dias_vence} días</span></button>
+        <button type="button" class="wk5-al err ${f === 'vencido' ? 'on' : ''}" data-act="w5-filtro" data-v="vencido"><b>${a.vencidos}</b><span>Vencidos</span></button>` : ''}</div>
+      <div class="row wrap wk5-tools"><div class="wk5-buscar grow">${ic('search')}<label class="sr" for="w5Iq">Buscar en el inventario</label><input id="w5Iq" placeholder="Buscar por nombre o código" value="${esc(POS.buscar || '')}" autocomplete="off"><button type="button" class="btn ghost" data-act="w5-icam" aria-label="Buscar con la cámara">${ic('camera', 'sm')}</button></div>
+        ${manda() ? `<button class="btn pri" data-act="w5-inuevo">${ic('plus', 'sm')} Agregar</button>` : ''}<button class="btn" data-act="w5-etiquetas" ${l.length ? '' : 'disabled'}>${ic('qr', 'sm')} Etiquetas QR</button></div>
+      ${a.vencidos && conVence() ? `<div class="banner b-err" style="margin-bottom:12px">${ic('alert')}<div>Hay productos vencidos. El punto de venta no los deja vender. Sácalos de la venta y haz el conteo en cero.</div></div>` : ''}
+      ${l.length ? `<div class="card wk5-inv">${l.map(x => { const pr = prodDe(x.producto_id); return `<div class="wk5-ir ${x.vencido ? 'vencido' : x.por_vencer ? 'porv' : ''}">
+        ${safeUrl(pr.imagen) ? `<img src="${esc(pr.imagen)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<span class="wk5-im">${ic('package')}</span>`}
+        <div class="grow"><b>${esc(x.nombre)}${x.variante ? ` <span class="wk5-var">${esc(x.variante)}</span>` : ''}${x.formula ? ' <span class="wk5-rx">Fórmula</span>' : ''}</b>
+          <small>${[x.codigo ? 'Código ' + esc(x.codigo) : 'Sin código', x.lote ? 'Lote ' + esc(x.lote) : '', x.vence ? `${x.vencido ? '<b class="wk5-err">Vencido</b>' : 'Vence'} ${esc(fechaCorta(x.vence))}` : '', money(precioDe(x))].filter(Boolean).join(' · ')}</small></div>
+        <div class="wk5-st ${x.stock <= 0 ? 'cero' : x.bajo ? 'bajo' : ''}"><b>${num(x.stock)}</b><small>${x.stock_min ? 'mín. ' + x.stock_min : 'unid.'}</small></div>
+        <div class="wk5-acc">${manda() ? `<button type="button" class="btn sm" data-act="w5-entrada" data-id="${esc(x.id)}">${ic('plus', 'sm')} Entrada</button><button type="button" class="btn sm ghost" data-act="w5-conteo" data-id="${esc(x.id)}">Conteo</button><button type="button" class="btn sm ghost" data-act="w5-ieditar" data-id="${esc(x.id)}" aria-label="Editar">${ic('edit', 'sm')}</button>` : ''}<button type="button" class="btn sm ghost" data-act="w5-hist" data-id="${esc(x.id)}" aria-label="Historial">${ic('clock', 'sm')}</button></div></div>`; }).join('')}</div>`
+        : `<div class="empty">${ic('package')}<p>${d.items.length ? 'Nada coincide con el filtro.' : 'Aún no hay productos en el inventario.'}</p>${!d.items.length && manda() ? '<p class="mut">Agrega tus productos con su código de barras. Los que no agregues se venden igual, sin control de existencias.</p>' : ''}</div>`}`;
+    const iq = $('#w5Iq'); iq.oninput = () => { POS.buscar = iq.value; clearTimeout(POS.tq); POS.tq = setTimeout(() => { const pos = iq.selectionStart; pintarInv(b); const n = $('#w5Iq'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } }, 200); };
+  }
+
+  function itemDlg(x) {
+    const nuevo = !x; const cat = (POS.cat || []);
+    const box = openModal(mHead(nuevo ? 'Agregar al inventario' : 'Editar ' + x.nombre, 'package') + `<form class="mb wk-form" id="w5If" novalidate>
+      <div class="fld full"><label for="w5Ip">Producto del catálogo</label><select id="w5Ip" ${nuevo ? '' : 'disabled'} required><option value="">Elige el producto</option>${cat.map(p => `<option value="${esc(p.id)}" ${x && x.producto_id === p.id ? 'selected' : ''}>${esc(p.nombre)} · ${money(p.precio)}</option>`).join('')}</select><small class="hint">Si no está, créalo primero en Productos.</small></div>
+      ${conTallas() ? `<div class="fld"><label for="w5It">Talla</label><input id="w5It" maxlength="20" value="${esc(x ? x.talla : '')}" placeholder="Ej: M, 32, 6 meses"></div><div class="fld"><label for="w5Ic">Color</label><input id="w5Ic" maxlength="30" value="${esc(x ? x.color : '')}" placeholder="Ej: Azul"></div>` : ''}
+      <div class="fld full"><label for="w5Ib">Código de barras o QR</label><div class="row" style="gap:8px"><input id="w5Ib" class="grow" maxlength="64" value="${esc(x ? x.codigo : '')}" placeholder="Escanéalo o escríbelo (opcional)"><button type="button" class="btn" id="w5IbCam">${ic('camera', 'sm')}</button></div><small class="hint">Sin código, la app le hace una etiqueta QR propia.</small></div>
+      ${nuevo ? `<div class="fld"><label for="w5Is">Existencias de hoy</label><input id="w5Is" inputmode="numeric" value="0"></div>` : ''}
+      <div class="fld"><label for="w5Im">Avísame cuando queden</label><input id="w5Im" inputmode="numeric" value="${x ? x.stock_min || '' : ''}" placeholder="Ej: 5"></div>
+      <div class="fld"><label for="w5Ipr">Precio distinto (opcional)</label><input id="w5Ipr" inputmode="numeric" value="${x && x.precio ? x.precio : ''}" placeholder="Vacío: el del catálogo"></div>
+      ${conVence() ? `<div class="fld"><label for="w5Il">Lote</label><input id="w5Il" maxlength="30" value="${esc(x ? x.lote : '')}"></div><div class="fld"><label for="w5Iv">Fecha de vencimiento</label><input id="w5Iv" type="date" value="${esc(x ? x.vence : '')}"></div>` : ''}
+      ${esFarma() ? `<label class="full wk5-chk"><input type="checkbox" id="w5Ix" ${x && x.formula ? 'checked' : ''}> Se vende con fórmula médica</label>` : ''}
+      ${esFarma() && nuevo ? '<p class="full mut" style="margin:0;font-size:13px">Si llega otro lote del mismo producto, agrégalo aparte con su lote y vencimiento: al vender, sale primero el que vence antes.</p>' : ''}
+      <div class="form-err hide full"></div><div class="ffoot full">${!nuevo ? `<button type="button" class="btn ghost danger" id="w5Idel">${ic('trash', 'sm')} Quitar</button><span class="grow"></span>` : ''}<button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Guardar</button></div></form>`, { wide: true });
+    $('#w5IbCam', box).onclick = () => escanear('Escanea el código', v => { const i = $('#w5Ib'); if (i) i.value = v; });
+    const del = $('#w5Idel', box); if (del) del.onclick = async () => { if (!(await confirmDlg({ title: 'Quitar del inventario', msg: 'Deja de controlar sus existencias. El historial se conserva.', ok: 'Quitar', danger: true }))) return; try { await call('wk.inv.borrar', P({ id: x.id })); closeModal(); toast('Quitado del inventario.'); W.pintarTab(); } catch (e) { toast(e.message, 'err'); } };
+    $('#w5If', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', e.target), 'Guardando…', async () => {
+      const v = id => ($('#' + id, box) || {}).value || '';
+      try {
+        await call('wk.inv.set', P({ id: x ? x.id : '', producto_id: x ? x.producto_id : v('w5Ip'), talla: v('w5It').trim(), color: v('w5Ic').trim(), codigo: v('w5Ib').trim(), stock: numIn(v('w5Is')), stock_min: numIn(v('w5Im')), precio: numIn(v('w5Ipr')), lote: v('w5Il').trim(), vence: v('w5Iv'), formula: !!($('#w5Ix', box) || {}).checked }));
+        closeModal(); toast('Guardado en el inventario.', 'ok'); W.pintarTab();
+      } catch (err) { const fe = $('.form-err', box); fe.textContent = /producto/i.test(err.message) && !v('w5Ip') ? 'Elige el producto.' : err.message; fe.classList.remove('hide'); }
+    }); };
+  }
+  function movDlg(x, tipo) {
+    const ent = tipo === 'entrada';
+    const box = openModal(mHead((ent ? 'Entrada · ' : 'Conteo · ') + etiqueta(x), ent ? 'plus' : 'layers') + `<form class="mb wk-form" id="w5Mf" novalidate>
+      <p class="full mut" style="margin:0">Hoy hay <b>${num(x.stock)}</b> según la app.</p>
+      <div class="fld"><label for="w5Mc">${ent ? 'Cuántas unidades entraron' : 'Cuántas contaste'}</label><input id="w5Mc" inputmode="numeric" required></div>
+      <div class="fld"><label for="w5Mn">Nota (opcional)</label><input id="w5Mn" maxlength="140" placeholder="${ent ? 'Ej: factura del proveedor 551' : 'Ej: conteo de fin de mes'}"></div>
+      <div class="form-err hide full"></div><div class="ffoot full"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn pri" type="submit">${ic('check')} Guardar</button></div></form>`);
+    $('#w5Mf', box).onsubmit = e => { e.preventDefault(); busy($('[type=submit]', e.target), 'Guardando…', async () => {
+      try { const r = await call('wk.inv.mov', P({ id: x.id, tipo, cantidad: numIn($('#w5Mc').value), nota: $('#w5Mn').value.trim() })); closeModal(); toast(ent ? `Entrada guardada. Ahora hay ${num(r.item.stock)}.` : `Conteo guardado: ${num(r.item.stock)} (${r.item.stock - r.antes >= 0 ? '+' : ''}${r.item.stock - r.antes}).`, 'ok'); W.pintarTab(); }
+      catch (err) { const fe = $('.form-err', box); fe.textContent = err.message; fe.classList.remove('hide'); }
+    }); };
+  }
+  async function historial(x) {
+    const box = openModal(mHead('Historial · ' + etiqueta(x), 'clock') + '<div class="mb"><div class="skel" style="height:200px"></div></div>');
+    let l; try { l = await call('wk.inv.movs', P({ inv_id: x.id })); } catch (e) { $('.mb', box).innerHTML = errBox(e); return; }
+    const TIP = { entrada: 'Entrada', venta: 'Venta', conteo: 'Conteo', anulacion: 'Anulación' };
+    $('.mb', box).innerHTML = l.length ? `<ul class="wk4-reg wk5-hist">${l.map(m => `<li><span>${esc(m.fecha.slice(5, 16).replace('T', ' '))}</span><span>${esc(TIP[m.tipo] || m.tipo)}${m.referencia ? ' ' + esc(m.referencia) : ''} <b class="${m.cantidad < 0 ? 'wk5-err' : 'wk5-ok'}">${m.cantidad > 0 ? '+' : ''}${m.cantidad}</b></span><b>${num(m.saldo)}</b><small>${esc(m.usuario)}${m.nota ? ' · ' + esc(m.nota) : ''}</small></li>`).join('')}</ul>` : '<p class="mut">Sin movimientos.</p>';
+  }
+
+  /* ---------- etiquetas QR para imprimir ---------- */
+  async function etiquetas() {
+    const f = POS.filtro; const q = norm(POS.buscar || '');
+    const l = POS.inv.items.filter(x => (!f || x[f]) && (!q || norm(etiqueta(x) + ' ' + x.codigo).includes(q))).slice(0, 120);
+    let qr; try { qr = await cargarQR(); } catch (e) { toast('No se pudo cargar el generador de QR. Revisa tu internet.', 'err'); return; }
+    const svg = txt => { const c = qr(0, 'M'); c.addData(txt); c.make(); return c.createSvgTag({ cellSize: 3, margin: 0, scalable: true }); };
+    const tarjetas = l.map(x => `<div class="lbl">${svg('WUAKA:I:' + x.id)}<div><b>${esc(x.nombre)}</b>${x.variante ? `<span>${esc(x.variante)}</span>` : ''}<strong>${money(precioDe(x))}</strong><small>${esc(x.codigo || x.id)}${x.vence ? ' · V ' + esc(fechaCorta(x.vence)) : ''}</small></div></div>`).join('');
+    const css = '.lbls{display:grid;grid-template-columns:repeat(auto-fill,minmax(62mm,1fr));gap:3mm}.lbl{display:flex;gap:3mm;align-items:center;border:1px dashed #999;border-radius:2mm;padding:2.5mm;break-inside:avoid;font:11px/1.25 system-ui,sans-serif;color:#000;background:#fff}.lbl svg{width:22mm;height:22mm;flex:none}.lbl div{display:flex;flex-direction:column;min-width:0}.lbl b{font-size:11.5px}.lbl strong{font-size:14px}.lbl small{color:#444;word-break:break-all}';
+    const box = openModal(mHead(`Etiquetas QR (${l.length})`, 'qr') + `<div class="mb stack"><p class="mut" style="margin:0">Imprímelas en papel adhesivo y pégalas en el producto o en el estante. El punto de venta las lee con la cámara o con un lector que lea QR.</p><style>${css}</style><div class="lbls wk5-lbls">${tarjetas}</div><div class="ffoot"><button type="button" class="btn ghost" data-close>Cerrar</button><button type="button" class="btn pri" id="w5Pr">${ic('file')} Imprimir</button></div></div>`, { wide: true });
+    $('#w5Pr', box).onclick = () => { const fr = document.createElement('iframe'); fr.className = 'wk5-print'; fr.setAttribute('aria-hidden', 'true'); document.body.appendChild(fr); fr.srcdoc = `<!doctype html><html><head><meta charset="utf-8"><title>Etiquetas</title><style>@page{margin:8mm}body{margin:0}${css}</style></head><body><div class="lbls">${tarjetas}</div></body></html>`; fr.onload = () => { try { fr.contentWindow.print(); } catch (e) { /* noop */ } setTimeout(() => fr.remove(), 60000); }; };
+  }
+
+  /* ---------- pestañas del tablero ---------- */
+  W.pestana('pos', 'Punto de venta', 'cart', tabPos, ['Comercio', 'Farmacia', 'Almacén', 'Ferretería', 'Depósitos']);
+  W.pestana('inventario', 'Inventario', 'package', tabInventario, ['Comercio', 'Farmacia', 'Almacén', 'Ferretería', 'Depósitos']);
+  W.pestana('inventario', 'Inventario', 'package', tabInventario, ['Carnicería'], true);
+
+  const itemDe = id => (POS.inv.items || []).find(x => x.id === id);
+  Object.assign(ACTS, {
+    'w5-cam': () => escanear('Escanear producto', v => buscarYAgregar(v)),
+    'w5-icam': () => escanear('Buscar en el inventario', v => { POS.buscar = v.replace(/^(WUAKA|MUAKA):I:/i, ''); const x = itemDe(POS.buscar); if (x) POS.buscar = x.codigo || x.nombre; const b = $('#w4Body'); if (b && POS.inv) pintarInv(b); }),
+    'w5-cobrar': el => cobrar(el),
+    'w5-vaciar': () => { POS.carrito = []; pintarCarrito(); },
+    'w5-recibo': el => { const v = (POS.ventas || []).find(x => x.id === el.dataset.id); if (v) recibo(v); },
+    'w5-anular': async el => { const v = (POS.ventas || []).find(x => x.id === el.dataset.id); const m = await confirmDlg({ title: 'Anular ' + v.numero, msg: `Devuelve ${money(v.total)} de la caja y regresa los productos al inventario.`, ok: 'Anular venta', danger: true, input: { label: 'Motivo', req: true } }); if (!m) return; try { await call('wk.pos.anular', P({ id: v.id, motivo: m })); toast('Venta anulada.', 'ok'); POS.inv = null; await cargar(true); hoy(); } catch (e) { toast(/caja/i.test(e.message) ? 'Primero abre la Caja del día.' : e.message, 'err'); } },
+    'w5-filtro': el => { POS.filtro = el.dataset.v; const b = $('#w4Body'); if (b && POS.inv) pintarInv(b); },
+    'w5-inuevo': () => itemDlg(null),
+    'w5-ieditar': el => itemDlg(itemDe(el.dataset.id)),
+    'w5-entrada': el => movDlg(itemDe(el.dataset.id), 'entrada'),
+    'w5-conteo': el => movDlg(itemDe(el.dataset.id), 'conteo'),
+    'w5-hist': el => historial(itemDe(el.dataset.id)),
+    'w5-etiquetas': () => etiquetas()
+  });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-cq],[data-rec]'); if (!b || !$('#w5Cart')) return;
+    if (b.dataset.rec) { const pago = $('#w5Pago'); pago.dataset.recibido = b.dataset.rec; pintarCarrito(); return; }
+    const i = Number(b.dataset.i); const x = POS.carrito[i]; if (!x) return; const n = x.c + Number(b.dataset.cq);
+    if (!x.libre && n > x.max) { toast(`Solo hay ${x.max} en el inventario.`, 'err'); return; }
+    if (n <= 0) POS.carrito.splice(i, 1); else x.c = n; pintarCarrito(); });
+
+  /* =====================================================================
+   * 3. TALLAS Y COLORES EN LA FICHA DEL PRODUCTO
+   * ===================================================================== */
+  const VAR_CACHE = {};
+  const _openProduct = openProduct;
+  openProduct = async function (p) {
+    const r = await _openProduct(p);
+    const box = $('.modal [id="pDesc"]'); if (!box || !p || !p.id) return r;
+    try {
+      const d = VAR_CACHE[p.id] && Date.now() - VAR_CACHE[p.id].t < 120000 ? VAR_CACHE[p.id].d : (VAR_CACHE[p.id] = { t: Date.now(), d: await call('wk.inv.pub', { producto_id: p.id }) }).d;
+      const vs = d.variantes || []; if (!vs.length || !box.isConnected) return r;
+      box.insertAdjacentHTML('afterend', `<div class="wk5-vars"><small>Tallas y colores en la tienda</small><div>${vs.map(v => `<span class="chip">${esc(v.variante)}${v.pocas ? ' · quedan pocas' : ''}</span>`).join('')}</div><small class="mut">Escríbele al negocio para confirmar la tuya antes de pagar.</small></div>`);
+    } catch (e) { /* sin módulo V5: no se muestra */ }
+    return r;
+  };
+
+  window.WK_V5 = { version: '5.0.0', escanear };
 })();
 
 </script>
